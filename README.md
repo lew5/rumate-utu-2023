@@ -4,7 +4,7 @@
 Un software dedicado al remate rural, también conocido como “software de subastas ganaderas, rurales y otros”, es una herramienta especializada, diseñada para gestionar y facilitar el proceso de remate y subastas, tanto de ganado como de otros bienes inherentes al rubro.
 
 
-## Authors
+## Autores
 
 - [@lew5](https://github.com/lew5)
 - [@eche](https://github.com/lew5)
@@ -12,7 +12,7 @@ Un software dedicado al remate rural, también conocido como “software de suba
 - [@aron](https://github.com/lew5)
 
 
-## Utilizado por:
+## Utilizado por
 
 Este proyecto es utilizado por las siguientes empresas:
 
