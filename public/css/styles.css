@@ -1,0 +1,108 @@
+html {
+  color: var(--text-color);
+}
+
+:root {
+  font-family: 'Inter', sans-serif;
+
+  --text-color: #01070F;
+  --bg-color: #FAFCFF;
+  --btn-primary-color: #54DE5F;
+  --btn-primary-active-color: #3EDA4B;
+  --accent-color: #6B3201;
+  --input-border-color: hsla(212, 87%, 3%, 0.25);
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+}
+
+.container--flex {
+  display: flex;
+}
+
+.container--flex-row {
+  flex-direction: row;
+}
+
+.container--flex-column {
+  flex-direction: column;
+}
+
+.container__img {
+  width: 70%;
+  background-image: url(/public/assets/imgs/login-registro-img.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(40%);
+}
+
+.container-section {
+  text-align: center;
+  flex: 1;
+  padding: 2.5rem;
+  gap: 2rem;
+}
+
+.container-section__title {
+  font-size: 2.25rem;
+  margin-bottom: 0;
+}
+
+.container-section__name {
+  font-size: 1.125rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+.section__button {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border: 2px solid transparent;
+  height: 3.1875rem;
+  border-radius: 6px;
+  background-color: var(--btn-primary-color);
+}
+
+.section__button--google {
+  background-color: inherit;
+  border-color: var(--input-border-color);
+}
+
+.form input {
+  height: 3.1875rem;
+  border: 2px solid var(--input-border-color);
+  border-radius: 6px;
+  padding-left: 1rem;
+}
+
+.section__button:hover {
+  background-color: hsla(125, 68%, 60%, 0.9);
+}
+
+.section__button:active {
+  background-color: var(--btn-primary-active-color);
+}
+
+.section__button--google:hover {
+  background-color: hsla(212, 87%, 3%, 0.025);
+}
+
+.section__button--google:active {
+  background-color: hsla(212, 87%, 3%, 0.05);
+}
