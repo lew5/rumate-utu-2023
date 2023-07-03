@@ -4,10 +4,10 @@ Un software dedicado al remate rural, también conocido como “software de suba
 
 ## Autores
 
-- [@lew5](https://github.com/lew5)
-- [@eche](https://github.com/lew5)
-- [@joa](https://github.com/lew5)
-- [@aron](https://github.com/lew5)
+- [@Leandro Olivera](https://github.com/lew5)
+- [@Gabriel Ececheste](https://github.com/lew5)
+- [@Joaquín Ojeda](https://github.com/lew5)
+- [@Aron Camargo](https://github.com/lew5)
 
 ## Utilizado por
 
