@@ -1,11 +1,12 @@
 <?php
-
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-$query = parse_url($_SERVER['REQUEST_URI'])['query']; //separar el query en un array bla bla
+// $query = parse_url($_SERVER['REQUEST_URI'])['query']; //separar el query en un array bla bla
 
 $routes = [
 
-  "/" => "app/controllers/index.php",
+  "/" => BASE_PATH . "app/views/home/index.view.php",
+  "/registrar" => BASE_PATH . "app/views/register/index.view.php",
+  "/login" => BASE_PATH . "app/views/login/index.view.php",
 
 ];
 
