@@ -6,4 +6,10 @@ function vd($value)
   die();
 }
 
+
+function authorize($condition, $status = Response::FORBIDDEN)
+{
+  return (!$condition) ?? abort();
+}
+
 ?>
