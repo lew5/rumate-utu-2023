@@ -145,4 +145,22 @@ function core($path)
 {
   require core_path($path);
 }
+
+
+/**
+ * Método abort
+ * 
+ * Termina la ejecución del script y envía un código de respuesta HTTP (predeterminado 404 NOT FOUND).
+ * 
+ * @param int $code El código de respuesta HTTP (por defecto, 404 NOT FOUND).
+ * @return void No hay retorno, simplemente termina la ejecución del script con el código de respuesta especificado.
+ */
+function abort($code = 404)
+{
+
+  http_response_code($code);
+  // require("app/views/{$code}.php");
+  die();
+
+}
 ?>
