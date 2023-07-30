@@ -1,14 +1,7 @@
 <?php
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+
+$routes = require BASE_PATH . "routes.php";
 // $query = parse_url($_SERVER['REQUEST_URI'])['query']; //separar el query en un array bla bla
-
-$routes = [
-
-  "/" => BASE_PATH . "app/views/home/index.view.php",
-  "/registrar" => BASE_PATH . "app/views/register/index.view.php",
-  "/login" => BASE_PATH . "app/views/login/index.view.php",
-
-];
 
 function routeToController($uri, $routes)
 {
@@ -32,7 +25,7 @@ function abort($code = 404)
   die();
 
 }
-
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 routeToController($uri, $routes);
 
 ?>
