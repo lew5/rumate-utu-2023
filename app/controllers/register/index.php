@@ -1,5 +1,5 @@
 <?php
 
-require VIEWS_PATH . "register/index.view.php";
+view("register/index.view.php");
 
 ?>

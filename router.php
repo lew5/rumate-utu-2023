@@ -1,6 +1,6 @@
 <?php
 
-$routes = require BASE_PATH . "routes.php";
+$routes = require base_path("routes.php");
 // $query = parse_url($_SERVER['REQUEST_URI'])['query']; //separar el query en un array bla bla
 
 function routeToController($uri, $routes)

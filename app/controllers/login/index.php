@@ -1,3 +1,3 @@
 <?php
-require VIEWS_PATH . "login/index.view.php";
+view("login/index.view.php");
 ?>
