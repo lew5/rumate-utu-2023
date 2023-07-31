@@ -12,16 +12,15 @@ const BASE_PATH = __DIR__ . "/../";
  * Carga de archivos y clases necesarias.
  */
 require BASE_PATH . "app/core/functions.php"; // Carga el archivo con funciones generales del sistema.
+bootstrap("bootstrap.php"); // Carga el archivo de inicio (bootstrap) de la aplicación.
+$db = App::resolve("Database"); // Crea una instancia de la clase Database para interactuar con la base de datos.
 
 // Carga de clases y configuración necesarias.
-$config = require base_path("config/config.php"); // Carga el archivo de configuración de la base de datos.
-model("Database.php"); // Carga la clase Database para interactuar con la base de datos.
 core("Response.php"); // Carga la clase Response para manejar las respuestas HTTP.
 core("Validator.php"); // Carga la clase Validator para realizar validaciones.
-core("Router.php"); // Carga la clase Router para manejar el enrutamiento.
 
 // Creación e inicialización del enrutador.
-$router = new Router(); // Crea una nueva instancia del enrutador.
+$router = App::resolve("Router"); // Crea una nueva instancia del enrutador.
 $routes = require base_path("routes.php"); // Carga el archivo que define las rutas de la aplicación.
 
 // Obtiene la URL solicitada y el método HTTP de la solicitud.
@@ -39,8 +38,8 @@ $router->route($uri, $method);
 // $db = new Database($config['database'], "root", "");
 // $id = 2;
 // $res = $db->query("SELECT * FROM usuario WHERE id = ?", [$id])->findOrFail();
-// $res = $db->query("SELECT * FROM usuario")->get();
-// vd($res);
+$res = $db->query("SELECT * FROM usuario")->get();
+vd($res);
 // $str = "lewaccont@gmail.com";
 // $pass = "lewaccotSA3@gmail.com";
 // var_dump(Validator::string($str, 1, 100));

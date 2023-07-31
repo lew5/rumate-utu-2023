@@ -1,17 +1,18 @@
 <?php
+
 /**
  * Clase Router
  * 
  * Esta clase implementa un enrutador simple para manejar las rutas de una aplicación web.
  * Permite definir rutas para diferentes métodos HTTP y ejecutar el controlador correspondiente para una ruta solicitada.
  */
-
-/* 
-  TODO: CREAR EL MIDDLEWARE 
-*/
+middleware("Middleware.php");
 class Router
 {
 
+  /**
+   * @var array La lista de rutas disponibles.
+   */
   private $routes = [];
 
   /**
@@ -22,7 +23,7 @@ class Router
    * @param string $method El método HTTP para la ruta (GET, POST, DELETE, PUT, PATCH).
    * @param string $uri La ruta a la que se vincula el controlador.
    * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return void No hay retorno, simplemente agrega la ruta a la lista de rutas.
+   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
    */
   private function add($method, $uri, $controller)
   {
@@ -43,7 +44,7 @@ class Router
    * 
    * @param string $uri La ruta a la que se vincula el controlador.
    * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return void No hay retorno, simplemente agrega la ruta GET a la lista de rutas.
+   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
    */
   public function get($uri, $controller)
   {
@@ -57,7 +58,7 @@ class Router
    * 
    * @param string $uri La ruta a la que se vincula el controlador.
    * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return void No hay retorno, simplemente agrega la ruta POST a la lista de rutas.
+   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
    */
   public function post($uri, $controller)
   {
@@ -71,7 +72,7 @@ class Router
    * 
    * @param string $uri La ruta a la que se vincula el controlador.
    * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return void No hay retorno, simplemente agrega la ruta DELETE a la lista de rutas.
+   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
    */
   public function delete($uri, $controller)
   {
@@ -85,7 +86,7 @@ class Router
    * 
    * @param string $uri La ruta a la que se vincula el controlador.
    * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return void No hay retorno, simplemente agrega la ruta PUT a la lista de rutas.
+   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
    */
   public function put($uri, $controller)
   {
@@ -99,11 +100,24 @@ class Router
    * 
    * @param string $uri La ruta a la que se vincula el controlador.
    * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return void No hay retorno, simplemente agrega la ruta PATCH a la lista de rutas.
+   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
    */
   public function patch($uri, $controller)
   {
     return $this->add("PATCH", $uri, $controller);
+  }
+
+  /**
+   * Método only
+   * 
+   * Asigna un middleware a la última ruta agregada.
+   * 
+   * @param string $key La clave del middleware a asignar a la última ruta.
+   * @return void No hay retorno, simplemente asigna el middleware a la última ruta agregada.
+   */
+  public function only($key)
+  {
+    $this->routes[array_key_last($this->routes)]['middleware'] = $key;
   }
 
   /**
@@ -119,6 +133,7 @@ class Router
   {
     foreach ($this->routes as $route) {
       if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+        Middleware::resolve($route['middleware']);
         return require $route['controller'];
       }
     }

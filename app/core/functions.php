@@ -1,5 +1,9 @@
 <?php
 /**
+ * Funciones útiles y utilidades para el sistema.
+ */
+
+/**
  * Función vd
  * 
  * Muestra el contenido de una variable utilizando var_dump() y detiene la ejecución del script con die().
@@ -80,6 +84,19 @@ function controller_path($path)
 }
 
 /**
+ * Función bootstrap_path
+ * 
+ * Devuelve la ruta completa a un archivo de inicio (bootstrap) en relación con la ruta base del sistema.
+ * 
+ * @param string $path La ruta relativa al archivo de inicio.
+ * @return string La ruta completa al archivo de inicio.
+ */
+function bootstrap_path($path)
+{
+  return base_path("/bootstrap/" . $path);
+}
+
+/**
  * Función core_path
  * 
  * Devuelve la ruta completa a un archivo del núcleo del sistema en relación con la ruta base del sistema.
@@ -90,6 +107,19 @@ function controller_path($path)
 function core_path($path)
 {
   return base_path("app/core/" . $path);
+}
+
+/**
+ * Función middleware_path
+ * 
+ * Devuelve la ruta completa a un archivo de middleware en relación con la ruta base del sistema.
+ * 
+ * @param string $path La ruta relativa al archivo de middleware.
+ * @return string La ruta completa al archivo de middleware.
+ */
+function middleware_path($path)
+{
+  return base_path("routes/" . $path);
 }
 
 /**
@@ -134,6 +164,32 @@ function controller($path) //para un futuro si es necesario. sino eliminarlo
 }
 
 /**
+ * Función bootstrap
+ * 
+ * Incluye el archivo de inicio (bootstrap) de la aplicación.
+ * 
+ * @param string $path La ruta al archivo de inicio.
+ * @return void No hay retorno, ya que incluye el archivo de inicio.
+ */
+function bootstrap($path)
+{
+  require bootstrap_path($path);
+}
+
+/**
+ * Función middleware
+ * 
+ * Incluye el archivo de un middleware en la aplicación.
+ * 
+ * @param string $path La ruta al archivo de middleware.
+ * @return void No hay retorno, ya que incluye el archivo de middleware.
+ */
+function middleware($path)
+{
+  require middleware_path($path);
+}
+
+/**
  * Función core
  * 
  * Incluye el archivo de un componente del núcleo del sistema en la aplicación.
@@ -146,9 +202,8 @@ function core($path)
   require core_path($path);
 }
 
-
 /**
- * Método abort
+ * Función abort
  * 
  * Termina la ejecución del script y envía un código de respuesta HTTP (predeterminado 404 NOT FOUND).
  * 
@@ -163,4 +218,3 @@ function abort($code = 404)
   die();
 
 }
-?>
