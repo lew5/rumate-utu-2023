@@ -7,10 +7,6 @@
 }
 
 body {
-  /* pruebas */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   accent-color: var(--coral-600);
   min-height: 100vh;
   color: #333;
@@ -35,7 +31,7 @@ a {
   font-family: 'Inter', sans-serif;
   text-decoration: none;
   font-size: 16px;
-  color: var(--pastel-green-500);
+  color: var(--fruit-salad-500);
 }
 
 :root {
@@ -288,6 +284,70 @@ a {
   font-weight: 500;
 }
 
+/*Login styles*/
+
+.login {
+  min-height: 100vh;
+}
+
+.login__container {
+  padding: 1rem;
+  width: 31.25%;
+  max-width: 400px;
+}
+
+.login__wrap {
+  height: 100%;
+  width: 100%;
+}
+
+.login__img {
+  flex: 1;
+  background-color: greenyellow;
+}
+
+.login-logo {
+  height: 15%;
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat;
+  width: 100%;
+  background-image: url("/public/assets/imgs/rumate-brand.webp");
+}
+
+.login__title-desc {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  text-align: center;
+  gap: 2rem;
+}
+
+.login__title {
+  font-size: 32px;
+  font-weight: 400;
+  color: #000000b3;
+}
+
+.login__desc {
+  font-size: 16px;
+  color: #00000080;
+}
+
+.login__form {
+  gap: 80px;
+}
+
+.login__form-inputs {
+  gap: 1px;
+}
+
+.forgotten-password {
+  align-self: center;
+}
+
+.login__submit-register-container {
+  gap: 50px;
+}
 
 /*Especificidad 20*/
 .text-field__input:hover {
@@ -324,25 +384,53 @@ a {
 }
 
 .link:visited {
-  color: var(--pastel-green-500);
+  color: var(--fruit-salad-500);
 }
 
 .link:hover {
-  color: var(--pastel-green-600);
+  text-decoration: underline;
+  color: var(--fruit-salad-600);
 }
 
 .link:active {
-  color: var(--pastel-green-700);
+  color: var(--fruit-salad-700);
 }
 
 /* MOBILE */
 
 /* Media query para dispositivos móviles */
-@media (max-width: 360px) {
+@media (max-width: 375px) {
+  .login__img {
+    display: none;
+  }
 
-  body {
-    background-color: red;
-    padding: 1rem;
+  .login-logo {
+    height: 70px;
+  }
+
+  .login__title {
+    font-size: 24px;
+  }
+
+  .login__desc {
+    font-size: 14px;
+  }
+
+  .login__container {
+    width: 100%;
+  }
+
+  .login__title-desc {
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .login__form {
+    gap: 2rem;
+  }
+
+  .login__submit-register-container {
+    gap: 4rem;
   }
 }
 

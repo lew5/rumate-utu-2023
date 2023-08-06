@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="app.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="login f-row">
+      <div class="login__container flex align-center-center">
+        <div class="login__wrap f-column">
+          <div class="login-logo"></div>
+          <div class="login__title-desc f-column align-center">
+            <h1 class="login__title">Inicio de sesión</h1>
+            <p class="login__desc">Inicia sesión para poder participar en los remates.</p>
+          </div>
+          <form
+            class="login__form f-column"
+            action=""
+            method="POST">
+            <div class="login__form-inputs f-column">
+              <div class="text-field">
+                <label class="text-field__label f-column">
+                  <span class="label__text">Nombre de usuario</span>
+                  <input
+                    name="password"
+                    class="text-field__input"
+                    type="text"
+                    placeholder="Ingresa tu contraseña"
+                    autocomplete="off"
+                    class="text-field__input" />
+                </label>
+                <span class="text-field__error-message hidden error">Error</span>
+              </div>
+              <div class="text-field">
+                <label class="text-field__label f-column">
+                  <span class="label__text">Contraseña</span>
+                  <input
+                    name="password"
+                    class="text-field__input"
+                    type="password"
+                    placeholder="Ingresa tu contraseña"
+                    autocomplete="off"
+                    class="text-field__input" />
+                </label>
+                <span class="text-field__error-message hidden error">Error</span>
+              </div>
+              <a
+                href=""
+                class="link"
+                >¿Olvidaste tu contraseña?</a
+              >
+            </div>
+            <div class="login__submit-register-container f-column">
+              <div class="button">
+                <input
+                  class="button__input"
+                  type="button"
+                  value="INGRESAR" />
+              </div>
+              <span class="forgotten-password"
+                >¿No tienes una cuenta?
+                <a
+                  href=""
+                  class="link"
+                  >Regístrate</a
+                ></span
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="login__img"></div>
+    </div>
+    <!-- <div class="container-1024">
+      <div class="text-field">
+        <label class="text-field__label f-column">
+          <span class="label__text">Nombre de usuario</span>
+          <input
+            name="username"
+            class="text-field__input"
+            type="text"
+            placeholder="Ingresa tu nombre de usuario"
+            autocomplete="off"
+            class="text-field__input" />
+        </label>
+        <span class="text-field__error-message hidden error">Error</span>
+      </div>
+      <div class="text-field">
+        <label class="text-field__label f-column">
+          <span class="label__text">Contraseña</span>
+          <input
+            name="password"
+            class="text-field__input"
+            type="password"
+            placeholder="Ingresa tu contraseña"
+            autocomplete="off"
+            class="text-field__input" />
+        </label>
+        <span class="text-field__error-message hidden error">Error</span>
+      </div>
+      <div class="button">
+        <input
+          class="button__input"
+          type="button"
+          value="INGRESAR" />
+      </div>
+    </div> -->
+  </body>
+</html>
