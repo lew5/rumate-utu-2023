@@ -1,11 +1,6 @@
 <?php
-
-print("<h1>HOME</h1>");
-
+require view_path("partials/doctype.php");
+require view_path("partials/head.php");
+require view_path("partials/nav.php");
 ?>
-
-<ul>
-  <li><a href="/">home</a></li>
-  <li><a href="/login">login</a></li>
-  <li><a href="/registro">registro</a></li>
-</ul>
+<?php view("partials/footer.php"); ?>

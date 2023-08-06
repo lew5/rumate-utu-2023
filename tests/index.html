@@ -13,45 +13,74 @@
       href="https://fonts.gstatic.com"
       crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet" />
     <link
       rel="stylesheet"
       href="app.css" />
-    <title>Document</title>
+    <title>Componentes</title>
   </head>
   <body>
-    <div class="text-field">
-      <label class="text-field__label f-column">
-        <span class="label__text">Nombre de usuario</span>
-        <input
-          name="username"
-          class="text-field__input"
-          type="text"
-          placeholder="Ingresa tu nombre de usuario"
-          autocomplete="off"
-          class="text-field__input" />
-      </label>
-      <span class="text-field__error-message hidden error">Error</span>
+    <div class="navigation-wrap f-row">
+      <div class="container-1024">
+        <div class="navigation-container f-row align-center">
+          <div class="navigation__brand">
+            <a
+              class="brand__link"
+              href="/"></a>
+            <img
+              class="brand__img"
+              src="../public/assets/imgs/rumate-brand.webp"
+              alt="logo de rumate" />
+          </div>
+          <nav class="navigation__menu f-row align-center">
+            <a
+              href=""
+              class="menu-link button-link button-link--accent"
+              >Registrarme</a
+            >
+            <a
+              href=""
+              class="menu-link button-link"
+              >Ingresar</a
+            >
+          </nav>
+        </div>
+      </div>
     </div>
-    <div class="text-field">
-      <label class="text-field__label f-column">
-        <span class="label__text">Contraseña</span>
+    <div class="container-1024">
+      <div class="text-field">
+        <label class="text-field__label f-column">
+          <span class="label__text">Nombre de usuario</span>
+          <input
+            name="username"
+            class="text-field__input"
+            type="text"
+            placeholder="Ingresa tu nombre de usuario"
+            autocomplete="off"
+            class="text-field__input" />
+        </label>
+        <span class="text-field__error-message hidden error">Error</span>
+      </div>
+      <div class="text-field">
+        <label class="text-field__label f-column">
+          <span class="label__text">Contraseña</span>
+          <input
+            name="password"
+            class="text-field__input"
+            type="password"
+            placeholder="Ingresa tu contraseña"
+            autocomplete="off"
+            class="text-field__input" />
+        </label>
+        <span class="text-field__error-message hidden error">Error</span>
+      </div>
+      <div class="button">
         <input
-          name="password"
-          class="text-field__input"
-          type="password"
-          placeholder="Ingresa tu contraseña"
-          autocomplete="off"
-          class="text-field__input" />
-      </label>
-      <span class="text-field__error-message hidden error">Error</span>
-    </div>
-    <div class="button">
-      <input
-        class="button__input"
-        type="button"
-        value="INGRESAR" />
+          class="button__input"
+          type="button"
+          value="INGRESAR" />
+      </div>
     </div>
   </body>
 </html>

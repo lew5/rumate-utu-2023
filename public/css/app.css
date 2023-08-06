@@ -7,7 +7,10 @@
 }
 
 body {
-  /* prueba */
+  /* pruebas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   accent-color: var(--coral-600);
   min-height: 100vh;
   color: #333;
@@ -29,7 +32,7 @@ menu {
 }
 
 a {
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
   text-decoration: none;
   font-size: 16px;
   color: var(--pastel-green-500);
@@ -168,7 +171,7 @@ a {
   justify-content: center;
 }
 
-.container {
+.container-1024 {
   max-width: var(--max-width);
 }
 
@@ -222,19 +225,69 @@ a {
   width: 100%;
 }
 
-/*Especificidad 11*/
-
-a:visited {
-  color: var(--pastel-green-500);
+.button-link {
+  color: #fff;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  background-color: var(--primary-btn-default-color);
 }
 
-a:hover {
-  color: var(--pastel-green-600);
+.button-link--accent {
+  background-color: transparent;
+  color: var(--coral-700);
 }
 
-a:active {
-  color: var(--pastel-green-700);
+/*NAV styles*/
+.navigation-wrap {
+  height: 70px;
+  max-height: 70px;
+  justify-content: center;
 }
+
+.container-1024 {
+  width: var(--max-width);
+}
+
+.navigation-container {
+  height: 100%;
+  justify-content: space-between;
+}
+
+.navigation__brand {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  max-height: 100%;
+}
+
+.brand__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.brand__link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.navigation__menu {
+  gap: 1rem;
+}
+
+.menu-link {
+  font-weight: 500;
+}
+
 
 /*Especificidad 20*/
 .text-field__input:hover {
@@ -253,6 +306,35 @@ a:active {
   background-color: var(--primary-btn-active-color);
 }
 
+.button-link:hover {
+  background-color: var(--primary-btn-hover-color);
+}
+
+.button-link:active {
+  background-color: var(--primary-btn-active-color);
+}
+
+.button-link--accent:hover {
+  color: var(--coral-700);
+  background-color: var(--coral-50);
+}
+
+.button-link--accent:active {
+  background-color: var(--coral-100);
+}
+
+.link:visited {
+  color: var(--pastel-green-500);
+}
+
+.link:hover {
+  color: var(--pastel-green-600);
+}
+
+.link:active {
+  color: var(--pastel-green-700);
+}
+
 /* MOBILE */
 
 /* Media query para dispositivos móviles */
@@ -260,6 +342,7 @@ a:active {
 
   body {
     background-color: red;
+    padding: 1rem;
   }
 }
 
