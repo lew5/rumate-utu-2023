@@ -1,31 +1,68 @@
+/* RESETS */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  /* prueba */
+  accent-color: var(--coral-600);
+  min-height: 100vh;
+  color: #333;
+  background-color: var(--white-100);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+a {
+  font-family: sans-serif;
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--pastel-green-500);
+}
+
 :root {
   /* COLORS */
 
   /*Primary*/
-  --pastel-green-50: #f0fdf0;
-  --pastel-green-100: #dcfcde;
-  --pastel-green-200: #bcf6bf;
-  --pastel-green-300: #87ee8f;
-  --pastel-green-400: #54de5f;
-  --pastel-green-500: #24c331;
-  --pastel-green-600: #18a123;
-  --pastel-green-700: #167f1f;
-  --pastel-green-800: #17641e;
-  --pastel-green-900: #15521c;
-  --pastel-green-950: #052e0a;
+  --fruit-salad-50: #f4f9f4;
+  --fruit-salad-100: #e5f3e6;
+  --fruit-salad-200: #cce6cd;
+  --fruit-salad-300: #a3d2a6;
+  --fruit-salad-400: #73b578;
+  --fruit-salad-500: #5ba961;
+  --fruit-salad-600: #3d7c42;
+  --fruit-salad-700: #336237;
+  --fruit-salad-800: #2c4f2f;
+  --fruit-salad-900: #264129;
+  --fruit-salad-950: #102312;
 
   /*Accent*/
-  --nutmeg-wood-finish-50: #ffffe4;
-  --nutmeg-wood-finish-100: #fffeb9;
-  --nutmeg-wood-finish-200: #fffd76;
-  --nutmeg-wood-finish-300: #fff427;
-  --nutmeg-wood-finish-400: #ffe100;
-  --nutmeg-wood-finish-500: #ffc400;
-  --nutmeg-wood-finish-600: #ed9300;
-  --nutmeg-wood-finish-700: #bc6500;
-  --nutmeg-wood-finish-800: #9a4c00;
-  --nutmeg-wood-finish-900: #6b3201;
-  --nutmeg-wood-finish-950: #4d1e00;
+  --coral-50: #fff6ed;
+  --coral-100: #ffebd4;
+  --coral-200: #ffd2a9;
+  --coral-300: #ffb272;
+  --coral-400: #fe934d;
+  --coral-500: #fc6513;
+  --coral-600: #ed4b09;
+  --coral-700: #c53609;
+  --coral-800: #9c2b10;
+  --coral-900: #7e2610;
+  --coral-950: #441006;
 
   /*Background*/
   --zircon-50: #fafcff;
@@ -83,67 +120,109 @@
   /*Buttons*/
 
   /*Primary*/
-  --primary-btn-text-color: var(--pastel-green-50);
-  --primary-btn-default-color: var(--pastel-green-500);
-  --primary-btn-hover-color: var(--pastel-green-600);
-  --primary-btn-active-color: var(--pastel-green-700);
-  --primary-btn-disable-color: var(--pastel-green-200);
-  --primary-btn-disable-text-color: var(--pastel-green-700);
+  --primary-btn-text-color: var(--fruit-salad-50);
+  --primary-btn-default-color: var(--fruit-salad-500);
+  --primary-btn-hover-color: var(--fruit-salad-600);
+  --primary-btn-active-color: var(--fruit-salad-700);
+  --primary-btn-disable-color: var(--fruit-salad-200);
+  --primary-btn-disable-text-color: var(--fruit-salad-700);
   /*Accent*/
-  --accent-btn-text-color: var(--pastel-green-50);
-  --accent-btn-default-color: var(--pastel-green-500);
-  --accent-btn-hover-color: var(--pastel-green-600);
-  --accent-btn-active-color: var(--pastel-green-700);
-  --accent-btn-disable-color: var(--pastel-green-200);
-  --accent-btn-disable-text-color: var(--pastel-green-700);
+  --accent-btn-text-color: var(--coral-50);
+  --accent-btn-default-color: var(--coral-500);
+  --accent-btn-hover-color: var(--coral-600);
+  --accent-btn-active-color: var(--coral-700);
+  --accent-btn-disable-color: var(--coral-200);
+  --accent-btn-disable-text-color: var(--coral-700);
+
+
+  --max-width: 1024px;
+  --border-radius: 6px;
 }
 
-/* RESETS */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
+
+/*Especificidad 10*/
+.flex {
+  display: flex;
 }
 
-body {
-  margin: 10rem;
-  background-color: var(--zircon-50);
+.f-column {
+  display: flex;
+  flex-direction: column;
 }
 
-img {
-  max-inline-size: 100%;
-  max-block-size: 100%;
+.f-row {
+  display: flex;
+  flex-direction: row;
 }
 
-ol,
-ul,
-menu {
-  list-style: none;
+.align-center {
+  align-items: center;
 }
 
-a {
-  font-family: sans-serif;
-  text-decoration: none;
-  font-size: 16px;
-  color: var(--pastel-green-500);
+.justify-center {
+  justify-content: center;
 }
 
-input {
+.align-center-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: var(--max-width);
+}
+
+/*Text field styles*/
+.text-field {
+  font-weight: 500;
+}
+
+.text-field__label {
+  gap: 1px;
+}
+
+.error {
+  color: red;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.text-field__input {
   border: none;
-  outline: none;
   border: 1px solid var(--black-400);
-  padding: .5rem;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  padding: 10px;
+  font-weight: inherit;
+  font-size: 16px;
 }
 
-input:hover {
-  border-color: var(--black-600);
+.text-field__input--error {
+  border-color: red;
 }
 
-input:focus {
-  border-color: var(--black-900);
+/*button styles*/
+
+.button {
+  height: 50px;
 }
+
+.button__input {
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--primary-btn-default-color);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: 400;
+  height: 100%;
+  width: 100%;
+}
+
+/*Especificidad 11*/
 
 a:visited {
   color: var(--pastel-green-500);
@@ -157,30 +236,50 @@ a:active {
   color: var(--pastel-green-700);
 }
 
-.flex {
-  display: flex;
+/*Especificidad 20*/
+.text-field__input:hover {
+  border-color: var(--black-600);
 }
 
-.flex-direction-column {
-  flex-direction: column;
+.text-field__input:focus {
+  outline-color: var(--black-900);
 }
 
-.flex-direction-row {
-  flex-direction: row;
+.button__input:hover {
+  background-color: var(--primary-btn-hover-color);
 }
 
-.align-center {
-  align-items: center;
+.button__input:active {
+  background-color: var(--primary-btn-active-color);
 }
 
-.justify-center {
-  justify-content: center;
+/* MOBILE */
+
+/* Media query para dispositivos móviles */
+@media (max-width: 360px) {
+
+  body {
+    background-color: red;
+  }
 }
 
-.input__title {
-  align-self: flex-start;
+@media (max-width: 375px) {
+
+  body {
+    background-color: whitesmoke;
+  }
 }
 
-.input__input {
-  width: 100%;
+/* Media query para tabletas */
+@media (min-width: 768px) and (max-width: 1023px) {
+  body {
+    background-color: yellow;
+  }
+}
+
+/* Media query para computadoras de escritorio */
+@media (min-width: 1024px) {
+  body {
+    /* background-color: #f5f5f5; */
+  }
 }
