@@ -185,6 +185,8 @@ a {
 
 .error {
   color: red;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .hidden {
@@ -326,6 +328,8 @@ a {
   mask-position: left;
   -webkit-mask-size: 160%;
   mask-size: 50%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 /*Especificidad 11*/
@@ -385,7 +389,7 @@ a {
 }
 
 .login__form .button {
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
 }
 
 @media only screen and (min-width: 360px) {
@@ -444,7 +448,7 @@ a {
   }
 
   .login__form .button {
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
   }
 
   .login-logo {
