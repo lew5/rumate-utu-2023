@@ -88,5 +88,6 @@ class Database
       return $result; // Devuelve la primera fila si se encontró
     }
   }
+
 }
 ?>

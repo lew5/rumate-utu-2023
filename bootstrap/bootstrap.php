@@ -31,6 +31,13 @@ $container->bind("Database", function () {
   return new Database($config['database'], "root", "");
 });
 
+$container->bind("User", function () {
+  // Obtiene la configuración de la base de datos desde el archivo de configuración.
+  $config = require base_path("config/config.php");
+  // Crea y devuelve una nueva instancia de la clase User 
+  return new User($config['database'], "root", "");
+});
+
 // Se vincula la clave "Router" con una función anónima que crea y devuelve una nueva instancia de la clase Router.
 $container->bind("Router", function () {
   // Crea y devuelve una nueva instancia de la clase Router para manejar las rutas de la aplicación.

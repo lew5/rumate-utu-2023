@@ -6,11 +6,18 @@
         <img class="brand__img" src="assets/imgs/rumate-brand.webp"
           alt="logo de rumate" />
       </div>
-      <nav class="navigation__menu f-row align-center">
-        <a href="/registro"
-          class="menu-link button-link button-link--accent">Registrarme</a>
-        <a href="/login" class="menu-link button-link">Ingresar</a>
-      </nav>
+      <?php
+      if (isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+        if ($_SESSION['rol'] == "ROOT") {
+          require view_path("partials/nav-client.php");
+        } else if ($_SESSION['rol'] == "ADMINISTRADOR") {
+          require view_path("partials/nav-client.php");
+        }
+      } else {
+        require view_path("partials/nav-guest.php");
+      }
+      ?>
     </div>
   </div>
 </div>

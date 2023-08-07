@@ -7,13 +7,14 @@
  * Rutas de directorios del sistema.
  */
 const BASE_PATH = __DIR__ . "/../";
+session_start();
 
 /**
  * Carga de archivos y clases necesarias.
  */
 require BASE_PATH . "app/core/functions.php"; // Carga el archivo con funciones generales del sistema.
 bootstrap("bootstrap.php"); // Carga el archivo de inicio (bootstrap) de la aplicación.
-$db = App::resolve("Database"); // Crea una instancia de la clase Database para interactuar con la base de datos.
+// $db = App::resolve("Database"); // Crea una instancia de la clase Database para interactuar con la base de datos.
 
 // Carga de clases y configuración necesarias.
 core("Response.php"); // Carga la clase Response para manejar las respuestas HTTP.
