@@ -11,9 +11,13 @@ body {
   min-height: 100vh;
   color: #333;
   background-color: var(--white-100);
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
+}
+
+body,
+input {
+  font-family: 'Inter', sans-serif;
 }
 
 img {
@@ -28,9 +32,7 @@ menu {
 }
 
 a {
-  font-family: 'Inter', sans-serif;
   text-decoration: none;
-  font-size: 16px;
   color: var(--fruit-salad-500);
 }
 
@@ -177,6 +179,7 @@ a {
 }
 
 .text-field__label {
+  font-size: 1rem;
   gap: 1px;
 }
 
@@ -196,6 +199,7 @@ a {
   padding: 10px;
   font-weight: inherit;
   font-size: 16px;
+  font-weight: 400;
 }
 
 .text-field__input--error {
@@ -285,68 +289,52 @@ a {
 }
 
 /*Login styles*/
-
 .login {
+  width: 100%;
   min-height: 100vh;
 }
 
 .login__container {
-  padding: 1rem;
-  width: 31.25%;
-  max-width: 400px;
-}
-
-.login__wrap {
-  height: 100%;
-  width: 100%;
-}
-
-.login__img {
   flex: 1;
-  background-color: greenyellow;
+  padding: 2rem;
 }
 
-.login-logo {
-  height: 15%;
-  background-size: contain;
-  background-position: top;
-  background-repeat: no-repeat;
-  width: 100%;
-  background-image: url("/public/assets/imgs/rumate-brand.webp");
-}
-
-.login__title-desc {
-  margin-top: 1rem;
-  margin-bottom: 4rem;
-  text-align: center;
-  gap: 2rem;
-}
-
-.login__title {
-  font-size: 32px;
-  font-weight: 400;
-  color: #000000b3;
-}
-
-.login__desc {
-  font-size: 16px;
-  color: #00000080;
+.login-form-wrap {
+  height: 100%;
 }
 
 .login__form {
-  gap: 80px;
+  height: 100%;
+  justify-content: space-between;
 }
 
-.login__form-inputs {
-  gap: 1px;
+.login__header {
+  text-align: center;
+  gap: 1rem;
 }
 
-.forgotten-password {
-  align-self: center;
+
+.login__background {
+  background-image: url("../public/assets/imgs/hero-img.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 70%;
+  -webkit-mask: url("../public/assets/imgs/blob.svg");
+  mask: url("../public/assets/imgs/blob.svg");
+  -webkit-mask-position: left;
+  mask-position: left;
+  -webkit-mask-size: 160%;
+  mask-size: 50%;
 }
 
-.login__submit-register-container {
-  gap: 50px;
+/*Especificidad 11*/
+.login__header h1 {
+  font-weight: 400;
+}
+
+.login__header p {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 /*Especificidad 20*/
@@ -396,61 +384,75 @@ a {
   color: var(--fruit-salad-700);
 }
 
-/* MOBILE */
+.login__form .button {
+  margin-bottom: 10rem;
+}
 
-/* Media query para dispositivos móviles */
-@media (max-width: 375px) {
-  .login__img {
+@media only screen and (min-width: 360px) {
+  .login__container {
+    padding: 1rem;
+    padding-bottom: 3rem;
+    padding-top: 0;
+  }
+
+  .login__background {
     display: none;
   }
 
+  .login__form {
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  .login__form .button {
+    margin-bottom: 0;
+  }
+
   .login-logo {
-    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 3rem;
   }
 
-  .login__title {
-    font-size: 24px;
+  .login__header {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .login-logo {
+    height: 4rem;
   }
 
-  .login__desc {
+  .login__header {
     font-size: 14px;
   }
+}
 
+@media only screen and (min-width: 1024px) {
   .login__container {
-    width: 100%;
+    padding: 2rem;
   }
 
-  .login__title-desc {
-    margin-bottom: 1rem;
-    gap: 1rem;
+  .login__background {
+    display: block;
   }
 
   .login__form {
-    gap: 2rem;
+    justify-content: space-between;
   }
 
-  .login__submit-register-container {
-    gap: 4rem;
+  .login__form .button {
+    margin-bottom: 10rem;
   }
-}
 
-@media (max-width: 375px) {
-
-  body {
-    background-color: whitesmoke;
+  .login-logo {
+    justify-content: center;
+    height: 7.26rem;
   }
-}
 
-/* Media query para tabletas */
-@media (min-width: 768px) and (max-width: 1023px) {
-  body {
-    background-color: yellow;
-  }
-}
-
-/* Media query para computadoras de escritorio */
-@media (min-width: 1024px) {
-  body {
-    /* background-color: #f5f5f5; */
+  .login__header {
+    font-size: 16px;
   }
 }

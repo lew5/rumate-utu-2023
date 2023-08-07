@@ -21,19 +21,24 @@
     <title>Login</title>
   </head>
   <body>
-    <div class="login f-row">
-      <div class="login__container flex align-center-center">
-        <div class="login__wrap f-column">
-          <div class="login-logo"></div>
-          <div class="login__title-desc f-column align-center">
-            <h1 class="login__title">Inicio de sesión</h1>
-            <p class="login__desc">Inicia sesión para poder participar en los remates.</p>
-          </div>
+    <main class="login f-row">
+      <div class="login__container">
+        <div class="login-form-wrap">
           <form
             class="login__form f-column"
             action=""
-            method="POST">
-            <div class="login__form-inputs f-column">
+            method="POST"
+            autocomplete="off">
+            <div class="login-logo">
+              <img
+                src="../public/assets/imgs/rumate-brand.webp"
+                alt="rumate-logo" />
+            </div>
+            <div class="login__header f-column">
+              <h1>Inicio de sesión</h1>
+              <p>Inicia sesión para poder participar en los remates.</p>
+            </div>
+            <div class="inputs-wrap">
               <div class="text-field">
                 <label class="text-field__label f-column">
                   <span class="label__text">Nombre de usuario</span>
@@ -66,27 +71,25 @@
                 >¿Olvidaste tu contraseña?</a
               >
             </div>
-            <div class="login__submit-register-container f-column">
-              <div class="button">
-                <input
-                  class="button__input"
-                  type="button"
-                  value="INGRESAR" />
-              </div>
-              <span class="forgotten-password"
-                >¿No tienes una cuenta?
-                <a
-                  href=""
-                  class="link"
-                  >Regístrate</a
-                ></span
-              >
+            <div class="button">
+              <input
+                class="button__input"
+                type="button"
+                value="INGRESAR" />
             </div>
+            <span class="forgotten-password"
+              >¿No tienes una cuenta?
+              <a
+                href=""
+                class="link"
+                >Regístrate</a
+              ></span
+            >
           </form>
         </div>
       </div>
-      <div class="login__img"></div>
-    </div>
+      <div class="login__background"></div>
+    </main>
     <!-- <div class="container-1024">
       <div class="text-field">
         <label class="text-field__label f-column">
