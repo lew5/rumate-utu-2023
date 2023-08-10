@@ -6,23 +6,34 @@
  */
 
 // Carga de archivos y clases necesarias.
-// Cargar la clase Container para gestionar el contenedor de dependencias.
+
+// Incluir la definición de la clase Container para gestionar el contenedor de dependencias.
 bootstrap("/Container.php");
 
-// Cargar la clase App para configurar y resolver dependencias.
+// Incluir la definición de la clase App para configurar y resolver dependencias.
 bootstrap("/App.php");
 
-// Cargar la clase Database para manejar la conexión a la base de datos.
+// Incluir la definición de la clase Database para manejar la conexión a la base de datos.
 model("Database.php");
 
-// Cargar la clase Router para manejar las rutas de la aplicación.
+// Incluir la definición de la clase User (modelo de usuario).
+model("User.php");
+
+// Incluir la definición del controlador de autenticación (AuthController).
+controller("AuthController.php");
+
+// Incluir la definición del servicio de autenticación (AuthService).
+require base_path("app/services/AuthService.php");
+
+// Incluir la definición de la clase Router para manejar las rutas de la aplicación.
 core("Router.php");
 
 // Creación del contenedor de dependencias.
 $container = new Container(); // Crea una nueva instancia del contenedor de dependencias.
 
 // Configuración del contenedor.
-// Se vincula la clave "Database" con una función anónima que crea y devuelve una nueva instancia de la clase Database.
+
+// Vincular la clave "Database" con una función anónima que crea y devuelve una nueva instancia de la clase Database.
 $container->bind("Database", function () {
   // Obtiene la configuración de la base de datos desde el archivo de configuración.
   $config = require base_path("config/config.php");
@@ -34,14 +45,26 @@ $container->bind("Database", function () {
 $container->bind("User", function () {
   // Obtiene la configuración de la base de datos desde el archivo de configuración.
   $config = require base_path("config/config.php");
-  // Crea y devuelve una nueva instancia de la clase User 
+  // Crea y devuelve una nueva instancia de la clase User.
   return new User($config['database'], "root", "");
 });
 
-// Se vincula la clave "Router" con una función anónima que crea y devuelve una nueva instancia de la clase Router.
+// Vincular la clave "Router" con una función anónima que crea y devuelve una nueva instancia de la clase Router.
 $container->bind("Router", function () {
   // Crea y devuelve una nueva instancia de la clase Router para manejar las rutas de la aplicación.
   return new Router();
+});
+
+// Vincular la clave "AuthService" con una función anónima que crea y devuelve una nueva instancia de la clase AuthService.
+$container->bind("AuthService", function () {
+  // Resuelve la dependencia del modelo User para el servicio de autenticación.
+  return new AuthService(App::resolve("User"));
+});
+
+// Vincular la clave "AuthController" con una función anónima que crea y devuelve una nueva instancia de la clase AuthController.
+$container->bind("AuthController", function () {
+  // Resuelve la dependencia del servicio AuthService para el controlador de autenticación.
+  return new AuthController(App::resolve("AuthService"));
 });
 
 // Establece el contenedor configurado en la clase App.

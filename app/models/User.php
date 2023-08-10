@@ -79,7 +79,7 @@ class User extends Database
    */
   public function fill($username)
   {
-    $data = $this->query("SELECT u.id, u.username, r.nombre AS rol FROM usuario u JOIN rol r ON u.rol = r.id WHERE u.username = :user", ['user' => $username])->findOrFail();
+    $data = $this->query("SELECT u.id, u.username, r.nombre AS rol FROM usuario u JOIN rol r ON u.rol = r.id WHERE u.username = :user", ['user' => $username])->find();
     $this->id = $data['id'];
     $this->username = $data['username'];
     $this->rol = $data['rol'];
@@ -93,10 +93,11 @@ class User extends Database
    */
   public function findUser($username, $password)
   {
-    return $this->query("SELECT * FROM usuario WHERE username = :username AND password = :password", [
+    $query = $this->query("SELECT * FROM usuario WHERE username = :username AND password = :password", [
       'username' => $username,
       'password' => $password
     ])->find();
+    return $query ?? null;
   }
 }
 ?>
