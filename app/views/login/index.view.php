@@ -15,27 +15,27 @@ require view_path("partials/head.php");
           <p>Inicia sesión para poder participar en los remates.</p>
         </div>
         <div class="inputs-wrap">
-          <div class="text-field">
-            <label class="text-field__label f-column">
+          <div class="input-field">
+            <label class="input-field__label f-column">
               <span class="label__text">Nombre de usuario</span>
               <input name="username" type="text"
                 placeholder="Ingresa tu usuario" autocomplete="off"
-                class="text-field__input <?php isset($error) ? print("text-field__input--error") : print(""); ?>"
+                class="input-field__input <?php isset($error) ? print("input-field__input--error") : print(""); ?>"
                 required
                 value="<?php isset($username) ? print($username) : print(""); ?>" />
             </label>
             <span
-              class="text-field__error-message <?php isset($error) ? print("") : print("hidden"); ?> error"><?php isset($error) ? print($error) : print("Error"); ?></span>
+              class="input-field__error-message <?php isset($error) ? print("") : print("hidden"); ?> error"><?php isset($error) ? print($error) : print("Error"); ?></span>
           </div>
-          <div class="text-field">
-            <label class="text-field__label f-column">
+          <div class="input-field">
+            <label class="input-field__label f-column">
               <span class="label__text">Contraseña</span>
               <input name="password"
-                class="text-field__input <?php isset($error) ? print("text-field__input--error") : print(""); ?>"
+                class="input-field__input <?php isset($error) ? print("input-field__input--error") : print(""); ?>"
                 type="password" placeholder="Ingresa tu contraseña"
-                autocomplete="off" class="text-field__input" required />
+                autocomplete="off" class="input-field__input" required />
             </label>
-            <span class="text-field__error-message hidden error">Error</span>
+            <span class="input-field__error-message hidden error">Error</span>
           </div>
           <a href="" class="link">¿Olvidaste tu contraseña?</a>
         </div>
