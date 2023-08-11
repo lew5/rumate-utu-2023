@@ -4,7 +4,7 @@ class Guest
 {
   public function handle()
   {
-    if ($_SESSION['user'] ?? false) {
+    if ($_SESSION['username'] ?? false) {
       header('location: /');
       exit();
     }
