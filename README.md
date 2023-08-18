@@ -19,3 +19,4 @@ Este proyecto es utilizado por las siguientes empresas:
 ## Screenshots
 
 ![App Screenshot](screenshots/LOGIN.png)
+![App Screenshot](screenshots/REGISTRO.png)
