@@ -34,6 +34,7 @@ menu {
 a {
   text-decoration: none;
   color: var(--fruit-salad-500);
+  cursor: pointer;
 }
 
 :root {
@@ -180,13 +181,14 @@ a {
 
 .input-field__label {
   font-size: 1rem;
-  gap: 1px;
+  gap: 6px;
 }
 
 .error {
   color: red;
   font-size: 14px;
   font-weight: 400;
+  margin-top: 1rem;
 }
 
 .hidden {
@@ -226,6 +228,7 @@ a {
   height: 100%;
   width: 100%;
 }
+
 
 .button-link {
   color: #fff;
@@ -290,33 +293,42 @@ a {
   font-weight: 500;
 }
 
-/*Login styles*/
-.login {
+/*login-register styles*/
+.login-register {
   width: 100%;
   min-height: 100vh;
 }
 
-.login__container {
+.login-register__container {
   flex: 1;
   padding: 2rem;
 }
 
-.login-form-wrap {
+.login-register-form-wrap {
   height: 100%;
 }
 
-.login__form {
+.login-register__form {
   height: 100%;
   justify-content: space-between;
 }
 
-.login__header {
+.login-register__header {
   text-align: center;
   gap: 1rem;
 }
 
+.register-step--2,
+.register-step--3 {
+  display: none;
+}
 
-.login__background {
+.actions span {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.login-register__background {
   background-image: url("../public/assets/imgs/hero-img.webp");
   background-repeat: no-repeat;
   background-size: cover;
@@ -333,11 +345,11 @@ a {
 }
 
 /*Especificidad 11*/
-.login__header h1 {
+.login-register__header h1 {
   font-weight: 400;
 }
 
-.login__header p {
+.login-register__header p {
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -388,75 +400,73 @@ a {
   color: var(--fruit-salad-700);
 }
 
-.login__form .button {
-  margin-bottom: 5rem;
+.button__input:disabled,
+.button__input:disabled:hover {
+  background-color: #CCE6CD;
+  color: #336237;
+  cursor: not-allowed;
 }
 
+
 @media only screen and (min-width: 360px) {
-  .login__container {
+  .login-register__container {
     padding: 1rem;
     padding-bottom: 3rem;
     padding-top: 0;
   }
 
-  .login__background {
+  .login-register__background {
     display: none;
   }
 
-  .login__form {
+  .login-register__form {
     justify-content: center;
     gap: 2.5rem;
   }
 
-  .login__form .button {
-    margin-bottom: 0;
-  }
 
-  .login-logo {
+  .login-register-logo {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     height: 3rem;
   }
 
-  .login__header {
+  .login-register__header {
     font-size: 12px;
   }
 }
 
 @media only screen and (min-width: 375px) {
-  .login-logo {
+  .login-register-logo {
     height: 4rem;
   }
 
-  .login__header {
+  .login-register__header {
     font-size: 14px;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  .login__container {
+  .login-register__container {
     padding: 2rem;
   }
 
-  .login__background {
+  .login-register__background {
     display: block;
   }
 
-  .login__form {
+  .login-register__form {
     justify-content: space-between;
   }
 
-  .login__form .button {
-    margin-bottom: 5rem;
-  }
 
-  .login-logo {
+  .login-register-logo {
     justify-content: center;
     height: 7.26rem;
   }
 
-  .login__header {
+  .login-register__header {
     font-size: 16px;
   }
 }
