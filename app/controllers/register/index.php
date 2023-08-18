@@ -1,5 +1,7 @@
 <?php
 
-view("register/index.view.php");
+view("register/index.view.php", [
+  'title' => "Rumate - Registro"
+]);
 
 ?>

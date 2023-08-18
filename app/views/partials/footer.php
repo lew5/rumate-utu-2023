@@ -1,4 +1,4 @@
 <script
-  src="<?php isset($script) ? print($css) : print("js/app.js"); ?>"></script>
+  src="<?php isset($script) ? print($script) : print("js/app.js"); ?>"></script>
 </body>
 </html>
