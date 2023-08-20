@@ -15,6 +15,7 @@ class Validator
   private const ERR_NO_UPPERCASE = "La contraseña debe tener al menos una mayúscula.";
   private const ERR_NO_SPECIAL_CHAR = "La contraseña debe tener al menos un carácter especial.";
   private const ERR_NO_VALID_EMAIL = "El email no es valido.";
+  private const ERR_INVALID_CI = "Cédula uruguaya inválida.";
 
   /**
    * Método para validar una cadena.
@@ -78,5 +79,32 @@ class Validator
     // La contraseña cumple con los criterios de seguridad
     return true;
   }
+
+  public static function uyCI($value)
+  {
+    if (preg_match('/^\d{7,8}$/', $value)) {
+      return self::validateUyCI($value) ? true : self::ERR_INVALID_CI;
+    }
+    return self::ERR_INVALID_CI;
+  }
+
+  private static function validateUyCI($cedula)
+  {
+    $cedulaDigits = str_split($cedula);
+    $cedulaDigits = array_map('intval', $cedulaDigits);
+
+    $weights = array(2, 9, 8, 7, 6, 3, 4);
+    $checksum = 0;
+
+    for ($i = 0; $i < count($weights); $i++) {
+      $checksum += $weights[$i] * $cedulaDigits[$i];
+    }
+
+    $remainder = $checksum % 10;
+    $expectedLastDigit = ($remainder === 0) ? 0 : (10 - $remainder);
+
+    return $expectedLastDigit === $cedulaDigits[count($cedulaDigits) - 1];
+  }
+
 }
 ?>

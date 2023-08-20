@@ -25,5 +25,5 @@ view("partials/login-register/register-step-3.php");
 <div class="login-register__background"></div>
 </main>
 <?php view("partials/footer.php", [
-  'script' => "js/register.js"
+  'script' => "js/register-test.js"
 ]); ?>
