@@ -18,6 +18,16 @@ model("Database.php");
 
 // Incluir la definición de la clase User (modelo de usuario).
 model("User.php");
+// Incluir la definición de la clase Remate (modelo de remate).
+model("Remate.php");
+// Incluir la definición de la clase Remate (modelo de empleado).
+model("Empleado.php");
+// Incluir la definición de la clase Remate (modelo de permiso).
+model("Permiso.php");
+// Incluir la definición de la clase Remate (modelo de ClienteProveedor).
+model("ClienteProveedor.php");
+// Incluir la definición de la clase Remate (modelo de ClienteProveedorRealizaPuja).
+model("ClienteProveedorRealizaPuja.php");
 
 // Incluir la definición del controlador de autenticación (AuthController).
 controller("AuthController.php");
@@ -47,6 +57,39 @@ $container->bind("User", function () {
   $config = require base_path("config/config.php");
   // Crea y devuelve una nueva instancia de la clase User.
   return new User($config['database'], "root", "");
+});
+
+$container->bind("Remate", function () {
+  // Obtiene la configuración de la base de datos desde el archivo de configuración.
+  $config = require base_path("config/config.php");
+  // Crea y devuelve una nueva instancia de la clase Remate.
+  return new Remate($config['database'], "root", "");
+});
+
+$container->bind("Empleado", function () {
+  // Obtiene la configuración de la base de datos desde el archivo de configuración.
+  $config = require base_path("config/config.php");
+  // Crea y devuelve una nueva instancia de la clase Empleado.
+  return new Empleado($config['database'], "root", "");
+});
+
+$container->bind("Permiso", function () {
+  // Obtiene la configuración de la base de datos desde el archivo de configuración.
+  $config = require base_path("config/config.php");
+  // Crea y devuelve una nueva instancia de la clase Permiso.
+  return new Permiso($config['database'], "root", "");
+});
+$container->bind("ClienteProveedor", function () {
+  // Obtiene la configuración de la base de datos desde el archivo de configuración.
+  $config = require base_path("config/config.php");
+  // Crea y devuelve una nueva instancia de la clase Permiso.
+  return new ClienteProveedor($config['database'], "root", "");
+});
+$container->bind("ClienteProveedorRealizaPuja", function () {
+  // Obtiene la configuración de la base de datos desde el archivo de configuración.
+  $config = require base_path("config/config.php");
+  // Crea y devuelve una nueva instancia de la clase Permiso.
+  return new ClienteProveedorRealizaPuja($config['database'], "root", "");
 });
 
 // Vincular la clave "Router" con una función anónima que crea y devuelve una nueva instancia de la clase Router.
