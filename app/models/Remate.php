@@ -4,60 +4,34 @@
  */
 class Remate extends Database
 {
-  /**
-   * @var int $id ID del remate.
-   * @var int $empleado ID del empleado encargado del remate.
-   * @var string|null $estado Estado del remate.
-   */
+  private $idRemate;
+  private $idEmpleadoRemate;
+  private $estadoRemate;
 
-  private $id;
-  private $empleado;
-  private $estado;
-
-  /**
-   * Inserta un nuevo registro de remate en la base de datos.
-   *
-   * @param int $idEmpleado ID del empleado encargado del remate.
-   * @param string|null $estado Estado del remate (opcional).
-   * @return void
-   */
-  public function insert($idEmpleado, $estado = null)
+  public function insert($idEmpleadoRemate, $estadoRemate = null)
   {
-    if ($estado != null) {
-      $this->query("INSERT INTO remate (empleado, estado) VALUES (:id_empleado, :estado)", [
-        'id_empleado' => $idEmpleado,
-        'estado' => $estado
+    if ($estadoRemate != null) {
+      $this->query("INSERT INTO remates (empleado, estado) VALUES (:idEmpleadoRemate, :estadoRemate)", [
+        'idEmpleadoRemate' => $idEmpleadoRemate,
+        'estadoRemate' => $estadoRemate
       ]);
     } else {
-      $this->query("INSERT INTO remate (empleado) VALUES (:id_empleado)", [
-        'id_empleado' => $idEmpleado
+      $this->query("INSERT INTO remates (idEmpleado_remate) VALUES (:idEmpleadoRemate)", [
+        'idEmpleadoRemate' => $idEmpleadoRemate
       ]);
     }
   }
 
-  /**
-   * Elimina un registro de remate de la base de datos.
-   *
-   * @param int $idRemate ID del remate a eliminar.
-   * @return void
-   */
   public function delete($idRemate)
   {
-    $this->query("DELETE FROM remate WHERE id = :idRemate", [
+    $this->query("DELETE FROM remates WHERE idRemate = :idRemate", [
       'idRemate' => $idRemate
     ]);
   }
 
-  /**
-   * Actualiza el estado de un registro de remate en la base de datos.
-   *
-   * @param int $idRemate ID del remate a actualizar.
-   * @param string $estado Nuevo estado del remate.
-   * @return void
-   */
-  public function update($idRemate, $estado)
+  public function update($idRemate, $estadoRemate)
   {
-    $this->query("UPDATE remate SET estado = '$estado' WHERE id = :idRemate", [
+    $this->query("UPDATE remates SET estadoRemate = '$estadoRemate' WHERE idRemate = :idRemate", [
       'idRemate' => $idRemate
     ]);
   }
@@ -70,7 +44,7 @@ class Remate extends Database
    */
   public function getById($idRemate)
   {
-    return $this->query("SELECT * FROM remate WHERE id = :idRemate", [
+    return $this->query("SELECT * FROM remates WHERE idRemate = :idRemate", [
       'idRemate' => $idRemate
     ])->find();
   }
@@ -82,7 +56,7 @@ class Remate extends Database
    */
   public function getAll()
   {
-    return $this->query("SELECT * FROM remate")->get();
+    return $this->query("SELECT * FROM remates")->get();
   }
 }
 ?>
