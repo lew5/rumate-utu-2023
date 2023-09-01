@@ -5,65 +5,64 @@
 class Empleado extends Database
 {
   /**
-   * @var int $id ID del empleado.
-   * @var int $permiso ID del permiso asignado al empleado.
+   * @var int $idPersonaEmpleado Identificador de la persona asociada al empleado.
    */
+  private $idPersonaEmpleado;
 
-  private $id;
-  private $permiso;
+  /**
+   * @var int $idPermisoEmpleado Identificador del permiso asociado al empleado.
+   */
+  private $idPermisoEmpleado;
 
   /**
    * Inserta un nuevo registro de empleado en la base de datos.
    *
-   * @param int $idEmpleado ID del empleado a insertar.
-   * @param int $idPermiso ID del permiso asignado al empleado.
-   * @return void
+   * @param int $idPersonaEmpleado Identificador de la persona asociada al empleado.
+   * @param int $idPermisoEmpleado Identificador del permiso asociado al empleado.
    */
-  public function insert($idEmpleado, $idPermiso)
+  public function insert($idPersonaEmpleado, $idPermisoEmpleado)
   {
-    $this->query("INSERT INTO empleado (id, permiso) VALUES (:idEmpleado, :idPermiso)", [
-      'idEmpleado' => $idEmpleado,
-      'idPermiso' => $idPermiso
+    $this->query("INSERT INTO empleados (idPersona_empleado, idPermiso_empleado) VALUES (:idPersonaEmpleado, :idPermisoEmpleado)", [
+      'idPersonaEmpleado' => $idPersonaEmpleado,
+      'idPermisoEmpleado' => $idPermisoEmpleado
     ]);
   }
 
   /**
    * Elimina un registro de empleado de la base de datos.
    *
-   * @param int $idEmpleado ID del empleado a eliminar.
-   * @return void
+   * @param int $idPersonaEmpleado Identificador de la persona asociada al empleado a eliminar.
    */
-  public function delete($idEmpleado)
+  public function delete($idPersonaEmpleado)
   {
-    $this->query("DELETE FROM empleado WHERE id = :idEmpleado", [
-      'idEmpleado' => $idEmpleado
+    $this->query("DELETE FROM empleados WHERE idPersona_empleado = :idPersonaEmpleado", [
+      'idPersonaEmpleado' => $idPersonaEmpleado
     ]);
   }
 
   /**
-   * Actualiza el permiso de un registro de empleado en la base de datos.
+   * Actualiza el permiso de un empleado en la base de datos.
    *
-   * @param int $idEmpleado ID del empleado a actualizar.
-   * @param int $idPermiso Nuevo ID de permiso asignado al empleado.
-   * @return void
+   * @param int $idPersonaEmpleado Identificador de la persona asociada al empleado cuyo permiso se actualizará.
+   * @param int $idPermisoEmpleado Nuevo identificador de permiso para el empleado.
    */
-  public function update($idEmpleado, $idPermiso)
+  public function update($idPersonaEmpleado, $idPermisoEmpleado)
   {
-    $this->query("UPDATE empleado SET permiso = '$idPermiso' WHERE id = :idEmpleado", [
-      'idEmpleado' => $idEmpleado
+    $this->query("UPDATE empleados SET idPermiso_empleado = '$idPermisoEmpleado' WHERE idPersona_empleado = :idPersonaEmpleado", [
+      'idPersonaEmpleado' => $idPersonaEmpleado
     ]);
   }
 
   /**
-   * Obtiene un registro de empleado por su ID.
+   * Obtiene un registro de empleado por su identificador de persona.
    *
-   * @param int $idEmpleado ID del empleado a buscar.
-   * @return array|null Registro del empleado encontrado o null si no se encuentra.
+   * @param int $idPersonaEmpleado Identificador de la persona asociada al empleado.
+   * @return array|null El registro de empleado encontrado o null si no se encuentra.
    */
-  public function getById($idEmpleado)
+  public function getById($idPersonaEmpleado)
   {
-    return $this->query("SELECT * FROM empleado WHERE id = :idEmpleado", [
-      'idEmpleado' => $idEmpleado
+    return $this->query("SELECT * FROM empleados WHERE idPermiso_empleado = :idPersonaEmpleado", [
+      'idPersonaEmpleado' => $idPersonaEmpleado
     ])->find();
   }
 
@@ -74,7 +73,7 @@ class Empleado extends Database
    */
   public function getAll()
   {
-    return $this->query("SELECT * FROM empleado")->get();
+    return $this->query("SELECT * FROM empleados")->get();
   }
 }
 ?>
