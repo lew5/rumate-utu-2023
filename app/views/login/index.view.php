@@ -12,18 +12,18 @@ view("partials/login-register/main-head.php", [
       <span class="label__text">Nombre de usuario</span>
       <input name="username" type="text" placeholder="Ingresa tu usuario"
         autocomplete="off"
-        class="input-field__input <?php isset($error) ? print("input-field__input--error") : print(""); ?>"
+        class="input-field__input <?php isset($_SESSION['error']) ? print("input-field__input--error") : print(""); ?>"
         required
-        value="<?php isset($username) ? print($username) : print(""); ?>" />
+        value="<?php isset($_SESSION['login_username']) ? print($_SESSION['login_username']) : print(""); ?>" />
     </label>
     <span
-      class="input-field__error-message <?php isset($error) ? print("") : print("hidden"); ?> error"><?php isset($error) ? print($error) : print("Error"); ?></span>
+      class="input-field__error-message <?php isset($_SESSION['error']) ? print("") : print("hidden"); ?> error"><?php isset($_SESSION['error']) ? print($_SESSION['error']) : print("Error"); ?></span>
   </div>
   <div class="input-field">
     <label class="input-field__label f-column">
       <span class="label__text">Contraseña</span>
       <input name="password"
-        class="input-field__input <?php isset($error) ? print("input-field__input--error") : print(""); ?>"
+        class="input-field__input <?php isset($_SESSION['error']) ? print("input-field__input--error") : print(""); ?>"
         type="password" placeholder="Ingresa tu contraseña" autocomplete="off"
         class="input-field__input" required />
     </label>
@@ -45,3 +45,4 @@ view("partials/login-register/main-head.php", [
 <div class="login-register__background"></div>
 </main>
 <?php view("partials/footer.php"); ?>
+<?php session_destroy(); ?>

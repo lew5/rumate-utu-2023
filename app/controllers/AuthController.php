@@ -32,6 +32,7 @@ class AuthController
 
       // Intentar autenticar al usuario utilizando el servicio de autenticación.
       $user = $this->authService->authenticate($username, $password);
+      unset($_POST);
 
       // Si la autenticación es exitosa, establecer las variables de sesión y redirigir.
       if ($user) {
@@ -42,18 +43,15 @@ class AuthController
         exit();
       } else {
         // Si la autenticación falla, mostrar un mensaje de error en la vista de inicio de sesión.
-        $error_message = "Usuario o contraseña incorrectos";
-        view("login/index.view.php", [
-          'title' => "Rumate - Login",
-          'error' => isset($error_message) ? $error_message : null,
-          'username' => $username
-        ]);
+        $_SESSION['error'] = "Usuario o contraseña incorrectos";
+        $_SESSION['login_username'] = $username;
+        header("Location: /login");
+        exit();
       }
     } else {
       // Mostrar la vista de inicio de sesión sin errores.
-      view("login/index.view.php", [
-        'title' => "Rumate - Login",
-      ]);
+      header("Location: /login");
+      exit();
     }
   }
 }
