@@ -50,8 +50,9 @@ class AuthController
       }
     } else {
       // Mostrar la vista de inicio de sesión sin errores.
-      header("Location: /login");
-      exit();
+      view("login/index.view.php", [
+        'title' => "Rumate - Login",
+      ]);
     }
   }
 }
