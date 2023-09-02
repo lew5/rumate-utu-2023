@@ -17,7 +17,7 @@ bootstrap("/App.php");
 model("Database.php");
 
 // Incluir la definición de la clase User (modelo de usuario).
-model("User.php");
+model("User.php"); //! HAY QUE BORRAR
 // Incluir la definición de la clase Remate (modelo de remate).
 model("Remate.php");
 // Incluir la definición de la clase Remate (modelo de empleado).
@@ -28,6 +28,8 @@ model("Permiso.php");
 model("Persona.php");
 // Incluir la definición de la clase Remate (modelo de animal).
 model("Animal.php");
+// Incluir la definición de la clase Remate (modelo de usuario).
+model("Usuario.php");
 // Incluir la definición de la clase Remate (modelo de ClienteProveedor).
 model("ClienteProveedor.php");
 // Incluir la definición de la clase Remate (modelo de ClienteProveedorRealizaPuja).
@@ -56,7 +58,7 @@ $container->bind("Database", function () {
   return new Database($config['database'], "root", "");
 });
 
-$container->bind("User", function () {
+$container->bind("User", function () { //! HAY QUE BORRAR
   // Obtiene la configuración de la base de datos desde el archivo de configuración.
   $config = require base_path("config/config.php");
   // Crea y devuelve una nueva instancia de la clase User.
@@ -95,6 +97,12 @@ $container->bind("Animal", function () {
   // Crea y devuelve una nueva instancia de la clase Animal.
   return new Animal($config['database'], "root", "");
 });
+$container->bind("Usuario", function () {
+  // Obtiene la configuración de la base de datos desde el archivo de configuración.
+  $config = require base_path("config/config.php");
+  // Crea y devuelve una nueva instancia de la clase Usuario.
+  return new Usuario($config['database'], "root", "");
+});
 $container->bind("ClienteProveedor", function () {
   // Obtiene la configuración de la base de datos desde el archivo de configuración.
   $config = require base_path("config/config.php");
@@ -115,7 +123,7 @@ $container->bind("Router", function () {
 });
 
 // Vincular la clave "AuthService" con una función anónima que crea y devuelve una nueva instancia de la clase AuthService.
-$container->bind("AuthService", function () {
+$container->bind("AuthService", function () { //! HAY QUE ACTUALIZAR A USUARIO
   // Resuelve la dependencia del modelo User para el servicio de autenticación.
   return new AuthService(App::resolve("User"));
 });

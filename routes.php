@@ -44,5 +44,10 @@ $router->get("/api/v1/animales", base_path("api/animal/read.php"));
 $router->post("/api/v1/animales", base_path("api/animal/create.php"));
 $router->put("/api/v1/animales", base_path("api/animal/update.php"));
 $router->delete("/api/v1/animales", base_path("api/animal/delete.php"));
+// USUARIOS
+$router->get("/api/v1/usuarios", base_path("api/usuario/read.php"));
+$router->post("/api/v1/usuarios", base_path("api/usuario/create.php"));
+$router->put("/api/v1/usuarios", base_path("api/usuario/update.php"));
+$router->delete("/api/v1/usuarios", base_path("api/usuario/delete.php"));
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 
-function get($table)
+function get($table, $column = "id")
 {
   header("Content-Type: application/json");
-  if (isset($_GET['id'])) {
-    $response = json_encode($table->getById($_GET['id']));
+  if (isset($_GET[$column])) {
+    $response = json_encode($table->getById($_GET[$column]));
   } else {
     $response = json_encode($table->getAll());
   }

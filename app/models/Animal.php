@@ -122,6 +122,8 @@ class Animal extends Database
   {
     return $this->query("SELECT * FROM animales")->get();
   }
+
+
   public function getIdAnimal()
   {
     return $this->idAnimal;

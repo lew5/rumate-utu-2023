@@ -1,10 +1,10 @@
 <?php
 
-function deleteData($data)
+function deleteData($data, $column = "id")
 {
   header("Content-Type: application/json");
-  if (isset($_GET['id'])) {
-    $data->delete($_GET['id']);
+  if (isset($_GET[$column])) {
+    $data->delete($_GET[$column]);
   }
 }
 
