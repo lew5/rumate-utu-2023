@@ -1,7 +1,5 @@
 <?php
-header("Content-Type: application/json");
+require_once base_path("api/services/delete.php");
 $empleado = App::resolve("Empleado");
-if (isset($_GET['id'])) {
-  $empleado->delete($_GET['id']);
-}
+deleteData($empleado);
 ?>

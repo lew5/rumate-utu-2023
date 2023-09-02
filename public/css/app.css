@@ -233,7 +233,6 @@ a {
 
 .button-link {
   color: #fff;
-  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,7 +243,7 @@ a {
 
 .button-link--accent {
   background-color: transparent;
-  color: var(--coral-700);
+  color: var(--accent-btn-default-color);
 }
 
 /*NAV styles*/
@@ -380,8 +379,8 @@ a {
 }
 
 .button-link--accent:hover {
-  color: var(--coral-700);
-  background-color: var(--coral-50);
+  color: var(--accent-btn-text-color);
+  background-color: var(--accent-btn-default-color);
 }
 
 .button-link--accent:active {

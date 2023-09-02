@@ -1,10 +1,5 @@
 <?php
-header("Content-Type: application/json");
+require_once base_path("api/services/get.php");
 $empleado = App::resolve("Empleado");
-if (isset($_GET['id'])) {
-  $response = json_encode($empleado->getById($_GET['id']));
-} else {
-  $response = json_encode($empleado->getAll());
-}
-print $response;
+get($empleado);
 ?>

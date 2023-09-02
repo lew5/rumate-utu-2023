@@ -1,10 +1,5 @@
 <?php
-header("Content-Type: application/json");
+require_once base_path("api/services/get.php");
 $permiso = App::resolve("Permiso");
-if (isset($_GET['id'])) {
-  $response = json_encode($permiso->getById($_GET['id']));
-} else {
-  $response = json_encode($permiso->getAll());
-}
-print $response;
+get($permiso);
 ?>

@@ -151,6 +151,8 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
   function validarStep_2(field) {
+    //! PONETE LAS PILAS GIL
+    //TODO casi lo mismo que lo de validarStep_1
     return false;
   }
 });

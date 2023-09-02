@@ -1,7 +1,5 @@
 <?php
-header("Content-Type: application/json");
+require_once base_path("api/services/delete.php");
 $permiso = App::resolve("Permiso");
-if (isset($_GET['id'])) {
-  $permiso->delete($_GET['id']);
-}
+deleteData($permiso);
 ?>

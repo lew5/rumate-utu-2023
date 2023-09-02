@@ -1,5 +1,5 @@
 <?php
 require_once base_path("api/services/delete.php");
-$remate = App::resolve("Remate");
-deleteData($remate);
+$animal = App::resolve("Animal");
+deleteData($animal);
 ?>

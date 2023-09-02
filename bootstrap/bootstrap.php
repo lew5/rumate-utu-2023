@@ -26,6 +26,8 @@ model("Empleado.php");
 model("Permiso.php");
 // Incluir la definición de la clase Remate (modelo de persona).
 model("Persona.php");
+// Incluir la definición de la clase Remate (modelo de animal).
+model("Animal.php");
 // Incluir la definición de la clase Remate (modelo de ClienteProveedor).
 model("ClienteProveedor.php");
 // Incluir la definición de la clase Remate (modelo de ClienteProveedorRealizaPuja).
@@ -86,6 +88,12 @@ $container->bind("Persona", function () {
   $config = require base_path("config/config.php");
   // Crea y devuelve una nueva instancia de la clase Persona.
   return new Persona($config['database'], "root", "");
+});
+$container->bind("Animal", function () {
+  // Obtiene la configuración de la base de datos desde el archivo de configuración.
+  $config = require base_path("config/config.php");
+  // Crea y devuelve una nueva instancia de la clase Animal.
+  return new Animal($config['database'], "root", "");
 });
 $container->bind("ClienteProveedor", function () {
   // Obtiene la configuración de la base de datos desde el archivo de configuración.
