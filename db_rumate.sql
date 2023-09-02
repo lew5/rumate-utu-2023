@@ -64,9 +64,9 @@ CREATE TABLE IF NOT EXISTS `animales_ingresados` (
 
 DROP TABLE IF EXISTS `clientes_proveedores`;
 CREATE TABLE IF NOT EXISTS `clientes_proveedores` (
-  `idPersona_clienteProvevedor` int NOT NULL,
+  `idPersona_clienteProveedor` int NOT NULL,
   `estado_cliente_proveedor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`idPersona_clienteProvevedor`)
+  PRIMARY KEY (`idPersona_clienteProveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -234,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Filtros para la tabla `animales`
 --
 ALTER TABLE `animales`
-  ADD CONSTRAINT `animales_ibfk_1` FOREIGN KEY (`idClienteProveedor_animal`) REFERENCES `clientes_proveedores` (`idPersona_clienteProvevedor`),
+  ADD CONSTRAINT `animales_ibfk_1` FOREIGN KEY (`idClienteProveedor_animal`) REFERENCES `clientes_proveedores` (`idPersona_clienteProveedor`),
   ADD CONSTRAINT `animales_ibfk_2` FOREIGN KEY (`idLote_animal`) REFERENCES `lotes` (`idLote`);
 
 --
@@ -269,7 +269,7 @@ ALTER TABLE `lotes_postulan_remates`
 -- Filtros para la tabla `pujas_de_clientes_proveedores`
 --
 ALTER TABLE `pujas_de_clientes_proveedores`
-  ADD CONSTRAINT `pujas_de_clientes_proveedores_ibfk_1` FOREIGN KEY (`idClienteProveedor_pujaDeclienteProveedor`) REFERENCES `clientes_proveedores` (`idPersona_clienteProvevedor`);
+  ADD CONSTRAINT `pujas_de_clientes_proveedores_ibfk_1` FOREIGN KEY (`idClienteProveedor_pujaDeclienteProveedor`) REFERENCES `clientes_proveedores` (`idPersona_clienteProveedor`);
 
 --
 -- Filtros para la tabla `pujas_de_remates`

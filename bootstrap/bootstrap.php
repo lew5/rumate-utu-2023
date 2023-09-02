@@ -15,9 +15,6 @@ bootstrap("/App.php");
 
 // Incluir la definición de la clase Database para manejar la conexión a la base de datos.
 model("Database.php");
-
-// Incluir la definición de la clase User (modelo de usuario).
-model("User.php"); //! HAY QUE BORRAR
 // Incluir la definición de la clase Remate (modelo de remate).
 model("Remate.php");
 // Incluir la definición de la clase Remate (modelo de empleado).
@@ -56,13 +53,6 @@ $container->bind("Database", function () {
 
   // Crea y devuelve una nueva instancia de la clase Database con los datos de configuración y las credenciales de conexión.
   return new Database($config['database'], "root", "");
-});
-
-$container->bind("User", function () { //! HAY QUE BORRAR
-  // Obtiene la configuración de la base de datos desde el archivo de configuración.
-  $config = require base_path("config/config.php");
-  // Crea y devuelve una nueva instancia de la clase User.
-  return new User($config['database'], "root", "");
 });
 
 $container->bind("Remate", function () {
@@ -123,9 +113,9 @@ $container->bind("Router", function () {
 });
 
 // Vincular la clave "AuthService" con una función anónima que crea y devuelve una nueva instancia de la clase AuthService.
-$container->bind("AuthService", function () { //! HAY QUE ACTUALIZAR A USUARIO
+$container->bind("AuthService", function () {
   // Resuelve la dependencia del modelo User para el servicio de autenticación.
-  return new AuthService(App::resolve("User"));
+  return new AuthService(App::resolve("Usuario"));
 });
 
 // Vincular la clave "AuthController" con una función anónima que crea y devuelve una nueva instancia de la clase AuthController.

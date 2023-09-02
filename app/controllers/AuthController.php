@@ -28,17 +28,19 @@ class AuthController
     if (isset($_POST['login-btn'])) {
       // Obtener y limpiar los valores del formulario.
       $username = isset($_POST['username']) ? trim($_POST['username']) : "";
-      $password = isset($_POST['password']) ? md5($_POST['password']) : "";
+      $password = isset($_POST['password']) ? $_POST['password'] : "";
 
       // Intentar autenticar al usuario utilizando el servicio de autenticación.
       $user = $this->authService->authenticate($username, $password);
+      // vd($user);
       unset($_POST);
 
       // Si la autenticación es exitosa, establecer las variables de sesión y redirigir.
       if ($user) {
-        $_SESSION['id'] = $user->getId();
-        $_SESSION['username'] = $user->getUsername();
-        $_SESSION['rol'] = $user->getRol();
+        $_SESSION['usuario'] = [
+          'username' => $user->getUsername(),
+          'estado' => $user->getEstadoClienteProveedor()
+        ];
         header("Location: /");
         exit();
       } else {

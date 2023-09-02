@@ -7,12 +7,12 @@
           alt="logo de rumate" />
       </div>
       <?php
-      if (isset($_SESSION['username'])) {
-        $username = $_SESSION['username'];
-        if ($_SESSION['rol'] == "ROOT") {
-          require view_path("partials/nav-client.php");
-        } else if ($_SESSION['rol'] == "ADMINISTRADOR") {
-          require view_path("partials/nav-client.php");
+      if (isset($_SESSION['usuario'])) {
+        $username = $_SESSION['usuario']['username'];
+        if ($_SESSION['usuario']['estado'] == "ACTIVO") {
+          require view_path("partials/nav-proveedor.php");
+        } else if ($_SESSION['usuario']['estado'] == "INACTIVO") {
+          require view_path("partials/nav-cliente.php");
         }
       } else {
         require view_path("partials/nav-guest.php");
