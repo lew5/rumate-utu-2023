@@ -211,6 +211,10 @@ a {
   border-color: red;
 }
 
+.input-field__input--ok {
+  border-color: green;
+}
+
 /*button styles*/
 
 .button {

@@ -210,6 +210,27 @@ function core($path)
  * @param int $code El código de respuesta HTTP (por defecto, 404 NOT FOUND).
  * @return void No hay retorno, simplemente termina la ejecución del script con el código de respuesta especificado.
  */
+
+function encryptPassword($password)
+{
+  return password_hash($password, PASSWORD_BCRYPT);
+}
+function formatCi($ci)
+{
+  $ci = str_replace('.', '', $ci); // Eliminar puntos existentes
+  $longitud = strlen($ci);
+
+  if ($longitud > 1) {
+    $parte_decimal = substr($ci, $longitud - 1);
+    $parte_entera = substr($ci, 0, $longitud - 1);
+
+    // Agregar puntos cada tres caracteres desde la derecha
+    $parte_entera = strrev(chunk_split(strrev($parte_entera), 3, '.'));
+    return $parte_entera . '-' . $parte_decimal;
+  } else {
+    return $ci;
+  }
+}
 function abort($code = 404)
 {
 

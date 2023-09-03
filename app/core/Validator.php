@@ -16,6 +16,8 @@ class Validator
   private const ERR_NO_SPECIAL_CHAR = "La contraseña debe tener al menos un carácter especial.";
   private const ERR_NO_VALID_EMAIL = "El email no es valido.";
   private const ERR_INVALID_CI = "Cédula uruguaya inválida.";
+  private const ERR_INVALID_NAME = "El nombre no es valido.";
+  private const ERR_INVALID_LAST_NAME = "El apellido no es valido.";
 
   /**
    * Método para validar una cadena.
@@ -104,6 +106,19 @@ class Validator
     $expectedLastDigit = ($remainder === 0) ? 0 : (10 - $remainder);
 
     return $expectedLastDigit === $cedulaDigits[count($cedulaDigits) - 1];
+  }
+
+
+  //! DESPUÉS VEMOS QUE PEDO 🤷‍♂️
+  public static function validatePersona($persona)
+  {
+    if (!self::string($persona->getNombre())) {
+      return self::ERR_INVALID_NAME;
+    }
+    if (!self::string($persona->getApellido())) {
+      return self::ERR_INVALID_LAST_NAME;
+    }
+    self::uyCI($persona->getCi());
   }
 
 }

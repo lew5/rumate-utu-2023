@@ -6,11 +6,11 @@ $router->get("/", controller_path("home/index.php"));
 //* REGISTRO PATHs
 //TODO TA LOCO FALTA TODO 😴
 $router->get("/registro", controller_path("register/index.php"))->only("guest");
+$router->post("/registro", controller_path("register/create.php"))->only("guest");
 
 
 //* LOGIN PATHs
 $router->get("/login", controller_path("login/index.php"))->only("guest");
-//TODO CAMBIAR COMO SE MANEJAS LOS MENSAJES DE ERROR (ENVIARLOS POR SESSIONS)
 $router->post("/login", controller_path("login/index.php"))->only("guest");
 
 

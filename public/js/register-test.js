@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Matriz para almacenar los campos de entrada de cada paso
   const allFields = [];
 
+  //! PRUEBAS
+  steps[currentStep - 1].style.display = "none";
+  currentStep = 3;
+  backButton.classList.remove("hidden");
+  steps[currentStep - 1].style.display = "block";
+
   // Iterar a través de cada paso y encontrar los campos de entrada
   steps.forEach(function (step) {
     const fields = step.querySelectorAll(".input-field__input");
@@ -38,6 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
             currentStepValid = false;
           }
           break;
+        case 3:
+          if (!validarStep_3(field)) {
+            currentStepValid = false;
+          }
+          break;
 
         default:
           break;
@@ -47,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    console.log(currentStepValid);
+    // console.log(currentStepValid);
 
     // Si todos los campos están llenos
     if (allFieldsFilled && currentStep && currentStepValid) {
@@ -61,6 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
       button.value = "REGISTRARSE";
     } else {
       button.value = "SIGUIENTE";
+    }
+
+    if (allFieldsFilled && currentStep === steps.length && currentStepValid) {
+      button.type = "submit";
+    } else {
+      button.type = "button";
     }
   }
 
@@ -127,23 +144,56 @@ document.addEventListener("DOMContentLoaded", function () {
         var nombre = field.value;
         var validarNombre = /^[A-Za-z]+$/;
         if (!validarNombre.test(nombre)) {
+          if (nombre.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
           return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
         }
         break;
+
       case "register-step-1-apellido":
         var apellido = field.value;
         var validarApellido = /^[A-Za-z\s]+$/;
         if (!validarApellido.test(apellido)) {
+          if (apellido.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
           return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
         }
         break;
+
       case "register-step-1-cedula":
         var cedula = field.value;
         var validarCedula = /^\d{7}\d$/;
         if (!validarCedula.test(cedula)) {
+          if (cedula.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
           return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
         }
         break;
+
       default:
         break;
     }
@@ -151,8 +201,166 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
   function validarStep_2(field) {
-    //! PONETE LAS PILAS GIL
-    //TODO casi lo mismo que lo de validarStep_1
-    return false;
+    let id = field.id;
+    switch (id) {
+      case "register-step-2-city":
+        var barrio = field.value;
+        var validarBarrio = /^[A-Za-z\s0-9]+$/;
+        if (!validarBarrio.test(barrio)) {
+          if (barrio.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
+          return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        }
+        break;
+
+      case "register-step-2-street":
+        var calle = field.value;
+        var validarCalle = /^[A-Za-z\s0-9]+$/;
+        if (!validarCalle.test(calle)) {
+          if (calle.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
+          return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        }
+        break;
+
+      case "register-step-2-number":
+        var numero = field.value;
+        var validarNumero = /^\d{1,6}$/;
+        if (!validarNumero.test(numero)) {
+          if (numero.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
+          return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        }
+        break;
+
+      case "register-step-2-phone":
+        var tel = field.value;
+        var validarTel = /^\d{8}\d$/;
+        if (!validarTel.test(tel)) {
+          if (tel.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
+          return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        }
+        break;
+      default:
+        break;
+    }
+    return true;
+  }
+
+  function validarStep_3(field) {
+    let id = field.id;
+    switch (id) {
+      case "register-step-3-username":
+        var username = field.value;
+        var validarUsername = /^(?=.{4,8}$)[a-zA-Z]+[0-9]*$/;
+        if (!validarUsername.test(username)) {
+          if (username.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
+          return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        }
+        break;
+
+      case "register-step-3-email":
+        var email = field.value;
+        var validarEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!validarEmail.test(email)) {
+          if (email.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
+          return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        }
+        break;
+      case "register-step-3-password":
+        var password = field.value;
+        pass = password;
+        var validarPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/;
+        if (!validarPassword.test(password)) {
+          if (password.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
+          return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        }
+        break;
+
+      case "register-step-3-confirmPassword":
+        var confirmPassword = field.value;
+        var validarConfirmPassword =
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/;
+        console.log(!validarConfirmPassword.test(confirmPassword));
+        console.log(!pass == confirmPassword);
+        if (!validarConfirmPassword.test(confirmPassword)) {
+          if (confirmPassword.length > 0) {
+            field.classList.add("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          } else {
+            field.classList.remove("input-field__input--error");
+            field.classList.remove("input-field__input--ok");
+          }
+          return false;
+        } else {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        }
+        break;
+
+      default:
+        break;
+    }
+    return true;
   }
 });

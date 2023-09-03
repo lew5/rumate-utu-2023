@@ -7,7 +7,8 @@
           class="input-field__input" type="text" placeholder="Ingresa tu nombre"
           autocomplete="off" class="input-field__input" />
       </label>
-      <span class="input-field__error-message hidden error">Error</span>
+      <span class="input-field__error-message hidden error">El nombre no es
+        valido</span>
     </div>
     <div class="input-field">
       <label class="input-field__label f-column">
@@ -17,7 +18,8 @@
           placeholder="Ingresa tu apellido" autocomplete="off"
           class="input-field__input" />
       </label>
-      <span class="input-field__error-message hidden error">Error</span>
+      <span class="input-field__error-message hidden error">El apellido no es
+        valido</span>
     </div>
     <div class="input-field">
       <label class="input-field__label f-column">
@@ -26,7 +28,8 @@
           type="number" placeholder="Ingresa tu cédula" autocomplete="off"
           class="input-field__input" />
       </label>
-      <span class="input-field__error-message hidden error">Error</span>
+      <span class="input-field__error-message hidden error">La cédula no es
+        valida</span>
     </div>
   </div>
 </div>

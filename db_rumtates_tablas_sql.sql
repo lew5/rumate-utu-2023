@@ -17,8 +17,8 @@ CREATE TABLE PERSONAS (
     ci VARCHAR(20),
     barrio VARCHAR(255),
     calle VARCHAR(255),
-    número VARCHAR(20),
-    teléfono VARCHAR(20)
+    numero VARCHAR(20),
+    telefono VARCHAR(20)
 ) ENGINE=InnoDB;
 
 CREATE TABLE USUARIOS (
@@ -30,7 +30,7 @@ CREATE TABLE USUARIOS (
 ) ENGINE=InnoDB;
 
 CREATE TABLE CLIENTES_PROVEEDORES (
-    idPersona_clienteProvevedor INT PRIMARY KEY,
+    idPersona_clienteProveedor INT PRIMARY KEY,
     estado_cliente_proveedor VARCHAR(255)
 ) ENGINE=InnoDB;
 
@@ -81,7 +81,7 @@ CREATE TABLE ANIMALES (
     edad_animal_animal INT,
     peso_animal DECIMAL(10, 2),
     especie_animal VARCHAR(255),
-    FOREIGN KEY (idClienteProveedor_animal) REFERENCES CLIENTES_PROVEEDORES(idPersona_clienteProvevedor),
+    FOREIGN KEY (idClienteProveedor_animal) REFERENCES CLIENTES_PROVEEDORES(idPersona_clienteProveedor),
     FOREIGN KEY (idLote_animal) REFERENCES LOTES(idLote)
 ) ENGINE=InnoDB;
 
@@ -112,7 +112,7 @@ CREATE TABLE PUJAS_DE_REMATES (
 
 CREATE TABLE PUJAS_DE_CLIENTES_PROVEEDORES (
     idPujaDeRemate_pujaDeClienteProveedor INT,
-    idClienteProveedor_pujaDeclienteProveedor INT,
+    idClienteProveedor_pujaDeClienteProveedor INT,
     PRIMARY KEY (idPujaDeRemate_pujaDeClienteProveedor),
-    FOREIGN KEY (idClienteProveedor_pujaDeclienteProveedor) REFERENCES CLIENTES_PROVEEDORES(idPersona_clienteProvevedor)
+    FOREIGN KEY (idClienteProveedor_pujaDeClienteProveedor) REFERENCES CLIENTES_PROVEEDORES(idPersona_clienteProveedor)
 ) ENGINE=InnoDB;
