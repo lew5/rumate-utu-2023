@@ -1,6 +1,6 @@
-Registro 🟡
+Registro ✅
 
-registrar en la base de datos
+registrar en la base de datos 🟡 ERROR: permite registrar datos vacíos 🤬
 
 que el rojo de los inputs se vaya al hacer clic js ✅
 
@@ -16,4 +16,8 @@ se puede hacer una clase que importe todo lo necesario y solo requerir esa clase
 
 mejorar los media queries
 
-que poronga pasa con Firefox????
+que poronga pasa con Firefox???? 🤬
+
+
+🟥🟥🟥🟥🟥🟥🟥🟥🟥
+AL REGISTRAR TAMBIÉN HAY QUE GUARDAR EN LA TABLA CLIENTE/PROVEEDOR 

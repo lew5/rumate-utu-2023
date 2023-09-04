@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const allFields = [];
 
   //! PRUEBAS
-  steps[currentStep - 1].style.display = "none";
-  currentStep = 3;
-  backButton.classList.remove("hidden");
-  steps[currentStep - 1].style.display = "block";
+  //! steps[currentStep - 1].style.display = "none";
+  //! currentStep = 3;
+  //! backButton.classList.remove("hidden");
+  //! steps[currentStep - 1].style.display = "block";
 
   // Iterar a través de cada paso y encontrar los campos de entrada
   steps.forEach(function (step) {
@@ -339,11 +339,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       case "register-step-3-confirmPassword":
         var confirmPassword = field.value;
-        var validarConfirmPassword =
-          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/;
-        console.log(!validarConfirmPassword.test(confirmPassword));
-        console.log(!pass == confirmPassword);
-        if (!validarConfirmPassword.test(confirmPassword)) {
+        // var validarConfirmPassword =
+        //   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/;
+        // console.log(!validarConfirmPassword.test(confirmPassword));
+        // console.log(validarConfirmPassword.test(confirmPassword));
+        // console.log(!(pass == confirmPassword && confirmPassword.length > 0));
+        if (!(pass == confirmPassword && confirmPassword.length > 0)) {
           if (confirmPassword.length > 0) {
             field.classList.add("input-field__input--error");
             field.classList.remove("input-field__input--ok");

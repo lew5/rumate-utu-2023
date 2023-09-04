@@ -2,11 +2,11 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   parse_str(file_get_contents('php://input'), $data);
-  var_dump($data);
-  var_dump(Validator::uyCI($data['ci']));
-  var_dump(encryptPassword($data['password']));
-  var_dump($data['password'] == $data['confirmPassword']);
-  var_dump(Validator::email($data['email']));
+  // var_dump($data);
+  // var_dump(Validator::uyCI($data['ci']));
+  // var_dump(encryptPassword($data['password']));
+  // var_dump($data['password'] == $data['confirmPassword']);
+  // var_dump(Validator::email($data['email']));
 
   $persona = App::resolve("Persona");
   $persona->setNombre($data['name']);
@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario->setIdPersonaUsuario($idPersona_usuario);
     $usuario->insert();
     $db->commit();
+    header("Location: /login");
   } catch (PDOException $e) {
     $db->rollBack();
     var_dump($e->getMessage());

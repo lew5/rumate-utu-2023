@@ -197,6 +197,7 @@ a {
 }
 
 .input-field__input {
+  position: relative;
   border: none;
   border: 1px solid var(--black-400);
   border-radius: var(--border-radius);
@@ -207,12 +208,20 @@ a {
   font-weight: 400;
 }
 
-.input-field__input--error {
-  border-color: red;
+.input-field__input.input-field__input--error {
+  border-color: #ff0000;
+  background-image: url("../assets/imgs/input_error.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 1rem;
 }
 
-.input-field__input--ok {
-  border-color: green;
+.input-field__input.input-field__input--ok {
+  border-color: #008000;
+  background-image: url("../assets/imgs/input_ok.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 1rem;
 }
 
 /*button styles*/
@@ -364,6 +373,14 @@ a {
 
 .input-field__input:focus {
   outline-color: var(--black-900);
+}
+
+.input-field__input--error:focus {
+  outline-color: red;
+}
+
+.input-field__input--ok:focus {
+  outline-color: green;
 }
 
 .button__input:hover {
