@@ -1,194 +1,129 @@
 <?php
-/**
- * La clase Persona se encarga de gestionar la información de personas en la base de datos.
- */
-class Persona extends Database
+
+class Persona
 {
-  /**
-   * @var int $idPersona Identificador único de la persona.
-   */
-  private $idPersona;
+  protected int $id;
+  protected string $nombre;
+  protected string $apellido;
+  protected string $ci;
+  protected string $barrio;
+  protected string $calle;
+  protected string $numero;
+  protected string $telefono;
 
-  /**
-   * @var string $nombre Nombre de la persona.
-   */
-  private $nombre;
+  protected string $tipo;
 
-  /**
-   * @var string $apellido Apellido de la persona.
-   */
-  private $apellido;
-
-  /**
-   * @var string $ci Número de cédula de identidad de la persona.
-   */
-  private $ci;
-
-  /**
-   * @var string $barrio Barrio de residencia de la persona.
-   */
-  private $barrio;
-
-  /**
-   * @var string $calle Calle de residencia de la persona.
-   */
-  private $calle;
-
-  /**
-   * @var string $numero Número de residencia de la persona.
-   */
-  private $numero;
-
-  /**
-   * @var string $telefono Número de teléfono de la persona.
-   */
-  private $telefono;
-
-  /**
-   * Inserta un nuevo registro de persona en la base de datos.
-   */
-  public function insert()
-  {
-    $this->query("INSERT INTO personas (nombre, apellido, ci, barrio, calle, numero, telefono) VALUES (:nombre, :apellido, :ci, :barrio, :calle, :numero, :telefono)", [
-      'nombre' => $this->nombre,
-      'apellido' => $this->apellido,
-      'ci' => $this->ci,
-      'barrio' => $this->barrio,
-      'calle' => $this->calle,
-      'numero' => $this->numero,
-      'telefono' => $this->telefono,
-    ]);
-  }
-
-  /**
-   * Elimina un registro de persona de la base de datos.
-   *
-   * @param int $idPersona Identificador único de la persona a eliminar.
-   */
-  public function delete($idPersona)
-  {
-    $this->query("DELETE FROM personas WHERE idPersona = :idPersona", [
-      'idPersona' => $idPersona
-    ]);
-  }
-
-  /**
-   * Actualiza la información de una persona en la base de datos.
-   *
-   * @param int $idPersona Identificador único de la persona a actualizar.
-   * @param array $personaActualizada Array con los nuevos datos de la persona.
-   */
-  public function update($idPersona, $personaActualizada)
-  {
-    $this->query("UPDATE personas SET nombre = :nombre, apellido = :apellido, ci = :ci, barrio = :barrio, calle = :calle, numero = :numero, telefono = :telefono WHERE idPersona = :idPersona", [
-      'nombre' => $personaActualizada['nombre'],
-      'apellido' => $personaActualizada['apellido'],
-      'ci' => $personaActualizada['ci'],
-      'barrio' => $personaActualizada['barrio'],
-      'calle' => $personaActualizada['calle'],
-      'numero' => $personaActualizada['numero'],
-      'telefono' => $personaActualizada['telefono'],
-      'idPersona' => $idPersona
-    ]);
-  }
-
-  /**
-   * Obtiene un registro de persona por su identificador único.
-   *
-   * @param int $idPersona Identificador único de la persona.
-   * @return array|null El registro de persona encontrado o null si no se encuentra.
-   */
-  public function getById($idPersona)
-  {
-    return $this->query("SELECT * FROM personas WHERE idPersona = :idPersona", [
-      'idPersona' => $idPersona
-    ])->find();
-  }
-
-  /**
-   * Obtiene todos los registros de personas de la base de datos.
-   *
-   * @return array Conjunto de registros de personas.
-   */
-  public function getAll()
-  {
-    return $this->query("SELECT * FROM personas")->get();
-  }
-
-
-  public function getIdPersona()
-  {
-    return $this->idPersona;
-  }
-
-  public function setNombre($nombre)
-  {
+  public function __construct(
+    int $id,
+    string $nombre,
+    string $apellido,
+    string $ci,
+    string $barrio,
+    string $calle,
+    string $numero,
+    string $telefono,
+    string $tipo
+  ) {
+    $this->id = $id;
     $this->nombre = $nombre;
+    $this->apellido = $apellido;
+    $this->ci = $ci;
+    $this->barrio = $barrio;
+    $this->calle = $calle;
+    $this->numero = $numero;
+    $this->telefono = $telefono;
+    $this->tipo = $tipo;
   }
 
-  public function getNombre()
+  //* SETTERS Y GETTERS
+  public function getId(): int
+  {
+    return $this->id;
+  }
+
+  public function setId(int $id): void
+  {
+    $this->id = $id;
+  }
+
+  public function getNombre(): string
   {
     return $this->nombre;
   }
 
-  public function setApellido($apellido)
+  public function setNombre(string $nombre): void
   {
-    $this->apellido = $apellido;
+    $this->nombre = $nombre;
   }
 
-  public function getApellido()
+  public function getApellido(): string
   {
     return $this->apellido;
   }
 
-  public function setCi($ci)
+  public function setApellido(string $apellido): void
   {
-    $this->ci = $ci;
+    $this->apellido = $apellido;
   }
 
-  public function getCi()
+  public function getTelefono(): string
   {
-    return $this->ci;
+    return $this->telefono;
   }
 
-  public function setBarrio($barrio)
-  {
-    $this->barrio = $barrio;
-  }
-
-  public function getBarrio()
-  {
-    return $this->barrio;
-  }
-
-  public function setCalle($calle)
-  {
-    $this->calle = $calle;
-  }
-
-  public function getCalle()
-  {
-    return $this->calle;
-  }
-
-  public function setNumero($numero)
-  {
-    $this->numero = $numero;
-  }
-
-  public function getNumero()
-  {
-    return $this->numero;
-  }
-
-  public function setTelefono($telefono)
+  public function setTelefono(string $telefono): void
   {
     $this->telefono = $telefono;
   }
 
-  public function getTelefono()
+  public function getBarrio(): string
   {
-    return $this->telefono;
+    return $this->barrio;
+  }
+
+  public function setBarrio(string $barrio): void
+  {
+    $this->barrio = $barrio;
+  }
+
+  public function getCalle(): string
+  {
+    return $this->calle;
+  }
+
+  public function setCalle(string $calle): void
+  {
+    $this->calle = $calle;
+  }
+
+  public function getNumero(): string
+  {
+    return $this->numero;
+  }
+
+  public function setNumero(string $numero): void
+  {
+    $this->numero = $numero;
+  }
+
+  public function getTipo(): string
+  {
+    return $this->tipo;
+  }
+
+  public function setTipo(string $tipo): void
+  {
+    $this->tipo = $tipo;
+  }
+
+  public function getCi(): string
+  {
+    return $this->ci;
+  }
+
+  public function setCi(string $ci): void
+  {
+    $this->ci = $ci;
   }
 
 }

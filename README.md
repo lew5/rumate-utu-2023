@@ -1,4 +1,4 @@
-# RuMate
+# Proyecto2023
 
 Un software dedicado al remate rural, también conocido como “software de subastas ganaderas, rurales y otros”, es una herramienta especializada, diseñada para gestionar y facilitar el proceso de remate y subastas, tanto de ganado como de otros bienes inherentes al rubro.
 

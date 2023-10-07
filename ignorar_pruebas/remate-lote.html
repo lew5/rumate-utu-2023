@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Rumate - Lote</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="app.css?v=1" />
+    <style>
+      /* Estilos para el contenedor del lote */
+      .remate-lote-container {
+        background-color: #f7f7f7;
+      }
+
+      .lote-details {
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      /* Estilos para la imagen del lote */
+      .lote-image img {
+        border-radius: 4px;
+        border: 1px solid grey;
+        overflow: hidden;
+        max-height: 480px;
+        max-width: 720px;
+      }
+
+      /* Estilos para la información del lote (oferta más alta y formulario) */
+      .lote-info {
+        flex: 1;
+        padding: 1rem;
+        border: 1px solid gray;
+        border-radius: 4px;
+        justify-content: space-between;
+      }
+
+      /* Estilos para el formulario de oferta */
+      .custom-input-step {
+        display: flex;
+        justify-content: space-between;
+        height: 50px;
+      }
+
+      .highest-offer {
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem;
+        background-color: mistyrose;
+        border-radius: 4px;
+      }
+
+      .highest-offer span {
+        color: rgba(0, 0, 0, 0.397);
+      }
+
+      .highest-offer h3,
+      .highest-offer h3 span {
+        font-size: 2rem;
+        color: rgba(255, 0, 0, 0.637);
+      }
+      .custom-input-step__btn {
+        border-radius: 4px;
+        border: none;
+        width: 50px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      .custom-input-step__btn--plus {
+        background-color: rgba(0, 128, 0, 0.5);
+        color: white;
+      }
+
+      .custom-input-step__btn--minus {
+        background-color: rgba(255, 0, 0, 0.5);
+        color: white;
+      }
+      .custom-input-step__input {
+        height: 50px;
+        width: 100px;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .make-offer form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navigation-wrap f-row">
+      <div class="container-1024">
+        <div class="navigation-container f-row align-center">
+          <div class="navigation__brand">
+            <a
+              class="brand__link"
+              href="/"></a>
+            <img
+              class="brand__img"
+              src="imgs/rumate-brand.webp"
+              alt="logo de rumate" />
+          </div>
+          <nav class="navigation__menu f-row align-center">
+            <a
+              href="/registro"
+              class="button-link button-link--accent"
+              >Registrarme</a
+            >
+            <a
+              href="/login"
+              class="button-link"
+              >Ingresar</a
+            >
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="header">
+      <div class="container-1024 f-row">
+        <h2>Lote <span>#1</span></h2>
+        <div class="filtro-container"></div>
+      </div>
+    </div>
+    <main class="f-row justify-center">
+      <div class="container-1024 f-column">
+        <div class="remate-lote-container f-column">
+          <div class="lote-details f-row">
+            <div class="lote-image">
+              <!-- Aquí puedes incluir la imagen del lote -->
+              <img
+                src="imgs/lote-img.jpg"
+                alt="Imagen del lote"
+                height="480px"
+                width="720px" />
+            </div>
+            <div class="lote-info f-column">
+              <div class="highest-offer">
+                <span class="highest-offer__title">Mejor oferta</span>
+                <h3>U$S <span class="highest-offer__value">200</span></h3>
+              </div>
+              <div class="make-offer">
+                <form
+                  action="script_de_oferta.php"
+                  method="POST">
+                  <div class="custom-input-step">
+                    <button
+                      type="button"
+                      class="custom-input-step__btn custom-input-step__btn--minus">
+                      −
+                    </button>
+                    <div class="custom-input-step__value">
+                      <input
+                        id="offer_value"
+                        type="number"
+                        class="custom-input-step__input"
+                        disabled
+                        autocomplete="off" />
+                    </div>
+                    <button
+                      type="button"
+                      class="custom-input-step__btn custom-input-step__btn--plus">
+                      +
+                    </button>
+                  </div>
+                  <div class="button">
+                    <input
+                      class="button__input"
+                      type="submit"
+                      name="login-btn"
+                      value="OFERTAR"
+                      disabled />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/Js/remate.js"></script>
+    <script>
+      // Obtén elementos del DOM
+      const inputValue = document.getElementById("offer_value");
+      const plusButton = document.querySelector(".custom-input-step__btn--plus");
+      const minusButton = document.querySelector(".custom-input-step__btn--minus");
+      const highestOfferValue = document.querySelector(".highest-offer__value");
+      const offerButton = document.querySelector('input[name="login-btn"]');
+      const minValue = parseInt(highestOfferValue.textContent);
+      inputValue.value = minValue;
+      toggleOfferButtonState(inputValue.value, minValue);
+
+      function toggleOfferButtonState(currentInputValue, minValue) {
+        if (currentInputValue == minValue) {
+          offerButton.disabled = true;
+        } else if (currentInputValue > minValue) {
+          offerButton.disabled = false;
+        }
+      }
+
+      // Función para aumentar el valor del input
+      plusButton.addEventListener("click", function () {
+        const currentInputValue = parseInt(inputValue.value) || 0; // Obtén el valor actual del input como número
+        if (currentInputValue < minValue) {
+          inputValue.value = minValue; // Establece el valor mínimo si es menor
+        } else {
+          inputValue.value = currentInputValue + 1; // Aumenta el valor en 1
+        }
+        toggleOfferButtonState(inputValue.value, minValue);
+      });
+
+      // Función para disminuir el valor del input
+      minusButton.addEventListener("click", function () {
+        const currentInputValue = parseInt(inputValue.value) || 0; // Obtén el valor actual del input como número
+        if (currentInputValue > minValue) {
+          inputValue.value = currentInputValue - 1; // Disminuye el valor en 1 si es mayor que el mínimo
+        }
+        toggleOfferButtonState(inputValue.value, minValue);
+      });
+    </script>
+  </body>
+</html>

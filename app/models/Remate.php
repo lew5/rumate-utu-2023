@@ -1,89 +1,105 @@
 <?php
-/**
- * La clase Remate se encarga de gestionar los remates y sus estados en la base de datos.
- */
-class Remate extends Database
+
+class Remate
 {
-  /**
-   * @var int $idRemate Identificador único del remate.
-   */
-  private $idRemate;
+  private int $id;
+  private string $estado;
+  private string $fecha;
+  private string $hora;
+  private string $img;
+  private string $titulo;
+  private array $lotes = [];
 
-  /**
-   * @var int $idEmpleadoRemate Identificador del empleado asociado al remate.
-   */
-  private $idEmpleadoRemate;
 
-  /**
-   * @var string|null $estadoRemate Estado actual del remate (puede ser null si no se especifica).
-   */
-
-  /**
-   * Inserta un nuevo registro de remate en la base de datos.
-   *
-   * @param int $idEmpleadoRemate Identificador del empleado asociado al remate.
-   * @param string|null $estadoRemate Estado actual del remate (opcional).
-   */
-  public function insert($idEmpleadoRemate, $estadoRemate = null)
+  public function llenarRemate($remate_data): Remate
   {
-    if ($estadoRemate !== null) {
-      $this->query("INSERT INTO remates (empleado, estado) VALUES (:idEmpleadoRemate, :estadoRemate)", [
-        'idEmpleadoRemate' => $idEmpleadoRemate,
-        'estadoRemate' => $estadoRemate
-      ]);
-    } else {
-      $this->query("INSERT INTO remates (idEmpleado_remate) VALUES (:idEmpleadoRemate)", [
-        'idEmpleadoRemate' => $idEmpleadoRemate
-      ]);
-    }
+    $this->id = $remate_data['id_remate'];
+    $this->img = $remate_data['img_remate'];
+    $this->titulo = $remate_data['titulo_remate'];
+    $this->fecha = $remate_data['fecha_remate'];
+    $this->hora = $remate_data['hora_remate'];
+    $this->estado = $remate_data['estado_remate'];
+    return $this;
   }
 
-  /**
-   * Elimina un registro de remate de la base de datos.
-   *
-   * @param int $idRemate Identificador único del remate a eliminar.
-   */
-  public function delete($idRemate)
+
+  //* SETTERS Y GETTERS
+  public function getId(): int
   {
-    $this->query("DELETE FROM remates WHERE idRemate = :idRemate", [
-      'idRemate' => $idRemate
-    ]);
+    return $this->id;
   }
 
-  /**
-   * Actualiza el estado de un remate en la base de datos.
-   *
-   * @param int $idRemate Identificador único del remate a actualizar.
-   * @param string $estadoRemate Nuevo estado del remate.
-   */
-  public function update($idRemate, $estadoRemate)
+  public function setId(int $id)
   {
-    $this->query("UPDATE remates SET estadoRemate = '$estadoRemate' WHERE idRemate = :idRemate", [
-      'idRemate' => $idRemate
-    ]);
+    $this->id = $id;
   }
 
-  /**
-   * Obtiene un registro de remate por su identificador único.
-   *
-   * @param int $idRemate Identificador único del remate.
-   * @return array|null El registro de remate encontrado o null si no se encuentra.
-   */
-  public function getById($idRemate)
+  public function getEstado(): string
   {
-    return $this->query("SELECT * FROM remates WHERE idRemate = :idRemate", [
-      'idRemate' => $idRemate
-    ])->find();
+    return $this->estado;
   }
 
-  /**
-   * Obtiene todos los registros de remates de la base de datos.
-   *
-   * @return array Conjunto de registros de remates.
-   */
-  public function getAll()
+  public function setEstado(string $estado)
   {
-    return $this->query("SELECT * FROM remates")->get();
+    $this->estado = $estado;
+  }
+
+
+  public function setPujas(array $pujas)
+  {
+    $this->pujas = $pujas;
+  }
+
+  public function getLotes(): array
+  {
+    return $this->lotes;
+  }
+
+  public function setLotes(array $lotes)
+  {
+    $this->lotes = $lotes;
+  }
+
+  public function setFecha(string $fecha): void
+  {
+    $this->fecha = $fecha;
+  }
+
+  public function getFecha(): string
+  {
+    return $this->fecha;
+  }
+
+  public function setHora(string $hora): void
+  {
+    $this->hora = $hora;
+  }
+
+  public function getHora(): string
+  {
+    return $this->hora;
+  }
+
+  public function setImg(string $img): void
+  {
+    $this->img = $img;
+  }
+
+  public function getImg(): string
+  {
+    return $this->img;
+  }
+
+  public function setTitulo(string $titulo): void
+  {
+    $this->titulo = $titulo;
+  }
+
+  public function getTitulo(): string
+  {
+    return $this->titulo;
   }
 }
+
+
 ?>
