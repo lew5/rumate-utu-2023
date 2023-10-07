@@ -4,7 +4,7 @@ class LoteModel extends Model
 {
   protected $table = 'lotes';
 
-  public function crearLote(Lote $lote) //✅
+  public function crearLote($lote)
   {
     $data = [
       'precio_base_lote' => $lote->getPrecioBase(),
@@ -13,7 +13,7 @@ class LoteModel extends Model
     return $this->create($data);
   }
 
-  public function actualizarLote(int $id, float $precio_base) //✅
+  public function actualizarLote($id, $precio_base) //✅
   {
     $data = [
       'precio_base_lote' => $precio_base,
@@ -22,12 +22,12 @@ class LoteModel extends Model
     return $this->update($id, "id_lote", $data);
   }
 
-  public function borrarLote(int $id) //✅ si no hay dependencia fk
+  public function borrarLote($id) //✅ si no hay dependencia fk
   {
     return $this->delete($id, "id_lote");
   }
 
-  public function obtenerLote(int $id) //✅
+  public function obtenerLote($id) //✅
   {
     $lte = $this->find($id, "id_lote");
     return $this->rellenarLote($lte);
@@ -38,7 +38,7 @@ class LoteModel extends Model
     return $this->all();
   }
 
-  public function obtenerTodosLosLotesDeRemate(int $idRemate)
+  public function obtenerTodosLosLotesDeRemate($idRemate)
   {
     $query = "SELECT LP.id_remate_lote_postula_remate AS 
               id_remate, L.id_lote, L.precio_base_lote, C.nombre_categoria AS 
@@ -52,7 +52,7 @@ class LoteModel extends Model
               WHERE LP.id_remate_lote_postula_remate = ?;";
     return $this->db->query($query, [$idRemate])->fetchAll();
   }
-  public function getLote(int $idRemate, int $idLote)
+  public function getLote($idRemate, $idLote)
   {
     $query = "SELECT LP.id_remate_lote_postula_remate AS 
               id_remate, L.id_lote, L.precio_base_lote, C.nombre_categoria AS 

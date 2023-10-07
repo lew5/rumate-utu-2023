@@ -9,7 +9,7 @@ class PersonaModel extends Model
     $this->table = "personas";
   }
 
-  public function obtenerTodasLasPersonas(): array //✅
+  public function obtenerTodasLasPersonas()
   {
     $todasLasPersonas = $this->all();
     if ($todasLasPersonas) {
@@ -27,7 +27,7 @@ class PersonaModel extends Model
 
 
 
-  public function obtenerPersona(int $id): Persona|bool //✅
+  public function obtenerPersona($id)
   {
     $per = $this->find($id, "id_persona");
     if ($per) {
@@ -36,15 +36,15 @@ class PersonaModel extends Model
       return $per;
     }
   }
-  public function borrarPersona(int $id): bool // 🟡 //!Cannot delete or update a parent row: a foreign key constraint fails
+  public function borrarPersona($id) // 🟡 //!Cannot delete or update a parent row: a foreign key constraint fails
   {
     return $this->delete($id, "id_persona");
   }
-  public function actualizarPersona(int $id, array $data): bool //✅
+  public function actualizarPersona($id, $data)
   {
     return $this->update($id, "id_persona", $data);
   }
-  public function crearPersona(array $data) //✅
+  public function crearPersona($data)
   {
     try {
       return $this->create($data);

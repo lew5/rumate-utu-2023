@@ -2,18 +2,18 @@
 
 class Puja
 {
-  private int $id;
-  private Remate $remate;
-  private Lote $lote;
-  private Cliente $cliente;
-  private float $monto;
-  private string $fecha;
+  private $id;
+  private $remate;
+  private $lote;
+  private $cliente;
+  private $monto;
+  private $fecha;
 
   public function __construct(
-    Cliente $cliente,
-    Remate $remate,
-    Lote $lote,
-    float $monto
+    $cliente,
+    $remate,
+    $lote,
+    $monto
   ) {
     $this->cliente = $cliente;
     $this->remate = $remate;
@@ -22,31 +22,31 @@ class Puja
   }
 
 
-  public function setCliente(Cliente $cliente): void
+  public function setCliente($cliente)
   {
     $this->cliente = $cliente;
   }
-  public function setRemate($remate): void
+  public function setRemate($remate)
   {
     $this->remate = $remate;
   }
 
-  public function setLote($lote): void
+  public function setLote($lote)
   {
     $this->lote = $lote;
   }
 
-  public function getCliente(): Cliente
+  public function getCliente()
   {
     return $this->cliente;
   }
 
-  public function getRemate(): Remate
+  public function getRemate()
   {
     return $this->remate;
   }
 
-  public function getLote(): Lote
+  public function getLote()
   {
     return $this->lote;
   }

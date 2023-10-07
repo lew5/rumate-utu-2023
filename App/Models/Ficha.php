@@ -3,11 +3,11 @@
 class Ficha
 {
 
-  private int $id;
-  private int $peso;
-  private int $cantidad;
-  private string $raza;
-  private string $descripcion;
+  private $id;
+  private $peso;
+  private $cantidad;
+  private $raza;
+  private $descripcion;
 
 
   public function llenarFicha($ficha_data)
@@ -21,52 +21,52 @@ class Ficha
   }
 
   #region //* SETTERS Y GETTERS
-  public function setId(int $id): void
+  public function setId($id)
   {
     $this->id = $id;
   }
 
-  public function getId(): int
+  public function getId()
   {
     return $this->id;
   }
 
-  public function setPeso(int $peso): void
+  public function setPeso($peso)
   {
     $this->peso = $peso;
   }
 
-  public function getPeso(): int
+  public function getPeso()
   {
     return $this->peso;
   }
 
-  public function setCantidad(int $cantidad): void
+  public function setCantidad($cantidad)
   {
     $this->cantidad = $cantidad;
   }
 
-  public function getCantidad(): int
+  public function getCantidad()
   {
     return $this->cantidad;
   }
 
-  public function setRaza(string $raza): void
+  public function setRaza($raza)
   {
     $this->raza = $raza;
   }
 
-  public function getRaza(): string
+  public function getRaza()
   {
     return $this->raza;
   }
 
-  public function setDescripcion(string $descripcion): void
+  public function setDescripcion($descripcion)
   {
     $this->descripcion = $descripcion;
   }
 
-  public function getDescripcion(): string
+  public function getDescripcion()
   {
     return $this->descripcion;
   }

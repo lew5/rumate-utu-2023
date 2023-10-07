@@ -2,23 +2,23 @@
 
 class Usuario extends Persona
 {
-  private string $username;
-  private string $password;
-  private string $email;
+  private $username;
+  private $password;
+  private $email;
 
   public function __construct(
-    int $id,
-    string $nombre,
-    string $apellido,
-    string $ci,
-    string $barrio,
-    string $calle,
-    string $numero,
-    string $telefono,
-    string $tipo,
-    string $username,
-    string $password,
-    string $email
+    $id,
+    $nombre,
+    $apellido,
+    $ci,
+    $barrio,
+    $calle,
+    $numero,
+    $telefono,
+    $tipo,
+    $username,
+    $password,
+    $email
   ) {
     parent::__construct(
       $id,
@@ -80,32 +80,32 @@ class Usuario extends Persona
   }
 
   #region //* SETTERS Y GETTERS
-  public function getUsername(): string
+  public function getUsername()
   {
     return $this->username;
   }
 
-  public function setUsername(string $username)
+  public function setUsername($username)
   {
     $this->username = $username;
   }
 
-  public function getPassword(): string
+  public function getPassword()
   {
     return $this->password;
   }
 
-  public function setPassword(string $password)
+  public function setPassword($password)
   {
     $this->password = $password;
   }
 
-  public function getEmail(): string
+  public function getEmail()
   {
     return $this->email;
   }
 
-  public function setEmail(string $email)
+  public function setEmail($email)
   {
     $this->email = $email;
   }

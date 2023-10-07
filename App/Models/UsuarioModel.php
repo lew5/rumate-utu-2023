@@ -10,7 +10,7 @@ class UsuarioModel extends Model
   }
 
 
-  public function crearUsuario(array $data) //
+  public function crearUsuario($data) //
   {
     try {
       return $this->create($data);
@@ -22,19 +22,19 @@ class UsuarioModel extends Model
       }
     }
   }
-  public function actualizarUsuario(string $username, array $data): bool //✅
+  public function actualizarUsuario($username, $data) //✅
   {
     return $this->update($username, "username_usuario", $data);
   }
-  public function borrarUsuario(string $username): bool //✅
+  public function borrarUsuario($username) //✅
   {
     return $this->delete($username, "username_usuario");
   }
-  public function getTodosLosUsuarios(): array //
+  public function getTodosLosUsuarios() //
   {
     return $this->all();
   }
-  public function getUsuarioPorNombre(string $username) //✅
+  public function getUsuarioPorNombre($username) //✅
   {
     return $this->find($username, "username_usuario");
   }

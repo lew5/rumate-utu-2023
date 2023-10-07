@@ -1,13 +1,13 @@
 <?php
 class Lote
 {
-  private int $id;
-  private float $precio_base;
-  private float $precio_final;
-  private string $categoria;
-  private Ficha $ficha;
+  private $id;
+  private $precio_base;
+  private $precio_final;
+  private $categoria;
+  private $ficha;
   private $id_remate;
-  private array $pujas = [];
+  private $pujas = [];
 
 
   public function llenarLote($lote_data, Ficha $ficha): Lote
@@ -20,37 +20,37 @@ class Lote
     return $this;
   }
 
-  public function setId(int $id): void
+  public function setId($id)
   {
     $this->id = $id;
   }
 
-  public function getId(): int
+  public function getId()
   {
     return $this->id;
   }
 
-  public function setPrecioBase(float $precio_base): void
+  public function setPrecioBase($precio_base)
   {
     $this->precio_base = $precio_base;
   }
 
-  public function getPrecioBase(): float
+  public function getPrecioBase()
   {
     return $this->precio_base;
   }
 
-  public function setPrecioFinal(float $precio_final): void
+  public function setPrecioFinal($precio_final)
   {
     $this->precio_final = $precio_final;
   }
 
-  public function getPrecioFinal(): float
+  public function getPrecioFinal()
   {
     return $this->precio_final;
   }
 
-  public function setCategoria(string $categoria): void
+  public function setCategoria($categoria)
   {
     $this->categoria = $categoria;
   }
@@ -60,17 +60,17 @@ class Lote
     return $this->categoria;
   }
 
-  public function setFicha(Ficha $ficha): void
+  public function setFicha($ficha)
   {
     $this->ficha = $ficha;
   }
 
-  public function getFicha(): Ficha
+  public function getFicha()
   {
     return $this->ficha;
   }
 
-  public function setIdRemate($id_remate): void
+  public function setIdRemate($id_remate)
   {
     $this->id_remate = $id_remate;
   }
@@ -80,12 +80,12 @@ class Lote
     return $this->id_remate;
   }
 
-  public function setPujas(array $pujas): void
+  public function setPujas($pujas)
   {
     $this->pujas = $pujas;
   }
 
-  public function getPujas(): array
+  public function getPujas()
   {
     return $this->pujas;
   }

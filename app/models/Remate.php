@@ -2,12 +2,12 @@
 
 class Remate
 {
-  private int $id;
-  private string $estado;
-  private string $fecha;
-  private string $hora;
-  private string $img;
-  private string $titulo;
+  private $id;
+  private $estado;
+  private $fecha;
+  private $hora;
+  private $img;
+  private $titulo;
   private array $lotes = [];
 
 
@@ -24,78 +24,78 @@ class Remate
 
 
   //* SETTERS Y GETTERS
-  public function getId(): int
+  public function getId()
   {
     return $this->id;
   }
 
-  public function setId(int $id)
+  public function setId($id)
   {
     $this->id = $id;
   }
 
-  public function getEstado(): string
+  public function getEstado()
   {
     return $this->estado;
   }
 
-  public function setEstado(string $estado)
+  public function setEstado($estado)
   {
     $this->estado = $estado;
   }
 
 
-  public function setPujas(array $pujas)
+  public function setPujas($pujas)
   {
     $this->pujas = $pujas;
   }
 
-  public function getLotes(): array
+  public function getLotes()
   {
     return $this->lotes;
   }
 
-  public function setLotes(array $lotes)
+  public function setLotes($lotes)
   {
     $this->lotes = $lotes;
   }
 
-  public function setFecha(string $fecha): void
+  public function setFecha($fecha)
   {
     $this->fecha = $fecha;
   }
 
-  public function getFecha(): string
+  public function getFecha()
   {
     return $this->fecha;
   }
 
-  public function setHora(string $hora): void
+  public function setHora($hora)
   {
     $this->hora = $hora;
   }
 
-  public function getHora(): string
+  public function getHora()
   {
     return $this->hora;
   }
 
-  public function setImg(string $img): void
+  public function setImg($img)
   {
     $this->img = $img;
   }
 
-  public function getImg(): string
+  public function getImg()
   {
     return $this->img;
   }
 
-  public function setTitulo(string $titulo): void
+  public function setTitulo($titulo)
   {
     $this->titulo = $titulo;
   }
 
-  public function getTitulo(): string
+  public function getTitulo()
   {
     return $this->titulo;
   }

@@ -6,7 +6,7 @@ Route::get("/{idProveedor}/lotes", "ClienteProveedor@lotesProveedor"); //! EN DE
 Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
 Route::get("/registro", "Registro@index");
 Route::get("/login", "Login@index");
-Route::post("/login/login", "Login@login");
+Route::post("/login/login", "Login@validarLogin");
 Route::get("/home/logout", "Home@logout");
 Route::dispatch();
 ?>

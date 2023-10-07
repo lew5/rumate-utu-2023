@@ -13,7 +13,7 @@ class Login
     session_destroy();
   }
 
-  public function login()
+  public function validarLogin()
   {
     if (isset($_POST['login-btn'])) {
       $username = $_POST['username'];

@@ -40,7 +40,7 @@ class Model
     }
   }
 
-  protected function create(array $data)
+  protected function create($data)
   {
     $columns = implode(', ', array_keys($data));
     $values = implode(', ', array_fill(0, count($data), '?'));
@@ -51,7 +51,7 @@ class Model
     return $this->db->lastInsertId();
   }
 
-  protected function update($id, $column_id, array $data)
+  protected function update($id, $column_id, $data)
   {
     $columns = [];
     foreach ($data as $column => $value) {

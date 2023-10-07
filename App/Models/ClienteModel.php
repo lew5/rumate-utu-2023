@@ -10,7 +10,7 @@ class ClienteModel extends Model
 
 
   //! HAY BORRAR TODO ESTO PARA QUE LAS FUNCIONES NO RETORNEN UN OBJETO CLIENTE
-  public function obtenerTodosLosClientes(): array //✅
+  public function obtenerTodosLosClientes()
   {
     $sql = "SELECT
                 P.*,
@@ -32,7 +32,7 @@ class ClienteModel extends Model
     }
     return $clientes;
   }
-  public function obtenerCliente(int $id): Cliente|bool //✅
+  public function obtenerCliente($id)
   {
     $sql = "SELECT
                 P.*,

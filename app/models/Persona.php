@@ -2,27 +2,27 @@
 
 class Persona
 {
-  protected int $id;
-  protected string $nombre;
-  protected string $apellido;
-  protected string $ci;
-  protected string $barrio;
-  protected string $calle;
-  protected string $numero;
-  protected string $telefono;
+  protected $id;
+  protected $nombre;
+  protected $apellido;
+  protected $ci;
+  protected $barrio;
+  protected $calle;
+  protected $numero;
+  protected $telefono;
 
-  protected string $tipo;
+  protected $tipo;
 
   public function __construct(
-    int $id,
-    string $nombre,
-    string $apellido,
-    string $ci,
-    string $barrio,
-    string $calle,
-    string $numero,
-    string $telefono,
-    string $tipo
+    $id,
+    $nombre,
+    $apellido,
+    $ci,
+    $barrio,
+    $calle,
+    $numero,
+    $telefono,
+    $tipo
   ) {
     $this->id = $id;
     $this->nombre = $nombre;
@@ -36,92 +36,92 @@ class Persona
   }
 
   //* SETTERS Y GETTERS
-  public function getId(): int
+  public function getId()
   {
     return $this->id;
   }
 
-  public function setId(int $id): void
+  public function setId($id)
   {
     $this->id = $id;
   }
 
-  public function getNombre(): string
+  public function getNombre()
   {
     return $this->nombre;
   }
 
-  public function setNombre(string $nombre): void
+  public function setNombre($nombre)
   {
     $this->nombre = $nombre;
   }
 
-  public function getApellido(): string
+  public function getApellido()
   {
     return $this->apellido;
   }
 
-  public function setApellido(string $apellido): void
+  public function setApellido($apellido)
   {
     $this->apellido = $apellido;
   }
 
-  public function getTelefono(): string
+  public function getTelefono()
   {
     return $this->telefono;
   }
 
-  public function setTelefono(string $telefono): void
+  public function setTelefono($telefono)
   {
     $this->telefono = $telefono;
   }
 
-  public function getBarrio(): string
+  public function getBarrio()
   {
     return $this->barrio;
   }
 
-  public function setBarrio(string $barrio): void
+  public function setBarrio($barrio)
   {
     $this->barrio = $barrio;
   }
 
-  public function getCalle(): string
+  public function getCalle()
   {
     return $this->calle;
   }
 
-  public function setCalle(string $calle): void
+  public function setCalle($calle)
   {
     $this->calle = $calle;
   }
 
-  public function getNumero(): string
+  public function getNumero()
   {
     return $this->numero;
   }
 
-  public function setNumero(string $numero): void
+  public function setNumero($numero)
   {
     $this->numero = $numero;
   }
 
-  public function getTipo(): string
+  public function getTipo()
   {
     return $this->tipo;
   }
 
-  public function setTipo(string $tipo): void
+  public function setTipo($tipo)
   {
     $this->tipo = $tipo;
   }
 
-  public function getCi(): string
+  public function getCi()
   {
     return $this->ci;
   }
 
-  public function setCi(string $ci): void
+  public function setCi($ci)
   {
     $this->ci = $ci;
   }
