@@ -20,10 +20,10 @@ class Login
       $password = $_POST['password'];
       Usuario::iniciarSesion($username, $password);
       if (isset($_SESSION['usuario'])) {
-        header("Location: /");
+        header("Location: " . PUBLIC_PATH);
         die();
       } else {
-        header("Location: /login");
+        header("Location: " . PUBLIC_PATH . "/login");
         die();
       }
     }

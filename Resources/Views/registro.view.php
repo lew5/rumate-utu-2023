@@ -20,7 +20,8 @@ require BASE_PATH . "/Resources/Views/Partials/head.php";
           </div>
           <span> <a class="link hidden">VOLVER</a></span>
           <span>¿Ya tienes una cuenta?
-            <a href="/login" class="link">Inicia sesión</a></span>
+            <a href="<?= PUBLIC_PATH ?>/login" class="link">Inicia
+              sesión</a></span>
         </div>
       </form>
     </div>

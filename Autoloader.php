@@ -1,8 +1,9 @@
 <?php
 
-$base = dirname(__DIR__);
+$base = __DIR__;
 define('BASE_PATH', $base);
-const PUBLIC_PATH = __DIR__;
+$public = basename(__DIR__);
+define('PUBLIC_PATH', "/" . $public);
 
 
 require_once BASE_PATH . "/App/Container/Container.php";

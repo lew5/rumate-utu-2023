@@ -12,8 +12,9 @@ if (isset($_SESSION['userError'])) {
 <main class="login-register f-row">
   <div class="login-register__container">
     <div class="login-register-form-wrap">
-      <form class="login-register__form f-column" action="/login/login"
-        method="POST" autocomplete="off">
+      <form class="login-register__form f-column"
+        action="<?= PUBLIC_PATH ?>/login/login" method="POST"
+        autocomplete="off">
         <?php require BASE_PATH . "/Resources/Views/Partials/login-register__header.php"; ?>
         <div class="inputs-wrap">
           <div class="input-field">
@@ -47,7 +48,8 @@ if (isset($_SESSION['userError'])) {
               value="INGRESAR" />
           </div>
           <span>¿No tienes una cuenta?
-            <a href="/registro" class="link">Regístrate</a></span>
+            <a href="<?= PUBLIC_PATH ?>/registro"
+              class="link">Regístrate</a></span>
         </div>
       </form>
     </div>

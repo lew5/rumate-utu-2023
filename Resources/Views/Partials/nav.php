@@ -2,8 +2,9 @@
   <div class="container-1024">
     <div class="navigation-container f-row align-center">
       <div class="navigation__brand">
-        <a class="brand__link" href="/"></a>
-        <img class="brand__img" src="/imgs/rumate-brand.webp"
+        <a class="brand__link" href="<?= PUBLIC_PATH ?>"></a>
+        <img class="brand__img"
+          src="<?= PUBLIC_PATH ?>/Public/imgs/rumate-brand.webp"
           alt="logo de rumate" />
       </div>
       <?php
