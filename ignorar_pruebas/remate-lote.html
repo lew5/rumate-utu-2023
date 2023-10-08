@@ -184,7 +184,7 @@
                   <div class="button">
                     <input
                       class="button__input"
-                      type="submit"
+                      type="button"
                       name="login-btn"
                       value="OFERTAR"
                       disabled />
@@ -199,17 +199,17 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
       // Obtén elementos del DOM
-      const inputValue = document.getElementById("offer_value");
+      let inputValue = document.getElementById("offer_value");
       const plusButton = document.querySelector(".custom-input-step__btn--plus");
       const minusButton = document.querySelector(".custom-input-step__btn--minus");
       const highestOfferValue = document.querySelector(".highest-offer__value");
       const offerButton = document.querySelector('input[name="login-btn"]');
-      const minValue = parseInt(highestOfferValue.textContent);
+      let minValue = parseInt(highestOfferValue.textContent);
       inputValue.value = minValue;
       toggleOfferButtonState(inputValue.value, minValue);
 
       function toggleOfferButtonState(currentInputValue, minValue) {
-        if (currentInputValue == minValue) {
+        if (currentInputValue <= minValue) {
           offerButton.disabled = true;
         } else if (currentInputValue > minValue) {
           offerButton.disabled = false;
@@ -219,7 +219,7 @@
       // Función para aumentar el valor del input
       plusButton.addEventListener("click", function () {
         const currentInputValue = parseInt(inputValue.value) || 0; // Obtén el valor actual del input como número
-        if (currentInputValue < minValue) {
+        if (inputValue.value < minValue) {
           inputValue.value = minValue; // Establece el valor mínimo si es menor
         } else {
           inputValue.value = currentInputValue + 1; // Aumenta el valor en 1
@@ -230,6 +230,8 @@
       // Función para disminuir el valor del input
       minusButton.addEventListener("click", function () {
         const currentInputValue = parseInt(inputValue.value) || 0; // Obtén el valor actual del input como número
+        console.log("currentInputValue " + currentInputValue);
+        console.log("minValue " + minValue);
         if (currentInputValue > minValue) {
           inputValue.value = currentInputValue - 1; // Disminuye el valor en 1 si es mayor que el mínimo
         }
