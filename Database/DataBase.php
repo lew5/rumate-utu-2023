@@ -36,7 +36,7 @@ class DataBase
     } catch (PDOException $e) {
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Error");
-      $view->assign("error", $e->getCode());
+      $view->assign("error", $e->getMessage());
       $view->render(BASE_PATH . "/Resources/Views/db-error.php");
       die;
       // print("ERROR al ejecutar la consulta: " . $e->getMessage());
@@ -52,6 +52,11 @@ class DataBase
   {
     $this->statement = null;
     $this->connection = null;
+  }
+
+  public function getConnection()
+  {
+    return $this->connection;
   }
 }
 ?>
