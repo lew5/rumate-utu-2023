@@ -30,9 +30,9 @@
         gap: 1rem;
       }
       /* Estilos para la imagen del lote */
-      .lote-image img {
+      .lote-image {
         border-radius: 4px;
-        border: 1px solid grey;
+        border: 2px dashed black;
         overflow: hidden;
         max-height: 480px;
         max-width: 720px;
@@ -42,7 +42,7 @@
       .lote-info {
         flex: 1;
         padding: 1rem;
-        border: 1px solid gray;
+        border: 2px dashed black;
         border-radius: 4px;
         justify-content: space-between;
       }
@@ -159,7 +159,7 @@
               </div>
               <div class="make-offer">
                 <form
-                  action="script_de_oferta.php"
+                  action=""
                   method="POST">
                   <div class="custom-input-step">
                     <button
@@ -197,7 +197,6 @@
       </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/Js/remate.js"></script>
     <script>
       // Obtén elementos del DOM
       const inputValue = document.getElementById("offer_value");
@@ -237,5 +236,6 @@
         toggleOfferButtonState(inputValue.value, minValue);
       });
     </script>
+    <script src="remate.js"></script>
   </body>
 </html>
