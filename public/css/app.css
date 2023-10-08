@@ -216,7 +216,7 @@ a {
 
 .input-field__input.input-field__input--error {
   border-color: #ff0000;
-  background-image: url("../Public/imgs/input_error.svg");
+  background-image: url("../imgs/input_error.svg");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 1rem;
@@ -224,7 +224,7 @@ a {
 
 .input-field__input.input-field__input--ok {
   border-color: #008000;
-  background-image: url("../Public/imgs/input_ok.svg");
+  background-image: url("../imgs/input_ok.svg");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 1rem;

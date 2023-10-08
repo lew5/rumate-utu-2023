@@ -41,11 +41,11 @@ class Router
    */
   public function get($uri, $controller)
   {
-    $uri = str_replace('{id}', '(\w+)', $uri);
-    $uri = str_replace('{idProveedor}', '(\w+)', $uri);
+    $uri = str_replace('{id}', '(\d+)', $uri);
+    $uri = str_replace('{idProveedor}', '(\d+)', $uri);
 
-    $uri = str_replace('{idRemate}', '(\w+)', $uri);
-    $uri = str_replace('{idLote}', '(\w+)', $uri);
+    $uri = str_replace('{idRemate}', '(\d+)', $uri);
+    $uri = str_replace('{idLote}', '(\d+)', $uri);
     return $this->add("GET", $uri, $controller);
   }
 
