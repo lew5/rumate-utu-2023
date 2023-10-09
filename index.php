@@ -65,9 +65,9 @@ require_once "Autoloader.php";
 #region //!TEST CLIENTE
 
 
-$cliente_model = Container::resolve(ClienteModel::class);
-$cliente_model->realizarPuja(4000, 2, 3, 3);
-die;
+// $cliente_model = Container::resolve(ClienteModel::class);
+// $cliente_model->realizarPuja(4000, 2, 3, 3);
+// die;
 // $cliente = $cliente_model->obtenerCliente(1);
 // var_dump($cliente->getUsuario()->getPersona()->getUsuario());
 // var_dump($cliente_model->obtenerTodosLosClientes());
