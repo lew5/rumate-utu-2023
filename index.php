@@ -91,7 +91,6 @@ require_once "Autoloader.php";
 
 #region //!TEST REMATE
 
-
 // $remate_model = Container::resolve(RemateModel::class);
 // $data = [
 // 'id_persona_empleado_remate' => 3,
@@ -102,7 +101,6 @@ require_once "Autoloader.php";
 // var_dump($remate_model->borrarRemate(5));
 // var_dump($remate_model->obtenerRemate(4));
 // var_dump($remate_model->obtenerTodosLosRemates());
-
 #endregion
 
 

@@ -1,11 +1,15 @@
 <?php
 
-class ClienteModel extends Model
+class ClienteModel extends PersonaModel
 {
+  private $estado;
+  private $pujas = [];
+
+  private $tabla = "clientes";
   public function __construct()
   {
     parent::__construct();
-    $this->table = "clientes";
+    $this->table = "personas";
   }
 
 
@@ -101,6 +105,7 @@ class ClienteModel extends Model
     $this->db->cerrarConexion();
   }
 
+  //! ESTO ES DEL CONTROLADOR
   private function rellenarCliente($cli)
   {
     if ($cli) {
@@ -127,6 +132,27 @@ class ClienteModel extends Model
     }
 
   }
+  #region //* SETTERS Y GETTERS
+  public function getEstado()
+  {
+    return $this->estado;
+  }
+
+  public function setEstado($estado)
+  {
+    $this->estado = $estado;
+  }
+
+  public function getPujas()
+  {
+    return $this->pujas;
+  }
+
+  public function setPujas($pujas)
+  {
+    $this->pujas = $pujas;
+  }
+  #endregion
 }
 
 ?>

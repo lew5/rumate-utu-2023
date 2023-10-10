@@ -1,8 +1,7 @@
 <?php
 //MODELS
 Container::bind(DataBase::class, function () {
-  $config = require BASE_PATH . "/Config/config.php";
-  return new DataBase($config['database'], "root", "");
+  return new DataBase();
 });
 
 Container::bind(Model::class, function () {

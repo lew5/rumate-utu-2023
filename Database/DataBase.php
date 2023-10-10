@@ -8,24 +8,13 @@ class DataBase
 {
   private $connection;
   private $statement;
-  public function __construct($config, $username, $password)
+  private $config;
+  private $username = "root";
+  private $password = "";
+  public function __construct()
   {
-    // Construye una cadena DSN (Data Source Name) basada en la configuración proporcionada
-    $dsn = "mysql:" . http_build_query($config, "", ";");
-
-    try {
-      $this->connection = new PDO($dsn, $username, $password, [
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-      ]);
-      $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-      $view = Container::resolve(View::class);
-      $view->assign("title", "Rumate - Error");
-      $view->assign("error", $e->getCode());
-      $view->render(BASE_PATH . "/Resources/Views/db-error.php");
-      die;
-      // print("ERROR en la conexión: " . $e->getMessage());
-    }
+    $this->config = require BASE_PATH . "/Config/config.php";
+    $this->conectar();
   }
   public function query($query, $params = [])
   {
@@ -36,16 +25,10 @@ class DataBase
     } catch (PDOException $e) {
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Error");
-      $view->assign("error", $e->getMessage());
+      $view->assign("error", "ERROR al ejecutar la consulta: " . $e->getMessage());
       $view->render(BASE_PATH . "/Resources/Views/db-error.php");
       die;
-      // print("ERROR al ejecutar la consulta: " . $e->getMessage());
     }
-  }
-
-  public function lastInsertId()
-  {
-    return $this->connection->lastInsertId();
   }
 
   public function cerrarConexion()
@@ -57,6 +40,24 @@ class DataBase
   public function getConnection()
   {
     return $this->connection;
+  }
+
+  public function conectar()
+  {
+    // Construye una cadena DSN (Data Source Name) basada en la configuración
+    $dsn = "mysql:" . http_build_query($this->config['database'], "", ";");
+    try {
+      $this->connection = new PDO($dsn, $this->username, $this->password, [
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+      ]);
+      $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+      $view = Container::resolve(View::class);
+      $view->assign("title", "Rumate - Error");
+      $view->assign("error", "ERROR en la conexión" . $e->getCode());
+      $view->render(BASE_PATH . "/Resources/Views/db-error.php");
+      die;
+    }
   }
 }
 ?>

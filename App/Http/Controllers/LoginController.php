@@ -1,6 +1,6 @@
 <?php
 
-class Login
+class LoginController
 {
   public function index()
   {
@@ -18,7 +18,7 @@ class Login
     if (isset($_POST['login-btn'])) {
       $username = $_POST['username'];
       $password = $_POST['password'];
-      Usuario::iniciarSesion($username, $password);
+      UsuarioController::iniciarSesion($username, $password);
       if (isset($_SESSION['usuario'])) {
         header("Location: " . PUBLIC_PATH);
         die();
