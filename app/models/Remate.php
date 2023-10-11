@@ -8,10 +8,10 @@ class Remate
   private $hora;
   private $img;
   private $titulo;
-  private array $lotes = [];
+  private $lotes = [];
 
 
-  public function llenarRemate($remate_data): Remate
+  public function llenarRemate($remate_data)
   {
     $this->id = $remate_data['id_remate'];
     $this->img = $remate_data['img_remate'];
