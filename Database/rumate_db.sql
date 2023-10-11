@@ -45,7 +45,7 @@ CREATE TABLE CLIENTES (
 -- Tabla REMATES
 CREATE TABLE REMATES (
     id_remate INT AUTO_INCREMENT PRIMARY KEY,
-    img_remate MEDIUMBLOB NOT NULL,
+    img_remate MEDIUMBLOB,
     titulo_remate VARCHAR (30) NOT NULL,
     fecha_remate DATE NOT NULL,
     hora_remate TIME NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE LOTES (
 -- Tabla MULTIMEDIAS
 CREATE TABLE MULTIMEDIAS (
     id_multimedia INT AUTO_INCREMENT PRIMARY KEY,
-    contenido_multimedia MEDIUMBLOB NOT NULL
+    contenido_multimedia MEDIUMBLOB
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Tabla LOTE_MULTIMEDIA
