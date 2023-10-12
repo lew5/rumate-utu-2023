@@ -15,7 +15,12 @@ class Model
       $this->db->conectar();
       $query = "SELECT * FROM {$tabla}";
       $result = $this->db->query($query);
-      return $result->fetchAll();
+      $result = $result->fetchAll();
+      if (!empty($result)) {
+        return $result;
+      } else {
+        return false;
+      }
     } catch (PDOException $e) {
       return $e->getMessage();
     } finally {
@@ -46,7 +51,12 @@ class Model
     try {
       $this->db->conectar();
       if ($fetchAll) {
-        return $this->db->query($sql, $params)->fetchAll();
+        $result = $this->db->query($sql, $params)->fetchAll();
+        if (!empty($result)) {
+          return $result;
+        } else {
+          return false;
+        }
       } else {
         return $this->db->query($sql, $params)->fetch();
       }

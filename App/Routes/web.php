@@ -8,10 +8,21 @@
 // var_dump($usuarioModel->getFullUsuario("juan123"));
 // $uc = Container::resolve(UsuarioController::class);
 // $uc->iniciarSesion("juan123", "password1");
+// $remateModel = Container::resolve(RemateModel::class);
+// var_dump($remateModel->getRemates());
+// var_dump($remateModel->getRemate(1));
+// $proveedorModel = Container::resolve(ProveedorModel::class);
+// var_dump($proveedorModel->getLotes(3));
+// $clienteModel = Container::resolve(ClienteModel::class);
+// var_dump($clienteModel->getClientes());
+// var_dump($clienteModel->getCliente(2));
+// $loteModel = Container::resolve(LoteModel::class);
+// var_dump($loteModel->getLotesDeRemate(4));
+// var_dump($loteModel->getLoteDeRemate(2, 2));
 // die;
 Container::resolve(Route::class, Container::resolve(Router::class));
-Route::get("/", "Home@index");
-Route::get("/remate/{id}", "RemateController@show");
+Route::get("/", "HomeController@index");
+Route::get("/remate/{id}", "RemateController@listarLotes");
 Route::get("/{idProveedor}/lotes", "ClienteProveedor@lotesProveedor"); //! EN DESARROLLO 
 Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
 Route::get("/registro", "Registro@index");

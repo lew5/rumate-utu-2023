@@ -4,56 +4,28 @@ class ClienteModel extends PersonaModel
 {
   private $estado;
   private $pujas = [];
-
-  private $tabla = "clientes";
   public function __construct()
   {
     parent::__construct();
-    $this->table = "personas";
   }
-
-
-  //! HAY BORRAR TODO ESTO PARA QUE LAS FUNCIONES NO RETORNEN UN OBJETO CLIENTE
-  public function obtenerTodosLosClientes()
+  #region //* FUNCIONA 🟢
+  public function getClientes()
   {
-    $sql = "SELECT
-                P.*,
-                U.username_usuario,
-                U.email_usuario,
-                C.estado_cliente
-            FROM
-                CLIENTES C
-            INNER JOIN
-                PERSONAS P ON C.id_persona_cliente = P.id_persona
-            LEFT JOIN
-                USUARIOS U ON P.id_persona = U.id_persona_usuario";
-    $todosLosClientes = $this->db->query($sql)->fetchAll();
-    if ($todosLosClientes) {
-      $clientes = [];
-      foreach ($todosLosClientes as $cli) {
-        $clientes[] = self::rellenarCliente($cli);
-      }
-    }
-    return $clientes;
+    $sql = "SELECT u.*, p.* FROM USUARIOS u
+                  INNER JOIN USUARIOS_DE_PERSONAS up ON u.username_usuario = up.username_usuario_usuarios_de_personas
+                  INNER JOIN PERSONAS p ON up.id_persona_usuarios_de_persona = p.id_persona
+                  WHERE p.tipo_persona = 'CLIENTE'";
+    return $this->sql($sql, true);
   }
-  public function obtenerCliente($id)
+  public function getCliente($id)
   {
-    $sql = "SELECT
-                P.*,
-                U.username_usuario,
-                U.email_usuario,
-                C.estado_cliente
-            FROM
-                CLIENTES C
-            INNER JOIN
-                PERSONAS P ON C.id_persona_cliente = P.id_persona
-            LEFT JOIN
-                USUARIOS U ON P.id_persona = U.id_persona_usuario
-            WHERE
-                C.id_persona_cliente = ?";
-    $cli = $this->db->query($sql, [$id])->fetch();
-    return self::rellenarCliente($cli);
+    $sql = "SELECT u.*, p.* FROM USUARIOS u
+                  INNER JOIN USUARIOS_DE_PERSONAS up ON u.username_usuario = up.username_usuario_usuarios_de_personas
+                  INNER JOIN PERSONAS p ON up.id_persona_usuarios_de_persona = p.id_persona
+                  WHERE p.tipo_persona = 'CLIENTE' AND p.id_persona = ?";
+    return $this->sql($sql, false, $id);
   }
+  #endregion
 
   public function realizarPuja($montoPuja, $idCliente, $idLote, $idRemate)
   {
