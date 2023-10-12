@@ -391,14 +391,14 @@ a {
   color: var(--fruit-salad-50);
 }
 
-.cow-404-container {
+.cow-error-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.cow-404 {
+.cow-error {
   filter: grayscale(20%);
   display: flex;
   flex-direction: column;
@@ -406,8 +406,12 @@ a {
   font-size: 1rem;
 }
 
-.cow-404 h1 {
+.cow-error h1 {
   font-size: 3rem;
+}
+
+.cow-error code {
+  text-align: center;
 }
 
 

@@ -25,7 +25,8 @@ class DataBase
     } catch (PDOException $e) {
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Error");
-      $view->assign("error", "ERROR al ejecutar la consulta: " . $e->getMessage());
+      $view->assign("error", "NO SE PUDO EJECUTAR LA CONSULTA.<br>");
+      $view->assign("errorMessage", "" . $e->getMessage());
       $view->render(BASE_PATH . "/Resources/Views/Errores/db-error.php");
       die;
     }
@@ -54,7 +55,8 @@ class DataBase
     } catch (PDOException $e) {
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Error");
-      $view->assign("error", "ERROR en la conexión" . $e->getCode());
+      $view->assign("error", "NO SE PUDO ESTABLECER LA CONEXIÓN CON LA BASE DE DATOS.<br>");
+      $view->assign("errorMessage", "Error code: " . "<b>" . $e->getCode() . "</b>");
       $view->render(BASE_PATH . "/Resources/Views/Errores/db-error.php");
       die;
     }
