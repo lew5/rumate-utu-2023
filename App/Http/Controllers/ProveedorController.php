@@ -1,12 +1,12 @@
 <?php
 
-class ClienteProveedor
+class ProveedorController
 {
-  public static function lotesProveedor($id)
+  public static function listarLotes($id)
   {
     if (sessionProveedor()) {
-      $proveedor_model = Container::resolve(ProveedorModel::class);
-      $lotes = $proveedor_model->getLotesDeProveedor($id);
+      $proveedorModel = Container::resolve(ProveedorModel::class);
+      $lotes = $proveedorModel->getLotesDeProveedor($id);
       var_dump($lotes);
       die;
     } else {

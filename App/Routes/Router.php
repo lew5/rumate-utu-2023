@@ -131,7 +131,7 @@ class Router
         }
       }
     }
-    $this->abort();
+    abort();
   }
 
   private function buildRoutePattern($uri)
@@ -155,24 +155,6 @@ class Router
     $method = $_SERVER['REQUEST_METHOD'];
     $this->route($url, $method);
 
-  }
-
-  /**
-   * Método abort
-   * 
-   * Termina la ejecución del script y envía un código de respuesta HTTP (predeterminado 404 NOT FOUND).
-   * 
-   * @param int $code El código de respuesta HTTP (por defecto, 404 NOT FOUND).
-   * @return void No hay retorno, simplemente termina la ejecución del script con el código de respuesta especificado.
-   */
-  private function abort($code = 404)
-  {
-    http_response_code($code);
-    $view = Container::resolve(View::class);
-    $view->assign("title", "Rumate - 404");
-    $view->assign("h1", $code);
-    $view->render(BASE_PATH . "/Resources/Views/404.php"); //! CREAR UNA PÁGINA PARA CADA ERROR
-    die();
   }
 }
 ?>
