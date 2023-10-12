@@ -1,6 +1,6 @@
 <?php
 
-class Registro
+class RegistroController
 {
   public function index()
   {
@@ -9,7 +9,7 @@ class Registro
     $view->assign("title", "Rumate - registro");
     $view->assign("h1", "Registro");
     $view->assign("p", "Regístrate para poder participar en los remates.");
-    $view->render(BASE_PATH . "/Resources/Views/registro.view.php");
+    $view->render(BASE_PATH . "/Resources/Views/Registro/registro.view.php");
   }
 }
 

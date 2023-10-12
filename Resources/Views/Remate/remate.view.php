@@ -5,8 +5,10 @@ require BASE_PATH . "/Resources/Views/Partials/nav.php";
 require BASE_PATH . "/Resources/Views/Remate/remate-header.php";
 require BASE_PATH . "/Resources/Views/Partials/main-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
-require BASE_PATH . "/Resources/Views/Lote/listar-lotes.php";
 ?>
+
+<?php require BASE_PATH . "/Resources/Views/Remate/listar-lotes.php"; ?>
+
 <?php
 require BASE_PATH . "/Resources/Views/Partials/container-1024-end.php";
 require BASE_PATH . "/Resources/Views/Partials/main-end.php";

@@ -5,8 +5,10 @@ require BASE_PATH . "/Resources/Views/Partials/nav.php";
 require BASE_PATH . "/Resources/Views/Partials/header.php";
 require BASE_PATH . "/Resources/Views/Partials/main-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
-require BASE_PATH . "/Resources/Views/Partials/card-container.php";
 ?>
+
+<?php require BASE_PATH . "/Resources/Views/Lote/lote-ficha.php"; ?>
+
 <?php
 require BASE_PATH . "/Resources/Views/Partials/container-1024-end.php";
 require BASE_PATH . "/Resources/Views/Partials/main-end.php";

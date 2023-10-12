@@ -151,7 +151,8 @@ class Router
     $folderPath = dirname($_SERVER['SCRIPT_NAME']);
     $urlPath = $_SERVER['REQUEST_URI'];
     $url = substr($urlPath, strlen($folderPath));
-    $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+    // $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+    $method = $_SERVER['REQUEST_METHOD'];
     $this->route($url, $method);
 
   }

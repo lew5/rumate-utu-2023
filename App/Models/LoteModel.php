@@ -35,21 +35,8 @@ class LoteModel extends Model
   // }
 
   #region //* FUNCIONA 🟢
-  public function getLotesDeRemate($idRemate)
-  {
-    $sql = "SELECT LP.id_remate_lote_postula_remate AS 
-              id_remate, L.id_lote, L.precio_base_lote, C.nombre_categoria AS 
-              nombre_categoria,F.id_ficha, F.peso_ficha, F.cantidad_ficha, F.raza_ficha, F.descripcion_ficha
-              FROM LOTES_POSTULAN_REMATES LP
-              INNER JOIN LOTES L ON LP.id_lote_lote_postula_remate = L.id_lote
-              INNER JOIN LOTES_CATEGORIZADOS LC ON L.id_lote = LC.id_lote_lote_categorizado
-              INNER JOIN CATEGORIAS C ON LC.id_categoria_lote_categorizado = C.id_categoria
-              INNER JOIN LOTES_DESCRITOS_POR_FICHAS LF ON L.id_lote = LF.id_lote_lote_descrito_por_ficha
-              INNER JOIN FICHAS F ON LF.id_ficha_lote_descrito_por_ficha = F.id_ficha
-              WHERE LP.id_remate_lote_postula_remate = ?;";
-    return $this->sql($sql, true, $idRemate);
-  }
-  public function getLoteDeRemate($idRemate, $idLote)
+
+  public function getLote($idRemate, $idLote)
   {
     $sql = "SELECT LP.id_remate_lote_postula_remate AS 
               id_remate, L.id_lote, L.precio_base_lote, C.nombre_categoria AS 

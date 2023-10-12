@@ -10,9 +10,9 @@ require BASE_PATH . "/Resources/Views/Partials/head.php";
         autocomplete="off">
         <?php require BASE_PATH . "/Resources/Views/Partials/login-register__header.php"; ?>
         <?php
-        require BASE_PATH . "/Resources/Views/Partials/register-step-1.php";
-        require BASE_PATH . "/Resources/Views/Partials/register-step-2.php";
-        require BASE_PATH . "/Resources/Views/Partials/register-step-3.php";
+        require BASE_PATH . "/Resources/Views/registro/register-step-1.php";
+        require BASE_PATH . "/Resources/Views/registro/register-step-2.php";
+        require BASE_PATH . "/Resources/Views/registro/register-step-3.php";
         ?>
         <div class="actions f-column">
           <div class="button">

@@ -42,13 +42,17 @@ class RemateController
 
   public static function listarLotes($idRemate)
   {
-    $LoteModel = Container::resolve(LoteModel::class);
-    $lotes = $LoteModel->getLotesDeRemate($idRemate);
-    $view = Container::resolve(View::class);
-    $view->assign("title", "Rumate - Remate");
-    $view->assign("header_title", "Lotes del remate  <span>#$idRemate</span>");
-    $view->assign("lotes", $lotes);
-    $view->render(BASE_PATH . "/Resources/Views/Remate/remate-lotes.php");
+    $remateModel = Container::resolve(RemateModel::class);
+    $lotes = $remateModel->getLotes($idRemate);
+    if ($lotes != false) {
+      $view = Container::resolve(View::class);
+      $view->assign("title", "Rumate - Remate");
+      $view->assign("header_title", "Lotes del remate  <span>#$idRemate</span>");
+      $view->assign("lotes", $lotes);
+      $view->render(BASE_PATH . "/Resources/Views/Remate/remate.view.php");
+    } else {
+      abort();
+    }
   }
 }
 
