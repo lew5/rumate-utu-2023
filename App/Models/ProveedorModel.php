@@ -2,20 +2,24 @@
 
 class ProveedorModel extends ClienteModel
 {
+  private $lotes = [];
 
-
-  public function getLotesDeProveedor($username)
+  #region //* FUNCIONA 🟢
+  public function getLotes($idProveedor)
   {
-    $query = "SELECT L.* 
+    $sql = "SELECT L.* 
               FROM CLIENTES C
               INNER JOIN LOTES L ON C.id_persona_cliente = L.id_cliente_lote
               WHERE C.id_persona_cliente = ?";
-    $result = $this->db->query($query, [$username])->fetchAll();
-    if ($result) {
-      return $result;
-    } else {
-      return false;
-    }
+    return $this->sql($sql, true, $idProveedor);
   }
+  #endregion
+  #region //* SETTERS Y GETTERS
+
+  public function setLotes($lotes)
+  {
+    $this->lotes = $lotes;
+  }
+  #endregion
 }
 ?>

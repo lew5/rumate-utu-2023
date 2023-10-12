@@ -5,7 +5,7 @@
       $remate = Container::resolve(Remate::class)->llenarRemate($rem);
       $imagen_data_uri = 'data:image/png;base64,' . base64_encode($remate->getImg());
       if ($imagen_data_uri == "data:image/png;base64,") {
-        $imagen_data_uri = "/imgs/no-image.webp";
+        $imagen_data_uri = PUBLIC_PATH . "/Public/imgs/no-image.webp";
         $remate->setImg($imagen_data_uri);
       } else {
         $remate->setImg($imagen_data_uri);

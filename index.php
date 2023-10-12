@@ -66,6 +66,8 @@ require_once "Autoloader.php";
 
 
 // $cliente_model = Container::resolve(ClienteModel::class);
+// $cliente_model->realizarPuja(4000, 2, 3, 3);
+// die;
 // $cliente = $cliente_model->obtenerCliente(1);
 // var_dump($cliente->getUsuario()->getPersona()->getUsuario());
 // var_dump($cliente_model->obtenerTodosLosClientes());
@@ -89,18 +91,16 @@ require_once "Autoloader.php";
 
 #region //!TEST REMATE
 
-
 // $remate_model = Container::resolve(RemateModel::class);
 // $data = [
-//   'id_persona_empleado_remate' => 3,
-//   'estado_remate' => "ACTIVO"
+// 'id_persona_empleado_remate' => 3,
+// 'estado_remate' => "ACTIVO"
 // ];
 // var_dump($remate_model->crearRemate($data));
 // var_dump($remate_model->actualizarRemate(4, "INACTIVO"));
 // var_dump($remate_model->borrarRemate(5));
 // var_dump($remate_model->obtenerRemate(4));
 // var_dump($remate_model->obtenerTodosLosRemates());
-
 #endregion
 
 

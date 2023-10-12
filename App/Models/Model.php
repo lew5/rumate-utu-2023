@@ -2,7 +2,6 @@
 
 class Model
 {
-  protected $table;
   protected $db;
 
   public function __construct()
@@ -10,12 +9,18 @@ class Model
     $this->db = Container::resolve(DataBase::class);
   }
 
-  protected function all()
+  protected function all($tabla)
   {
     try {
-      $query = "SELECT * FROM {$this->table}";
+      $this->db->conectar();
+      $query = "SELECT * FROM {$tabla}";
       $result = $this->db->query($query);
-      return $result->fetchAll();
+      $result = $result->fetchAll();
+      if (!empty($result)) {
+        return $result;
+      } else {
+        return false;
+      }
     } catch (PDOException $e) {
       return $e->getMessage();
     } finally {
@@ -23,63 +28,88 @@ class Model
     }
   }
 
-  public function find($id, $column_id)
+  public function find($tabla, $id, $column_id)
   {
     try {
-      //code...
-    } catch (\Throwable $th) {
-      //throw $th;
-    }
-    $query = "SELECT * FROM {$this->table} WHERE $column_id = ?";
-    $result = $this->db->query($query, [$id]);
-    $row = $result->fetch();
-    if ($row !== false) {
-      return $row;
-    } else {
-      return false;
+      $this->db->conectar();
+      $query = "SELECT * FROM {$tabla} WHERE $column_id = ?";
+      $result = $this->db->query($query, [$id]);
+      $row = $result->fetch();
+      if ($row !== false) {
+        return $row;
+      } else {
+        return false;
+      }
+    } catch (PDOException $e) {
+      return $e->getMessage();
+    } finally {
+      $this->db->cerrarConexion();
     }
   }
-
-  protected function create(array $data)
+  public function sql($sql, $fetchAll = false, ...$params)
   {
-    $columns = implode(', ', array_keys($data));
-    $values = implode(', ', array_fill(0, count($data), '?'));
+    try {
+      $this->db->conectar();
+      if ($fetchAll) {
+        $result = $this->db->query($sql, $params)->fetchAll();
+        if (!empty($result)) {
+          return $result;
+        } else {
+          return false;
+        }
+      } else {
+        return $this->db->query($sql, $params)->fetch();
+      }
 
-    $query = "INSERT INTO {$this->table} ({$columns}) VALUES ({$values})";
-    $this->db->query($query, array_values($data));
-
-    return $this->db->lastInsertId();
-  }
-
-  protected function update($id, $column_id, array $data)
-  {
-    $columns = [];
-    foreach ($data as $column => $value) {
-      $columns[] = "$column = ?";
-    }
-    $columns = implode(', ', $columns);
-
-    $query = "UPDATE {$this->table} SET {$columns} WHERE $column_id = ?";
-    $data["$column_id"] = $id;
-
-    $statement = $this->db->query($query, array_values($data));
-    $rowCount = $statement->rowCount();
-    if ($rowCount > 0) {
-      return true;
-    } else {
-      return false;
+    } catch (PDOException $e) {
+      return $e->getMessage();
+    } finally {
+      $this->db->cerrarConexion();
     }
   }
 
-  protected function delete($id, $column_id)
-  {
-    $query = "DELETE FROM {$this->table} WHERE $column_id = ?";
-    $statement = $this->db->query($query, [$id]);
-    $rowCount = $statement->rowCount();
-    if ($rowCount > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+
+  //! DESPUÉS VEMOS QUE PDO
+  // protected function create($data)
+  // {
+  //   $columns = implode(', ', array_keys($data));
+  //   $values = implode(', ', array_fill(0, count($data), '?'));
+
+  //   $query = "INSERT INTO {$this->table} ({$columns}) VALUES ({$values})";
+  //   $this->db->query($query, array_values($data));
+
+  //   return $this->db->lastInsertId();
+  // }
+
+  // protected function update($id, $column_id, $data)
+  // {
+  //   $columns = [];
+  //   foreach ($data as $column => $value) {
+  //     $columns[] = "$column = ?";
+  //   }
+  //   $columns = implode(', ', $columns);
+
+  //   $query = "UPDATE {$this->table} SET {$columns} WHERE $column_id = ?";
+  //   $data["$column_id"] = $id;
+
+  //   $statement = $this->db->query($query, array_values($data));
+  //   $rowCount = $statement->rowCount();
+  //   if ($rowCount > 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  // protected function delete($id, $column_id)
+  // {
+  //   $query = "DELETE FROM {$this->table} WHERE $column_id = ?";
+  //   $statement = $this->db->query($query, [$id]);
+  //   $rowCount = $statement->rowCount();
+  //   if ($rowCount > 0) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }

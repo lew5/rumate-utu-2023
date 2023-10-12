@@ -216,7 +216,7 @@ a {
 
 .input-field__input.input-field__input--error {
   border-color: #ff0000;
-  background-image: url("/imgs/input_error.svg");
+  background-image: url("../imgs/input_error.svg");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 1rem;
@@ -224,7 +224,7 @@ a {
 
 .input-field__input.input-field__input--ok {
   border-color: #008000;
-  background-image: url("/imgs/input_ok.svg");
+  background-image: url("../imgs/input_ok.svg");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 1rem;
@@ -356,13 +356,13 @@ a {
 }
 
 .login-register__background {
-  background-image: url("/imgs/hero-img.webp");
+  background-image: url("../imgs/hero-img.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   width: 70%;
-  -webkit-mask: url("/imgs/blob.svg");
-  mask: url("/imgs/blob.svg");
+  -webkit-mask: url("../imgs/blob.svg");
+  mask: url("../imgs/blob.svg");
   -webkit-mask-position: left;
   mask-position: left;
   -webkit-mask-size: 160%;
@@ -435,6 +435,8 @@ a {
 .card-remate__image {
   max-width: 100px;
   max-height: 100px;
+  min-width: 100px;
+  min-height: 100px;
   border-radius: 5px;
 }
 

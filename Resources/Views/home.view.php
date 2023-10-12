@@ -5,7 +5,7 @@ require BASE_PATH . "/Resources/Views/Partials/nav.php";
 require BASE_PATH . "/Resources/Views/Partials/header.php";
 require BASE_PATH . "/Resources/Views/Partials/main-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
-require BASE_PATH . "/Resources/Views/Partials/card-container.php";
+require BASE_PATH . "/Resources/Views/Remate/listar-remates.php";
 ?>
 <?php
 require BASE_PATH . "/Resources/Views/Partials/container-1024-end.php";

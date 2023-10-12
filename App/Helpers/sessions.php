@@ -1,7 +1,7 @@
 <?php
 
 
-function sessionRoot(): bool
+function sessionRoot()
 {
   if (sessionUsuario()) {
     return sessionUsuario()->getTipo() == "ROOT";
@@ -9,7 +9,7 @@ function sessionRoot(): bool
     return false;
   }
 }
-function sessionAdmin(): bool
+function sessionAdmin()
 {
   if (sessionUsuario()) {
     return sessionUsuario()->getTipo() == "ADMINISTRADOR";
@@ -18,7 +18,7 @@ function sessionAdmin(): bool
   }
 }
 
-function sessionCliente(): bool
+function sessionCliente()
 {
   if (sessionUsuario()) {
     return sessionUsuario()->getTipo() == "CLIENTE";
@@ -27,7 +27,7 @@ function sessionCliente(): bool
   }
 }
 
-function sessionProveedor(): bool
+function sessionProveedor()
 {
   if (sessionUsuario()) {
     return sessionUsuario()->getTipo() == "PROVEEDOR";
@@ -36,7 +36,7 @@ function sessionProveedor(): bool
   }
 }
 
-function sessionUsuario(): mixed
+function sessionUsuario()
 {
   if (isset($_SESSION['usuario'])) {
     return unserialize($_SESSION['usuario']);

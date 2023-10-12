@@ -33,6 +33,23 @@ class RemateController
     $view->render(BASE_PATH . "/Resources/Views/remate.view.php");
 
   }
+
+  public static function listarRemates()
+  {
+    $remateModel = Container::resolve(RemateModel::class);
+    return $remateModel->getRemates();
+  }
+
+  public static function listarLotes($idRemate)
+  {
+    $LoteModel = Container::resolve(LoteModel::class);
+    $lotes = $LoteModel->getLotesDeRemate($idRemate);
+    $view = Container::resolve(View::class);
+    $view->assign("title", "Rumate - Remate");
+    $view->assign("header_title", "Lotes del remate  <span>#$idRemate</span>");
+    $view->assign("lotes", $lotes);
+    $view->render(BASE_PATH . "/Resources/Views/Remate/remate-lotes.php");
+  }
 }
 
 ?>

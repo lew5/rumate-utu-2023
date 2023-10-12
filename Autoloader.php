@@ -1,8 +1,9 @@
 <?php
 
-$base = dirname(__DIR__);
+$base = __DIR__;
 define('BASE_PATH', $base);
-const PUBLIC_PATH = __DIR__;
+$public = basename(__DIR__);
+define('PUBLIC_PATH', "/" . $public);
 
 
 require_once BASE_PATH . "/App/Container/Container.php";
@@ -10,7 +11,7 @@ require_once BASE_PATH . "/Bootstrap/bootstrap.php";
 require_once BASE_PATH . "/App/Helpers/sessions.php";
 require_once BASE_PATH . "/App/Helpers/http-codes.php";
 require_once BASE_PATH . "/App/Helpers/fechas.php";
-require BASE_PATH . "/vendor/autoload.php";
+// require BASE_PATH . "/vendor/autoload.php";
 
 class Autoloader
 {
