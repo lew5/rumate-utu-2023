@@ -7,7 +7,6 @@ define('PUBLIC_PATH', "/" . $public);
 
 
 require_once BASE_PATH . "/App/Container/Container.php";
-require_once BASE_PATH . "/Bootstrap/bootstrap.php";
 require_once BASE_PATH . "/App/Helpers/sessions.php";
 require_once BASE_PATH . "/App/Helpers/http-codes.php";
 require_once BASE_PATH . "/App/Helpers/fechas.php";
@@ -15,31 +14,35 @@ require_once BASE_PATH . "/App/Helpers/fechas.php";
 
 class Autoloader
 {
-  public static $basePaths = [
-    BASE_PATH . "/App/",
-    BASE_PATH . "/App/Routes/",
-    BASE_PATH . "/App/Models/",
-    BASE_PATH . "/Resources/Views/",
-    BASE_PATH . "/App/Http/Controllers/",
-    BASE_PATH . "/App/Http/Middleware/",
-    BASE_PATH . "/Database/",
-    //* Agrega otras ubicaciones de clases si es necesario
-  ];
-
+  public static $basePaths = [];
 
   public static function loadClass($className)
   {
     foreach (self::$basePaths as $basePath) {
       $classFile = $basePath . $className . ".php";
       if (file_exists($classFile)) {
-        //var_dump($classFile . " ✅ EXISTE"); //!TEST
         require_once $classFile;
         return;
-      } else {
-        //var_dump($classFile . " ⛔ NO EXISTE"); //!TEST
       }
     }
   }
+}
+
+Autoloader::$basePaths[] = BASE_PATH . "/App/";
+Autoloader::$basePaths[] = BASE_PATH . "/App/Routes/";
+Autoloader::$basePaths[] = BASE_PATH . "/App/Models/";
+Autoloader::$basePaths[] = BASE_PATH . "/App/Http/Controllers/";
+Autoloader::$basePaths[] = BASE_PATH . "/App/Http/Middleware/";
+Autoloader::$basePaths[] = BASE_PATH . "/Resources/Views/";
+Autoloader::$basePaths[] = BASE_PATH . "/Database/";
+
+// Usando glob() para encontrar todas las subcarpetas en /App/
+$subdirectories = glob(BASE_PATH . "/App/Models/*", GLOB_ONLYDIR);
+var_dump($subdirectories);
+
+// Agrega todas las subcarpetas a $basePaths
+foreach ($subdirectories as $subdirectory) {
+  Autoloader::$basePaths[] = $subdirectory . "/";
 }
 
 spl_autoload_register("Autoloader::loadClass");
