@@ -19,6 +19,8 @@
 // $loteModel = Container::resolve(LoteModel::class);
 // var_dump($loteModel->getLotesDeRemate(4));
 // var_dump($loteModel->getLoteDeRemate(2, 2));
+
+// var_dump(Container::resolve(Usuario::class)::iniciarSesion("juan123", "password1"));
 // die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");

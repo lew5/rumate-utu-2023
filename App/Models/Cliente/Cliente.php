@@ -5,20 +5,8 @@ class Cliente extends Persona
   private $estado;
   private $pujas = [];
 
-  public function __construct($id, $nombre, $apellido, $ci, $barrio, $calle, $numero, $telefono, $tipo, $estado)
+  public function __construct()
   {
-    parent::__construct(
-      $id,
-      $nombre,
-      $apellido,
-      $ci,
-      $barrio,
-      $calle,
-      $numero,
-      $telefono,
-      $tipo
-    );
-    $this->estado = $estado;
   }
 
   #region //* SETTERS Y GETTERS

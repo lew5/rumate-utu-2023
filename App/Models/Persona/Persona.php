@@ -1,6 +1,6 @@
 <?php
 
-class PersonaModel extends UsuarioModel
+class Persona extends Usuario
 {
   protected $id;
   protected $nombre;
@@ -11,63 +11,10 @@ class PersonaModel extends UsuarioModel
   protected $numero;
   protected $telefono;
   protected $tipo;
-  private $tabla = "personas";
   public function __construct()
   {
     parent::__construct();
   }
-
-  #region //* FUNCIONA 🟢
-  public function getPersonas()
-  {
-    return $this->all($this->tabla);
-  }
-
-  public function getPersona($id)
-  {
-    return $this->find($this->tabla, $id, "id_persona");
-  }
-
-  #endregion
-
-  //! HAY BORRAR TODO ESTO PARA QUE LAS FUNCIONES NO RETORNEN UN OBJETO PERSONA
-  // public function borrarPersona($id) // 🟡 //!Cannot delete or update a parent row: a foreign key constraint fails
-  // {
-  //   return $this->delete($id, "id_persona");
-  // }
-  // public function actualizarPersona($id, $data)
-  // {
-  //   return $this->update($id, "id_persona", $data);
-  // }
-  // public function crearPersona($data)
-  // {
-  //   try {
-  //     return $this->create($data);
-  //   } catch (PDOException $e) {
-  //     if ($e->getCode() == 1062) {
-  //       return false;
-  //     } else {
-  //       return "Esa persona ya existe";
-  //     }
-  //   }
-  // }
-
-  // private function rellenarPersona($per)
-  // {
-  //   $persona = Container::resolve(
-  //     Persona::class,
-  //     $per['id_persona'],
-  //     $per['nombre_persona'],
-  //     $per['apellido_persona'],
-  //     $per['ci_persona'],
-  //     $per['barrio_persona'],
-  //     $per['calle_persona'],
-  //     $per['numero_persona'],
-  //     $per['telefono_persona']
-  //   );
-  //   return $persona;
-  // }
-
 
   //* SETTERS Y GETTERS
   public function getId()

@@ -38,7 +38,6 @@ Autoloader::$basePaths[] = BASE_PATH . "/Database/";
 
 // Usando glob() para encontrar todas las subcarpetas en /App/
 $subdirectories = glob(BASE_PATH . "/App/Models/*", GLOB_ONLYDIR);
-var_dump($subdirectories);
 
 // Agrega todas las subcarpetas a $basePaths
 foreach ($subdirectories as $subdirectory) {

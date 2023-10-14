@@ -1,12 +1,9 @@
 <?php
 require BASE_PATH . "/Resources/Views/Partials/doctype.php";
 require BASE_PATH . "/Resources/Views/Partials/head.php";
-if (isset($_SESSION['userError'])) {
-  $msg = $_SESSION['userError']['error'];
-  $username = $_SESSION['userError']['username'];
-} elseif (isset($_SESSION['passError'])) {
-  $msg = $_SESSION['passError']['error'];
-  $username = $_SESSION['passError']['username'];
+if (isset($_SESSION['loginError'])) {
+  $msg = $_SESSION['loginError']['error'];
+  $username = $_SESSION['loginError']['username'];
 }
 ?>
 <main class="login-register f-row">
@@ -22,12 +19,11 @@ if (isset($_SESSION['userError'])) {
               <span class="label__text">Nombre de usuario</span>
               <input name="username" type="text"
                 placeholder="Ingresa tu usuario" autocomplete="off"
-                class="input-field__input <?php isset($_SESSION['userError']) ? print("input-field__input--error") : print(""); ?>"
-                required
+                class="input-field__input" required
                 value="<?php isset($username) ? print($username) : print(""); ?>" />
             </label>
             <span
-              class="input-field__error-message <?php isset($_SESSION['userError']) ? print("") : print("hidden"); ?> error"><?php isset($_SESSION['userError']) ? print($msg) : print("Error"); ?></span>
+              class="input-field__error-message <?php isset($_SESSION['loginError']) ? print("") : print("hidden"); ?> error"><?php isset($_SESSION['loginError']) ? print($msg) : print("Error"); ?></span>
           </div>
           <div class="input-field">
             <label class="input-field__label f-column">

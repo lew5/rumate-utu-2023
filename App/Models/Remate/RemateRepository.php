@@ -1,14 +1,7 @@
 <?php
 
-class RemateModel extends Model
+class RemateRepository extends Model
 {
-  private $id;
-  private $estado;
-  private $fecha;
-  private $hora;
-  private $img;
-  private $titulo;
-  private $lotes = [];
   private $tabla = "remates";
 
   public function __construct()
