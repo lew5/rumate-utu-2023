@@ -22,6 +22,15 @@
 
 // var_dump(Container::resolve(Usuario::class)::iniciarSesion("juan123", "password1"));
 // die;
+// $usuarioService = Container::resolve(UsuarioService::class);
+// var_dump(Container::resolve(UsuarioService::class)->get("clienteuser"));
+// $usuarioModel = Container::resolve(Usuario::class);
+// $usuarioModel->setUsername("PruebaUser");
+// $usuarioModel->setPassword("PruebaUserPassword");
+// $usuarioModel->setEmail("PruebaUserEmail");
+// $usuarioModel->setTipo("CLIENTE");
+// $usuarioService->create($usuarioModel);
+die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");
 Route::get("/remate/{id}", "RemateController@listarLotes");

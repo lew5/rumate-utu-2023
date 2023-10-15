@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "MyApp\\": "App"
+            "App\\": "App",
+            "Database\\": "Database"
         }
     },
     "require": {

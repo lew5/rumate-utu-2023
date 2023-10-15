@@ -2,6 +2,7 @@
 session_start();
 require_once "Autoloader.php";
 
+
 // $proveedor_model = Container::resolve(ProveedorModel::class);
 // var_dump($proveedor_model->getLotesDeProveedor(3));
 // die;
