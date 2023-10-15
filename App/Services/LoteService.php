@@ -1,61 +1,61 @@
 <?php
 
-class UsuarioService
+class LoteService
 {
-  private $_usuarioRepository;
+  private $_loteRepository;
 
   public function __construct()
   {
-    $this->_usuarioRepository = Container::resolve(UsuarioRepository::class);
+    $this->_loteRepository = Container::resolve(LoteRepository::class);
   }
 
-  // OBTENER TODOS LOS USUARIOS
+  // OBTENER TODOS LOS LOTES
   public function getAll()
   {
     $result = [];
     try {
-      $result = $this->_usuarioRepository->findAll();
+      $result = $this->_loteRepository->findAll();
     } catch (PDOException $e) {
       var_dump($e);
     }
     return $result;
   }
-  // OBTENER UN USUARIO
-  public function get($username)
+  // OBTENER UN LOTE
+  public function get($id)
   {
     $result = null;
     try {
-      $result = $this->_usuarioRepository->find($username);
+      $result = $this->_loteRepository->find($id);
     } catch (PDOException $e) {
       var_dump($e);
     }
     return $result;
   }
 
-  // CREAR UN USUARIO
+  // CREAR UN LOTE
   public function create($model)
   {
     try {
-      $this->_usuarioRepository->add($model);
+      $this->_loteRepository->add($model);
     } catch (PDOException $e) {
       var_dump($e);
     }
   }
 
-  // ACTUALIZAR UN USUARIO
+  // ACTUALIZAR UN LOTE
   public function update($model)
   {
     try {
-      $this->_usuarioRepository->update($model);
+      $this->_loteRepository->update($model);
     } catch (PDOException $e) {
       var_dump($e);
     }
   }
-  // ELIMINAR UN USUARIO
-  public function delete($username)
+  // ELIMINAR UN LOTE
+  public function delete($id)
   {
     try {
-      $this->_usuarioRepository->remove($username);
+      $this->_loteRepository->remove($id);
     } catch (PDOException $e) {
       var_dump($e);
     }

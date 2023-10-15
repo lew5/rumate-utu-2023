@@ -32,6 +32,7 @@ Autoloader::$basePaths[] = BASE_PATH . "/App/";
 Autoloader::$basePaths[] = BASE_PATH . "/App/Routes/";
 Autoloader::$basePaths[] = BASE_PATH . "/App/Models2/";
 Autoloader::$basePaths[] = BASE_PATH . "/App/Services/";
+Autoloader::$basePaths[] = BASE_PATH . "/App/Repositories/";
 Autoloader::$basePaths[] = BASE_PATH . "/App/Http/Controllers/";
 Autoloader::$basePaths[] = BASE_PATH . "/App/Http/Middleware/";
 Autoloader::$basePaths[] = BASE_PATH . "/Resources/Views/";

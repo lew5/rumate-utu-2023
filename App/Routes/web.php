@@ -1,39 +1,48 @@
 <?php
-// $clienteModel = Container::resolve(ClienteModel::class);
-// var_dump($clienteModel->getPersona(1));
-// var_dump($clienteModel->getPersonas());
-// $usuarioModel = Container::resolve(UsuarioModel::class);
-// var_dump($usuarioModel->getUsuarios());
-// var_dump($usuarioModel->getUsuario("juan123"));
-// var_dump($usuarioModel->getFullUsuario("juan123"));
-// $uc = Container::resolve(UsuarioController::class);
-// $uc->iniciarSesion("juan123", "password1");
-// $remateModel = Container::resolve(RemateModel::class);
-// var_dump($remateModel->getRemates());
-// var_dump($remateModel->getRemate(1));
-// $proveedorModel = Container::resolve(ProveedorModel::class);
-// var_dump($proveedorModel->getLotes(3));
-// $clienteModel = Container::resolve(ClienteModel::class);
-// var_dump($clienteModel->getClientes());
-// var_dump($clienteModel->getCliente(2));
-// $loteModel = Container::resolve(LoteModel::class);
-// var_dump($loteModel->getLotesDeRemate(4));
-// var_dump($loteModel->getLoteDeRemate(2, 2));
 
-// var_dump(Container::resolve(Usuario::class)::iniciarSesion("juan123", "password1"));
-// die;
-$usuarioService = Container::resolve(UsuarioService::class)->delete("PruebaUser");
-// var_dump(Container::resolve(UsuarioService::class)->get("clienteuser"));
+//! USUARIO 🟢
+// Container::resolve(UsuarioService::class)->delete("PruebaUser");
+// var_dump(Container::resolve(UsuarioService::class)->getAll());
+// var_dump(Container::resolve(UsuarioService::class)->get("adminuser"));
 // $usuarioModel = Container::resolve(Usuario::class);
 // $usuarioModel->setUsername("PruebaUser");
 // $usuarioModel->setPassword("PruebaUserPassword");
 // $usuarioModel->setEmail("PruebaUserEmail");
 // $usuarioModel->setTipo("CLIENTE");
-// // $usuarioService->create($usuarioModel);
+// Container::resolve(UsuarioService::class)->create($usuarioModel);
 // $usuarioModel->setPassword("UpdatePruebaUserPassword");
 // $usuarioModel->setEmail("UpdatePruebaUserEmail");
 // $usuarioModel->setTipo("PROVEEDOR");
-// $usuarioService->update($usuarioModel);
+// Container::resolve(UsuarioService::class)->update($usuarioModel);
+
+
+//! LOTE 🟡
+// var_dump(Container::resolve(LoteService::class)->getAll());
+// var_dump(Container::resolve(LoteService::class)->get(1));
+
+$loteModel = Container::resolve(Lote::class);
+$loteModel->setImagen("imagen epica");
+$loteModel->setPrecioBase(12);
+$loteModel->setMejorOferta(12);
+$loteModel->setIdProveedor(4);
+
+$fichaModel = Container::resolve(Ficha::class);
+$fichaModel->setPeso(102);
+$fichaModel->setCantidad(2);
+$fichaModel->setRaza("Toribio");
+$fichaModel->setDescripcion("El mejor lote");
+
+$categoriaModel = Container::resolve(Categoria::class);
+$categoriaModel->setNombre("categoriaPrueba");
+
+//! FICHA 🟡
+// var_dump(Container::resolve(FichaRepository::class)->findAll());
+// var_dump(Container::resolve(FichaRepository::class)->find(1));
+
+
+//! CATEGORIA 🟡
+// var_dump(Container::resolve(CategoriaRepository::class)->findAll());
+// var_dump(Container::resolve(CategoriaRepository::class)->find(1));
 die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");
