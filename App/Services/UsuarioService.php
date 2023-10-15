@@ -29,7 +29,10 @@ class UsuarioService
   {
     $result = null;
     try {
-      $stm = $this->_db->prepare("SELECT * FROM usuarios WHERE username_usuario = :username");
+      $stm = $this->_db->prepare(
+        "SELECT * FROM usuarios
+        WHERE username_usuario = :username"
+      );
       $stm->execute([
         'username' => $username
       ]);
@@ -48,8 +51,12 @@ class UsuarioService
   {
     try {
       $stm = $this->_db->prepare(
-        "INSERT INTO usuarios 
-        (username_usuario,password_usuario,email_usuario,tipo_usuario) VALUES (:username,:password,:email,:tipo)"
+        "INSERT INTO usuarios (
+          username_usuario,
+          password_usuario,
+          email_usuario,
+          tipo_usuario) 
+        VALUES (:username,:password,:email,:tipo)"
       );
       $stm->execute([
         'username' => $model->getUsername(),
@@ -64,18 +71,37 @@ class UsuarioService
     }
   }
 
-  public function delete($model)
+  public function update($model)
   {
     try {
       $stm = $this->_db->prepare(
-        "INSERT INTO usuarios 
-        (username_usuario,password_usuario,email_usuario,tipo_usuario) VALUES (:username,:password,:email,:tipo)"
+        "UPDATE usuarios
+        SET 
+          password_usuario = :password,
+          email_usuario = :email,
+          tipo_usuario = :tipo
+        WHERE username_usuario = :username"
       );
       $stm->execute([
         'username' => $model->getUsername(),
         'password' => $model->getPassword(),
         'email' => $model->getEmail(),
         'tipo' => $model->getTipo(),
+      ]);
+    } catch (PDOException $e) {
+      var_dump($e);
+    } finally {
+      $this->_db = null;
+    }
+  }
+  public function delete($username)
+  {
+    try {
+      $stm = $this->_db->prepare(
+        "DELETE FROM usuarios WHERE username_usuario = :username"
+      );
+      $stm->execute([
+        'username' => $username,
       ]);
     } catch (PDOException $e) {
       var_dump($e);

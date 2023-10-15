@@ -22,14 +22,18 @@
 
 // var_dump(Container::resolve(Usuario::class)::iniciarSesion("juan123", "password1"));
 // die;
-// $usuarioService = Container::resolve(UsuarioService::class);
+$usuarioService = Container::resolve(UsuarioService::class)->delete("PruebaUser");
 // var_dump(Container::resolve(UsuarioService::class)->get("clienteuser"));
 // $usuarioModel = Container::resolve(Usuario::class);
 // $usuarioModel->setUsername("PruebaUser");
 // $usuarioModel->setPassword("PruebaUserPassword");
 // $usuarioModel->setEmail("PruebaUserEmail");
 // $usuarioModel->setTipo("CLIENTE");
-// $usuarioService->create($usuarioModel);
+// // $usuarioService->create($usuarioModel);
+// $usuarioModel->setPassword("UpdatePruebaUserPassword");
+// $usuarioModel->setEmail("UpdatePruebaUserEmail");
+// $usuarioModel->setTipo("PROVEEDOR");
+// $usuarioService->update($usuarioModel);
 die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");
