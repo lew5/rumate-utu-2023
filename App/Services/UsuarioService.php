@@ -12,13 +12,7 @@ class UsuarioService
   // OBTENER TODOS LOS USUARIOS
   public function getAll()
   {
-    $result = [];
-    try {
-      $result = $this->_usuarioRepository->findAll();
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
-    return $result;
+    return $this->_usuarioRepository->findAll();
   }
   // OBTENER UN USUARIO
   public function get($username)

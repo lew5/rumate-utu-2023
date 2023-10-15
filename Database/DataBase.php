@@ -20,6 +20,7 @@ class DataBase
 
     return self::$_db;
   }
+
   // public function __construct()
   // {
   // }

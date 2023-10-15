@@ -4,14 +4,10 @@ class FichaRepository
 {
   private $_db;
 
-  public function __construct()
-  {
-    $this->_db = DataBase::get();
-  }
-
   // OBTENER TODOS LOS FICHAS
   public function findAll()
   {
+    $this->_db = DataBase::get();
     $result = [];
 
     $stm = $this->_db->prepare("SELECT * FROM fichas");
@@ -26,6 +22,7 @@ class FichaRepository
   // OBTENER UNA FICHA
   public function find($id)
   {
+    $this->_db = DataBase::get();
     $result = null;
 
     $stm = $this->_db->prepare(
@@ -48,57 +45,67 @@ class FichaRepository
   }
 
   // CREAR UNA FICHA
-  public function add($model)
+  public function add($fichaModel)
   {
+    $this->_db = DataBase::get();
+    $lastInsertId = null;
+
     $stm = $this->_db->prepare(
-      "INSERT INTO usuarios (
-          username_usuario,
-          password_usuario,
-          email_usuario,
-          tipo_usuario) 
-        VALUES (:username,:password,:email,:tipo)"
+      "INSERT INTO fichas (
+          peso_ficha,
+          cantidad_ficha,
+          raza_ficha,
+          descripcion_ficha) 
+        VALUES (
+          :peso,
+          :cantidad,
+          :raza,
+          :descripcion)"
     );
     $stm->execute([
-      'username' => $model->getUsername(),
-      'password' => $model->getPassword(),
-      'email' => $model->getEmail(),
-      'tipo' => $model->getTipo(),
+      'peso' => $fichaModel->getPeso(),
+      'cantidad' => $fichaModel->getCantidad(),
+      'raza' => $fichaModel->getRaza(),
+      'descripcion' => $fichaModel->getDescripcion(),
     ]);
-
+    $lastInsertId = $this->_db->lastInsertId();
     $this->_db = null;
+
+    return $lastInsertId;
   }
 
-  // ACTUALIZAR UNA FICHA
-  public function update($model)
-  {
-    $stm = $this->_db->prepare(
-      "UPDATE usuarios
-        SET 
-          password_usuario = :password,
-          email_usuario = :email,
-          tipo_usuario = :tipo
-        WHERE username_usuario = :username"
-    );
-    $stm->execute([
-      'username' => $model->getUsername(),
-      'password' => $model->getPassword(),
-      'email' => $model->getEmail(),
-      'tipo' => $model->getTipo(),
-    ]);
+  // // ACTUALIZAR UNA FICHA
+  // public function update($model)
+  // {
+  //   $stm = $this->_db->prepare(
+  //     "UPDATE usuarios
+  //       SET 
+  //         password_usuario = :password,
+  //         email_usuario = :email,
+  //         tipo_usuario = :tipo
+  //       WHERE username_usuario = :username"
+  //   );
+  //   $stm->execute([
+  //     'username' => $model->getUsername(),
+  //     'password' => $model->getPassword(),
+  //     'email' => $model->getEmail(),
+  //     'tipo' => $model->getTipo(),
+  //   ]);
 
-    $this->_db = null;
-  }
+  //   $this->_db = null;
+  // }
   // ELIMINAR UNA FICHA
-  public function remove($username)
+  public function remove($idFicha)
   {
+    $this->_db = DataBase::get();
     $stm = $this->_db->prepare(
-      "DELETE FROM usuarios WHERE username_usuario = :username"
+      "DELETE FROM fichas WHERE id_ficha = :id"
     );
     $stm->execute([
-      'username' => $username,
+      'id' => $idFicha
     ]);
-
     $this->_db = null;
+    return $stm;
   }
 }
 ?>

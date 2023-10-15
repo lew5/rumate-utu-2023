@@ -20,25 +20,47 @@
 // var_dump(Container::resolve(LoteService::class)->getAll());
 // var_dump(Container::resolve(LoteService::class)->get(1));
 
-$loteModel = Container::resolve(Lote::class);
-$loteModel->setImagen("imagen epica");
-$loteModel->setPrecioBase(12);
-$loteModel->setMejorOferta(12);
-$loteModel->setIdProveedor(4);
-
 $fichaModel = Container::resolve(Ficha::class);
 $fichaModel->setPeso(102);
 $fichaModel->setCantidad(2);
 $fichaModel->setRaza("Toribio");
 $fichaModel->setDescripcion("El mejor lote");
 
-$categoriaModel = Container::resolve(Categoria::class);
-$categoriaModel->setNombre("categoriaPrueba");
+$loteModel = Container::resolve(Lote::class);
+$loteModel->setImagen("imagen epica");
+$loteModel->setPrecioBase(12.00);
+$loteModel->setMejorOferta(12.00);
+$loteModel->setIdProveedor(4);
+$loteModel->setFicha($fichaModel);
+$loteModel->setIdCategoria(1);
+var_dump(Container::resolve(LoteService::class)->create($loteModel));
 
+
+// $fichaModel->setPeso(220);
+// $fichaModel->setCantidad(15);
+// $fichaModel->setRaza("update raza");
+// $fichaModel->setDescripcion("El pior lote");
+
+// $loteModel->setId(27);
+// $loteModel->setImagen("update img");
+// $loteModel->setPrecioBase(321);
+// $loteModel->setMejorOferta(321);
+// $loteModel->setIdProveedor(4);
+// $loteModel->setFicha($fichaModel);
+// $loteModel->setIdCategoria(5);
+// var_dump($loteModel);
+// var_dump(Container::resolve(LoteService::class)->update($loteModel));
+// die;
+// var_dump(Container::resolve(LoteService::class)->delete(26, 51));
 //! FICHA 🟡
 // var_dump(Container::resolve(FichaRepository::class)->findAll());
 // var_dump(Container::resolve(FichaRepository::class)->find(1));
-
+// $fichaModel = Container::resolve(Ficha::class);
+// $fichaModel->setPeso(102);
+// $fichaModel->setCantidad(2);
+// $fichaModel->setRaza("Toribio");
+// $fichaModel->setDescripcion("El mejor lote");
+// var_dump(Container::resolve(FichaRepository::class)->add($fichaModel));
 
 //! CATEGORIA 🟡
 // var_dump(Container::resolve(CategoriaRepository::class)->findAll());

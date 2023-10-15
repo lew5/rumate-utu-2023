@@ -4,101 +4,133 @@ class LoteRepository
 {
   private $_db;
 
-  public function __construct()
-  {
-    $this->_db = DataBase::get();
-  }
-
   // OBTENER TODOS LOS LOTES
   public function findAll()
   {
+    $this->_db = DataBase::get();
     $result = [];
+    try {
+      $stm = $this->_db->prepare("SELECT * FROM lotes");
+      $stm->execute();
 
-    $stm = $this->_db->prepare("SELECT * FROM lotes");
-    $stm->execute();
-
-    $result = $stm->fetchAll(PDO::FETCH_CLASS, "Lote");
-
-    $this->_db = null;
-
+      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Lote");
+    } catch (PDOException $e) {
+      var_dump($e);
+    } finally {
+      $this->_db = null;
+    }
     return $result;
   }
   // OBTENER UN USUARIO
   public function find($id)
   {
+    $this->_db = DataBase::get();
     $result = null;
 
-    $stm = $this->_db->prepare(
-      "SELECT * FROM lotes
+    try {
+
+      $stm = $this->_db->prepare(
+        "SELECT * FROM lotes
         WHERE id_lote = :id"
-    );
-    $stm->execute([
-      'id' => $id
-    ]);
+      );
+      $stm->execute([
+        'id' => $id
+      ]);
 
-    $data = $stm->fetchObject("Lote");
+      $data = $stm->fetchObject("Lote");
 
-    if ($data) {
-      $result = $data;
+      if ($data) {
+        $result = $data;
+      }
+
+    } catch (PDOException $e) {
+      var_dump($e);
+    } finally {
+
+      $this->_db = null;
+
     }
 
-    $this->_db = null;
-
     return $result;
+
   }
 
-  // CREAR UN USUARIO
-  public function add($model)
+  // CREAR UN LOTE  
+  public function add($loteModel)
   {
+    $this->_db = DataBase::get();
+    $lastInsertId = null;
     $stm = $this->_db->prepare(
-      "INSERT INTO usuarios (
-          username_usuario,
-          password_usuario,
-          email_usuario,
-          tipo_usuario) 
-        VALUES (:username,:password,:email,:tipo)"
+      "INSERT INTO lotes (
+          imagen_lote,
+          precio_base_lote,
+          mejor_oferta_lote,
+          id_proveedor_lote,
+          id_ficha_lote,
+          id_categoria_lote
+          ) 
+        VALUES (
+          :imagen,
+          :precioBase,
+          :mejorOferta,
+          :idProveedor,
+          :idFicha,
+          :idCategoria
+          )"
     );
     $stm->execute([
-      'username' => $model->getUsername(),
-      'password' => $model->getPassword(),
-      'email' => $model->getEmail(),
-      'tipo' => $model->getTipo(),
+      'imagen' => $loteModel->getImagen(),
+      'precioBase' => $loteModel->getPrecioBase(),
+      'mejorOferta' => $loteModel->getPrecioBase(),
+      'idProveedor' => $loteModel->getIdProveedor(),
+      'idFicha' => $loteModel->getIdFicha(),
+      'idCategoria' => $loteModel->getIdCategoria()
     ]);
-
+    $lastInsertId = $this->_db->lastInsertId();
     $this->_db = null;
+
+    return $lastInsertId;
   }
 
-  // ACTUALIZAR UN USUARIO
-  public function update($model)
+  // ACTUALIZAR UN LOTE
+  public function update($loteModel)
   {
-    $stm = $this->_db->prepare(
-      "UPDATE usuarios
+    $this->_db = DataBase::get();
+    try {
+      $stm = $this->_db->prepare(
+        "UPDATE lotes
         SET 
-          password_usuario = :password,
-          email_usuario = :email,
-          tipo_usuario = :tipo
-        WHERE username_usuario = :username"
-    );
-    $stm->execute([
-      'username' => $model->getUsername(),
-      'password' => $model->getPassword(),
-      'email' => $model->getEmail(),
-      'tipo' => $model->getTipo(),
-    ]);
-
-    $this->_db = null;
+          imagen_lote = :imagen,
+          precio_base_lote = :precio,
+          id_proveedor_lote = :idProveedor,
+          id_categoria_lote = :idCategoria
+        WHERE id_lote = :id"
+      );
+      $stm->execute([
+        'id' => $loteModel->getId(),
+        'imagen' => $loteModel->getImagen(),
+        'precio' => $loteModel->getPrecioBase(),
+        'idProveedor' => $loteModel->getIdProveedor(),
+        'idCategoria' => $loteModel->getIdCategoria()
+      ]);
+    } catch (PDOException $e) {
+      var_dump($e);
+    } finally {
+      $this->_db = null;
+    }
   }
-  // ELIMINAR UN USUARIO
-  public function remove($username)
+  // ELIMINAR UN LOTE
+  public function remove($idLote)
   {
+    $this->_db = DataBase::get();
     $stm = $this->_db->prepare(
-      "DELETE FROM usuarios WHERE username_usuario = :username"
+      "DELETE FROM lotes WHERE id_lote = :id"
     );
     $stm->execute([
-      'username' => $username,
+      'id' => $idLote
     ]);
-
     $this->_db = null;
+    return $stm;
   }
 }
 ?>
