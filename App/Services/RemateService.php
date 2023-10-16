@@ -78,7 +78,8 @@ class RemateService implements IServiceInterface
   {
     $lotes = $this->_remateRepository->getLotes($idRemate);
     foreach ($lotes as $lote) {
-      $lote->setFicha($this->_fichaRepository->find($lote->getIdFicha()));
+      $lote->setFicha($this->_loteService->getFicha($lote->getIdFicha()));
+      $lote->setCategoria($this->_loteService->getCategoria($lote->getIdCategoria()));
     }
     return $lotes;
   }

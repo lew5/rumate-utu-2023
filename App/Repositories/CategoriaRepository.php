@@ -45,13 +45,13 @@ class CategoriaRepository implements IRepositoryInterface
     return $result;
   }
 
-  public function create()
+  public function create($model)
   {
   }
-  public function update()
+  public function update($model)
   {
   }
-  public function delete()
+  public function delete($id)
   {
   }
 }

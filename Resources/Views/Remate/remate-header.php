@@ -7,10 +7,9 @@
         <select class="input-field__input" id="categoria">
           <?php
           foreach ($lotes as $lote) {
-            $lote = (object) $lote;
             ?>
-            <option value="<?= $lote->nombre_categoria; ?>">
-              <?= $lote->nombre_categoria; ?>
+            <option value="<?= $lote->getCategoria()->getNombre(); ?>">
+              <?= $lote->getCategoria()->getNombre(); ?>
             </option>
           <?php } ?>
         </select>

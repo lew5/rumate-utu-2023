@@ -2,9 +2,10 @@
   <img class="card-remate__image"
     src="<?= PUBLIC_PATH ?>/Public/imgs/no-image.webp" alt="Imagen de remate">
   <div class="card-remate__info">
-    <h2 class="card-remate__title">LOTE # <?= $lote->getId(); ?></h2>
+    <h2 class="card-remate__title">LOTE de
+      <?= $lote->getCategoria()->getNombre(); ?>s</h2>
     <p class="card-remate__data"><b>Categoría:
-      </b><?= $lote->getId(); ?>
+      </b><?= $lote->getCategoria()->getNombre(); ?>
     </p>
     <p class="card-remate__data"><b>Cantidad:
       </b><?= $lote->getFicha()->getCantidad(); ?></p>
