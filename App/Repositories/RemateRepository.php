@@ -44,27 +44,7 @@ class RemateRepository extends BaseRepository implements IRepositoryInterface
 
   public function update($model)
   {
-    // HAY QUE HACER UN UPDATE GENÉRICO
-    // ALGO COMO ESTO 
-    // protected function update($id, $column_id, $data)
-    // {
-    //   $columns = [];
-    //   foreach ($data as $column => $value) {
-    //     $columns[] = "$column = ?";
-    //   }
-    //   $columns = implode(', ', $columns);
 
-    //   $query = "UPDATE {$this->table} SET {$columns} WHERE $column_id = ?";
-    //   $data["$column_id"] = $id;
-
-    //   $statement = $this->db->query($query, array_values($data));
-    //   $rowCount = $statement->rowCount();
-    //   if ($rowCount > 0) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
   }
   public function delete($id)
   {

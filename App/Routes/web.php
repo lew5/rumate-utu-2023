@@ -92,7 +92,7 @@
 
 //! REMATE 
 // // getAll 🟢
-var_dump(Container::resolve(RemateService::class)->getAll());
+// var_dump(Container::resolve(RemateService::class)->getAll());
 // // getById 🟢
 // var_dump(Container::resolve(RemateService::class)->getById(1));
 // // create 🟢
@@ -106,6 +106,19 @@ var_dump(Container::resolve(RemateService::class)->getAll());
 // var_dump(Container::resolve(RemateService::class)->create($remate));
 // // delete 🟢
 // var_dump(Container::resolve(RemateService::class)->delete(5));
+
+//! PUJA 
+// // getAll 🟢
+var_dump(Container::resolve(PujaService::class)->getAll());
+// // getById 🟢
+// var_dump(Container::resolve(PujaService::class)->getById(1));
+// // create 🟢
+// $puja = Container::resolve(Puja::class);
+// $puja->setMonto(3000);
+// var_dump(Container::resolve(PujaService::class)->create($puja));
+// // delete 🟢
+// var_dump(Container::resolve(PujaService::class)->delete(4));
+// var_dump(Container::resolve(PujaService::class)->getAll());
 die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");
