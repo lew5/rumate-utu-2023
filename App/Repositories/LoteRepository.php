@@ -82,7 +82,7 @@ class LoteRepository implements IRepositoryInterface
     $stm->execute([
       'imagen' => $loteModel->getImagen(),
       'precioBase' => $loteModel->getPrecioBase(),
-      'mejorOferta' => $loteModel->getPrecioBase(),
+      'mejorOferta' => 0,
       'idProveedor' => $loteModel->getIdProveedor(),
       'idFicha' => $loteModel->getIdFicha(),
       'idCategoria' => $loteModel->getIdCategoria()

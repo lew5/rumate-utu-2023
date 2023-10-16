@@ -1,5 +1,5 @@
 <?php
-
+#region
 //! USUARIO 🟢
 // Container::resolve(UsuarioService::class)->delete("PruebaUser");
 // var_dump(Container::resolve(UsuarioService::class)->getAll());
@@ -109,7 +109,7 @@
 
 //! PUJA 
 // // getAll 🟢
-var_dump(Container::resolve(PujaService::class)->getAll());
+// var_dump(Container::resolve(PujaService::class)->getAll());
 // // getById 🟢
 // var_dump(Container::resolve(PujaService::class)->getById(1));
 // // create 🟢
@@ -119,6 +119,78 @@ var_dump(Container::resolve(PujaService::class)->getAll());
 // // delete 🟢
 // var_dump(Container::resolve(PujaService::class)->delete(4));
 // var_dump(Container::resolve(PujaService::class)->getAll());
+
+//! PUJA DE REMATE
+// // getAll 🟢
+// var_dump(Container::resolve(PujaDeRemateRepository::class)->findAll());
+// // getById 🟢
+// var_dump(Container::resolve(PujaDeRemateRepository::class)->find(1));
+// // create 🟢
+// $puja = Container::resolve(Puja::class);
+// $puja->setMonto(3000);
+// var_dump(Container::resolve(PujaService::class)->create($puja));
+// // delete 🟢
+// var_dump(Container::resolve(PujaService::class)->delete(4));
+// var_dump(Container::resolve(PujaService::class)->getAll());
+
+//! PUJA DE PERSONA
+// // getAll 🟢
+// var_dump(Container::resolve(PujaDePersonaRepository::class)->findAll());
+// // getById 🟢
+// var_dump(Container::resolve(PujaDePersonaRepository::class)->find(1));
+// // create 🟢
+// $puja = Container::resolve(Puja::class);
+// $puja->setMonto(3000);
+// var_dump(Container::resolve(PujaService::class)->create($puja));
+// // delete 🟢
+// var_dump(Container::resolve(PujaService::class)->delete(4));
+// var_dump(Container::resolve(PujaService::class)->getAll());
+//! LOTES POSTULAN REMATE
+// // getAll 🟢
+// var_dump(Container::resolve(LotePostulaRemateRepository::class)->findAll());
+// // getById 🟢
+// var_dump(Container::resolve(PujaDePersonaRepository::class)->find(1));
+// // create 🟢
+// $puja = Container::resolve(Puja::class);
+// $puja->setMonto(3000);
+// var_dump(Container::resolve(PujaService::class)->create($puja));
+// // delete 🟢
+// var_dump(Container::resolve(PujaService::class)->delete(4));
+// var_dump(Container::resolve(PujaService::class)->getAll());
+// $remate = Container::resolve(Remate::class);
+// $remate->setLote("a");
+// $remate->setLote("b");
+// var_dump($remate->getLotes());
+#endregion
+
+// Crear una instancia de la clase Ficha y configurar sus atributos
+$ficha = Container::resolve(Ficha::class);
+$ficha->setPeso(10.5);
+$ficha->setCantidad(5);
+$ficha->setRaza("Ejemplo Raza");
+$ficha->setDescripcion("Esta es una descripción de prueba para la ficha.");
+
+// Crear una instancia de la clase Lote y configurar sus atributos, incluyendo la asociación con la instancia de Ficha
+$lote = Container::resolve(Lote::class);
+$lote->setImagen("imagen_ejemplo.jpg");
+$lote->setPrecioBase(50.0);
+$lote->setMejorOferta(55.0);
+$lote->setIdProveedor(4);
+$lote->setIdCategoria(4);
+$lote->setFicha($ficha);
+
+// Crear una instancia de la clase Remate y configurar sus atributos
+$remate = Container::resolve(Remate::class);
+$remate->setTitulo("Remate de Ejemplo");
+$remate->setImagen("imagen_remate.jpg");
+$remate->setFechaInicio("2023-10-20");
+$remate->setFechaFinal("2023-10-25");
+$remate->setEstado("Activo");
+for ($i = 0; $i < 10; $i++) {
+  $remate->setLote($lote);
+}
+var_dump($remate);
+var_dump(Container::resolve(RemateService::class)->create($remate));
 die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");

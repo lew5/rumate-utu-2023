@@ -16,6 +16,7 @@ class RemateRepository extends BaseRepository implements IRepositoryInterface
   public function create($remateModel)
   {
     $this->_db = DataBase::get();
+    $lastInsertId = null;
     $stm = $this->_db->prepare(
       "INSERT INTO REMATES (
             titulo_remate,
@@ -39,7 +40,9 @@ class RemateRepository extends BaseRepository implements IRepositoryInterface
       'fecha_final' => $remateModel->getFechaFinal(),
       'estado' => $remateModel->getEstado()
     ]);
+    $lastInsertId = $this->_db->lastInsertId();
     $this->_db = null;
+    return $lastInsertId;
   }
 
   public function update($model)

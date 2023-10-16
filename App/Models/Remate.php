@@ -7,6 +7,7 @@ class Remate
   private $fecha_inicio_remate;
   private $fecha_final_remate;
   private $estado_remate;
+  private $lotes = [];
 
   public function getId()
   {
@@ -66,6 +67,16 @@ class Remate
   public function setEstado($estado)
   {
     $this->estado_remate = $estado;
+  }
+
+  public function getLotes()
+  {
+    return $this->lotes;
+  }
+
+  public function setLote($lote)
+  {
+    $this->lotes[] = $lote;
   }
 }
 

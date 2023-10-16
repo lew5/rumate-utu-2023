@@ -39,17 +39,12 @@ class LoteService implements IServiceInterface
   public function create($loteModel)
   {
     $db = DataBase::get();
-    $db->beginTransaction();
-    try {
-      $loteModel->setIdFicha($this->_fichaRepository->add($loteModel->getFicha()));
-      $this->_loteRepository->create($loteModel);
-      $db->commit();
-    } catch (PDOException $e) {
-      $db->rollback();
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
+    $lastInsertId = null;
+    $loteModel->setIdFicha($this->_fichaRepository->create($loteModel->getFicha()));
+    $this->_loteRepository->create($loteModel);
+    $lastInsertId = $db->lastInsertId();
+    $db = null;
+    return $lastInsertId;
   }
 
   // ACTUALIZAR UN LOTE
@@ -81,7 +76,7 @@ class LoteService implements IServiceInterface
       $db->rollback();
       return false;
     } finally {
-      $this->_db = null;
+      $db = null;
     }
   }
 
