@@ -71,7 +71,7 @@
 // var_dump(Container::resolve(CategoriaRepository::class)->find(1));
 
 
-//! PERSONA 
+//! PERSONA  🟢
 // // getAll 🟢
 // var_dump(Container::resolve(PersonaService::class)->getAll());
 // // getById 🟢
@@ -89,6 +89,23 @@
 // var_dump(Container::resolve(PersonaService::class)->create($personaModel));
 // // delete 🟢
 // var_dump(Container::resolve(PersonaService::class)->delete(6));
+
+//! REMATE 
+// // getAll 🟢
+var_dump(Container::resolve(RemateService::class)->getAll());
+// // getById 🟢
+// var_dump(Container::resolve(RemateService::class)->getById(1));
+// // create 🟢
+// $remate = Container::resolve(Remate::class);
+// $remate->setId(1);
+// $remate->setTitulo("Remate de Prueba");
+// $remate->setImagen("imagen_prueba.jpg");
+// $remate->setFechaInicio("2023-10-16 10:00:00");
+// $remate->setFechaFinal("2023-10-17 15:00:00");
+// $remate->setEstado("Activo");
+// var_dump(Container::resolve(RemateService::class)->create($remate));
+// // delete 🟢
+// var_dump(Container::resolve(RemateService::class)->delete(5));
 die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");
