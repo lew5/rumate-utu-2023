@@ -4,10 +4,12 @@ class LoteService implements IServiceInterface
 {
   private $_loteRepository;
   private $_fichaRepository;
+  private $_categoriaRepository;
   public function __construct()
   {
     $this->_loteRepository = Container::resolve(LoteRepository::class);
     $this->_fichaRepository = Container::resolve(FichaRepository::class);
+    $this->_categoriaRepository = Container::resolve(CategoriaRepository::class);
   }
 
   // OBTENER UN LOTE
@@ -80,5 +82,13 @@ class LoteService implements IServiceInterface
     }
   }
 
+  public function getCategoria($id)
+  {
+    return $this->_categoriaRepository->find($id);
+  }
+  public function getFicha($id)
+  {
+    return $this->_fichaRepository->find($id);
+  }
 }
 ?>

@@ -217,7 +217,7 @@
 // var_dump(Container::resolve(LoginService::class)->login("miusuario", "mipassword"));
 // die;
 Container::resolve(Route::class, Container::resolve(Router::class));
-Route::get("/", "HomeController@index");
+Route::get("/", "RemateController@listarRemates");
 Route::get("/remate/{id}", "RemateController@listarLotes");
 Route::get("/{idProveedor}/lotes", "ClienteProveedor@lotesProveedor"); //! EN DESARROLLO 
 Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");

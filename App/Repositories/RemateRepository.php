@@ -53,6 +53,31 @@ class RemateRepository extends BaseRepository implements IRepositoryInterface
   {
     return $this->deleteOne($id, $this->table, "id_remate");
   }
+
+  public function getLotes($idRemate)
+  {
+    $this->_db = DataBase::get();
+    $result = [];
+    try {
+      $stm = $this->_db->prepare(
+        "SELECT * 
+        FROM LOTES 
+        WHERE id_lote IN (SELECT id_lote_lote_postula_remate 
+        FROM LOTES_POSTULAN_REMATES 
+        WHERE id_remate_lote_postula_remate = :idRemate);"
+      );
+      $stm->execute([
+        'idRemate' => $idRemate
+      ]);
+
+      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Lote");
+    } catch (PDOException $e) {
+      var_dump($e);
+    } finally {
+      $this->_db = null;
+    }
+    return $result;
+  }
 }
 
 ?>

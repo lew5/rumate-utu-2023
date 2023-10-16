@@ -4,14 +4,15 @@ class RemateService implements IServiceInterface
 {
   private $_remateRepository;
   private $_loteService;
-
   private $_lotePostulaRemateRepository;
+  private $_fichaRepository;
 
   public function __construct()
   {
     $this->_remateRepository = Container::resolve(RemateRepository::class);
     $this->_loteService = Container::resolve(LoteService::class);
     $this->_lotePostulaRemateRepository = Container::resolve(LotePostulaRemateRepository::class);
+    $this->_fichaRepository = Container::resolve(FichaRepository::class);
   }
 
   public function getById($id)
@@ -27,7 +28,12 @@ class RemateService implements IServiceInterface
 
   public function getAll()
   {
-    return $this->_remateRepository->findAll();
+    $remates = $this->_remateRepository->findAll();
+    foreach ($remates as $remate) {
+      $remate->setFechaInicio(formatFecha($remate->getFechaInicio()));
+      $remate->setFechaFinal(formatFecha($remate->getFechaFinal()));
+    }
+    return $remates;
   }
 
   public function create($remateModel)
@@ -67,6 +73,30 @@ class RemateService implements IServiceInterface
     } catch (PDOException $e) {
       var_dump($e);
     }
+  }
+  public function getLotes($idRemate)
+  {
+    $lotes = $this->_remateRepository->getLotes($idRemate);
+    foreach ($lotes as $lote) {
+      $lote->setFicha($this->_fichaRepository->find($lote->getIdFicha()));
+    }
+    return $lotes;
+  }
+
+  public function getRemateConLotes($id)
+  {
+    $remate = null;
+    try {
+      $remate = $this->_remateRepository->find($id);
+      $lotes = $this->_remateRepository->getLotes($id);
+      foreach ($lotes as $lote) {
+        $lote->setFicha($this->_fichaRepository->find($lote->getIdFicha()));
+      }
+      $remate->setLotes($lotes);
+    } catch (PDOException $e) {
+      var_dump($e);
+    }
+    return $remate;
   }
 }
 ?>

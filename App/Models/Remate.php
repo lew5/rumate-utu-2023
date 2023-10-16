@@ -74,9 +74,9 @@ class Remate
     return $this->lotes;
   }
 
-  public function setLote($lote)
+  public function setLotes($lote)
   {
-    $this->lotes[] = $lote;
+    $this->lotes = $lote;
   }
 }
 

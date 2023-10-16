@@ -1,5 +1,4 @@
 <?php
-var_dump(unserialize($_SESSION['usuario']));
 require BASE_PATH . "/Resources/Views/Partials/doctype.php";
 require BASE_PATH . "/Resources/Views/Partials/head.php";
 require BASE_PATH . "/Resources/Views/Partials/nav.php";
