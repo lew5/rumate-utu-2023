@@ -214,8 +214,8 @@
 // $persona->setUsuario($usuario);
 // var_dump(Container::resolve(RegistroService::class)->create($persona));
 
-var_dump(Container::resolve(LoginService::class)->login("miusuario", "mipassword"));
-die;
+// var_dump(Container::resolve(LoginService::class)->login("miusuario", "mipassword"));
+// die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");
 Route::get("/remate/{id}", "RemateController@listarLotes");
