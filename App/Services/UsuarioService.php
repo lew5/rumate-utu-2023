@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioService
+class UsuarioService implements IUsuarioServiceInterface
 {
   private $_usuarioRepository;
 
@@ -9,13 +9,8 @@ class UsuarioService
     $this->_usuarioRepository = Container::resolve(UsuarioRepository::class);
   }
 
-  // OBTENER TODOS LOS USUARIOS
-  public function getAll()
-  {
-    return $this->_usuarioRepository->findAll();
-  }
   // OBTENER UN USUARIO
-  public function get($username)
+  public function getByUsername($username)
   {
     $result = null;
     try {
@@ -26,11 +21,17 @@ class UsuarioService
     return $result;
   }
 
+  // OBTENER TODOS LOS USUARIOS
+  public function getAll()
+  {
+    return $this->_usuarioRepository->findAll();
+  }
+
   // CREAR UN USUARIO
   public function create($model)
   {
     try {
-      $this->_usuarioRepository->add($model);
+      $this->_usuarioRepository->create($model);
     } catch (PDOException $e) {
       var_dump($e);
     }
@@ -49,7 +50,7 @@ class UsuarioService
   public function delete($username)
   {
     try {
-      $this->_usuarioRepository->remove($username);
+      $this->_usuarioRepository->delete($username);
     } catch (PDOException $e) {
       var_dump($e);
     }

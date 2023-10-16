@@ -1,24 +1,10 @@
 <?php
 
-class UsuarioRepository
+class UsuarioRepository implements IRepositoryInterface
 {
   private $_db;
-  // OBTENER TODOS LOS USUARIOS
-  public function findAll()
-  {
-    $this->_db = DataBase::get();
-    $result = [];
-    try {
-      $stm = $this->_db->prepare("SELECT * FROM usuarios");
-      $stm->execute();
-      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Usuario");
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
-    return $result;
-  }
+
+
   // OBTENER UN USUARIO
   public function find($username)
   {
@@ -47,8 +33,25 @@ class UsuarioRepository
     return $result;
   }
 
+  // OBTENER TODOS LOS USUARIOS
+  public function findAll()
+  {
+    $this->_db = DataBase::get();
+    $result = [];
+    try {
+      $stm = $this->_db->prepare("SELECT * FROM usuarios");
+      $stm->execute();
+      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Usuario");
+    } catch (PDOException $e) {
+      var_dump($e);
+    } finally {
+      $this->_db = null;
+    }
+    return $result;
+  }
+
   // CREAR UN USUARIO
-  public function add($model)
+  public function create($model)
   {
     $this->_db = DataBase::get();
     try {
@@ -100,7 +103,7 @@ class UsuarioRepository
     }
   }
   // ELIMINAR UN USUARIO
-  public function remove($username)
+  public function delete($username)
   {
     $this->_db = DataBase::get();
     try {

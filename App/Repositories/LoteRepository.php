@@ -1,27 +1,10 @@
 <?php
 
-class LoteRepository
+class LoteRepository implements IRepositoryInterface
 {
   private $_db;
 
-  // OBTENER TODOS LOS LOTES
-  public function findAll()
-  {
-    $this->_db = DataBase::get();
-    $result = [];
-    try {
-      $stm = $this->_db->prepare("SELECT * FROM lotes");
-      $stm->execute();
-
-      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Lote");
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
-    return $result;
-  }
-  // OBTENER UN USUARIO
+  // OBTENER UN LOTE
   public function find($id)
   {
     $this->_db = DataBase::get();
@@ -55,8 +38,26 @@ class LoteRepository
 
   }
 
+  // OBTENER TODOS LOS LOTES
+  public function findAll()
+  {
+    $this->_db = DataBase::get();
+    $result = [];
+    try {
+      $stm = $this->_db->prepare("SELECT * FROM lotes");
+      $stm->execute();
+
+      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Lote");
+    } catch (PDOException $e) {
+      var_dump($e);
+    } finally {
+      $this->_db = null;
+    }
+    return $result;
+  }
+
   // CREAR UN LOTE  
-  public function add($loteModel)
+  public function create($loteModel)
   {
     $this->_db = DataBase::get();
     $lastInsertId = null;
@@ -120,7 +121,7 @@ class LoteRepository
     }
   }
   // ELIMINAR UN LOTE
-  public function remove($idLote)
+  public function delete($idLote)
   {
     $this->_db = DataBase::get();
     $stm = $this->_db->prepare(

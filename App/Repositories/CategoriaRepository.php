@@ -1,31 +1,13 @@
 <?php
 
-class CategoriaRepository
+class CategoriaRepository implements IRepositoryInterface
 {
   private $_db;
 
-  public function __construct()
-  {
-    $this->_db = DataBase::get();
-  }
-
-  // OBTENER TODAS LAS CATEGORIAS
-  public function findAll()
-  {
-    $result = [];
-
-    $stm = $this->_db->prepare("SELECT * FROM categorias");
-    $stm->execute();
-
-    $result = $stm->fetchAll(PDO::FETCH_CLASS, "Categoria");
-
-    $this->_db = null;
-
-    return $result;
-  }
   // OBTENER UNA CATEGORIA
   public function find($id)
   {
+    $this->_db = DataBase::get();
     $result = null;
 
     $stm = $this->_db->prepare(
@@ -45,6 +27,32 @@ class CategoriaRepository
     $this->_db = null;
 
     return $result;
+  }
+
+  // OBTENER TODAS LAS CATEGORIAS
+  public function findAll()
+  {
+    $this->_db = DataBase::get();
+    $result = [];
+
+    $stm = $this->_db->prepare("SELECT * FROM categorias");
+    $stm->execute();
+
+    $result = $stm->fetchAll(PDO::FETCH_CLASS, "Categoria");
+
+    $this->_db = null;
+
+    return $result;
+  }
+
+  public function create()
+  {
+  }
+  public function update()
+  {
+  }
+  public function delete()
+  {
   }
 }
 ?>

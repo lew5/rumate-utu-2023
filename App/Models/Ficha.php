@@ -1,76 +1,63 @@
 <?php
-
 class Ficha
 {
-
-  private $id;
-  private $peso;
-  private $cantidad;
-  private $raza;
-  private $descripcion;
-
-
-  public function llenarFicha($ficha_data)
-  {
-    $this->id = $ficha_data['id_ficha'];
-    $this->peso = $ficha_data['peso_ficha'];
-    $this->cantidad = $ficha_data['cantidad_ficha'];
-    $this->raza = $ficha_data['raza_ficha'];
-    $this->descripcion = $ficha_data['descripcion_ficha'];
-    return $this;
-  }
-
-  #region //* SETTERS Y GETTERS
-  public function setId($id)
-  {
-    $this->id = $id;
-  }
+  private $id_ficha;
+  private $peso_ficha;
+  private $cantidad_ficha;
+  private $raza_ficha;
+  private $descripcion_ficha;
 
   public function getId()
   {
-    return $this->id;
+    return $this->id_ficha;
   }
 
-  public function setPeso($peso)
+  public function setId($id)
   {
-    $this->peso = $peso;
+    $this->id_ficha = $id;
   }
 
   public function getPeso()
   {
-    return $this->peso;
+    return $this->peso_ficha;
   }
 
-  public function setCantidad($cantidad)
+  public function setPeso($peso)
   {
-    $this->cantidad = $cantidad;
+    $this->peso_ficha = $peso;
   }
 
   public function getCantidad()
   {
-    return $this->cantidad;
+    return $this->cantidad_ficha;
   }
 
-  public function setRaza($raza)
+  public function setCantidad($cantidad)
   {
-    $this->raza = $raza;
+    $this->cantidad_ficha = $cantidad;
   }
 
   public function getRaza()
   {
-    return $this->raza;
+    return $this->raza_ficha;
   }
 
-  public function setDescripcion($descripcion)
+  public function setRaza($raza)
   {
-    $this->descripcion = $descripcion;
+    $this->raza_ficha = $raza;
   }
 
   public function getDescripcion()
   {
-    return $this->descripcion;
+    return $this->descripcion_ficha;
   }
-  #endregion
+
+  public function setDescripcion($descripcion)
+  {
+    $this->descripcion_ficha = $descripcion;
+  }
 }
+
+
 
 ?>

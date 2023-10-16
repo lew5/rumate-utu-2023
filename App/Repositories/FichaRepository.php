@@ -1,24 +1,9 @@
 <?php
 
-class FichaRepository
+class FichaRepository implements IRepositoryInterface
 {
   private $_db;
 
-  // OBTENER TODOS LOS FICHAS
-  public function findAll()
-  {
-    $this->_db = DataBase::get();
-    $result = [];
-
-    $stm = $this->_db->prepare("SELECT * FROM fichas");
-    $stm->execute();
-
-    $result = $stm->fetchAll(PDO::FETCH_CLASS, "Ficha");
-
-    $this->_db = null;
-
-    return $result;
-  }
   // OBTENER UNA FICHA
   public function find($id)
   {
@@ -44,8 +29,25 @@ class FichaRepository
     return $result;
   }
 
+  // OBTENER TODOS LOS FICHAS
+  public function findAll()
+  {
+    $this->_db = DataBase::get();
+    $result = [];
+
+    $stm = $this->_db->prepare("SELECT * FROM fichas");
+    $stm->execute();
+
+    $result = $stm->fetchAll(PDO::FETCH_CLASS, "Ficha");
+
+    $this->_db = null;
+
+    return $result;
+  }
+
+
   // CREAR UNA FICHA
-  public function add($fichaModel)
+  public function create($fichaModel)
   {
     $this->_db = DataBase::get();
     $lastInsertId = null;
@@ -74,28 +76,28 @@ class FichaRepository
     return $lastInsertId;
   }
 
-  // // ACTUALIZAR UNA FICHA
-  // public function update($model)
-  // {
-  //   $stm = $this->_db->prepare(
-  //     "UPDATE usuarios
-  //       SET 
-  //         password_usuario = :password,
-  //         email_usuario = :email,
-  //         tipo_usuario = :tipo
-  //       WHERE username_usuario = :username"
-  //   );
-  //   $stm->execute([
-  //     'username' => $model->getUsername(),
-  //     'password' => $model->getPassword(),
-  //     'email' => $model->getEmail(),
-  //     'tipo' => $model->getTipo(),
-  //   ]);
+  // ACTUALIZAR UNA FICHA
+  public function update($model)
+  {
+    $stm = $this->_db->prepare(
+      "UPDATE usuarios
+        SET 
+          password_usuario = :password,
+          email_usuario = :email,
+          tipo_usuario = :tipo
+        WHERE username_usuario = :username"
+    );
+    $stm->execute([
+      'username' => $model->getUsername(),
+      'password' => $model->getPassword(),
+      'email' => $model->getEmail(),
+      'tipo' => $model->getTipo(),
+    ]);
 
-  //   $this->_db = null;
-  // }
+    $this->_db = null;
+  }
   // ELIMINAR UNA FICHA
-  public function remove($idFicha)
+  public function delete($idFicha)
   {
     $this->_db = DataBase::get();
     $stm = $this->_db->prepare(

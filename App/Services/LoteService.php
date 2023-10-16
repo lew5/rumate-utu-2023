@@ -1,6 +1,6 @@
 <?php
 
-class LoteService
+class LoteService implements IServiceInterface
 {
   private $_loteRepository;
   private $_fichaRepository;
@@ -8,6 +8,18 @@ class LoteService
   {
     $this->_loteRepository = Container::resolve(LoteRepository::class);
     $this->_fichaRepository = Container::resolve(FichaRepository::class);
+  }
+
+  // OBTENER UN LOTE
+  public function getById($id)
+  {
+    $result = null;
+    try {
+      $result = $this->_loteRepository->find($id);
+    } catch (PDOException $e) {
+      var_dump($e);
+    }
+    return $result;
   }
 
   // OBTENER TODOS LOS LOTES
@@ -21,17 +33,7 @@ class LoteService
     }
     return $result;
   }
-  // OBTENER UN LOTE
-  public function get($id)
-  {
-    $result = null;
-    try {
-      $result = $this->_loteRepository->find($id);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
-    return $result;
-  }
+
 
   // CREAR UN LOTE CON SU FICHA
   public function create($loteModel)
@@ -40,7 +42,7 @@ class LoteService
     $db->beginTransaction();
     try {
       $loteModel->setIdFicha($this->_fichaRepository->add($loteModel->getFicha()));
-      $this->_loteRepository->add($loteModel);
+      $this->_loteRepository->create($loteModel);
       $db->commit();
     } catch (PDOException $e) {
       $db->rollback();
@@ -60,15 +62,17 @@ class LoteService
     }
   }
   // ELIMINAR UN LOTE
-  public function delete($idLote, $idFicha)
+  public function delete($loteModel)
   {
     $db = DataBase::get();
+    $idLote = $loteModel->getId();
+    $idFicha = $loteModel->getIdFicha();
     $db->beginTransaction();
     try {
-      if ($this->_loteRepository->remove($idLote)->rowCount() == 0) {
+      if ($this->_loteRepository->delete($idLote)->rowCount() == 0) {
         throw new PDOException();
       }
-      if ($this->_fichaRepository->remove($idFicha)->rowCount() == 0) {
+      if ($this->_fichaRepository->delete($idFicha)->rowCount() == 0) {
         throw new PDOException();
       }
       $db->commit();
