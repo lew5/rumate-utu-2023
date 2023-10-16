@@ -28,20 +28,18 @@ class UsuarioService implements IUsuarioServiceInterface
   }
 
   // CREAR UN USUARIO
-  public function create($model)
+  public function create($usuarioModel)
   {
-    try {
-      $this->_usuarioRepository->create($model);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
+    $hashPassword = Container::resolve(PasswordHash::class)::hashPassword($usuarioModel->getPassword());
+    $usuarioModel->setPassword($hashPassword);
+    $this->_usuarioRepository->create($usuarioModel);
   }
 
   // ACTUALIZAR UN USUARIO
-  public function update($model)
+  public function update($usuarioModel)
   {
     try {
-      $this->_usuarioRepository->update($model);
+      $this->_usuarioRepository->update($usuarioModel);
     } catch (PDOException $e) {
       var_dump($e);
     }

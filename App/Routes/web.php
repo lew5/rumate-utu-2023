@@ -164,33 +164,57 @@
 #endregion
 
 // Crear una instancia de la clase Ficha y configurar sus atributos
-$ficha = Container::resolve(Ficha::class);
-$ficha->setPeso(10.5);
-$ficha->setCantidad(5);
-$ficha->setRaza("Ejemplo Raza");
-$ficha->setDescripcion("Esta es una descripción de prueba para la ficha.");
+// $ficha = Container::resolve(Ficha::class);
+// $ficha->setPeso(10.5);
+// $ficha->setCantidad(5);
+// $ficha->setRaza("Ejemplo Raza");
+// $ficha->setDescripcion("Esta es una descripción de prueba para la ficha.");
 
 // Crear una instancia de la clase Lote y configurar sus atributos, incluyendo la asociación con la instancia de Ficha
-$lote = Container::resolve(Lote::class);
-$lote->setImagen("imagen_ejemplo.jpg");
-$lote->setPrecioBase(50.0);
-$lote->setMejorOferta(55.0);
-$lote->setIdProveedor(4);
-$lote->setIdCategoria(4);
-$lote->setFicha($ficha);
+// $lote = Container::resolve(Lote::class);
+// $lote->setImagen("imagen_ejemplo.jpg");
+// $lote->setPrecioBase(50.0);
+// $lote->setMejorOferta(55.0);
+// $lote->setIdProveedor(4);
+// $lote->setIdCategoria(4);
+// $lote->setFicha($ficha);
 
-// Crear una instancia de la clase Remate y configurar sus atributos
-$remate = Container::resolve(Remate::class);
-$remate->setTitulo("Remate de Ejemplo");
-$remate->setImagen("imagen_remate.jpg");
-$remate->setFechaInicio("2023-10-20");
-$remate->setFechaFinal("2023-10-25");
-$remate->setEstado("Activo");
-for ($i = 0; $i < 10; $i++) {
-  $remate->setLote($lote);
-}
-var_dump($remate);
-var_dump(Container::resolve(RemateService::class)->create($remate));
+// $remate = Container::resolve(Remate::class);
+// $remate->setTitulo("Remate de Ejemplo");
+// $remate->setImagen("imagen_remate.jpg");
+// $remate->setFechaInicio("2023-10-20");
+// $remate->setFechaFinal("2023-10-25");
+// $remate->setEstado("Activo");
+// for ($i = 0; $i < 50; $i++) {
+//   $remate->setLote($lote);
+// }
+// var_dump($remate);
+// var_dump(Container::resolve(RemateService::class)->create($remate));
+
+
+
+// Crear una instancia de Usuario y establecer valores de prueba
+// $usuario = Container::resolve(Usuario::class);
+// $usuario->setUsername("miusuario");
+// $usuario->setPassword("mipassword");
+// $usuario->setEmail("usuario@example.com");
+// $usuario->setTipo("normal");
+
+// // Crear una instancia de Persona y establecer valores de prueba
+// $persona = Container::resolve(Persona::class);
+// $persona->setNombre("John");
+// $persona->setApellido("Doe");
+// $persona->setCi("1234567");
+// $persona->setBarrio("Mi Barrio");
+// $persona->setCalle("Calle Principal");
+// $persona->setNumero("123");
+// $persona->setTelefono("555-123-4567");
+// $persona->setEstado("Activo");
+// // Asignar el usuario a la persona (relación entre las clases)
+// $persona->setUsuario($usuario);
+// var_dump(Container::resolve(RegistroService::class)->create($persona));
+
+var_dump(Container::resolve(LoginService::class)->login("miusuario", "mipassword"));
 die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 Route::get("/", "HomeController@index");

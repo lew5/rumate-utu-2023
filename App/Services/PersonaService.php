@@ -27,11 +27,12 @@ class PersonaService implements IServiceInterface
 
   public function create($model)
   {
-    try {
-      $this->_personaRepository->create($model);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
+    $db = DataBase::get();
+    $lastInsertId = null;
+    $this->_personaRepository->create($model);
+    $lastInsertId = $db->lastInsertId();
+    $db = null;
+    return $lastInsertId;
   }
 
   public function update($model)

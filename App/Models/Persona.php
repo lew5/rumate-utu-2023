@@ -11,6 +11,7 @@ class Persona
   private $numero_persona;
   private $telefono_persona;
   private $estado_persona;
+  private $usuario;
 
   public function getId()
   {
@@ -101,6 +102,14 @@ class Persona
   {
     $this->estado_persona = $estado;
   }
+
+	public function getUsuario() {
+		return $this->usuario;
+	}
+
+	public function setUsuario($usuario) {
+		$this->usuario = $usuario;
+	}
 }
 
 

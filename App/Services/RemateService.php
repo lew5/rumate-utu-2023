@@ -37,7 +37,6 @@ class RemateService implements IServiceInterface
     try {
       $remateId = $this->_remateRepository->create($remateModel);
       foreach ($remateModel->getLotes() as $loteModel) {
-        var_dump($loteModel);
         $loteId = $this->_loteService->create($loteModel);
         $lotePostulaRemate = Container::resolve(LotePostulaRemate::class);
         $lotePostulaRemate->setIdRemate($remateId);
