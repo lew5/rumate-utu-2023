@@ -7,5 +7,5 @@ $usuario = sessionUsuario();
     class="menu-link">Mis
     lotes</a>
   <a href="<?= PUBLIC_PATH ?>/perfil" class="menu-link">Mi perfil</a>
-  <a href="<?= PUBLIC_PATH ?>/home/logout" class="menu-link">Cerrar sesión</a>
+  <a href="<?= PUBLIC_PATH ?>/usuario/logout" class="menu-link">Cerrar sesión</a>
 </nav>

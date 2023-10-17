@@ -2,10 +2,10 @@
 
 class ProveedorController
 {
-  public static function listarLotes($id)
+  public static function listarLotes($usernameProveedor)
   {
     if (sessionProveedor()) {
-      $proveedorModel = Container::resolve(ProveedorModel::class);
+      $proveedorModel = Container::resolve(Proveedor::class);
       $lotes = $proveedorModel->getLotesDeProveedor($id);
       var_dump($lotes);
       die;

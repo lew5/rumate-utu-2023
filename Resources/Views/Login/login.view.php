@@ -10,7 +10,7 @@ if (isset($_SESSION['loginError'])) {
   <div class="login-register__container">
     <div class="login-register-form-wrap">
       <form class="login-register__form f-column"
-        action="<?= PUBLIC_PATH ?>/login/validar" method="POST"
+        action="<?= PUBLIC_PATH ?>/usuario/login" method="POST"
         autocomplete="off">
         <?php require BASE_PATH . "/Resources/Views/Partials/login-register__header.php"; ?>
         <div class="inputs-wrap">
