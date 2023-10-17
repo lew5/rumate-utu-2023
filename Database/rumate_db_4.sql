@@ -19,18 +19,19 @@ CREATE TABLE PERSONAS (
 
 -- Crear la tabla USUARIOS
 CREATE TABLE USUARIOS (
-    username_usuario VARCHAR(40) PRIMARY KEY NOT NULL,
-    password_usuario VARCHAR(40) NOT NULL,
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    username_usuario VARCHAR(40) UNIQUE NOT NULL,
+    password_usuario VARCHAR(255) NOT NULL,
     email_usuario VARCHAR(40) UNIQUE NOT NULL,
     tipo_usuario ENUM('ROOT', 'ADMINISTRADOR', 'CLIENTE','PROVEEDOR','REMATADOR')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla USUARIOS_DE_PERSONAS
 CREATE TABLE USUARIOS_DE_PERSONAS (
-    username_usuario_usuarios_de_personas VARCHAR(40) NOT NULL,
+    id_usuario_usuarios_de_personas INT NOT NULL,
     id_persona_usuarios_de_persona INT UNIQUE NOT NULL,
-    PRIMARY KEY (username_usuario_usuarios_de_personas, id_persona_usuarios_de_persona),
-    FOREIGN KEY (username_usuario_usuarios_de_personas) REFERENCES USUARIOS(username_usuario),
+    PRIMARY KEY (id_usuario_usuarios_de_personas, id_persona_usuarios_de_persona),
+    FOREIGN KEY (id_usuario_usuarios_de_personas) REFERENCES USUARIOS(id_usuario),
     FOREIGN KEY (id_persona_usuarios_de_persona) REFERENCES PERSONAS(id_persona)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -56,7 +57,7 @@ CREATE TABLE REMATES (
     imagen_remate VARCHAR(255),
     fecha_inicio_remate DATETIME NOT NULL,
     fecha_final_remate DATETIME NOT NULL,
-    estado_remate ENUM('ACTIVO', 'INACTIVO') DEFAULT 'ACTIVO'
+    estado_remate ENUM('Pendiente','Rematando','Finalizado') DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla LOTES

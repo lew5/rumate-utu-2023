@@ -2,11 +2,21 @@
 
 class Usuario
 {
+  private $id;
   private $username_usuario;
   private $password_usuario;
   private $email_usuario;
   private $tipo_usuario;
 
+  public function getId()
+  {
+    return $this->id;
+  }
+
+  public function setId($id)
+  {
+    $this->id = $id;
+  }
   public function getUsername()
   {
     return $this->username_usuario;
@@ -46,6 +56,7 @@ class Usuario
   {
     $this->tipo_usuario = $tipo;
   }
+
 }
 
 ?>

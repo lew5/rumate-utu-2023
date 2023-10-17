@@ -17,13 +17,13 @@ VALUES
     ('rematadoruser', 'rematadorpassword', 'rematador@example.com', 'REMATADOR');
 
 -- Insertar datos en la tabla USUARIOS_DE_PERSONAS
-INSERT INTO USUARIOS_DE_PERSONAS (username_usuario_usuarios_de_personas, id_persona_usuarios_de_persona)
+INSERT INTO USUARIOS_DE_PERSONAS (id_usuario_usuarios_de_personas, id_persona_usuarios_de_persona)
 VALUES
-    ('rootuser', 1),
-    ('adminuser', 2),
-    ('clienteuser', 3),
-    ('proveedoruser', 4),
-    ('rematadoruser', 5);
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);
 
 -- Insertar datos en la tabla FICHAS
 INSERT INTO FICHAS (peso_ficha, cantidad_ficha, raza_ficha, descripcion_ficha)
@@ -74,7 +74,7 @@ INSERT INTO PUJAS_DE_PERSONAS (id_puja_puja_de_persona, id_persona_puja_de_perso
 VALUES
     (1, 3),
     (2, 3),
-    (3, 2);
+    (3, 3);
 
 -- Insertar datos en la tabla PUJAS_DE_REMATES
 INSERT INTO PUJAS_DE_REMATES (id_puja_puja_de_remate, id_remate_puja_de_remate, id_lote_puja_de_remate)
