@@ -1,121 +1,40 @@
 <?php
 
-class PersonaRepository implements IRepositoryInterface
+class PersonaRepository extends Repository
 {
-  private $_db;
-  public function find($id)
+  public function __construct()
   {
-    $this->_db = DataBase::get();
-    try {
-      $result = null;
-
-      $stm = $this->_db->prepare(
-        "SELECT * FROM personas
-        WHERE id_persona = :id"
-      );
-      $stm->execute([
-        'id' => $id
-      ]);
-
-      $data = $stm->fetchObject("Persona");
-
-      if ($data) {
-        $result = $data;
-      }
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
-    return $result;
+    parent::__construct("personas");
   }
-  public function findAll()
+
+  public function find()
   {
-    $this->_db = DataBase::get();
-    $result = [];
-    try {
-      $stm = $this->_db->prepare("SELECT * FROM personas");
-      $stm->execute();
-      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Persona");
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
-    return $result;
+    return $this->read("Persona");
   }
-  public function create($personaModel)
+  
+  public function findById($id)
   {
-    $this->_db = DataBase::get();
-    $stm = $this->_db->prepare(
-      "INSERT INTO PERSONAS (
-        nombre_persona, 
-        apellido_persona, 
-        ci_persona, 
-        barrio_persona, 
-        calle_persona, 
-        numero_persona, 
-        telefono_persona, 
-        estado_persona
-        ) 
-      VALUES (
-        :nombre, 
-        :apellido, 
-        :ci, 
-        :barrio, 
-        :calle, 
-        :numero, 
-        :telefono, 
-        :estado
-        )"
+    return $this->read(
+      "Persona",
+      [
+        'id_persona' => $id
+      ]
     );
-    $stm->execute([
-      'nombre' => $personaModel->getNombre(),
-      'apellido' => $personaModel->getApellido(),
-      'ci' => $personaModel->getCi(),
-      'barrio' => $personaModel->getBarrio(),
-      'calle' => $personaModel->getCalle(),
-      'numero' => $personaModel->getNumero(),
-      'telefono' => $personaModel->getTelefono(),
-      'estado' => $personaModel->getEstado()
-    ]);
-    $this->_db = null;
   }
-  public function update($model)
+
+  public function addPersona($data)
   {
-    // HAY QUE HACER UN UPDATE GENÉRICO
-    // ALGO COMO ESTO 
-    // protected function update($id, $column_id, $data)
-    // {
-    //   $columns = [];
-    //   foreach ($data as $column => $value) {
-    //     $columns[] = "$column = ?";
-    //   }
-    //   $columns = implode(', ', $columns);
-
-    //   $query = "UPDATE {$this->table} SET {$columns} WHERE $column_id = ?";
-    //   $data["$column_id"] = $id;
-
-    //   $statement = $this->db->query($query, array_values($data));
-    //   $rowCount = $statement->rowCount();
-    //   if ($rowCount > 0) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
+    $this->create($data);
   }
-  public function delete($id)
+
+  public function updatePersona($id, $data)
   {
-    $this->_db = DataBase::get();
-    $stm = $this->_db->prepare(
-      "DELETE FROM personas WHERE id_persona = :id"
-    );
-    $stm->execute([
-      'id' => $id
-    ]);
-    $this->_db = null;
-    return $stm;
+    $this->update("id_persona", $id, $data);
+  }
+
+  public function deletePersona($id)
+  {
+    $this->delete("id_persona", $id);
   }
 }
 
