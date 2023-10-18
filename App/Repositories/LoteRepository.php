@@ -4,20 +4,19 @@ class LoteRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("lotes");
+    parent::__construct("lotes","id_lote","Lote");
   }
 
   public function find()
   {
-    return $this->read("Lote");
+    return $this->read();
   }
 
   public function findById($id)
   {
     return $this->read(
-      "Lote",
       [
-        'id_lote' => $id
+        "$this->idColumn" => $id
       ]
     );
   }
@@ -29,12 +28,12 @@ class LoteRepository extends Repository
 
   public function updateLote($id, $data)
   {
-    $this->update("id_lote", $id, $data);
+    $this->update($id, $data);
   }
 
   public function deleteLote($id)
   {
-    $this->delete("id_lote", $id);
+    $this->delete($id);
   }
 }
 ?>
