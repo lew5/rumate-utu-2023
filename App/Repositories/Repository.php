@@ -5,15 +5,16 @@ class Repository
   protected $db;
   protected $table;
 
-  public function __construct($db, $table)
+  public function __construct($table)
   {
-    $this->pdo = $db;
+    $this->db = DataBase::get();
     $this->table = $table;
   }
 
-  // Método para crear un nuevo registro
+  // Crear un nuevo registro
   public function create($data)
   {
+    $this->db = DataBase::get();
     $columns = implode(", ", array_keys($data));
     $values = ":" . implode(", :", array_keys($data));
     $sql = "INSERT INTO $this->table ($columns) VALUES ($values)";
@@ -21,9 +22,10 @@ class Repository
     $stmt->execute($data);
   }
 
-  // Método para leer uno o varios registros
+  // Leer uno o varios registros
   public function read($class, $conditions = [], $select = '*')
   {
+    $this->db = DataBase::get();
     $sql = "SELECT $select FROM $this->table";
 
     if (!empty($conditions)) {
@@ -42,9 +44,10 @@ class Repository
     }
   }
 
-  // Método para actualizar un registro existente
+  // Actualizar un registro existente
   public function update($column, $id, $data)
   {
+    $this->db = DataBase::get();
     $set = [];
     foreach ($data as $key => $value) {
       $set[] = "$key = :$key";
@@ -57,13 +60,30 @@ class Repository
     $stmt->execute($data);
   }
 
-  // Método para eliminar un registro
+  // Eliminar un registro
   public function delete($column, $id)
   {
+    $this->db = DataBase::get();
     $sql = "DELETE FROM $this->table WHERE $column = :id";
 
     $stmt = $this->db->prepare($sql);
     $stmt->execute(['id' => $id]);
+  }
+
+  public function beginTransaction(){
+    $this->db = DataBase::get();
+    $this->db->beginTransaction();
+  }
+  public function commit(){
+    $this->db = DataBase::get();
+    $this->db->commit();
+  }
+  public function rollback(){
+    $this->db = DataBase::get();
+    $this->db->rollback();
+  }
+  public function close(){
+    $this->db = null;
   }
 }
 
