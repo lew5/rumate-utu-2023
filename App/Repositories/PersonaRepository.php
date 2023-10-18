@@ -4,20 +4,19 @@ class PersonaRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("personas");
+    parent::__construct("personas","id_persona","Persona");
   }
 
   public function find()
   {
-    return $this->read("Persona");
+    return $this->read();
   }
   
   public function findById($id)
   {
     return $this->read(
-      "Persona",
       [
-        'id_persona' => $id
+        "$this->idColumn" => $id
       ]
     );
   }
@@ -29,12 +28,12 @@ class PersonaRepository extends Repository
 
   public function updatePersona($id, $data)
   {
-    $this->update("id_persona", $id, $data);
+    $this->update($id, $data);
   }
 
   public function deletePersona($id)
   {
-    $this->delete("id_persona", $id);
+    $this->delete($id);
   }
 }
 
