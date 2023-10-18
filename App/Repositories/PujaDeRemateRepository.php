@@ -1,51 +1,39 @@
 <?php
-class PujaDeRemateRepository extends BaseRepository implements IRepositoryInterface
+
+class PujaDeRemateRepository extends Repository
 {
-  private $_db;
-  private $table = "pujas_de_remates";
-  private $obj = "PujaDeRemate";
-
-  public function find($id)
+  public function __construct()
   {
-    return $this->readOne($id, $this->table, "id_puja_puja_de_remate", $this->obj);
+    parent::__construct("pujas_de_remates","id_puja_puja_de_remate","PujaDeRemate");
   }
 
-  public function findAll()
+  public function find()
   {
-    return $this->readAll($this->table, $this->obj);
+    return $this->read();
   }
 
-  public function create($pujaDeRemateModel)
+  public function findByPujaId($id)
   {
-    $this->_db = DataBase::get();
-    $stm = $this->_db->prepare(
-      "INSERT INTO PUJAS_DE_REMATES (
-        id_puja_puja_de_remate,
-        id_remate_puja_de_remate,
-        id_lote_puja_de_remate
-      ) 
-      VALUES (
-        :idPuja,
-        :idRemate,
-        :idLote
-      )"
+    return $this->read(
+      [
+        "$this->idColumn" => $id
+      ]
     );
-    $stm->execute([
-      'idPuja' => $pujaDeRemateModel->getIdPuja(),
-      'idRemate' => $pujaDeRemateModel->getIdRemate(),
-      'idLote' => $pujaDeRemateModel->getIdLote()
-    ]);
-    $this->_db = null;
   }
 
-  public function update($model)
+  public function addPujaDeRemate($data)
   {
+    $this->create($data);
   }
 
-  public function delete($id)
+  public function updatePujaDeRemate($id, $data)
   {
-    return $this->deleteOne($id, $this->table, "id_puja_puja_de_remate");
+    $this->update($id, $data);
+  }
+
+  public function deletePujaDeRemate($id)
+  {
+    $this->delete($id);
   }
 }
-
 ?>
