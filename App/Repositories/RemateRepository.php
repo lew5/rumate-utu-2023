@@ -1,83 +1,39 @@
 <?php
 
-class RemateRepository extends BaseRepository implements IRepositoryInterface
+class RemateRepository extends Repository
 {
-  private $_db;
-  private $table = "remates";
-  private $obj = "Remate";
-  public function find($id)
+  public function __construct()
   {
-    return $this->readOne($id, $this->table, "id_remate", $this->obj);
+    parent::__construct("remates","id_remate","Remate");
   }
-  public function findAll()
+
+  public function find()
   {
-    return $this->readAll($this->table, $this->obj);
+    return $this->read();
   }
-  public function create($remateModel)
+
+  public function findById($id)
   {
-    $this->_db = DataBase::get();
-    $lastInsertId = null;
-    $stm = $this->_db->prepare(
-      "INSERT INTO REMATES (
-            titulo_remate,
-            imagen_remate,
-            fecha_inicio_remate,
-            fecha_final_remate,
-            estado_remate
-        ) 
-        VALUES (
-            :titulo,
-            :imagen,
-            :fecha_inicio,
-            :fecha_final,
-            :estado
-        )"
+    return $this->read(
+      [
+        "$this->idColumn" => $id
+      ]
     );
-    $stm->execute([
-      'titulo' => $remateModel->getTitulo(),
-      'imagen' => $remateModel->getImagen(),
-      'fecha_inicio' => $remateModel->getFechaInicio(),
-      'fecha_final' => $remateModel->getFechaFinal(),
-      'estado' => $remateModel->getEstado()
-    ]);
-    $lastInsertId = $this->_db->lastInsertId();
-    $this->_db = null;
-    return $lastInsertId;
   }
 
-  public function update($model)
+  public function addRemate($data)
   {
-
-  }
-  public function delete($id)
-  {
-    return $this->deleteOne($id, $this->table, "id_remate");
+    $this->create($data);
   }
 
-  public function getLotes($idRemate)
+  public function updateRemate($id, $data)
   {
-    $this->_db = DataBase::get();
-    $result = [];
-    try {
-      $stm = $this->_db->prepare(
-        "SELECT * 
-        FROM LOTES 
-        WHERE id_lote IN (SELECT id_lote_lote_postula_remate 
-        FROM LOTES_POSTULAN_REMATES 
-        WHERE id_remate_lote_postula_remate = :idRemate);"
-      );
-      $stm->execute([
-        'idRemate' => $idRemate
-      ]);
+    $this->update($id, $data);
+  }
 
-      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Lote");
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
-    return $result;
+  public function deleteRemate($id)
+  {
+    $this->delete($id);
   }
 }
-
 ?>
