@@ -1,55 +1,51 @@
 <?php
 
-class PersonaService implements IServiceInterface
+class PersonaService
 {
-  private $_personaRepository;
+  private $personaRepository;
 
   public function __construct()
   {
-    $this->_personaRepository = Container::resolve(PersonaRepository::class);
+    $this->personaRepository = Container::resolve(PersonaRepository::class);
   }
 
-  public function getById($id)
+  public function createPersona($personaModel)
   {
-    $result = null;
-    try {
-      $result = $this->_personaRepository->find($id);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
-    return $result;
+    $personaToAssocArray = $this->personaToAssocArray($personaModel);
+    $this->personaRepository->addPersona($personaToAssocArray);
   }
 
-  public function getAll()
+  public function getPersona()
   {
-    return $this->_personaRepository->findAll();
+    return $this->personaRepository->find();
+  }
+  public function getPersonaById($id)
+  {
+    return $this->personaRepository->findById($id);
   }
 
-  public function create($model)
+  public function updatePersona($id, $data)
   {
-    $db = DataBase::get();
-    $lastInsertId = null;
-    $this->_personaRepository->create($model);
-    $lastInsertId = $db->lastInsertId();
-    $db = null;
-    return $lastInsertId;
+    $this->personaRepository->updatePersona($id, $data);
   }
 
-  public function update($model)
+  public function deletePersona($id)
   {
-    try {
-      $this->_personaRepository->update($model);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
+    $this->personaRepository->deletePersona($id);
   }
-  public function delete($id)
+
+  private function personaToAssocArray($personaModel)
   {
-    try {
-      $this->_personaRepository->delete($id);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
+    return [
+      "nombre_persona" => $personaModel->getNombre(),
+      "apellido_persona" => $personaModel->getApellido(),
+      "ci_persona" => $personaModel->getCi(),
+      "barrio_persona" => $personaModel->getBarrio(),
+      "calle_persona" => $personaModel->getCalle(),
+      "numero_persona" => $personaModel->getNumero(),
+      "telefono_persona" => $personaModel->getTelefono(),
+      "estado_persona" => $personaModel->getEstado()
+    ];
   }
 }
 ?>
