@@ -1,58 +1,40 @@
 <?php
 
-class CategoriaRepository implements IRepositoryInterface
+class CategoriaRepository extends Repository
 {
-  private $_db;
-
-  // OBTENER UNA CATEGORIA
-  public function find($id)
+  public function __construct()
   {
-    $this->_db = DataBase::get();
-    $result = null;
+    parent::__construct("categorias");
+  }
 
-    $stm = $this->_db->prepare(
-      "SELECT * FROM categorias
-        WHERE id_categoria = :id"
+  public function find()
+  {
+    return $this->read("Categoria");
+  }
+
+  public function findById($id)
+  {
+    return $this->read(
+      "Categoria",
+      [
+        'id_categoria' => $id
+      ]
     );
-    $stm->execute([
-      'id' => $id
-    ]);
-
-    $data = $stm->fetchObject("Categoria");
-
-    if ($data) {
-      $result = $data;
-    }
-
-    $this->_db = null;
-
-    return $result;
   }
 
-  // OBTENER TODAS LAS CATEGORIAS
-  public function findAll()
+  public function addCategoria($data)
   {
-    $this->_db = DataBase::get();
-    $result = [];
-
-    $stm = $this->_db->prepare("SELECT * FROM categorias");
-    $stm->execute();
-
-    $result = $stm->fetchAll(PDO::FETCH_CLASS, "Categoria");
-
-    $this->_db = null;
-
-    return $result;
+    $this->create($data);
   }
 
-  public function create($model)
+  public function updateCategoria($id, $data)
   {
+    $this->update("id_categoria", $id, $data);
   }
-  public function update($model)
+
+  public function deleteCategoria($id)
   {
-  }
-  public function delete($id)
-  {
+    $this->delete("id_categoria", $id);
   }
 }
 ?>
