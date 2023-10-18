@@ -1,50 +1,39 @@
 <?php
 
-class UsuarioDePersonaRepository extends BaseRepository implements IRepositoryInterface
+class UsuarioDePersonaRepository extends Repository
 {
-  private $_db;
-  private $table = "usuarios_de_personas";
-  private $obj = "UsuarioDePersona";
-
-  public function find($username)
+  public function __construct()
   {
-    return $this->readOne($username, $this->table, "username_usuario_usuarios_de_personas", $this->obj);
+    parent::__construct("usuarios_de_personas","id_usuario_usuarios_de_personas","UsuarioDePersona");
   }
 
-  public function findAll()
+  public function find()
   {
-    return $this->readAll($this->table, $this->obj);
+    return $this->read();
   }
 
-  public function create($usuarioDePersonaModel)
+  public function findById($id)
   {
-    $this->_db = DataBase::get();
-    $stm = $this->_db->prepare(
-      "INSERT INTO USUARIOS_DE_PERSONAS (
-        username_usuario_usuarios_de_personas,
-        id_persona_usuarios_de_persona
-      ) 
-      VALUES (
-        :username,
-        :id_persona
-      )"
+    return $this->read(
+      [
+        "$this->idColumn" => $id
+      ]
     );
-    $stm->execute([
-      'username' => $usuarioDePersonaModel->getUsername(),
-      'id_persona' => $usuarioDePersonaModel->getIdPersona()
-    ]);
-    $this->_db = null;
   }
 
-  public function update($model)
+  public function addUsuarioDePersona($data)
   {
+    $this->create($data);
   }
 
-  public function delete($username)
+  public function updateUsuarioDePersona($id, $data)
   {
-    return $this->deleteOne($username, $this->table, "username_usuario_usuarios_de_personas");
+    $this->update($id, $data);
+  }
+
+  public function deleteUsuarioDePersona($id)
+  {
+    $this->delete($id);
   }
 }
-
-
 ?>
