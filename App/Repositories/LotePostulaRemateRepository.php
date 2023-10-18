@@ -21,17 +21,17 @@ class LotePostulaRemateRepository extends Repository
     );
   }
 
-  public function addLoteToRemate($data)
+  public function addLoteDeRemate($data)
   {
     $this->create($data);
   }
 
-  public function updateLoteToRemate($id, $data)
+  public function updateLoteDeRemate($id, $data)
   {
     $this->update($id, $data);
   }
 
-  public function deleteLoteToRemate($id)
+  public function deleteLoteDeRemate($id)
   {
     $this->delete($id);
   }
