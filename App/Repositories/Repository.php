@@ -74,6 +74,10 @@ class Repository
     $stmt->execute(['id' => $id]);
   }
 
+  public function lastInsertId(){
+    return $this->db->lastInsertId();
+  }
+
   public function beginTransaction(){
     $this->db = DataBase::get();
     $this->db->beginTransaction();
