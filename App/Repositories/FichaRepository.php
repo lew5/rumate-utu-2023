@@ -4,7 +4,7 @@ class FichaRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("fichas","id_ficha","Ficha");
+    parent::__construct("fichas", "id_ficha", "Ficha");
   }
 
   public function find()

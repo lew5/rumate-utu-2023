@@ -7,7 +7,7 @@ class Repository
   protected $idColumn;
   protected $class;
 
-  public function __construct($table,$idColumn,$class)
+  public function __construct($table, $idColumn, $class)
   {
     $this->db = DataBase::get();
     $this->table = $table;
@@ -74,23 +74,28 @@ class Repository
     $stmt->execute(['id' => $id]);
   }
 
-  public function lastInsertId(){
+  public function lastInsertId()
+  {
     return $this->db->lastInsertId();
   }
 
-  public function beginTransaction(){
+  public function beginTransaction()
+  {
     $this->db = DataBase::get();
     $this->db->beginTransaction();
   }
-  public function commit(){
+  public function commit()
+  {
     $this->db = DataBase::get();
     $this->db->commit();
   }
-  public function rollback(){
+  public function rollback()
+  {
     $this->db = DataBase::get();
     $this->db->rollback();
   }
-  public function close(){
+  public function close()
+  {
     $this->db = null;
   }
 }

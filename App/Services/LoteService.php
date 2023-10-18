@@ -3,11 +3,11 @@
 class LoteService
 {
   private $loteRepository;
-  private $fichaRepository;
+  private $fichaService;
   public function __construct()
   {
     $this->loteRepository = Container::resolve(LoteRepository::class);
-    $this->fichaRepository = Container::resolve(FichaRepository::class);
+    $this->fichaService = Container::resolve(FichaService::class);
   }
 
   public function getLotes()
@@ -20,61 +20,45 @@ class LoteService
     return $this->loteRepository->find($id);
   }
 
-
   public function createLote($loteModel)
+  {
+    $fichaId = $this->fichaService->createFicha($loteModel->getFicha());
+    $loteModel->setIdFicha($fichaId);
+    $loteAssocArray = $this->loteToAssocArray($loteModel);
+    $this->loteRepository->addLote($loteAssocArray);
+    return $this->loteRepository->lastInsertId();
+  }
+
+  public function updateLote($id, $data)
+  {
+    $this->loteRepository->updateLote($id, $data);
+  }
+
+  public function deleteLote($id)
   {
     $this->loteRepository->beginTransaction();
     try {
-      $fichaId = $this->fichaRepository->addFicha($loteModel->getFicha());
-      $loteModel->setIdFicha($fichaId);
-      $lastLoteId = $this->loteRepository->addLote($loteModel);
-      $this->fichaRepository->commit();
+      $fichaId = $this->loteRepository->getFichaId($id)->getIdFicha();
+      $this->loteRepository->deleteLote($id);
+      $this->fichaService->deleteFicha($fichaId);
+      $this->loteRepository->commit();
     } catch (PDOException $e) {
       $this->loteRepository->rollback();
     } finally {
       $this->loteRepository->close();
     }
-    return $lastLoteId;
   }
 
-  // public function update($loteModel)
-  // {
-  //   try {
-  //     $this->_loteRepository->update($loteModel);
-  //   } catch (PDOException $e) {
-  //     var_dump($e);
-  //   }
-  // }
-  // public function delete($loteModel)
-  // {
-  //   $db = DataBase::get();
-  //   $idLote = $loteModel->getId();
-  //   $idFicha = $loteModel->getIdFicha();
-  //   $db->beginTransaction();
-  //   try {
-  //     if ($this->_loteRepository->delete($idLote)->rowCount() == 0) {
-  //       throw new PDOException();
-  //     }
-  //     if ($this->_fichaRepository->delete($idFicha)->rowCount() == 0) {
-  //       throw new PDOException();
-  //     }
-  //     $db->commit();
-  //     return true;
-  //   } catch (PDOException $e) {
-  //     $db->rollback();
-  //     return false;
-  //   } finally {
-  //     $db = null;
-  //   }
-  // }
-
-  // public function getCategoria($id)
-  // {
-  //   return $this->_categoriaRepository->find($id);
-  // }
-  // public function getFicha($id)
-  // {
-  //   return $this->_fichaRepository->find($id);
-  // }
+  private function loteToAssocArray($loteModel)
+  {
+    return [
+      "imagen_lote" => $loteModel->getImagen(),
+      "precio_base_lote" => $loteModel->getPrecioBase(),
+      "mejor_oferta_lote" => $loteModel->getMejorOferta(),
+      "id_proveedor_lote" => $loteModel->getIdProveedor(),
+      "id_ficha_lote" => $loteModel->getIdFicha(),
+      "id_categoria_lote" => $loteModel->getIdCategoria()
+    ];
+  }
 }
 ?>

@@ -1,103 +1,85 @@
 <?php
-
-class RemateService implements IServiceInterface
+class RemateService
 {
-  private $_remateRepository;
-  private $_loteService;
-  private $_lotePostulaRemateRepository;
-  private $_fichaRepository;
+  private $remateRepository;
+  private $lotePostulaRemateRepository;
+  private $loteService;
 
   public function __construct()
   {
-    $this->_remateRepository = Container::resolve(RemateRepository::class);
-    $this->_loteService = Container::resolve(LoteService::class);
-    $this->_lotePostulaRemateRepository = Container::resolve(LotePostulaRemateRepository::class);
-    $this->_fichaRepository = Container::resolve(FichaRepository::class);
+    $this->remateRepository = Container::resolve(RemateRepository::class);
+    $this->lotePostulaRemateRepository = Container::resolve(LotePostulaRemateRepository::class);
+    $this->loteService = Container::resolve(LoteService::class);
   }
 
-  public function getById($id)
+  public function getRemates()
   {
-    $result = null;
+    return $this->remateRepository->find();
+  }
+
+  public function getRemateById($id)
+  {
+    return $this->remateRepository->findById($id);
+  }
+
+  public function createRemate($remateModel)
+  {
+    $lotes = $remateModel->getLotes();
+    $this->remateRepository->beginTransaction();
     try {
-      $result = $this->_remateRepository->find($id);
+      $remateData = $this->remateToAssocArray($remateModel);
+      $this->remateRepository->addRemate($remateData);
+      $remateId = $this->remateRepository->lastInsertId();
+      $this->insertLotesByRemate($lotes, $remateId);
+      $this->remateRepository->commit();
+      return $remateId;
     } catch (PDOException $e) {
-      var_dump($e);
-    }
-    return $result;
-  }
-
-  public function getAll()
-  {
-    $remates = $this->_remateRepository->findAll();
-    foreach ($remates as $remate) {
-      $remate->setFechaInicio(formatFecha($remate->getFechaInicio()));
-      $remate->setFechaFinal(formatFecha($remate->getFechaFinal()));
-    }
-    return $remates;
-  }
-
-  public function create($remateModel)
-  {
-    $db = DataBase::get();
-    $db->beginTransaction();
-    try {
-      $remateId = $this->_remateRepository->create($remateModel);
-      foreach ($remateModel->getLotes() as $loteModel) {
-        $loteId = $this->_loteService->create($loteModel);
-        $lotePostulaRemate = Container::resolve(LotePostulaRemate::class);
-        $lotePostulaRemate->setIdRemate($remateId);
-        $lotePostulaRemate->setIdLote($loteId);
-        $this->_lotePostulaRemateRepository->create($lotePostulaRemate);
-      }
-      $db->commit();
-    } catch (PDOException $e) {
-      $db->rollBack();
-      var_dump($e);
+      var_dump($e->errorInfo);
+      $this->remateRepository->rollback();
+      return false;
     } finally {
-      $db = null;
+      $this->remateRepository->close();
     }
   }
 
-  public function update($model)
+  public function updateRemate($id, $remateModel)
   {
-    try {
-      $this->_remateRepository->update($model);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
-  }
-  public function delete($id)
-  {
-    try {
-      $this->_remateRepository->delete($id);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
-  }
-  public function getLotes($idRemate)
-  {
-    $lotes = $this->_remateRepository->getLotes($idRemate);
-    foreach ($lotes as $lote) {
-      $lote->setFicha($this->_loteService->getFicha($lote->getIdFicha()));
-      $lote->setCategoria($this->_loteService->getCategoria($lote->getIdCategoria()));
-    }
-    return $lotes;
+    $this->remateRepository->updateRemate($id, $remateModel);
   }
 
-  public function getRemateConLotes($id)
+  public function deleteRemate($id)
   {
-    $remate = null;
+    $this->remateRepository->beginTransaction();
     try {
-      $remate = $this->_remateRepository->find($id);
-      $lotes = $this->_remateRepository->getLotes($id);
-      foreach ($lotes as $lote) {
-        $lote->setFicha($this->_fichaRepository->find($lote->getIdFicha()));
-      }
-      $remate->setLotes($lotes);
+      $this->loteService->deleteLotesByRemate($id);
+      $this->remateRepository->deleteRemate($id);
+      $this->remateRepository->commit();
     } catch (PDOException $e) {
-      var_dump($e);
+      $this->remateRepository->rollback();
+    } finally {
+      $this->remateRepository->close();
     }
-    return $remate;
+  }
+
+  private function remateToAssocArray($remateModel)
+  {
+    return [
+      "titulo_remate" => $remateModel->getTitulo(),
+      "imagen_remate" => $remateModel->getImagen(),
+      "fecha_inicio_remate" => $remateModel->getFechaInicio(),
+      "fecha_final_remate" => $remateModel->getFechaFinal(),
+      "estado_remate" => $remateModel->getEstado()
+    ];
+  }
+  private function insertLotesByRemate($lotes, $remateId)
+  {
+    foreach ($lotes as $loteModel) {
+      $loteId = $this->loteService->createLote($loteModel);
+      $this->lotePostulaRemateRepository->addLoteDeRemate([
+        'id_remate_lote_postula_remate' => $remateId,
+        'id_lote_lote_postula_remate' => $loteId,
+      ]);
+    }
   }
 }
 ?>
