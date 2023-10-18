@@ -4,20 +4,19 @@ class CategoriaRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("categorias");
+    parent::__construct("categorias","id_categoria","Categoria");
   }
 
   public function find()
   {
-    return $this->read("Categoria");
+    return $this->read();
   }
 
   public function findById($id)
   {
     return $this->read(
-      "Categoria",
       [
-        'id_categoria' => $id
+        "$this->idColumn" => $id
       ]
     );
   }
@@ -29,12 +28,12 @@ class CategoriaRepository extends Repository
 
   public function updateCategoria($id, $data)
   {
-    $this->update("id_categoria", $id, $data);
+    $this->update($id, $data);
   }
 
   public function deleteCategoria($id)
   {
-    $this->delete("id_categoria", $id);
+    $this->delete($id);
   }
 }
 ?>
