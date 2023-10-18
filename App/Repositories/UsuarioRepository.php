@@ -4,12 +4,11 @@ class UsuarioRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct(DataBase::get(), "usuarios");
+    parent::__construct("usuarios");
   }
 
   public function findById($id)
   {
-    $this->db = DataBase::get();
     return $this->read(
       "Usuario",
       [
@@ -20,7 +19,6 @@ class UsuarioRepository extends Repository
 
   public function findByUsername($username)
   {
-    $this->db = DataBase::get();
     return $this->read(
       "Usuario",
       [
@@ -31,20 +29,16 @@ class UsuarioRepository extends Repository
 
   public function addUsuario($data)
   {
-    $this->db = DataBase::get();
     $this->create($data);
   }
 
-
   public function updateUsuario($id, $data)
   {
-    $this->db = DataBase::get();
     $this->update("id_usuario", $id, $data);
   }
 
   public function deleteUsuario($id)
   {
-    $this->db = DataBase::get();
     $this->delete("id_usuario", $id);
   }
 }
