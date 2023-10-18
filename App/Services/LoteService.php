@@ -1,94 +1,80 @@
 <?php
 
-class LoteService implements IServiceInterface
+class LoteService 
 {
-  private $_loteRepository;
-  private $_fichaRepository;
-  private $_categoriaRepository;
+  private $loteRepository;
+  private $fichaRepository;
+  private $categoriaRepository;
   public function __construct()
   {
-    $this->_loteRepository = Container::resolve(LoteRepository::class);
-    $this->_fichaRepository = Container::resolve(FichaRepository::class);
-    $this->_categoriaRepository = Container::resolve(CategoriaRepository::class);
+    $this->loteRepository = Container::resolve(LoteRepository::class);
+    $this->fichaRepository = Container::resolve(FichaRepository::class);
+    $this->categoriaRepository = Container::resolve(CategoriaRepository::class);
   }
 
-  // OBTENER UN LOTE
-  public function getById($id)
+  public function getLotes()
   {
-    $result = null;
+      return $this->loteRepository->find();
+  }
+
+  public function getLoteById($id)
+  {
+      return $this->loteRepository->find($id);
+  }
+
+
+  public function createLote($loteModel)
+  {
+    $this->loteRepository->beginTransaction();
     try {
-      $result = $this->_loteRepository->find($id);
-    } catch (PDOException $e) {
-      var_dump($e);
+      //code...
+    } catch (\Throwable $th) {
+      //throw $th;
     }
-    return $result;
+
+    $fichaId = $this->fichaRepository->addFicha($loteModel->getFicha())
+    $loteModel->setIdFicha($fichaId);
+    return $this->loteRepository->addLote($loteModel);
   }
 
-  // OBTENER TODOS LOS LOTES
-  public function getAll()
-  {
-    $result = [];
-    try {
-      $result = $this->_loteRepository->findAll();
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
-    return $result;
-  }
+  // public function update($loteModel)
+  // {
+  //   try {
+  //     $this->_loteRepository->update($loteModel);
+  //   } catch (PDOException $e) {
+  //     var_dump($e);
+  //   }
+  // }
+  // public function delete($loteModel)
+  // {
+  //   $db = DataBase::get();
+  //   $idLote = $loteModel->getId();
+  //   $idFicha = $loteModel->getIdFicha();
+  //   $db->beginTransaction();
+  //   try {
+  //     if ($this->_loteRepository->delete($idLote)->rowCount() == 0) {
+  //       throw new PDOException();
+  //     }
+  //     if ($this->_fichaRepository->delete($idFicha)->rowCount() == 0) {
+  //       throw new PDOException();
+  //     }
+  //     $db->commit();
+  //     return true;
+  //   } catch (PDOException $e) {
+  //     $db->rollback();
+  //     return false;
+  //   } finally {
+  //     $db = null;
+  //   }
+  // }
 
-
-  // CREAR UN LOTE CON SU FICHA
-  public function create($loteModel)
-  {
-    $db = DataBase::get();
-    $lastInsertId = null;
-    $loteModel->setIdFicha($this->_fichaRepository->create($loteModel->getFicha()));
-    $this->_loteRepository->create($loteModel);
-    $lastInsertId = $db->lastInsertId();
-    $db = null;
-    return $lastInsertId;
-  }
-
-  // ACTUALIZAR UN LOTE
-  public function update($loteModel)
-  {
-    try {
-      $this->_loteRepository->update($loteModel);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
-  }
-  // ELIMINAR UN LOTE
-  public function delete($loteModel)
-  {
-    $db = DataBase::get();
-    $idLote = $loteModel->getId();
-    $idFicha = $loteModel->getIdFicha();
-    $db->beginTransaction();
-    try {
-      if ($this->_loteRepository->delete($idLote)->rowCount() == 0) {
-        throw new PDOException();
-      }
-      if ($this->_fichaRepository->delete($idFicha)->rowCount() == 0) {
-        throw new PDOException();
-      }
-      $db->commit();
-      return true;
-    } catch (PDOException $e) {
-      $db->rollback();
-      return false;
-    } finally {
-      $db = null;
-    }
-  }
-
-  public function getCategoria($id)
-  {
-    return $this->_categoriaRepository->find($id);
-  }
-  public function getFicha($id)
-  {
-    return $this->_fichaRepository->find($id);
-  }
+  // public function getCategoria($id)
+  // {
+  //   return $this->_categoriaRepository->find($id);
+  // }
+  // public function getFicha($id)
+  // {
+  //   return $this->_fichaRepository->find($id);
+  // }
 }
 ?>
