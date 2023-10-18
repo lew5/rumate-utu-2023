@@ -1,131 +1,51 @@
 <?php
 
-class UsuarioRepository implements IRepositoryInterface
+class UsuarioRepository extends Repository
 {
-  private $_db;
-
-
-  // OBTENER UN USUARIO
-  public function find($username)
+  public function __construct()
   {
-    $this->_db = DataBase::get();
-    try {
-      $result = null;
-
-      $stm = $this->_db->prepare(
-        "SELECT * FROM usuarios
-        WHERE username_usuario = :username"
-      );
-      $stm->execute([
-        'username' => $username
-      ]);
-
-      $data = $stm->fetchObject("Usuario");
-
-      if ($data) {
-        $result = $data;
-      }
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
-    return $result;
+    parent::__construct(DataBase::get(), "usuarios");
   }
 
-  // OBTENER TODOS LOS USUARIOS
-  public function findAll()
+  public function findById($id)
   {
-    $this->_db = DataBase::get();
-    $result = [];
-    try {
-      $stm = $this->_db->prepare("SELECT * FROM usuarios");
-      $stm->execute();
-      $result = $stm->fetchAll(PDO::FETCH_CLASS, "Usuario");
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
-    return $result;
+    $this->db = DataBase::get();
+    return $this->read(
+      "Usuario",
+      [
+        'id_usuario' => $id
+      ]
+    );
   }
 
-  // CREAR UN USUARIO
-  public function create($model)
+  public function findByUsername($username)
   {
-    $this->_db = DataBase::get();
-    try {
-      $stm = $this->_db->prepare(
-        "INSERT INTO usuarios (
-          username_usuario,
-          password_usuario,
-          email_usuario,
-          tipo_usuario) 
-        VALUES (:username,:password,:email,:tipo)"
-      );
-      $stm->execute([
-        'username' => $model->getUsername(),
-        'password' => $model->getPassword(),
-        'email' => $model->getEmail(),
-        'tipo' => $model->getTipo(),
-      ]);
-
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
+    $this->db = DataBase::get();
+    return $this->read(
+      "Usuario",
+      [
+        'username_usuario' => $username
+      ]
+    );
   }
 
-  // ACTUALIZAR UN USUARIO
-  public function update($model)
+  public function addUsuario($data)
   {
-    $this->_db = DataBase::get();
-    try {
-      $stm = $this->_db->prepare(
-        "UPDATE usuarios
-        SET 
-          password_usuario = :password,
-          email_usuario = :email,
-          tipo_usuario = :tipo
-        WHERE username_usuario = :username"
-      );
-      $stm->execute([
-        'username' => $model->getUsername(),
-        'password' => $model->getPassword(),
-        'email' => $model->getEmail(),
-        'tipo' => $model->getTipo(),
-      ]);
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
+    $this->db = DataBase::get();
+    $this->create($data);
   }
-  // ELIMINAR UN USUARIO
-  public function delete($username)
+
+
+  public function updateUsuario($id, $data)
   {
-    $this->_db = DataBase::get();
-    try {
-      $stm = $this->_db->prepare(
-        "DELETE FROM usuarios WHERE username_usuario = :username"
-      );
-      $stm->execute([
-        'username' => $username,
-      ]);
-    } catch (PDOException $e) {
-      var_dump($e);
-    } finally {
-      $this->_db = null;
-    }
+    $this->db = DataBase::get();
+    $this->update("id_usuario", $id, $data);
+  }
+
+  public function deleteUsuario($id)
+  {
+    $this->db = DataBase::get();
+    $this->delete("id_usuario", $id);
   }
 }
-
-// try {
-
-// } catch (PDOException $e) {
-//   var_dump($e);
-// } finally {
-
-// }
 ?>

@@ -1,57 +1,45 @@
 <?php
-
-class UsuarioService implements IUsuarioServiceInterface
+class UsuarioService
 {
-  private $_usuarioRepository;
+  private $userRepository;
 
   public function __construct()
   {
-    $this->_usuarioRepository = Container::resolve(UsuarioRepository::class);
+    $this->userRepository = Container::resolve(UsuarioRepository::class);
   }
 
-  // OBTENER UN USUARIO
-  public function getByUsername($username)
+  public function createUsuario($usuarioModel, $password)
   {
-    $result = null;
-    try {
-      $result = $this->_usuarioRepository->find($username);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
-    return $result;
+    $hashedPassword = PasswordHash::hashPassword($password);
+    $usuarioModel->setPassword($hashedPassword);
+    $usuarioAssocArray = $this->usuarioToAssocArray($usuarioModel);
+    $this->userRepository->addUsuario($usuarioAssocArray);
   }
 
-  // OBTENER TODOS LOS USUARIOS
-  public function getAll()
+  public function getUsuarioById($id)
   {
-    return $this->_usuarioRepository->findAll();
+    return $this->userRepository->findById($id);
   }
 
-  // CREAR UN USUARIO
-  public function create($usuarioModel)
+  public function updateUsuario($id, $data)
   {
-    $hashPassword = Container::resolve(PasswordHash::class)::hashPassword($usuarioModel->getPassword());
-    $usuarioModel->setPassword($hashPassword);
-    $this->_usuarioRepository->create($usuarioModel);
+    $this->userRepository->updateUsuario($id, $data);
   }
 
-  // ACTUALIZAR UN USUARIO
-  public function update($usuarioModel)
+  public function deleteUsuario($id)
   {
-    try {
-      $this->_usuarioRepository->update($usuarioModel);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
+    $this->userRepository->deleteUsuario($id);
   }
-  // ELIMINAR UN USUARIO
-  public function delete($username)
+
+  private function usuarioToAssocArray($usuarioModel)
   {
-    try {
-      $this->_usuarioRepository->delete($username);
-    } catch (PDOException $e) {
-      var_dump($e);
-    }
+    return [
+      "username_usuario" => $usuarioModel->getUsername(),
+      "password_usuario" => $usuarioModel->getPassword(),
+      "email_usuario" => $usuarioModel->getEmail(),
+      "tipo_usuario" => $usuarioModel->getTipo()
+    ];
   }
 }
+
 ?>
