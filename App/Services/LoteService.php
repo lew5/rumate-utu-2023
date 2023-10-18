@@ -1,25 +1,23 @@
 <?php
 
-class LoteService 
+class LoteService
 {
   private $loteRepository;
   private $fichaRepository;
-  private $categoriaRepository;
   public function __construct()
   {
     $this->loteRepository = Container::resolve(LoteRepository::class);
     $this->fichaRepository = Container::resolve(FichaRepository::class);
-    $this->categoriaRepository = Container::resolve(CategoriaRepository::class);
   }
 
   public function getLotes()
   {
-      return $this->loteRepository->find();
+    return $this->loteRepository->find();
   }
 
   public function getLoteById($id)
   {
-      return $this->loteRepository->find($id);
+    return $this->loteRepository->find($id);
   }
 
 
@@ -27,14 +25,16 @@ class LoteService
   {
     $this->loteRepository->beginTransaction();
     try {
-      //code...
-    } catch (\Throwable $th) {
-      //throw $th;
+      $fichaId = $this->fichaRepository->addFicha($loteModel->getFicha());
+      $loteModel->setIdFicha($fichaId);
+      $lastLoteId = $this->loteRepository->addLote($loteModel);
+      $this->fichaRepository->commit();
+    } catch (PDOException $e) {
+      $this->loteRepository->rollback();
+    } finally {
+      $this->loteRepository->close();
     }
-
-    $fichaId = $this->fichaRepository->addFicha($loteModel->getFicha())
-    $loteModel->setIdFicha($fichaId);
-    return $this->loteRepository->addLote($loteModel);
+    return $lastLoteId;
   }
 
   // public function update($loteModel)
