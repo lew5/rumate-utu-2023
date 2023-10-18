@@ -1,46 +1,39 @@
 <?php
-class PujaRepository extends BaseRepository implements IRepositoryInterface
+
+class PujaRepository extends Repository
 {
-  private $_db;
-  private $table = "pujas";
-  private $obj = "Puja";
-
-  public function find($id)
+  public function __construct()
   {
-    return $this->readOne($id, $this->table, "id_puja", $this->obj);
+    parent::__construct("pujas","id_puja","Puja");
   }
 
-  public function findAll()
+  public function find()
   {
-    return $this->readAll($this->table, $this->obj);
+    return $this->read();
   }
 
-  public function create($pujaModel)
+  public function findById($id)
   {
-    $this->_db = DataBase::get();
-    $stm = $this->_db->prepare(
-      "INSERT INTO PUJAS (
-        monto_puja
-      ) 
-      VALUES (
-        :monto
-      )"
+    return $this->read(
+      [
+        "$this->idColumn" => $id
+      ]
     );
-    $stm->execute([
-      'monto' => $pujaModel->getMonto()
-    ]);
-    $this->_db = null;
   }
 
-  public function update($model)
+  public function addPuja($data)
   {
-
+    $this->create($data);
   }
 
-  public function delete($id)
+  public function updatePuja($id, $data)
   {
-    return $this->deleteOne($id, $this->table, "id_puja");
+    $this->update($id, $data);
+  }
+
+  public function deletePuja($id)
+  {
+    $this->delete($id);
   }
 }
-
 ?>
