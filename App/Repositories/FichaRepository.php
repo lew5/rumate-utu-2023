@@ -4,20 +4,19 @@ class FichaRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("fichas");
+    parent::__construct("fichas","id_ficha","Ficha");
   }
 
   public function find()
   {
-    return $this->read("Ficha");
+    return $this->read();
   }
 
   public function findById($id)
   {
     return $this->read(
-      "Ficha",
       [
-        'id_ficha' => $id
+        "$this->idColumn" => $id
       ]
     );
   }
@@ -29,12 +28,12 @@ class FichaRepository extends Repository
 
   public function updateFicha($id, $data)
   {
-    $this->update("id_ficha", $id, $data);
+    $this->update($id, $data);
   }
 
   public function deleteFicha($id)
   {
-    $this->delete("id_ficha", $id);
+    $this->delete($id);
   }
 }
 ?>
