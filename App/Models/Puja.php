@@ -2,54 +2,29 @@
 
 class Puja
 {
-  private $id;
-  private $remate;
-  private $lote;
-  private $cliente;
-  private $monto;
-  private $fecha;
+  private $id_puja;
+  private $monto_puja;
 
-  public function __construct(
-    $cliente,
-    $remate,
-    $lote,
-    $monto
-  ) {
-    $this->cliente = $cliente;
-    $this->remate = $remate;
-    $this->lote = $lote;
-    $this->monto = $monto;
+  public function getId()
+  {
+    return $this->id_puja;
   }
 
-
-  public function setCliente($cliente)
+  public function setId($id)
   {
-    $this->cliente = $cliente;
-  }
-  public function setRemate($remate)
-  {
-    $this->remate = $remate;
+    $this->id_puja = $id;
   }
 
-  public function setLote($lote)
+  public function getMonto()
   {
-    $this->lote = $lote;
+    return $this->monto_puja;
   }
 
-  public function getCliente()
+  public function setMonto($monto)
   {
-    return $this->cliente;
-  }
-
-  public function getRemate()
-  {
-    return $this->remate;
-  }
-
-  public function getLote()
-  {
-    return $this->lote;
+    $this->monto_puja = $monto;
   }
 }
+
 
 ?>

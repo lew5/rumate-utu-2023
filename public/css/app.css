@@ -437,10 +437,10 @@ a {
 }
 
 .card-remate__image {
-  max-width: 100px;
-  max-height: 100px;
-  min-width: 100px;
-  min-height: 100px;
+  max-width: 120px;
+  max-height: 120px;
+  min-width: 120px;
+  min-height: 120px;
   border-radius: 5px;
 }
 
@@ -460,15 +460,15 @@ a {
   margin: 0;
 }
 
-.card-remate__estado--FINALIZADO {
+.card-remate__estado--Finalizado {
   color: crimson;
 }
 
-.card-remate__estado--PENDIENTE {
+.card-remate__estado--Pendiente {
   color: var(--coral-500);
 }
 
-.card-remate__estado--REMATANDO {
+.card-remate__estado--Rematando {
   color: var(--blue-charcoal-400);
 }
 

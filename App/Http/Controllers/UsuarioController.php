@@ -2,35 +2,33 @@
 
 class UsuarioController
 {
-
-
-  public static function iniciarSesion($username, $password)
+  public static function iniciarSesion()
   {
-    $usuarioModel = Container::resolve(UsuarioModel::class);
-    $usuarioData = $usuarioModel->getUsuario($username);
-
-    if ($usuarioData) {
-      $usuarioData = (object) $usuarioData;
-      //!password_verify($password, $usuario->getPassword()) esto debería ir en el if pero se saca para que los profesores puedan probar el login sin problemas con las contraseñas NO CIFRADAS de la base de datos
-      if ($password == $usuarioData->password_usuario) {
-        $usuario = $usuarioModel->getFullUsuario($username);
-        $serUser = serialize($usuario);
-        $_SESSION['usuario'] = $serUser;
-        return;
+    if (isset($_POST['login-btn'])) {
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+      $usuarioValidado = Container::resolve(LoginService::class)->login($username, $password);
+      if ($usuarioValidado !== false) {
+        $usuario = Container::resolve(UsuarioService::class)->getByUsername($username);
+        $serializedPersona = serialize($usuario);
+        $_SESSION['usuario'] = $serializedPersona;
+        header("Location: " . PUBLIC_PATH);
+        die();
       } else {
-        $_SESSION['passError'] = [
-          'error' => "Contraseña incorrecta.",
+        $_SESSION['loginError'] = [
+          'error' => "Usuario o contraseña incorrectos.",
           'username' => $username
         ];
-        return;
+        header("Location: " . PUBLIC_PATH . "/login");
+        die();
       }
-    } else {
-      $_SESSION['userError'] = [
-        'error' => "Ese usuario no existe.",
-        'username' => $username
-      ];
-      return;
     }
+  }
+
+  public static function cerrarSesion()
+  {
+    session_destroy();
+    header("Location: " . PUBLIC_PATH);
   }
 }
 

@@ -1,33 +1,35 @@
 <?php
-// $clienteModel = Container::resolve(ClienteModel::class);
-// var_dump($clienteModel->getPersona(1));
-// var_dump($clienteModel->getPersonas());
-// $usuarioModel = Container::resolve(UsuarioModel::class);
-// var_dump($usuarioModel->getUsuarios());
-// var_dump($usuarioModel->getUsuario("juan123"));
-// var_dump($usuarioModel->getFullUsuario("juan123"));
-// $uc = Container::resolve(UsuarioController::class);
-// $uc->iniciarSesion("juan123", "password1");
-// $remateModel = Container::resolve(RemateModel::class);
-// var_dump($remateModel->getRemates());
-// var_dump($remateModel->getRemate(1));
-// $proveedorModel = Container::resolve(ProveedorModel::class);
-// var_dump($proveedorModel->getLotes(3));
-// $clienteModel = Container::resolve(ClienteModel::class);
-// var_dump($clienteModel->getClientes());
-// var_dump($clienteModel->getCliente(2));
-// $loteModel = Container::resolve(LoteModel::class);
-// var_dump($loteModel->getLotesDeRemate(4));
-// var_dump($loteModel->getLoteDeRemate(2, 2));
-// die;
+// var_dump(Container::resolve(UsuarioRepository::class)->findById(1));
+// var_dump(Container::resolve(UsuarioRepository::class)->findByUsername("rootuser"));
+// // Ejemplo de crear un nuevo usuario
+// $nuevoUsuario = new Usuario();
+// $nuevoUsuario->setUsername('johndoe');
+// $nuevoUsuario->setPassword('contraseña');
+// $nuevoUsuario->setEmail('john.doe@example.com');
+// $nuevoUsuario->setTipo('ROOT');
+// $usuarioActualizado = [
+//   "username_usuario" => "pepe",
+//   // "password_usuario" => $usuarioModel->getPassword(),
+//   // "email_usuario" => $usuarioModel->getEmail(),
+//   // "tipo_usuario" => $usuarioModel->getTipo()
+// ];
+// var_dump(Container::resolve(UsuarioRepository::class)->addUsuario($nuevoUsuario));
+// var_dump(Container::resolve(UsuarioService::class)->deleteUsuario(6));
+die;
 Container::resolve(Route::class, Container::resolve(Router::class));
-Route::get("/", "HomeController@index");
+// RUTAS DE REMATE
+Route::get("/", "RemateController@listarRemates");
 Route::get("/remate/{id}", "RemateController@listarLotes");
-Route::get("/{idProveedor}/lotes", "ClienteProveedor@lotesProveedor"); //! EN DESARROLLO 
 Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
+
+
+Route::get("/{idProveedor}/lotes", "ProveedorController@listarLotes"); //! EN DESARROLLO 
 Route::get("/registro", "RegistroController@index");
 Route::get("/login", "LoginController@index");
-Route::post("/login/validar", "LoginController@validarLogin");
-Route::get("/home/logout", "HomeController@logout");
+
+
+// RUTAS DE USUARIO
+Route::post("/usuario/login", "UsuarioController@iniciarSesion");
+Route::get("/usuario/logout", "UsuarioController@cerrarSesion");
 Route::dispatch();
 ?>

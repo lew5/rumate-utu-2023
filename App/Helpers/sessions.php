@@ -4,7 +4,7 @@
 function sessionRoot()
 {
   if (sessionUsuario()) {
-    return sessionUsuario()->tipo_persona == "ROOT";
+    return sessionUsuario()->getTipo() == "ROOT";
   } else {
     return false;
   }
@@ -12,7 +12,7 @@ function sessionRoot()
 function sessionAdmin()
 {
   if (sessionUsuario()) {
-    return sessionUsuario()->tipo_persona == "ADMINISTRADOR";
+    return sessionUsuario()->getTipo() == "ADMINISTRADOR";
   } else {
     return false;
   }
@@ -21,7 +21,7 @@ function sessionAdmin()
 function sessionCliente()
 {
   if (sessionUsuario()) {
-    return sessionUsuario()->tipo_persona == "CLIENTE";
+    return sessionUsuario()->getTipo() == "CLIENTE";
   } else {
     return false;
   }
@@ -30,7 +30,7 @@ function sessionCliente()
 function sessionProveedor()
 {
   if (sessionUsuario()) {
-    return sessionUsuario()->tipo_persona == "PROVEEDOR";
+    return sessionUsuario()->getTipo() == "PROVEEDOR";
   } else {
     return false;
   }
@@ -39,7 +39,7 @@ function sessionProveedor()
 function sessionUsuario()
 {
   if (isset($_SESSION['usuario'])) {
-    return (object) unserialize($_SESSION['usuario']);
+    return unserialize($_SESSION['usuario']);
   }
   return false;
 }

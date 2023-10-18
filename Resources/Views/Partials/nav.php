@@ -4,7 +4,7 @@
       <div class="navigation__brand">
         <a class="brand__link" href="<?= PUBLIC_PATH ?>"></a>
         <img class="brand__img"
-          src="<?= PUBLIC_PATH ?>/Public/imgs/rumate-brand.webp"
+          src="<?= PUBLIC_PATH ?>/Public/imgs/rumate-nav-brand.webp"
           alt="logo de rumate" />
       </div>
       <?php
