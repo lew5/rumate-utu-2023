@@ -24,6 +24,7 @@ class LoteRepository extends Repository
   public function addLote($data)
   {
     $this->create($data);
+    return $this->lastInsertId();
   }
 
   public function updateLote($id, $data)
