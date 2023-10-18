@@ -1,49 +1,39 @@
 <?php
-class PujaDePersonaRepository extends BaseRepository implements IRepositoryInterface
+
+class PujaDePersonaRepository extends Repository
 {
-  private $_db;
-  private $table = "pujas_de_personas";
-  private $obj = "PujaDePersona";
-
-  public function find($id)
+  public function __construct()
   {
-    return $this->readOne($id, $this->table, "id_puja_puja_de_persona", $this->obj);
+    parent::__construct("pujas_de_personas","id_puja_puja_de_persona","PujaDePersona");
   }
 
-  public function findAll()
+  public function find()
   {
-    return $this->readAll($this->table, $this->obj);
+    return $this->read();
   }
 
-  public function create($pujaDePersonaModel)
+  public function findByPujaId($id)
   {
-    $this->_db = DataBase::get();
-    $stm = $this->_db->prepare(
-      "INSERT INTO PUJAS_DE_PERSONAS (
-        id_puja_puja_de_persona,
-        id_persona_puja_de_persona
-      ) 
-      VALUES (
-        :id_puja,
-        :id_persona
-      )"
+    return $this->read(
+      [
+        "$this->idColumn" => $id
+      ]
     );
-    $stm->execute([
-      'id_puja' => $pujaDePersonaModel->getIdPuja(),
-      'id_persona' => $pujaDePersonaModel->getIdPersona()
-    ]);
-    $this->_db = null;
   }
 
-  public function update($model)
+  public function addPujaDePersona($data)
   {
-    // Implementa la lógica de actualización si es necesario
+    $this->create($data);
   }
 
-  public function delete($id)
+  public function updatePujaDePersona($id, $data)
   {
-    return $this->deleteOne($id, $this->table, "id_puja_puja_de_persona");
+    $this->update($id, $data);
+  }
+
+  public function deletePujaDePersona($id)
+  {
+    $this->delete($id);
   }
 }
-
 ?>
