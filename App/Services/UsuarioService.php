@@ -1,34 +1,36 @@
 <?php
 class UsuarioService
 {
-  private $userRepository;
+  private $usuarioRepository;
 
   public function __construct()
   {
-    $this->userRepository = Container::resolve(UsuarioRepository::class);
+    $this->usuarioRepository = Container::resolve(UsuarioRepository::class);
   }
 
-  public function createUsuario($usuarioModel, $password)
+  public function createUsuario($usuarioModel)
   {
+    $password = $usuarioModel->getPassword();
     $hashedPassword = PasswordHash::hashPassword($password);
     $usuarioModel->setPassword($hashedPassword);
     $usuarioAssocArray = $this->usuarioToAssocArray($usuarioModel);
-    $this->userRepository->addUsuario($usuarioAssocArray);
+    $this->usuarioRepository->addUsuario($usuarioAssocArray);
+    return $this->usuarioRepository->lastInsertId();
   }
 
   public function getUsuarioById($id)
   {
-    return $this->userRepository->findById($id);
+    return $this->usuarioRepository->findById($id);
   }
 
   public function updateUsuario($id, $data)
   {
-    $this->userRepository->updateUsuario($id, $data);
+    $this->usuarioRepository->updateUsuario($id, $data);
   }
 
   public function deleteUsuario($id)
   {
-    $this->userRepository->deleteUsuario($id);
+    $this->usuarioRepository->deleteUsuario($id);
   }
 
   private function usuarioToAssocArray($usuarioModel)
@@ -40,6 +42,7 @@ class UsuarioService
       "tipo_usuario" => $usuarioModel->getTipo()
     ];
   }
+
 }
 
 ?>

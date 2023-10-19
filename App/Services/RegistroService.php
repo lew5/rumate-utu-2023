@@ -1,41 +1,46 @@
 <?php
-
 class RegistroService
 {
-  private $_usuarioService;
-  private $_personaService;
-  private $_usuarioDePersonaRepository;
+  private $usuarioService;
+  private $personaService;
+  private $usuarioDePersonaRepository;
 
   public function __construct()
   {
-    $this->_usuarioService = Container::resolve(UsuarioService::class);
-    $this->_personaService = Container::resolve(PersonaService::class);
-    $this->_usuarioDePersonaRepository = Container::resolve(UsuarioDePersonaRepository::class);
+    $this->usuarioService = Container::resolve(UsuarioService::class);
+    $this->personaService = Container::resolve(PersonaService::class);
+    $this->usuarioDePersonaRepository = Container::resolve(UsuarioDePersonaRepository::class);
   }
 
-  public function create($personaModel)
+  public function createUsuarioAndPersona($personaModel)
   {
-    $db = DataBase::get();
-    $db->beginTransaction();
     $usuarioRegistrado = false;
+    $this->usuarioDePersonaRepository->beginTransaction();
     try {
-      $this->_usuarioService->create($personaModel->getUsuario());
-      $username = $personaModel->getUsuario()->getUsername();
-      $personaId = $this->_personaService->create($personaModel);
-      $usuarioDePersona = Container::resolve(UsuarioDePersona::class);
-      $usuarioDePersona->setUsername($username);
-      $usuarioDePersona->setIdPersona($personaId);
-      $this->_usuarioDePersonaRepository->create($usuarioDePersona);
-      $db->commit();
+      // Crear el usuario
+      $usuarioId = $this->usuarioService->createUsuario($personaModel->getUsuario());
+      // Crear la persona
+      $personaId = $this->personaService->createPersona($personaModel);
+      // Crear la relación UsuarioDePersona
+      $this->createUsurarioDePersona($usuarioId, $personaId);
+      $this->usuarioDePersonaRepository->commit();
       $usuarioRegistrado = true;
     } catch (PDOException $e) {
-      $db->rollBack();
-      var_dump($e);
+      $this->usuarioDePersonaRepository->rollBack();
+      var_dump($e->errorInfo);
     } finally {
-      $db = null;
+      $this->usuarioDePersonaRepository->close();
     }
     return $usuarioRegistrado;
   }
-}
 
+  private function createUsurarioDePersona($usuarioId, $personaId)
+  {
+    $usuarioDePersona = [
+      "id_usuario_usuarios_de_personas" => $usuarioId,
+      "id_persona_usuarios_de_persona" => $personaId,
+    ];
+    $this->usuarioDePersonaRepository->addUsuarioDePersona($usuarioDePersona);
+  }
+}
 ?>

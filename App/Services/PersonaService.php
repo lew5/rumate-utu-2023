@@ -13,6 +13,7 @@ class PersonaService
   {
     $personaToAssocArray = $this->personaToAssocArray($personaModel);
     $this->personaRepository->addPersona($personaToAssocArray);
+    return $this->personaRepository->lastInsertId();
   }
 
   public function getPersona()

@@ -1,17 +1,17 @@
 <?php
 class UsuarioDePersona
 {
-  private $username_usuario_usuarios_de_personas;
+  private $id_usuario_usuarios_de_personas;
   private $id_persona_usuarios_de_persona;
 
-  public function getUsername()
+  public function getIdUsuario()
   {
-    return $this->username_usuario_usuarios_de_personas;
+    return $this->id_usuario_usuarios_de_personas;
   }
 
-  public function setUsername($username)
+  public function setIdUsuario($idUsuario)
   {
-    $this->username_usuario_usuarios_de_personas = $username;
+    $this->id_usuario_usuarios_de_personas = $idUsuario;
   }
 
   public function getIdPersona()

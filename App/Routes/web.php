@@ -1,86 +1,81 @@
 <?php
-// Creación de un nuevo remate con más de 5 lotes
-$remate = new Remate();
-$remate->setTitulo("Subasta de Joyas");
-$remate->setImagen("imagen-joyas.jpg");
-$remate->setFechaInicio("2023-10-20 09:00:00");
-$remate->setFechaFinal("2023-10-25 18:00:00");
-$remate->setEstado("Pendiente");
+// Crear un nuevo usuario
+$usuario = new Usuario(
+  "nuevo_usuario",
+  "contrasena123",
+  "nuevo_usuario@example.com",
+  "cliente"
+);
 
-// Creación de varios lotes con fichas asociadas
-$lote1 = new Lote();
-$lote1->setImagen("joya1.jpg");
-$lote1->setPrecioBase(500);
-$lote1->setMejorOferta(550);
-$lote1->setIdProveedor(4);
-$lote1->setIdCategoria(1);
-$ficha1 = new Ficha();
-$ficha1->setPeso(10);
-$ficha1->setCantidad(1);
-$ficha1->setRaza("Diamante");
-$ficha1->setDescripcion("Anillo de diamante de alta calidad.");
-$lote1->setFicha($ficha1);
+// Crear una nueva persona asociada al usuario
+$persona = new Persona();
+$persona->setNombre("Juan");
+$persona->setApellido("Pérez");
+$persona->setCi("777777");
+$persona->setBarrio("Centro");
+$persona->setCalle("Calle Principal");
+$persona->setNumero("123");
+$persona->setTelefono("555-1234");
+$persona->setEstado("Activo");
+$persona->setUsuario($usuario);
 
-$lote2 = new Lote();
-$lote2->setImagen("joya2.jpg");
-$lote2->setPrecioBase(300);
-$lote2->setMejorOferta(320);
-$lote2->setIdProveedor(4);
-$lote2->setIdCategoria(1);
-$ficha2 = new Ficha();
-$ficha2->setPeso(5);
-$ficha2->setCantidad(1);
-$ficha2->setRaza("Esmeralda");
-$ficha2->setDescripcion("Collar de esmeralda con colgante.");
-$lote2->setFicha($ficha2);
+// Crear un servicio de registro
+$registroService = new RegistroService();
 
-$lote3 = new Lote();
-$lote3->setImagen("joya3.jpg");
-$lote3->setPrecioBase(800);
-$lote3->setMejorOferta(820);
-$lote3->setIdProveedor(4);
-$lote3->setIdCategoria(1);
-$ficha3 = new Ficha();
-$ficha3->setPeso(8);
-$ficha3->setCantidad(1);
-$ficha3->setRaza("Rubí");
-$ficha3->setDescripcion("Pulsera de rubí con incrustaciones.");
-$lote3->setFicha($ficha3);
+// Registrar el nuevo usuario con su persona
+if ($registroService->createUsuarioAndPersona($persona)) {
+  echo "El usuario y la persona se registraron correctamente.";
+} else {
+  echo "Hubo un error al registrar el usuario y la persona.";
+}
 
-$lote4 = new Lote();
-$lote4->setImagen("joya4.jpg");
-$lote4->setPrecioBase(250);
-$lote4->setMejorOferta(260);
-$lote4->setIdProveedor(4);
-$lote4->setIdCategoria(1);
-$ficha4 = new Ficha();
-$ficha4->setPeso(3);
-$ficha4->setCantidad(1);
-$ficha4->setRaza("Safiro");
-$ficha4->setDescripcion("Anillo de safiro con grabados.");
-$lote4->setFicha($ficha4);
 
-$lote5 = new Lote();
-$lote5->setImagen("joya5.jpg");
-$lote5->setPrecioBase(700);
-$lote5->setMejorOferta(710);
-$lote5->setIdProveedor(4);
-$lote5->setIdCategoria(1);
-$ficha5 = new Ficha();
-$ficha5->setPeso(12);
-$ficha5->setCantidad(1);
-$ficha5->setRaza("Zafiro");
-$ficha5->setDescripcion("Collar de zafiro con piedras preciosas.");
-$lote5->setFicha($ficha5);
 
-// Agregar los lotes al remate
-$remate->setLotes([$lote1, $lote2, $lote3, $lote4, $lote5]);
+// // Crear un nuevo usuario
+// $usuario = new Usuario(
+//   "usuario123",
+//   "contrasena123",
+//   "usuario123@example.com",
+//   "cliente"
+// );
 
-// Crear un servicio de remate
-$remateService = new RemateService();
+// // Crear un servicio de usuario
+// $usuarioService = new UsuarioService();
 
-// Crear el remate en la base de datos
-var_dump($remateService->createRemate($remate));
+// // Insertar el nuevo usuario en la base de datos
+// $usuarioId = $usuarioService->createUsuario($usuario);
+// // Comprobar si el usuario se insertó correctamente
+
+// if ($usuarioId) {
+//   echo "El usuario se insertó correctamente con ID: $usuarioId";
+// } else {
+//   echo "Hubo un error al insertar el usuario.";
+// }
+
+// // Crear una nueva persona
+// $persona = new Persona();
+// $persona->setNombre("Juan");
+// $persona->setApellido("Pérez");
+// $persona->setCi("1234567");
+// $persona->setBarrio("Centro");
+// $persona->setCalle("Calle Principal");
+// $persona->setNumero("123");
+// $persona->setTelefono("555-1234");
+// $persona->setEstado("Activo");
+
+// // Crear un servicio de persona
+// $personaService = new PersonaService();
+
+// // Insertar la nueva persona en la base de datos
+// $personaId = $personaService->createPersona($persona);
+
+// // Comprobar si la persona se insertó correctamente
+// if ($personaId) {
+//   echo "La persona se insertó correctamente con ID: $personaId";
+// } else {
+//   echo "Hubo un error al insertar la persona.";
+// }
+
 die;
 Container::resolve(Route::class, Container::resolve(Router::class));
 // RUTAS DE REMATE
