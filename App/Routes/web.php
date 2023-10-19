@@ -13,7 +13,7 @@ Route::get("/login", "LoginController@index");
 
 
 // RUTAS DE USUARIO
-Route::post("/usuario/login", "UsuarioController@iniciarSesion");
-Route::get("/usuario/logout", "UsuarioController@cerrarSesion");
+Route::post("/usuario/login", "AuthController@login");
+Route::get("/usuario/logout", "AuthController@logout");
 Route::dispatch();
 ?>

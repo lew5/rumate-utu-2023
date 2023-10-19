@@ -25,6 +25,12 @@ class Route
     self::$router->delete($uri, $controller);
   }
 
+  public static function redirect($location = "")
+  {
+    header("Location: " . PUBLIC_PATH . $location);
+    die();
+  }
+
   public static function dispatch()
   {
     self::$router->dispatch();

@@ -1,6 +1,6 @@
 <?php
 
-class LoginService
+class AuthService
 {
   private $usuarioService;
 
@@ -12,7 +12,6 @@ class LoginService
   public function login($username, $password)
   {
     $usuario = $this->usuarioService->getUsuarioByUsername($username);
-    var_dump($usuario);
     if ($usuario !== null && password_verify($password, $usuario->getPassword())) {
       return true;
     }
