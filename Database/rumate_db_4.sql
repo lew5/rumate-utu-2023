@@ -23,7 +23,7 @@ CREATE TABLE USUARIOS (
     username_usuario VARCHAR(40) UNIQUE NOT NULL,
     password_usuario VARCHAR(255) NOT NULL,
     email_usuario VARCHAR(40) UNIQUE NOT NULL,
-    tipo_usuario ENUM('ROOT', 'ADMINISTRADOR', 'CLIENTE','PROVEEDOR','REMATADOR')
+    tipo_usuario ENUM('ROOT', 'ADMINISTRADOR', 'CLIENTE','PROVEEDOR','REMATADOR') DEFAULT 'CLIENTE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla USUARIOS_DE_PERSONAS
@@ -47,7 +47,7 @@ CREATE TABLE FICHAS (
 -- Crear la tabla CATEGORIAS
 CREATE TABLE CATEGORIAS (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    nombre_categoria ENUM('Ternero', 'Vaquillona', 'Vaca', 'Novillito', 'Novillo','Toro') NOT NULL
+    nombre_categoria VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla REMATES
