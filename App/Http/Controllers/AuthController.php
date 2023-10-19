@@ -12,7 +12,7 @@ class AuthController
   }
   public function login()
   {
-    if (isset($_POST['login-btn'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $username = $_POST['username'];
       $password = $_POST['password'];
       $usuarioValidado = $this->authService->login($username, $password);

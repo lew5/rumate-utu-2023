@@ -3,7 +3,7 @@
     <div class="input-field">
       <label class="input-field__label f-column">
         <span class="label__text">Nombre</span>
-        <input id="register-step-1-nombre" name="name"
+        <input id="register-step-1-nombre" name="nombre"
           class="input-field__input" type="text" placeholder="Ingresa tu nombre"
           autocomplete="off" class="input-field__input" />
       </label>
@@ -13,7 +13,7 @@
     <div class="input-field">
       <label class="input-field__label f-column">
         <span class="label__text">Apellido</span>
-        <input id="register-step-1-apellido" name="lastname"
+        <input id="register-step-1-apellido" name="apellido"
           class="input-field__input" type="text"
           placeholder="Ingresa tu apellido" autocomplete="off"
           class="input-field__input" />

@@ -13,6 +13,12 @@ class Validar
   private const ERR_NO_VALID_EMAIL = "El email no es valido.";
 
   /**
+   * Constantes de mensajes de error para la validación de nombre de usuario.
+   */
+  private const ERR_USERNAME_LENGTH = "El nombre de usuario debe tener entre :min y :max caracteres.";
+  private const ERR_USERNAME_ALNUM = "El nombre de usuario debe contener solo caracteres alfanuméricos (letras y números).";
+
+  /**
    * Método para validar una cadena.
    * 
    * @param string $value El valor a validar.
@@ -20,7 +26,7 @@ class Validar
    * @param int $max La longitud máxima permitida para la cadena (predeterminada a INF).
    * @return bool True si la cadena cumple con los criterios de validación, false en caso contrario.
    */
-  public static function string($value, $min = 1, $max = INF)
+  public static function string($value, $min = 8, $max = INF)
   {
     $value = trim($value);
 
@@ -37,6 +43,30 @@ class Validar
   public static function email($value)
   {
     return filter_var($value, FILTER_VALIDATE_EMAIL) ? true : self::ERR_NO_VALID_EMAIL;
+  }
+
+
+  /**
+   * Método para validar un nombre de usuario.
+   * 
+   * @param string $value El nombre de usuario a validar.
+   * @param int $min La longitud mínima permitida para el nombre de usuario (predeterminada a 1).
+   * @param int $max La longitud máxima permitida para el nombre de usuario (predeterminada a INF).
+   * @return mixed True si el nombre de usuario cumple con los criterios de validación,
+   *               o un mensaje de error (string) si no cumple con los criterios.
+   */
+  public static function username($value, $min = 1, $max = INF)
+  {
+    $value = trim($value);
+    // Verifica la longitud
+    if (strlen($value) < $min || strlen($value) > $max) {
+      return str_replace([':min', ':max'], [$min, $max], self::ERR_USERNAME_LENGTH);
+    }
+    // Verifica si contiene solo caracteres alfanuméricos
+    if (!ctype_alnum($value)) {
+      return self::ERR_USERNAME_ALNUM;
+    }
+    return true;
   }
 
   /**

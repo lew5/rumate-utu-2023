@@ -6,8 +6,7 @@ require BASE_PATH . "/Resources/Views/Partials/head.php";
   <div class="login-register__container">
     <div class="login-register-form-wrap">
       <form class="login-register__form f-column"
-        action="<?= PUBLIC_PATH ?>/registro/validar" method="POST"
-        autocomplete="off">
+        action="<?= PUBLIC_PATH ?>/registro" method="POST" autocomplete="off">
         <?php require BASE_PATH . "/Resources/Views/Partials/login-register__header.php"; ?>
         <?php
         require BASE_PATH . "/Resources/Views/registro/register-step-1.php";
