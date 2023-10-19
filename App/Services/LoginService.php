@@ -2,16 +2,17 @@
 
 class LoginService
 {
-  private $_usuarioService;
+  private $usuarioService;
 
   public function __construct()
   {
-    $this->_usuarioService = Container::resolve(UsuarioService::class);
+    $this->usuarioService = Container::resolve(UsuarioService::class);
   }
 
   public function login($username, $password)
   {
-    $usuario = $this->_usuarioService->getByUsername($username);
+    $usuario = $this->usuarioService->getUsuarioByUsername($username);
+    var_dump($usuario);
     if ($usuario !== null && password_verify($password, $usuario->getPassword())) {
       return true;
     }

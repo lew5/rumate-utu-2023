@@ -14,7 +14,12 @@ class RemateService
 
   public function getRemates()
   {
-    return $this->remateRepository->find();
+    $remates = $this->remateRepository->find();
+    foreach ($remates as $remate) {
+      $remate->setFechaInicio(formatFecha($remate->getFechaInicio()));
+      $remate->setFechaFinal(formatFecha($remate->getFechaFinal()));
+    }
+    return $remates;
   }
 
   public function getRemateById($id)

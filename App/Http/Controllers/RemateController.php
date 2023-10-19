@@ -4,7 +4,7 @@ class RemateController
 {
   public static function listarRemates()
   {
-    $remates = Container::resolve(RemateService::class)->getAll();
+    $remates = Container::resolve(RemateService::class)->getRemates();
     $view = Container::resolve(View::class);
     $view->assign("title", "Rumate - Home");
     $view->assign("header_title", "Remates");

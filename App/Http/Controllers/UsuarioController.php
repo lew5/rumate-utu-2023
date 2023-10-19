@@ -9,7 +9,7 @@ class UsuarioController
       $password = $_POST['password'];
       $usuarioValidado = Container::resolve(LoginService::class)->login($username, $password);
       if ($usuarioValidado !== false) {
-        $usuario = Container::resolve(UsuarioService::class)->getByUsername($username);
+        $usuario = Container::resolve(UsuarioService::class)->getUsuarioByUsername($username);
         $serializedPersona = serialize($usuario);
         $_SESSION['usuario'] = $serializedPersona;
         header("Location: " . PUBLIC_PATH);

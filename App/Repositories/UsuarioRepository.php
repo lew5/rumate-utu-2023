@@ -4,7 +4,7 @@ class UsuarioRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("usuarios","id_usuario","Usuario");
+    parent::__construct("usuarios", "id_usuario", "Usuario");
   }
 
   public function find()

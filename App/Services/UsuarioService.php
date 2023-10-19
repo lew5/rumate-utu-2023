@@ -23,6 +23,11 @@ class UsuarioService
     return $this->usuarioRepository->findById($id);
   }
 
+  public function getUsuarioByUsername($username)
+  {
+    return $this->usuarioRepository->findByUsername($username);
+  }
+
   public function updateUsuario($id, $data)
   {
     $this->usuarioRepository->updateUsuario($id, $data);

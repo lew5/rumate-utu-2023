@@ -41,10 +41,11 @@ class Repository
     }
     $stmt = $this->db->prepare($sql);
     $stmt->execute($conditions);
-    if ($select != "*") {
-      return $stmt->fetchObject("$this->class");
+    $stmtFetchAll = $stmt->fetchAll(PDO::FETCH_CLASS, "$this->class");
+    if (count($stmtFetchAll) == 1) {
+      return $stmtFetchAll[0]; // Devolver el primer objeto
     } else {
-      return $stmt->fetchAll(PDO::FETCH_CLASS, "$this->class");
+      return $stmtFetchAll;
     }
   }
 
