@@ -33,9 +33,15 @@ class AuthController
   private function iniciarSession($username)
   {
     $usuario = Container::resolve(UsuarioService::class)->getUsuarioByUsername($username);
-    $usuario = serialize($usuario);
-    $_SESSION['usuario'] = $usuario;
-    route::redirect();
+    if ($usuario->getTipo() == "ADMINISTRADOR" || $usuario->getTipo() == "ROOT") {
+      $usuario = serialize($usuario);
+      $_SESSION['usuario'] = $usuario;
+      route::redirect("/admin/remates");
+    } else {
+      $usuario = serialize($usuario);
+      $_SESSION['usuario'] = $usuario;
+      route::redirect();
+    }
   }
 
   private function errorSession($username)

@@ -10,8 +10,8 @@ VALUES
 -- Insertar datos en la tabla USUARIOS
 INSERT INTO USUARIOS (username_usuario, password_usuario, email_usuario, tipo_usuario) 
 VALUES
-    ('rootuser', 'rootpassword', 'root@example.com', 'ROOT'),
-    ('adminuser', 'adminpassword', 'admin@example.com', 'ADMINISTRADOR'),
+    ('root', '$2y$10$C0bPJ9Itstkm4eDlsd52QuVDkR4oH3gPVgdp0usmS81qho8YSxOTi', 'root@example.com', 'ROOT'),
+    ('admin', '$2y$10$hbjEYjPcKVQ2.IIX4DWk5eJGEOIDAZx.vaf39ILQ1iEFwmBtMSCPi', 'admin@example.com', 'ADMINISTRADOR'),
     ('clienteuser', 'clientepassword', 'cliente@example.com', 'CLIENTE'),
     ('proveedoruser', 'proveedorpassword', 'proveedor@example.com', 'PROVEEDOR'),
     ('rematadoruser', 'rematadorpassword', 'rematador@example.com', 'REMATADOR');
@@ -43,10 +43,10 @@ VALUES
     ('Toro');
 
 -- Insertar datos en la tabla REMATES
-INSERT INTO REMATES (titulo_remate, fecha_inicio_remate, fecha_final_remate, estado_remate)
+INSERT INTO REMATES (titulo_remate, fecha_inicio_remate, fecha_final_remate)
 VALUES
-    ('Remate 1', '2023-10-20 10:00:00', '2023-10-21 14:00:00', 'ACTIVO'),
-    ('Remate 2', '2023-10-22 09:00:00', '2023-10-23 15:00:00', 'INACTIVO');
+    ('Remate 1', '2023-10-20 10:00:00', '2023-10-21 14:00:00'),
+    ('Remate 2', '2023-10-22 09:00:00', '2023-10-23 15:00:00');
 
 -- Insertar datos en la tabla LOTES
 INSERT INTO LOTES (imagen_lote, precio_base_lote, mejor_oferta_lote, id_proveedor_lote, id_ficha_lote, id_categoria_lote)

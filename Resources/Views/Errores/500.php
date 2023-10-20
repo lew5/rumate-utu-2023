@@ -7,7 +7,6 @@ require BASE_PATH . "/Resources/Views/Partials/head.php";
     <h2>Algo salió mal</h2>
     <img src="<?= PUBLIC_PATH ?>/Public/imgs/db-error-cow.webp"
       alt="db error img" width="400px" height="400px">
-    <code><?= $error ?> <?= $errorMessage ?></code>
   </div>
 </div>
 <?php

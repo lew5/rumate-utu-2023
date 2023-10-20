@@ -1,4 +1,5 @@
 <?php
+// var_dump(PasswordHash::hashPassword("root"));
 // $fechaServidor = new DateTime();
 
 // // Definir la fecha que deseas comparar como un objeto DateTime
@@ -22,7 +23,8 @@ Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
 
 Route::get("/{idProveedor}/lotes", "ProveedorController@listarLotes"); //! EN DESARROLLO 
 
-Route::get("/admin/remates", "AdministradorController@index");
+Route::get("/admin/remates", "RemateController@listarRemates");
+Route::get("/admin/registrar-remate", "AdministradorController@crearRemate");
 Route::get("/remate/editar/{idRemate}", "AdministradorController@editarRemate");
 Route::get("/lote/editar/{idLote}", "AdministradorController@editarLote");
 Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate");

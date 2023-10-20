@@ -12,7 +12,8 @@ class AdministradorController
     $this->usuarioService = Container::resolve(UsuarioService::class);
     $this->remateService = Container::resolve(RemateService::class);
   }
-  public function index()
+
+  public function crearRemate()
   {
     $categorias = $this->categoriaRepository->find();
     $proveedores = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");

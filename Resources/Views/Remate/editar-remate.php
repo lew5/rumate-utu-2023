@@ -2,13 +2,7 @@
 require BASE_PATH . "/Resources/Views/Partials/doctype.php";
 require BASE_PATH . "/Resources/Views/Partials/head.php";
 require BASE_PATH . "/Resources/Views/Partials/nav.php";
-?>
-<div class="header">
-  <div class="container-1024 f-row">
-    <h2><?= $header_title ?></h2>
-  </div>
-</div>
-<?php
+require BASE_PATH . "/Resources/Views/Partials/headers/header.php";
 require BASE_PATH . "/Resources/Views/Partials/main-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
 ?>
