@@ -4,7 +4,7 @@ class LotePostulaRemateRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("lotes_postulan_remates","id_remate_lote_postula_remate","LotePostulaRemate");
+    parent::__construct("lotes_postulan_remates", "id_remate_lote_postula_remate", "LotePostulaRemate");
   }
 
   public function find()
@@ -18,6 +18,16 @@ class LotePostulaRemateRepository extends Repository
       [
         "$this->idColumn" => $id
       ]
+    );
+  }
+
+  public function findLotesByRemateId($id)
+  {
+    return $this->read(
+      [
+        "$this->idColumn" => $id
+      ],
+      "id_lote_lote_postula_remate"
     );
   }
 

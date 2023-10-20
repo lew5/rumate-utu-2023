@@ -66,6 +66,27 @@ class RemateService
     }
   }
 
+  public function getLotes($idRemate)
+  {
+    $lotesDeRemate = $this->lotePostulaRemateRepository->findLotesByRemateId($idRemate);
+    $lotes = [];
+    if ($lotesDeRemate === null || $lotesDeRemate === false) {
+      abort();
+    }
+    if (is_object($lotesDeRemate)) {
+      $lotes[] = $this->getLoteById($lotesDeRemate);
+    } else {
+      foreach ($lotesDeRemate as $lote) {
+        $lotes[] = $this->getLoteById($lote);
+      }
+    }
+    return $lotes;
+  }
+  private function getLoteById($lote)
+  {
+    $idLote = $lote->getIdLote();
+    return $this->loteService->getLoteById($idLote);
+  }
   private function remateToAssocArray($remateModel)
   {
     return [

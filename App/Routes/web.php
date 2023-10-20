@@ -1,4 +1,5 @@
 <?php
+
 Container::resolve(Route::class, Container::resolve(Router::class));
 // RUTAS DE REMATE
 Route::get("/", "RemateController@listarRemates");
