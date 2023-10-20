@@ -63,6 +63,25 @@ class AdministradorController
     $this->remateService->createRemate($remate);
   }
 
+  public function editarRemate($idRemate)
+  {
+    $lotes = Container::resolve(RemateService::class)->getLotes($idRemate);
+    $view = Container::resolve(View::class);
+    $view->assign("title", "Rumate - Editar remate");
+    $view->assign("header_title", "Editar remate <span>#$idRemate</span>");
+    $view->assign("lotes", $lotes);
+    $view->render(BASE_PATH . "/Resources/Views/Remate/editar-remate.php");
+  }
+
+  public function editarLote($idLote)
+  {
+    $lote = Container::resolve(LoteService::class)->getLoteById($idLote);
+    $view = Container::resolve(View::class);
+    $view->assign("title", "Rumate - Editar lote");
+    $view->assign("header_title", "Editar lote <span>#$idLote</span>");
+    $view->assign("lotes", $lote);
+    $view->render(BASE_PATH . "/Resources/Views/Lote/editar-lote.php");
+  }
 
 }
 

@@ -17,6 +17,10 @@
     </p>
   </div>
   <?php if (sessionAdmin() || sessionRoot()) { ?>
+    <div class="card-remate__button card-remate__button--eliminar">
+      <a href="<?= PUBLIC_PATH ?>/remate/editar/<?= $remate->getId(); ?>"
+        class="link">Eliminar</a>
+    </div>
     <div class="card-remate__button">
       <a href="<?= PUBLIC_PATH ?>/remate/editar/<?= $remate->getId(); ?>"
         class="link">Editar</a>

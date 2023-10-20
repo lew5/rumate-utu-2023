@@ -1,5 +1,17 @@
 <?php
+// $fechaServidor = new DateTime();
 
+// // Definir la fecha que deseas comparar como un objeto DateTime
+// $fechaComparar = new DateTime('2023-10-20 12:16:00');
+
+// // Comparar las fechas
+// if ($fechaComparar > $fechaServidor) {
+//   echo "La fecha a comparar es posterior a la fecha del servidor.";
+// } elseif ($fechaComparar < $fechaServidor) {
+//   echo "La fecha a comparar es anterior a la fecha del servidor.";
+// } else {
+//   echo "Las fechas son iguales.";
+// }
 Container::resolve(Route::class, Container::resolve(Router::class));
 // RUTAS DE REMATE
 Route::get("/", "RemateController@listarRemates");
@@ -7,9 +19,13 @@ Route::get("/remate/{id}", "RemateController@listarLotes");
 Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
 
 
+
 Route::get("/{idProveedor}/lotes", "ProveedorController@listarLotes"); //! EN DESARROLLO 
-Route::get("/admin/panel-de-control", "AdministradorController@index"); //! EN DESARROLLO 
-Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate"); //! EN DESARROLLO 
+
+Route::get("/admin/remates", "AdministradorController@index");
+Route::get("/remate/editar/{idRemate}", "AdministradorController@editarRemate");
+Route::get("/lote/editar/{idLote}", "AdministradorController@editarLote");
+Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate");
 
 
 // RUTAS DE USUARIO

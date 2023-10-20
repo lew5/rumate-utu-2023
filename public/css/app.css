@@ -491,6 +491,18 @@ a {
   justify-content: center;
 }
 
+.card-remate__button--eliminar a {
+  color: red
+}
+
+.card-remate__button--eliminar a:visited {
+  color: red
+}
+
+.card-remate__button--eliminar a:hover {
+  color: rgb(255, 46, 46);
+}
+
 .header {
   height: 100px;
   display: flex;
