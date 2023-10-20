@@ -264,6 +264,7 @@ a {
 .button-link--accent {
   background-color: transparent;
   color: var(--accent-btn-default-color);
+  font-weight: 500;
 }
 
 /*NAV styles*/
@@ -567,12 +568,13 @@ a {
 }
 
 .button-link--accent:hover {
-  color: var(--accent-btn-text-color);
-  background-color: var(--accent-btn-hover-color);
+  background-color: var(--coral-100);
+  color: var(--accent-btn-hover-color);
 }
 
 .button-link--accent:active {
-  background-color: var(--accent-btn-active-color);
+  background-color: var(--coral-200);
+  color: var(--accent-btn-hover-color);
 }
 
 .link:visited {
@@ -617,19 +619,6 @@ textarea {
   justify-content: right;
   padding-top: 1rem;
   padding-bottom: 2rem;
-}
-
-.button__input--nuevo-lote {
-  background-color: transparent;
-  color: var(--accent-btn-default-color);
-  font-weight: 500;
-
-}
-
-.button__input--nuevo-lote:hover {
-  background-color: var(--coral-100);
-  color: var(--accent-btn-hover-color);
-  font-weight: 500;
 }
 
 @media only screen and (min-width: 360px) {

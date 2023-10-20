@@ -1,5 +1,5 @@
 <?php
-// var_dump(PasswordHash::hashPassword("root"));
+// var_dump(PasswordHash::hashPassword("cliente"));
 // $fechaServidor = new DateTime();
 
 // // Definir la fecha que deseas comparar como un objeto DateTime

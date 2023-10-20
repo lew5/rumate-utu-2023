@@ -12,9 +12,9 @@ INSERT INTO USUARIOS (username_usuario, password_usuario, email_usuario, tipo_us
 VALUES
     ('root', '$2y$10$C0bPJ9Itstkm4eDlsd52QuVDkR4oH3gPVgdp0usmS81qho8YSxOTi', 'root@example.com', 'ROOT'),
     ('admin', '$2y$10$hbjEYjPcKVQ2.IIX4DWk5eJGEOIDAZx.vaf39ILQ1iEFwmBtMSCPi', 'admin@example.com', 'ADMINISTRADOR'),
-    ('clienteuser', 'clientepassword', 'cliente@example.com', 'CLIENTE'),
-    ('proveedoruser', 'proveedorpassword', 'proveedor@example.com', 'PROVEEDOR'),
-    ('rematadoruser', 'rematadorpassword', 'rematador@example.com', 'REMATADOR');
+    ('cliente', '$2y$10$xoTV71k203SRSjR/B1zkPurXezKwWExF8Vt4rXKF7vyzo1YjVj1d6', 'cliente@example.com', 'CLIENTE'),
+    ('proveedor', '$2y$10$Bpjp/rLggmhvv1wwHv.7C.kyb2dT/Gf3qMR3.oUQskEjGP3xrxrhi', 'proveedor@example.com', 'PROVEEDOR'),
+    ('rematador', '$2y$10$E/loDqHzCjJ1X13oR6FIuOxELntpmwGWmUrzsVbOYYnwG1t8ULxhG', 'rematador@example.com', 'REMATADOR');
 
 -- Insertar datos en la tabla USUARIOS_DE_PERSONAS
 INSERT INTO USUARIOS_DE_PERSONAS (id_usuario_usuarios_de_personas, id_persona_usuarios_de_persona)

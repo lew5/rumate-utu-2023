@@ -36,6 +36,15 @@ function sessionProveedor()
   }
 }
 
+function sessionRematador()
+{
+  if (sessionUsuario()) {
+    return sessionUsuario()->getTipo() == "REMATADOR";
+  } else {
+    return false;
+  }
+}
+
 function sessionUsuario()
 {
   if (isset($_SESSION['usuario'])) {

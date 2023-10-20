@@ -19,8 +19,8 @@
           require BASE_PATH . "/Resources/Views/Partials/nav-administrador.php";
         } elseif (sessionRoot()) {
           require BASE_PATH . "/Resources/Views/Partials/nav-root.php";
-        } else {
-          // Tipo de usuario desconocido
+        } elseif (sessionRematador()) {
+          require BASE_PATH . "/Resources/Views/Partials/nav-proveedor.php";
         }
       }
       ?>
