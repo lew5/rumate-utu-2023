@@ -28,6 +28,11 @@ class UsuarioService
     return $this->usuarioRepository->findByUsername($username);
   }
 
+  public function getUsuarioByTipo($tipo)
+  {
+    return $this->usuarioRepository->findByTipo($tipo);
+  }
+
   public function updateUsuario($id, $data)
   {
     $this->usuarioRepository->updateUsuario($id, $data);

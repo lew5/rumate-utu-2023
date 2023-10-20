@@ -30,6 +30,14 @@ class UsuarioRepository extends Repository
     );
   }
 
+  public function findByTipo($tipo)
+  {
+    return $this->read(
+      [
+        'tipo_usuario' => $tipo
+      ]
+    );
+  }
   public function addUsuario($data)
   {
     $this->create($data);

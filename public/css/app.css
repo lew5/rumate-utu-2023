@@ -594,6 +594,10 @@ input::-ms-clear {
   display: none;
 }
 
+textarea {
+  resize: none;
+  height: 300px;
+}
 
 @media only screen and (min-width: 360px) {
   .login-register__container {
