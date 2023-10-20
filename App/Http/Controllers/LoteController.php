@@ -5,7 +5,6 @@ class LoteController
   public static function index($idRemate, $idLote)
   {
     $lote = Container::resolve(LoteService::class)->getLoteById($idLote);
-    var_dump($lote);
     if ($lote != false) {
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Lote");

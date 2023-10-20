@@ -2,7 +2,7 @@
   <?php
   ?>
   <?php if ($lote != false) {
-    var_dump($lote); ?>
+    ; ?>
     <!-- VISTA DE REMATE EN TIEMPO REAL -->
   <?php } else {
 

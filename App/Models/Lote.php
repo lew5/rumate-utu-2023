@@ -5,7 +5,7 @@ class Lote
   private $id_lote;
   private $imagen_lote;
   private $precio_base_lote;
-  private $mejor_oferta_lote;
+  private $mejor_oferta_lote = 0;
   private $id_proveedor_lote;
   private $id_ficha_lote;
   private $id_categoria_lote;

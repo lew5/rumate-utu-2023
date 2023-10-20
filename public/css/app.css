@@ -594,9 +594,30 @@ input::-ms-clear {
   display: none;
 }
 
+/* registro remate */
 textarea {
   resize: none;
   height: 300px;
+}
+
+.registro-remate__actions {
+  gap: 2rem;
+  justify-content: right;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.button__input--nuevo-lote {
+  background-color: transparent;
+  color: var(--accent-btn-default-color);
+  font-weight: 500;
+
+}
+
+.button__input--nuevo-lote:hover {
+  background-color: var(--coral-100);
+  color: var(--accent-btn-hover-color);
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 360px) {

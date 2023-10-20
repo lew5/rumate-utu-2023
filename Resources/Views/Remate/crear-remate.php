@@ -24,11 +24,14 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
         </div>
       </div>
       <?php require BASE_PATH . "/Resources/Views/Remate/form-ficha.php"; ?>
-      <div class="actions f-column">
+      <div class="registro-remate__actions f-row">
         <div class="button">
-          <input class="button__input" type="submit" value="CREAR REMATE" />
+          <input class="button__input button__input--nuevo-lote" type="button"
+            value="Guardar y limpiar" />
         </div>
-        <span> <a class="link hidden">VOLVER</a></span>
+        <div class="button">
+          <input class="button__input" type="submit" value="Publicar remate" />
+        </div>
       </div>
     </form>
   </div>

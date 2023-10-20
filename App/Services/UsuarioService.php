@@ -28,9 +28,15 @@ class UsuarioService
     return $this->usuarioRepository->findByUsername($username);
   }
 
-  public function getUsuarioByTipo($tipo)
+  public function getUsuariosByTipo($tipo)
   {
-    return $this->usuarioRepository->findByTipo($tipo);
+    $usuario = $this->usuarioRepository->findByTipo($tipo);
+    if (is_object($usuario)) {
+      $usuarios[] = $usuario;
+      return $usuarios;
+    } else {
+      return $usuario;
+    }
   }
 
   public function updateUsuario($id, $data)

@@ -2,20 +2,20 @@
 
 class Usuario
 {
-  private $id;
+  private $id_usuario;
   private $username_usuario;
   private $password_usuario;
   private $email_usuario;
-  private $tipo_usuario;
+  private $tipo_usuario = "CLIENTE";
 
   public function getId()
   {
-    return $this->id;
+    return $this->id_usuario;
   }
 
   public function setId($id)
   {
-    $this->id = $id;
+    $this->id_usuario = $id;
   }
   public function getUsername()
   {
