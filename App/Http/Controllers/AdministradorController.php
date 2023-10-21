@@ -29,40 +29,35 @@ class AdministradorController
 
   public function registrarRemate()
   {
-    // var_dump($_POST);
+    $remateData = json_decode($_POST['remate-data']);
     $remate = Container::resolve(Remate::class);
-    $remate->setTitulo($_POST['titulo_remate']);
-    $remate->setImagen($_POST['imagen_remate']);
-    $remate->setFechaInicio($_POST['fecha_inicio_remate']);
-    $remate->setFechaFinal($_POST['fecha_final_remate']);
-
-    $lote = Container::resolve(Lote::class);
-    $lote->setImagen($_POST['imagen_lote']);
-    $lote->setPrecioBase($_POST['precio_base_lote']);
-    $lote->setIdProveedor($_POST['id_proveedor_lote']);
-    $lote->setIdCategoria($_POST['id_categoria_lote']);
-
-    $ficha = Container::resolve(Ficha::class);
-    $ficha->setPeso($_POST['peso_ficha']);
-    $ficha->setCantidad($_POST['cantidad_ficha']);
-    $ficha->setRaza($_POST['raza_ficha']);
-    $ficha->setDescripcion($_POST['descripcion_ficha']);
-
-    $lote->setFicha($ficha);
-
-    $arrayLotes[] = $lote;
-
-    $remate->setLotes($arrayLotes);
-
+    $remate->setTitulo($remateData->titulo_remate);
+    $remate->setImagen($remateData->imagen_remate);
+    $remate->setFechaInicio($remateData->fecha_inicio_remate);
+    $remate->setFechaFinal($remateData->fecha_final_remate);
+    $lotes = [];
+    foreach ($remateData->lotes as $loteData) {
+      $lote = Container::resolve(Lote::class);
+      $lote->setImagen($loteData->imagen_lote);
+      $lote->setPrecioBase($loteData->precio_base_lote);
+      $lote->setIdProveedor($loteData->proveedor);
+      $lote->setIdCategoria($loteData->categoria);
+      $ficha = Container::resolve(Ficha::class);
+      $ficha->setPeso($loteData->ficha->peso_ficha);
+      $ficha->setCantidad($loteData->ficha->cantidad_ficha);
+      $ficha->setRaza($loteData->ficha->raza_ficha);
+      $ficha->setDescripcion($loteData->ficha->descripcion_ficha);
+      $lote->setFicha($ficha);
+      $lotes[] = $lote;
+    }
+    $remate->setLotes($lotes);
     var_dump($remate);
-    die;
-
-    // var_dump($remate->getLotes()[0]->getFicha());
+    // die;
     // // // $remate = serialize($remate);
     // // // $_SESSION['remate'] = $remate;
     // // // var_dump(unserialize($_SESSION['remate']));
     // die;
-    $this->remateService->createRemate($remate);
+    // $this->remateService->createRemate($remate);
   }
 
   public function editarRemate($idRemate)

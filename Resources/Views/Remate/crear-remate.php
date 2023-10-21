@@ -29,10 +29,11 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
           <input class="button__input button-link--accent" type="button"
             value="Guardar y limpiar" />
         </div>
-        <div class="button ">
-          <input class="button__input" type="submit" value="Publicar remate" />
+        <div class="button">
+          <input id="publicar" class="button__input" type="submit" value="Publicar remate" />
         </div>
       </div>
+      <input type="hidden" id="remate-data" name="remate-data">
     </form>
   </div>
 </div>
@@ -40,6 +41,6 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-end.php";
 require BASE_PATH . "/Resources/Views/Partials/main-end.php";
 $view = Container::resolve(View::class);
-$view->assign("script", "remate");
+$view->assign("script", "registro-remate");
 $view->render(BASE_PATH . "/Resources/Views/Partials/footer.php");
 ?>
