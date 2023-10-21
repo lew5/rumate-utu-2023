@@ -2,6 +2,30 @@
 
 class Middleware
 {
+  public static function usuario($url)
+  {
+    return sessionUsuario() ? route::redirect($url) : false;
+  }
+  public static function root()
+  {
+    return sessionRoot() ? true : abort(403);
+  }
+  public static function admin()
+  {
+    return sessionAdmin() || sessionRoot() ? true : abort(403);
+  }
+
+  public static function cliente($url)
+  {
+    return sessionCliente() ? true : route::redirect($url);
+  }
+
+  public static function proveedor()
+  {
+    return sessionCliente() ? abort(403) : false;
+  }
+
+
 
   public const LIST = [
     'invitado' => InvitadoMiddleware::class,

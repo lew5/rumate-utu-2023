@@ -4,7 +4,7 @@ class LoginController
 {
   public function index()
   {
-    Middleware::resolve("invitado");
+    Middleware::usuario("/");
     $view = Container::resolve(View::class);
     $view->assign("title", "Rumate - login");
     $view->assign("h1", "Login");

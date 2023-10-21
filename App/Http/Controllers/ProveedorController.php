@@ -4,6 +4,7 @@ class ProveedorController
 {
   public static function listarLotes($usernameProveedor)
   {
+    Middleware::proveedor();
     if (sessionProveedor()) {
       $proveedorModel = Container::resolve(Proveedor::class);
       $lotes = $proveedorModel->getLotesDeProveedor($id);

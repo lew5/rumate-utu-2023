@@ -5,18 +5,20 @@ class RegistroController
 
   public function __construct()
   {
+    Middleware::usuario("/");
     $this->registroService = Container::resolve(RegistroService::class);
   }
   public function index()
   {
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $postData = $_POST;
       $persona = $this->postToPersona($postData);
       $personaRegistrada = $this->registrarPersona($persona);
       if ($personaRegistrada) {
-        $this->iniciarSession($username);
+        $this->iniciarSession();
       } else {
-        $this->errorSession($username);
+        $this->errorRegistro();
       }
     } else {
       // Mostrar el formulario de registro
@@ -29,14 +31,14 @@ class RegistroController
     }
   }
 
-  private function iniciarSession($username)
+  private function iniciarSession()
   {
     route::redirect("/login");
   }
 
-  private function errorSession($username)
+  private function errorRegistro()
   {
-    // Implementación de manejo de error de inicio de sesión
+    abort(500);
   }
 
   private function postToPersona($postData)

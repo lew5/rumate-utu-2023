@@ -8,6 +8,7 @@ class AdministradorController
   private $usuarioService;
   public function __construct()
   {
+    Middleware::admin();
     $this->categoriaRepository = Container::resolve(CategoriaRepository::class);
     $this->usuarioService = Container::resolve(UsuarioService::class);
     $this->remateService = Container::resolve(RemateService::class);

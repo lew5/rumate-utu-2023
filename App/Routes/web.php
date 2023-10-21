@@ -25,8 +25,8 @@ Route::get("/{idProveedor}/lotes", "ProveedorController@listarLotes"); //! EN DE
 
 Route::get("/admin/remates", "RemateController@listarRemates");
 Route::get("/admin/registrar-remate", "AdministradorController@crearRemate");
-Route::get("/remate/editar/{idRemate}", "AdministradorController@editarRemate");
-Route::get("/lote/editar/{idLote}", "AdministradorController@editarLote");
+Route::get("/admin/remate/editar/{idRemate}", "AdministradorController@editarRemate");
+Route::get("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
 Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate");
 
 
