@@ -18,6 +18,6 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-end.php";
 require BASE_PATH . "/Resources/Views/Partials/main-end.php";
 $view = Container::resolve(View::class);
-$view->assign("script", "poner script");
+$view->assign("script", "actualizar-remate");
 $view->render(BASE_PATH . "/Resources/Views/Partials/footer.php");
 ?>

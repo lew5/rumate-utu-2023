@@ -60,17 +60,25 @@ class RemateService
 
   public function updateRemate($id, $remateModel)
   {
-    $this->remateRepository->updateRemate($id, $remateModel);
+    try {
+      $this->remateRepository->updateRemate($id, $remateModel);
+      return true;
+    } catch (PDOException $e) {
+      return false;
+    } finally {
+      $this->remateRepository->close();
+    }
   }
 
   public function deleteRemate($id)
   {
     $this->remateRepository->beginTransaction();
     try {
-      $this->loteService->deleteLotesByRemate($id);
-      $this->remateRepository->deleteRemate($id);
+      $this->lotePostulaRemateRepository->deleteLoteDeRemate($id);
+      // $this->remateRepository->deleteRemate($id);
       $this->remateRepository->commit();
     } catch (PDOException $e) {
+      var_dump($e->errorInfo);
       $this->remateRepository->rollback();
     } finally {
       $this->remateRepository->close();

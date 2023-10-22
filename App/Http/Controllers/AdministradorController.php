@@ -56,19 +56,30 @@ class AdministradorController
   public function editarRemate($idRemate)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    }
-    $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
-    if ($remate->getLotes()) {
-      $view = Container::resolve(View::class);
-      $view->assign("title", "Rumate - Editar remate");
-      $view->assign("header_title", "Editar remate <span>#$idRemate</span>");
-      $view->assign("remate", $remate);
-      $view->render(BASE_PATH . "/Resources/Views/Remate/editar-remate.php");
+      $remateActualizado = $_POST;
+      if ($this->remateService->updateRemate($idRemate, $remateActualizado)) {
+        http_response_code(200);
+        $respuesta = ['mensaje' => 'Remate actualizado correctamente'];
+      } else {
+        http_response_code(400);
+        $respuesta = ['mensaje' => 'Error al actualizar el remate'];
+      }
+      header('Content-Type: application/json');
+      $respuesta = json_encode($respuesta);
+      echo $respuesta;
+      die;
     } else {
-      abort(404);
+      $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
+      if ($remate->getLotes()) {
+        $view = Container::resolve(View::class);
+        $view->assign("title", "Rumate - Editar remate");
+        $view->assign("header_title", "Editar remate <span>#$idRemate</span>");
+        $view->assign("remate", $remate);
+        $view->render(BASE_PATH . "/Resources/Views/Remate/editar-remate.php");
+      } else {
+        abort(404);
+      }
     }
-
   }
 
 
