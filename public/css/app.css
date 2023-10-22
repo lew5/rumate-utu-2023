@@ -267,6 +267,13 @@ a {
   font-weight: 500;
 }
 
+.button--eliminar {
+  background-color: transparent;
+  color: #ff2323;
+  font-weight: 400;
+}
+
+
 /*NAV styles*/
 .navigation-wrap {
   height: 100px;
@@ -597,6 +604,11 @@ a {
   cursor: not-allowed;
 }
 
+.button--eliminar:hover {
+  background-color: #ffdddd;
+  color: #d70000;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -617,7 +629,7 @@ textarea {
 .registro-remate__actions {
   gap: 2rem;
   justify-content: right;
-  padding-top: 1rem;
+  padding-top: 2rem;
   padding-bottom: 2rem;
 }
 

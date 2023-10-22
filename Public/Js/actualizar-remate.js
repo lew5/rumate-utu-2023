@@ -1,7 +1,5 @@
-// Obtiene una referencia al formulario
 const form = document.getElementById("actualizar_remate");
 
-// Agrega eventos onchange a los campos que deseas rastrear
 form.querySelectorAll("input, select, textarea").forEach((input) => {
   input.addEventListener("change", function () {
     // Cuando un campo cambie, agrega el campo modificado al FormData
@@ -10,11 +8,33 @@ form.querySelectorAll("input, select, textarea").forEach((input) => {
   });
 });
 
-// Maneja el envío del formulario
 document.getElementById("actualizar").addEventListener("click", function (event) {
   event.preventDefault();
   actualizarRemate();
 });
+
+document.getElementById("eliminar-remate").addEventListener("click", function (event) {
+  event.preventDefault();
+  eliminarRemate();
+});
+
+function eliminarRemate() {
+  var currentURL = window.location.href;
+
+  // Reemplaza "editar" por "eliminar"
+  var url = currentURL.replace("editar", "eliminar");
+  axios
+    .get(url)
+    .then((response) => {
+      console.log("Éxito:", response.data);
+      window.alert(response.data.mensaje);
+      window.location.href = "/rumate/";
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      window.alert(error.response.data.mensaje);
+    });
+}
 
 function actualizarRemate() {
   const form = document.getElementById("actualizar_remate");
@@ -28,6 +48,6 @@ function actualizarRemate() {
     })
     .catch((error) => {
       console.error("Error:", error);
-      window.alert(response.error.mensaje);
+      window.alert(response.data.mensaje);
     });
 }

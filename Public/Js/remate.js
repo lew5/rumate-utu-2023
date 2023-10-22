@@ -1,4 +1,4 @@
-const socket = new WebSocket("ws://localhost:8080"); // Cambia la URL según la ubicación de tu servidor WebSocket
+const socket = new WebSocket("ws://localhost:8080");
 const contadorElement = document.getElementById("contador");
 console.log(contadorElement.textContent);
 

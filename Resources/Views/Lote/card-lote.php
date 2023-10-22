@@ -14,10 +14,6 @@
       kg</p>
   </div>
   <?php if (sessionAdmin() || sessionRoot()) { ?>
-    <div class="card-remate__button card-remate__button--eliminar">
-      <a href="<?= PUBLIC_PATH ?>/admin/lote/eliminar/<?= $lote->getId(); ?>"
-        class="link">Eliminar</a>
-    </div>
     <div class="card-remate__button">
       <a href="<?= PUBLIC_PATH ?>/admin/lote/editar/<?= $lote->getId(); ?>"
         class="link">Editar</a>

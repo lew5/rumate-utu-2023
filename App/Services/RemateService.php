@@ -77,9 +77,10 @@ class RemateService
       $this->lotePostulaRemateRepository->deleteLoteDeRemate($id);
       // $this->remateRepository->deleteRemate($id);
       $this->remateRepository->commit();
+      return true;
     } catch (PDOException $e) {
-      var_dump($e->errorInfo);
       $this->remateRepository->rollback();
+      return false;
     } finally {
       $this->remateRepository->close();
     }

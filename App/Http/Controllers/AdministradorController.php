@@ -82,9 +82,19 @@ class AdministradorController
     }
   }
 
-
-
-
+  public function eliminarRemate($idRemate)
+  {
+    if ($this->remateService->deleteRemate($idRemate)) {
+      http_response_code(200);
+      $respuesta = ['mensaje' => 'Remate eliminado correctamente'];
+    } else {
+      http_response_code(400);
+      $respuesta = ['mensaje' => 'Error al eliminar el remate'];
+    }
+    header('Content-Type: application/json');
+    $respuesta = json_encode($respuesta);
+    echo $respuesta;
+  }
 
   public function editarLote($idLote)
   {
