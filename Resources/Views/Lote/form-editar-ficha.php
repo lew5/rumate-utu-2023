@@ -1,4 +1,4 @@
-<div class="registro-remate__ficha">
+<div class="registro-remate__ficha f-column align-center">
   <div class="inputs-wrap">
     <div class="input-field">
       <label class="input-field__label f-column">
@@ -35,6 +35,11 @@
           cols="50"><?= $lote->getFicha()->getDescripcion(); ?></textarea>
       </label>
       <span class="input-field__error-message hidden error">Error</span>
+    </div>
+    <div class="registro-remate__actions f-row">
+      <div class="button">
+        <input class="button__input" type="submit" value="Actualizar cambios" />
+      </div>
     </div>
   </div>
 </div>

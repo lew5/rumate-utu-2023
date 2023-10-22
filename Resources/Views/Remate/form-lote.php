@@ -1,4 +1,4 @@
-<div class="registro-remate__lote">
+<div class="registro-remate__lote f-column align-center">
   <div class="inputs-wrap">
     <div class="input-field">
       <label class="input-field__label f-column">
@@ -46,3 +46,4 @@
       </div>
     </div>
   </div>
+</div>

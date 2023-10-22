@@ -626,6 +626,13 @@ textarea {
   height: 300px;
 }
 
+.registro-remate__remate div.inputs-wrap,
+.registro-remate__lote div.inputs-wrap,
+.registro-remate__ficha div.inputs-wrap {
+  min-width: 50%;
+  max-width: 50%;
+}
+
 .registro-remate__actions {
   gap: 2rem;
   justify-content: right;

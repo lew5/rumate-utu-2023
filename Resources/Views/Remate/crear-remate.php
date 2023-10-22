@@ -24,16 +24,6 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
         </div>
       </div>
       <?php require BASE_PATH . "/Resources/Views/Remate/form-ficha.php"; ?>
-      <div class="registro-remate__actions f-row">
-        <div class="button">
-          <input class="button__input button-link--accent" type="button"
-            value="Guardar y limpiar" />
-        </div>
-        <div class="button">
-          <input id="publicar" class="button__input" type="submit"
-            value="Publicar remate" />
-        </div>
-      </div>
       <input type="hidden" id="remate-data" name="remate-data">
     </form>
   </div>

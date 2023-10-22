@@ -1,6 +1,6 @@
 <form id="actualizar_remate" class="registro-remate__form f-column"
   method="POST" autocomplete="off" enctype="multipart/form-data">
-  <div class="registro-remate__remate f-column">
+  <div class="registro-remate__remate f-column align-center">
     <div class="inputs-wrap">
       <div class="input-field">
         <label class="input-field__label f-column">
@@ -50,36 +50,37 @@
           <span class="input-field__error-message hidden error">Ingresa una
             fecha</span>
         </div>
-
-        <label class="input-field__label f-column">
-          <span class="label__text">Categoría</span>
-          <div class="filtro-container">
-            <select class="input-field__input" id="registro-remate__estado"
-              name="estado_remate">
-              <option value="Pendiente" <?php if ($remate->getEstado() == "Pendiente") {
-                print("selected");
-              } ?>>
-                Pendiente</option>
-              <option value="Rematando" <?php if ($remate->getEstado() == "Rematando") {
-                print("selected");
-              } ?>>Rematando</option>
-              <option value="Finalizado" <?php if ($remate->getEstado() == "Finalizado") {
-                print("selected");
-              } ?>>Finalizado</option>
-            </select>
-          </div>
-        </label>
+        <div class="input-field">
+          <label class="input-field__label f-column">
+            <span class="label__text">Categoría</span>
+            <div class="filtro-container">
+              <select class="input-field__input" id="registro-remate__estado"
+                name="estado_remate">
+                <option value="Pendiente" <?php if ($remate->getEstado() == "Pendiente") {
+                  print("selected");
+                } ?>>
+                  Pendiente</option>
+                <option value="Rematando" <?php if ($remate->getEstado() == "Rematando") {
+                  print("selected");
+                } ?>>Rematando</option>
+                <option value="Finalizado" <?php if ($remate->getEstado() == "Finalizado") {
+                  print("selected");
+                } ?>>Finalizado</option>
+              </select>
+            </div>
+          </label>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="registro-remate__actions f-row">
-    <div class="button">
-      <input id="eliminar-remate" class="button__input button--eliminar"
-        type="button" value="Eliminar remate" />
-    </div>
-    <div class="button">
-      <input id="actualizar" class="button__input" type="submit"
-        value="Actualizar remate" />
+      <div class="registro-remate__actions f-row">
+        <div class="button">
+          <input id="eliminar-remate" class="button__input button--eliminar"
+            type="button" value="Eliminar remate" />
+        </div>
+        <div class="button">
+          <input id="actualizar" class="button__input" type="submit"
+            value="Actualizar remate" />
+        </div>
+      </div>
     </div>
   </div>
 </form>
