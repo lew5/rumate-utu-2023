@@ -1,6 +1,6 @@
 <div class="registro-remate__lote">
   <div class="inputs-wrap">
-    <div class="input-field">
+    <!-- <div class="input-field">
       <label class="input-field__label f-column">
         <span class="label__text">Imagen <span
             class="opcional">(opcional)</span></span>
@@ -10,7 +10,7 @@
       </label>
       <span class="input-field__error-message hidden error">El archivo
         debe ser una imagen</span>
-    </div>
+    </div> -->
     <div class="input-field">
       <label class="input-field__label f-column">
         <span class="label__text">Precio base</span>

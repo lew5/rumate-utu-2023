@@ -10,7 +10,7 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
   <div class="registro-remate-form-wrap">
     <form class="registro-remate__form f-column"
       action="<?= PUBLIC_PATH ?>/admin/registrar-remate" method="POST"
-      autocomplete="off">
+      autocomplete="off" enctype="multipart/form-data">
       <?php require BASE_PATH . "/Resources/Views/Remate/form-remate.php"; ?>
       <div class="header">
         <div class="container-1024 f-row">
@@ -30,7 +30,8 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
             value="Guardar y limpiar" />
         </div>
         <div class="button">
-          <input id="publicar" class="button__input" type="submit" value="Publicar remate" />
+          <input id="publicar" class="button__input" type="submit"
+            value="Publicar remate" />
         </div>
       </div>
       <input type="hidden" id="remate-data" name="remate-data">

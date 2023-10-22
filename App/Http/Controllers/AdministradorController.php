@@ -30,6 +30,7 @@ class AdministradorController
   public function registrarRemate()
   {
     $remateData = json_decode($_POST['remate-data']);
+    var_dump($_FILES);
     $remate = Container::resolve(Remate::class);
     $remate->setTitulo($remateData->titulo_remate);
     $remate->setImagen($remateData->imagen_remate);
@@ -38,7 +39,7 @@ class AdministradorController
     $lotes = [];
     foreach ($remateData->lotes as $loteData) {
       $lote = Container::resolve(Lote::class);
-      $lote->setImagen($loteData->imagen_lote);
+      // $lote->setImagen($loteData->imagen_lote);
       $lote->setPrecioBase($loteData->precio_base_lote);
       $lote->setIdProveedor($loteData->proveedor);
       $lote->setIdCategoria($loteData->categoria);
