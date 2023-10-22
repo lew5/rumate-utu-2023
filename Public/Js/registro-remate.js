@@ -9,7 +9,7 @@ var remate = {
 // Agregar un lote con su ficha al objeto remate
 function agregarLote() {
   var lote = {
-    imagen_lote: document.getElementById("registro-remate__imagen_lote").value,
+    imagen_lote: null,
     precio_base_lote: parseFloat(
       document.getElementById("registro-remate__precio-base-lote").value
     ),
@@ -52,11 +52,11 @@ function publicar() {
   console.log(remateData);
 }
 
-document.querySelector(".button-link--accent").addEventListener("click", function () {
+document.querySelector(".button-link--accent").addEventListener("click", function (e) {
+  e.preventDefault();
   guardar();
 });
 
 document.getElementById("publicar").addEventListener("click", function () {
-  guardar();
   publicar();
 });
