@@ -22,7 +22,7 @@ class RemateController
       $view->assign("remate", $remate);
       $view->render(BASE_PATH . "/Resources/Views/Remate/remate.view.php");
     } else {
-      abort();
+      // abort();
     }
   }
 }

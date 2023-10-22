@@ -29,7 +29,12 @@ class RemateService
   {
     $lotes = $this->getLotes($id);
     $remate = $this->remateRepository->findById($id);
-    $remate->setLotes($lotes);
+    if ($lotes) {
+      $remate->setLotes($lotes);
+    } else {
+      abort(404);
+    }
+
     return $remate;
   }
 
@@ -76,8 +81,8 @@ class RemateService
   {
     $lotesDeRemate = $this->lotePostulaRemateRepository->findLotesByRemateId($idRemate);
     $lotes = [];
-    if ($lotesDeRemate === null || $lotesDeRemate === false) {
-      abort();
+    if (!($lotesDeRemate)) {
+      return null; //cuando un remate no tine lotes asignados
     }
     if (is_object($lotesDeRemate)) {
       $lotes[] = $this->getLoteById($lotesDeRemate);

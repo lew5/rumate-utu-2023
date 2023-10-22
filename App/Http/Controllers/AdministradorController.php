@@ -59,11 +59,16 @@ class AdministradorController
 
     }
     $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
-    $view = Container::resolve(View::class);
-    $view->assign("title", "Rumate - Editar remate");
-    $view->assign("header_title", "Editar remate <span>#$idRemate</span>");
-    $view->assign("remate", $remate);
-    $view->render(BASE_PATH . "/Resources/Views/Remate/editar-remate.php");
+    if ($remate->getLotes()) {
+      $view = Container::resolve(View::class);
+      $view->assign("title", "Rumate - Editar remate");
+      $view->assign("header_title", "Editar remate <span>#$idRemate</span>");
+      $view->assign("remate", $remate);
+      $view->render(BASE_PATH . "/Resources/Views/Remate/editar-remate.php");
+    } else {
+      abort(404);
+    }
+
   }
 
 
@@ -75,13 +80,18 @@ class AdministradorController
     $categorias = $this->categoriaRepository->find();
     $proveedores = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
     $lote = Container::resolve(LoteService::class)->getLoteById($idLote);
-    $view = Container::resolve(View::class);
-    $view->assign("title", "Rumate - Editar lote");
-    $view->assign("header_title", "Editar lote <span>#$idLote</span>");
-    $view->assign("lote", $lote);
-    $view->assign("categorias", $categorias);
-    $view->assign("proveedores", $proveedores);
-    $view->render(BASE_PATH . "/Resources/Views/Lote/editar-lote.php");
+    if ($lote) {
+      $view = Container::resolve(View::class);
+      $view->assign("title", "Rumate - Editar lote");
+      $view->assign("header_title", "Editar lote <span>#$idLote</span>");
+      $view->assign("lote", $lote);
+      $view->assign("categorias", $categorias);
+      $view->assign("proveedores", $proveedores);
+      $view->render(BASE_PATH . "/Resources/Views/Lote/editar-lote.php");
+    } else {
+      abort(404);
+    }
+
   }
 
 }
