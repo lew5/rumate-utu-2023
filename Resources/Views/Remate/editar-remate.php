@@ -6,7 +6,7 @@ require BASE_PATH . "/Resources/Views/Partials/headers/header.php";
 require BASE_PATH . "/Resources/Views/Partials/main-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
 ?>
-<?php require BASE_PATH . "/Resources/Views/Remate/form-remate.php"; ?>
+<?php require BASE_PATH . "/Resources/Views/Remate/form-editar-remate.php"; ?>
 <div class="header">
   <div class="container-1024 f-row">
     <h2>Lotes</h2>

@@ -11,6 +11,7 @@ class Lote
   private $id_categoria_lote;
   private $ficha;
   private $categoria;
+  private $proveedor;
 
   public function getId()
   {
@@ -100,6 +101,16 @@ class Lote
   public function setCategoria($categoria)
   {
     $this->categoria = $categoria;
+  }
+
+  public function getProveedor()
+  {
+    return $this->proveedor;
+  }
+
+  public function setProveedor($proveedor)
+  {
+    $this->proveedor = $proveedor;
   }
 }
 

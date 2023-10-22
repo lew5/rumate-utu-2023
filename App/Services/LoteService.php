@@ -5,11 +5,14 @@ class LoteService
   private $loteRepository;
   private $fichaService;
   private $categoriaRepository;
+
+  private $usuarioService;
   public function __construct()
   {
     $this->loteRepository = Container::resolve(LoteRepository::class);
     $this->categoriaRepository = Container::resolve(CategoriaRepository::class);
     $this->fichaService = Container::resolve(FichaService::class);
+    $this->usuarioService = Container::resolve(UsuarioService::class);
   }
 
   public function getLotes()
@@ -24,8 +27,11 @@ class LoteService
     $ficha = $this->fichaService->getFichaById($idFicha);
     $idCategoria = $lote->getIdCategoria();
     $categoria = $this->categoriaRepository->findById($idCategoria);
+    $idProveedor = $lote->getIdProveedor();
+    $proveedor = $this->usuarioService->getUsuarioById($idProveedor);
     $lote->setFicha($ficha);
     $lote->setCategoria($categoria);
+    $lote->setProveedor($proveedor);
     return $lote;
   }
 

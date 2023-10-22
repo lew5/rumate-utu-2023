@@ -18,13 +18,19 @@ class RemateService
     foreach ($remates as $remate) {
       $remate->setFechaInicio(formatFecha($remate->getFechaInicio()));
       $remate->setFechaFinal(formatFecha($remate->getFechaFinal()));
+      $idRemate = $remate->getId();
+      $lotes = $this->getLotes($idRemate);
+      $remate->setLotes($lotes);
     }
     return $remates;
   }
 
   public function getRemateById($id)
   {
-    return $this->remateRepository->findById($id);
+    $lotes = $this->getLotes($id);
+    $remate = $this->remateRepository->findById($id);
+    $remate->setLotes($lotes);
+    return $remate;
   }
 
   public function createRemate($remateModel)

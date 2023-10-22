@@ -4,7 +4,8 @@
       <label class="input-field__label f-column">
         <span class="label__text">Precio base</span>
         <input id="registro-remate__precio-base-lote" name="precio_base_lote"
-          class="input-field__input" type="number" autocomplete="off" />
+          class="input-field__input" type="number" autocomplete="off"
+          value="<?= $lote->getPrecioBase(); ?>" />
       </label>
       <span class="input-field__error-message hidden error">Error</span>
       <div class="input-field">
@@ -14,12 +15,16 @@
             <select class="input-field__input"
               id="registro-remate__proveedor-lote" name="id_proveedor_lote">
               <?php
-              foreach ($proveedores as $proveedor) {
-                var_dump($proveedor);
-                ?>
-                <option value="<?= $proveedor->getId(); ?>">
-                  <?= $proveedor->getUsername(); ?>
-                </option>
+              foreach ($proveedores as $proveedor) { ?>
+                <?php if ($proveedor->getId() == $lote->getIdProveedor()): ?>
+                  <option value="<?= $lote->getIdProveedor(); ?>" selected>
+                    <?= $proveedor->getUsername(); ?>
+                  </option>
+                <?php else: ?>
+                  <option value="<?= $lote->getIdProveedor(); ?>">
+                    <?= $proveedor->getUsername(); ?>
+                  </option>
+                <?php endif ?>
               <?php } ?>
             </select>
           </div>
@@ -33,11 +38,16 @@
             <select class="input-field__input" id="registro-remate__categoria"
               name="id_categoria_lote">
               <?php
-              foreach ($categorias as $categoria) {
-                ?>
-                <option value="<?= $categoria->getId(); ?>">
-                  <?= $categoria->getNombre(); ?>
-                </option>
+              foreach ($categorias as $categoria) { ?>
+                <?php if ($categoria->getId() == $lote->getIdCategoria()): ?>
+                  <option value="<?= $lote->getIdCategoria(); ?>" selected>
+                    <?= $categoria->getNombre(); ?>
+                  </option>
+                <?php else: ?>
+                  <option value="<?= $categoria->getId(); ?>">
+                    <?= $categoria->getNombre(); ?>
+                  </option>
+                <?php endif ?>
               <?php } ?>
             </select>
           </div>

@@ -1,6 +1,6 @@
 <div class="card-container f-column">
   <?php
-  foreach ($lotes as $lote) {
+  foreach ($remate->getLotes() as $lote) {
     $imagen_path = PUBLIC_PATH . "/Public/imgs/remate/" . $lote->getImagen();
     if ($lote->getImagen() == null) {
       $imagen_path = PUBLIC_PATH . "/Public/imgs/no-image.webp";

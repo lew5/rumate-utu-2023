@@ -13,6 +13,13 @@
 // } else {
 //   echo "Las fechas son iguales.";
 // }
+
+// var_dump(Container::resolve(RemateService::class)->getRemateById(1)->getLotes());
+// die;
+
+
+
+
 Container::resolve(Route::class, Container::resolve(Router::class));
 // RUTAS DE REMATE
 Route::get("/", "RemateController@listarRemates");
