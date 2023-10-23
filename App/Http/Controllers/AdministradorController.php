@@ -30,6 +30,7 @@ class AdministradorController
   public function registrarRemate()
   {
     $remateData = json_decode($_POST['remate-data']);
+    var_dump($remateData);
     $remate = Container::resolve(Remate::class);
     $remate->setTitulo($remateData->titulo_remate);
     $remate->setImagen($remateData->imagen_remate);

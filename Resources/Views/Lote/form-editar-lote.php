@@ -16,7 +16,7 @@
         <span class="label__text">Precio base</span>
         <input id="registro-remate__precio-base-lote" name="precio_base_lote"
           class="input-field__input" type="number" autocomplete="off"
-          value="<?= $lote->getPrecioBase(); ?>" />
+          value="<?= $lote->getPrecioBase(); ?>" required />
       </label>
       <span class="input-field__error-message hidden error">Error</span>
       <div class="input-field">
@@ -24,7 +24,8 @@
           <span class="label__text">Proveedor</span>
           <div class="filtro-container">
             <select class="input-field__input"
-              id="registro-remate__proveedor-lote" name="id_proveedor_lote">
+              id="registro-remate__proveedor-lote" name="id_proveedor_lote"
+              required>
               <?php
               foreach ($proveedores as $proveedor) { ?>
                 <?php if ($proveedor->getId() == $lote->getIdProveedor()): ?>
@@ -47,7 +48,7 @@
           <span class="label__text">Categoría</span>
           <div class="filtro-container">
             <select class="input-field__input" id="registro-remate__categoria"
-              name="id_categoria_lote">
+              name="id_categoria_lote" required>
               <?php
               foreach ($categorias as $categoria) { ?>
                 <?php if ($categoria->getId() == $lote->getIdCategoria()): ?>

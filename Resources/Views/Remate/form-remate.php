@@ -5,7 +5,7 @@
         <span class="label__text">Titilo del remate</span>
         <input id="registro-remate__titulo-remate" name="titulo_remate"
           class="input-field__input" type="text"
-          placeholder="Ingresa el titulo del remate" autocomplete="off" />
+          placeholder="Ingresa el titulo del remate" autocomplete="off" required/>
       </label>
       <span class="input-field__error-message hidden error">El nombre no
         es valido</span>
@@ -29,7 +29,7 @@
           <span class="label__text">Fecha de inicio</span>
           <input id="registro-remate__fecha_inicio_remate"
             name="fecha_inicio_remate" class="input-field__input"
-            type="datetime-local" class="input-field__input" />
+            type="datetime-local" class="input-field__input" required/>
         </label>
         <span class="input-field__error-message hidden error">Ingresa una
           fecha</span>

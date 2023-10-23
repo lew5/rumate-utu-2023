@@ -9,7 +9,7 @@ var remate = {
 // Agregar un lote con su ficha al objeto remate
 function agregarLote() {
   var lote = {
-    imagen_lote: null,
+    imagen_lote: "null",
     precio_base_lote: parseFloat(
       document.getElementById("registro-remate__precio-base-lote").value
     ),
@@ -25,10 +25,13 @@ function agregarLote() {
 
   // Agregar el lote al objeto remate
   remate.lotes.push(lote);
+  console.log(remate);
 }
 
 function limpiarCampos() {
-  var camposLote = document.querySelectorAll(".registro-remate__lote .input-field__input");
+  var camposLote = document.querySelectorAll(
+    ".registro-remate__lote .input-field__input,.registro-remate__ficha .input-field__input"
+  );
 
   for (var i = 0; i < camposLote.length; i++) {
     camposLote[i].value = "";
@@ -36,6 +39,19 @@ function limpiarCampos() {
 }
 
 function guardar() {
+  var camposLote = document.querySelectorAll(
+    ".registro-remate__lote .input-field__input,.registro-remate__ficha .input-field__input"
+  );
+
+  var camposVacios = Array.from(camposLote).some(function (input) {
+    return !input.value && input.hasAttribute("required");
+  });
+
+  if (camposVacios) {
+    alert("No pueden haber campos de lote o ficha vacíos.");
+    return;
+  }
+
   agregarLote();
   limpiarCampos();
 }

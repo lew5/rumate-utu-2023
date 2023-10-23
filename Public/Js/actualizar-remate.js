@@ -15,7 +15,9 @@ document.getElementById("actualizar").addEventListener("click", function (event)
 
 document.getElementById("eliminar-remate").addEventListener("click", function (event) {
   event.preventDefault();
-  eliminarRemate();
+  if (window.confirm("¿Seguro que quieres eliminar este remate?")) {
+    eliminarRemate();
+  }
 });
 
 function eliminarRemate() {

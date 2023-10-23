@@ -8,7 +8,7 @@
           <input id="registro-remate__titulo-remate" name="titulo_remate"
             class="input-field__input" type="text"
             placeholder="Ingresa el titulo del remate" autocomplete="off"
-            value="<?= $remate->getTitulo(); ?>" />
+            value="<?= $remate->getTitulo(); ?> " required />
         </label>
         <span class="input-field__error-message hidden error">El nombre no
           es valido</span>
@@ -33,7 +33,7 @@
             <input id="registro-remate__fecha_inicio_remate"
               name="fecha_inicio_remate" class="input-field__input"
               type="datetime-local" class="input-field__input"
-              value="<?= $remate->getFechaInicio(); ?>" />
+              value="<?= $remate->getFechaInicio(); ?>" required />
           </label>
           <span class="input-field__error-message hidden error">Ingresa una
             fecha</span>
@@ -45,7 +45,7 @@
             <input id="registro-remate__fecha_final_remate"
               name="fecha_final_remate" class="input-field__input"
               type="datetime-local" class="input-field__input"
-              value="<?= $remate->getFechaFinal(); ?>" />
+              value="<?= $remate->getFechaFinal(); ?>" required />
           </label>
           <span class="input-field__error-message hidden error">Ingresa una
             fecha</span>
@@ -55,7 +55,7 @@
             <span class="label__text">Categoría</span>
             <div class="filtro-container">
               <select class="input-field__input" id="registro-remate__estado"
-                name="estado_remate">
+                name="estado_remate" required>
                 <option value="Pendiente" <?php if ($remate->getEstado() == "Pendiente") {
                   print("selected");
                 } ?>>
