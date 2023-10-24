@@ -25,6 +25,19 @@ class Middleware
     return sessionCliente() ? abort(403) : false;
   }
 
+  public static function verPerfil($username)
+  {
+    if (sessionUsuario()) {
+      if (sessionAdmin() || sessionRoot() || sessionUsuario()->getUsername() == $username) {
+        return true;
+      } else {
+        abort(403);
+      }
+    } else {
+      abort(403);
+    }
+  }
+
 
   public const LIST = [
     'invitado' => InvitadoMiddleware::class,

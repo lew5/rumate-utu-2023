@@ -6,6 +6,8 @@ $usuario = sessionUsuario();
   <a href="<?= PUBLIC_PATH ?>/<?= $usuario->getUsername(); ?>/lotes"
     class="menu-link">Mis
     lotes</a>
-  <a href="<?= PUBLIC_PATH ?>/perfil" class="menu-link">Mi perfil</a>
-  <a href="<?= PUBLIC_PATH ?>/usuario/logout" class="menu-link">Cerrar sesión</a>
+  <a href="<?= PUBLIC_PATH ?>/perfil/<?= $usuario->getUsername(); ?>"
+    class="menu-link">Mi perfil</a>
+  <a href="<?= PUBLIC_PATH ?>/usuario/logout" class="menu-link">Cerrar
+    sesión</a>
 </nav>
