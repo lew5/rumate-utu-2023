@@ -4,7 +4,7 @@ class RemateRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("remates","id_remate","Remate");
+    parent::__construct("remates", "id_remate", "Remate");
   }
 
   public function find()
@@ -19,6 +19,11 @@ class RemateRepository extends Repository
         "$this->idColumn" => $id
       ]
     );
+  }
+
+  public function findByTitle($tituloRemate)
+  {
+    return $this->search($tituloRemate, "titulo_remate");
   }
 
   public function addRemate($data)

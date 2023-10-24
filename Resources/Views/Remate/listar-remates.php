@@ -2,6 +2,9 @@
   <?php
   if ($remates != false) {
     foreach ($remates as $remate) {
+      if (!($remate->getLotes())) {
+        abort(500);
+      }
       if ($remate->getLotes()) {
         $imagen_nombre = $remate->getImagen();
         if (!empty($imagen_nombre) && file_exists(BASE_PATH . "/Public/imgs/remate/" . $imagen_nombre)) {
@@ -17,7 +20,7 @@
     }
 
   } else {
-    abort(500);
+    // abort(500); //no se encontraron remates
   }
   ?>
 </div>

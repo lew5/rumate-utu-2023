@@ -78,6 +78,19 @@ class Repository
     $stmt->execute(['id' => $id]);
   }
 
+  public function search($searchTerm, $searchColumn, $select = '*')
+  {
+    $searchTerm = urldecode($searchTerm);
+    $searchTerm = preg_quote($searchTerm, '~');
+    $this->db = DataBase::get();
+    $sql = "SELECT $select FROM $this->table WHERE $searchColumn LIKE :searchTerm";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':searchTerm', '%' . $searchTerm . '%', PDO::PARAM_STR);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_CLASS, $this->class);
+  }
+
+
   public function lastInsertId()
   {
     return $this->db->lastInsertId();

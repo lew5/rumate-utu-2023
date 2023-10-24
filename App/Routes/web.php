@@ -14,7 +14,7 @@
 //   echo "Las fechas son iguales.";
 // }
 
-// var_dump(Container::resolve(RemateService::class)->deleteRemate(3));
+// var_dump(Container::resolve(RemateService::class)->getRematesByTitle("fsdf"));
 // die;
 
 
@@ -23,6 +23,7 @@
 Container::resolve(Route::class, Container::resolve(Router::class));
 // RUTAS DE REMATE
 Route::get("/", "RemateController@listarRemates");
+Route::get("/remate/{nombre_remate}", "RemateController@listarRematesPorTitulo");
 Route::get("/remate/{id}", "RemateController@listarLotes");
 Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
 
