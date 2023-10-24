@@ -26,7 +26,6 @@ class Middleware
   }
 
 
-
   public const LIST = [
     'invitado' => InvitadoMiddleware::class,
     'usuario' => UsuarioMiddleware::class

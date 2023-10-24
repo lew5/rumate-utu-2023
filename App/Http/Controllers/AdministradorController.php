@@ -20,7 +20,7 @@ class AdministradorController
     $proveedores = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
     // var_dump($proveedores);
     $view = Container::resolve(View::class);
-    $view->assign("title", "Rumate - Panel de control");
+    $view->assign("title", "Rumate - Crear remate");
     $view->assign("header_title", "Crear nuevo remate");
     $view->assign("categorias", $categorias);
     $view->assign("proveedores", $proveedores);

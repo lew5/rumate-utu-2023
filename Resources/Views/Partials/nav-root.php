@@ -5,6 +5,7 @@
   <a href="<?= PUBLIC_PATH ?>/admin/clientes" class="menu-link">Clientes</a>
   <a href="<?= PUBLIC_PATH ?>/admin/proveedores"
     class="menu-link">Proveedores</a>
+  <a href="<?= PUBLIC_PATH ?>/perfil" class="menu-link">Mi perfil</a>
   <a href="<?= PUBLIC_PATH ?>/usuario/logout" class="menu-link">Cerrar
     sesión</a>
 </nav>

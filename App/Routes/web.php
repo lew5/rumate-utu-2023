@@ -14,7 +14,7 @@
 //   echo "Las fechas son iguales.";
 // }
 
-// var_dump(Container::resolve(RemateService::class)->getRematesByTitle("fsdf"));
+// var_dump(Container::resolve(UsuarioService::class)->getPersonaByUsuarioId(1));
 // die;
 
 
@@ -45,5 +45,6 @@ Route::get("/registro", "RegistroController@index");
 Route::post("/registro", "RegistroController@index");
 Route::post("/usuario/login", "AuthController@login");
 Route::get("/usuario/logout", "AuthController@logout");
+Route::get("/perfil/{usuario}", "UsuarioController@verPerfil");
 Route::dispatch();
 ?>

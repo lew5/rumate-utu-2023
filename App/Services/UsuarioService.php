@@ -2,10 +2,15 @@
 class UsuarioService
 {
   private $usuarioRepository;
+  private $personaService;
+
+  private $usuarioDePersonaRepository;
 
   public function __construct()
   {
     $this->usuarioRepository = Container::resolve(UsuarioRepository::class);
+    $this->usuarioDePersonaRepository = Container::resolve(UsuarioDePersonaRepository::class);
+    $this->personaService = Container::resolve(PersonaService::class);
   }
 
   public function createUsuario($usuarioModel)
@@ -37,6 +42,12 @@ class UsuarioService
     } else {
       return $usuario;
     }
+  }
+  public function getPersonaByUsuarioId($id)
+  {
+    $idPersona = $this->usuarioDePersonaRepository->findById($id)->getIdPersona();
+    $personaDeUsuario = $this->personaService->getPersonaById($idPersona);
+    return $personaDeUsuario;
   }
 
   public function updateUsuario($id, $data)
