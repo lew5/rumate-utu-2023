@@ -31,7 +31,6 @@ Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
 
 Route::get("/{idProveedor}/lotes", "ProveedorController@listarLotes"); //! EN DESARROLLO 
 
-Route::get("/admin/remates", "RemateController@listarRemates");
 Route::get("/admin/registrar-remate", "AdministradorController@crearRemate");
 Route::get("/admin/remate/eliminar/{idRemate}", "AdministradorController@eliminarRemate");
 Route::get("/admin/remate/editar/{idRemate}", "AdministradorController@editarRemate");

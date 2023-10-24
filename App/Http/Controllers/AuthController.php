@@ -36,7 +36,7 @@ class AuthController
     if ($usuario->getTipo() == "ADMINISTRADOR" || $usuario->getTipo() == "ROOT") {
       $usuario = serialize($usuario);
       $_SESSION['usuario'] = $usuario;
-      route::redirect("/admin/remates");
+      route::redirect("/");
     } else {
       $usuario = serialize($usuario);
       $_SESSION['usuario'] = $usuario;
