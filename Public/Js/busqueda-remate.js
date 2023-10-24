@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchTerm = inputBusqueda.value;
     var currentURL = window.location.href;
     if (searchTerm == "") {
-      var urlSearch = currentURL + "remate/*";
+      var urlSearch = currentURL + "buscar/remate/*";
       axios
         .get(urlSearch)
         .then(function (response) {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Error en la solicitud AJAX");
         });
     } else {
-      var urlSearch = currentURL + "remate/" + searchTerm;
+      var urlSearch = currentURL + "buscar/remate/" + searchTerm;
       axios
         .get(urlSearch)
         .then(function (response) {
