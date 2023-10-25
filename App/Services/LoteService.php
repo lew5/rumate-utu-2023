@@ -50,7 +50,21 @@ class LoteService
 
   public function updateLote($id, $data)
   {
-    $this->loteRepository->updateLote($id, $data);
+    $loteData = $data['lote'];
+    $fichaData = $data['ficha'];
+    $this->loteRepository->beginTransaction();
+    try {
+      $this->loteRepository->updateLote($loteData['id_lote'], $loteData);
+      $this->fichaService->updateFicha($fichaData['id_ficha'], $fichaData);
+      $this->loteRepository->commit();
+    } catch (PDOException $e) {
+      var_dump($e->errorInfo);
+      $this->loteRepository->rollback();
+      return false;
+    } finally {
+      $this->loteRepository->close();
+    }
+    return true;
   }
 
   public function deleteLote($id)

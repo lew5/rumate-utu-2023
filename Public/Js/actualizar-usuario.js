@@ -3,9 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form-actualizar-usuario");
   const actualizarButton = document.getElementById("btn-actualizar-usuario");
   form.querySelectorAll("input, select").forEach((input) => {
-    input.addEventListener("change", function () {
-      console.log("a");
-    });
+    input.addEventListener("change", function () {});
   });
 
   actualizarButton.addEventListener("click", function (event) {
@@ -19,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     var camposVacios = Array.from(camposLote).some(function (input) {
-      return !input.value && input.hasAttribute("required");
+      return !input.value.trim() && input.hasAttribute("required");
     });
 
     if (camposVacios) {

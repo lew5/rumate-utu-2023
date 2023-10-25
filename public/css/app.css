@@ -630,7 +630,9 @@ textarea {
 .registro-remate__lote div.inputs-wrap,
 .registro-remate__ficha div.inputs-wrap,
 .perfil__usuario div.inputs-wrap,
-.perfil__datos-personales div.inputs-wrap {
+.perfil__datos-personales div.inputs-wrap,
+.editar-lote__lote div.inputs-wrap,
+.editar-lote__ficha div.inputs-wrap {
   min-width: 50%;
   max-width: 50%;
 }

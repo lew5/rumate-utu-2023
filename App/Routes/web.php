@@ -36,6 +36,7 @@ Route::get("/admin/remate/eliminar/{idRemate}", "AdministradorController@elimina
 Route::get("/admin/remate/editar/{idRemate}", "AdministradorController@editarRemate");
 Route::post("/admin/remate/editar/{idRemate}", "AdministradorController@editarRemate");
 Route::get("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
+Route::post("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
 Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate");
 
 

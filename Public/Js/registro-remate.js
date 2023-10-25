@@ -8,7 +8,7 @@ var remate = {
   lotes: [],
 };
 
-var lotesGuardados = 0; // Variable para controlar si hay lotes guardados
+var lotesGuardados = 0;
 contadorLotes.textContent = lotesGuardados;
 // Agregar un lote con su ficha al objeto remate
 function agregarLote() {
@@ -30,7 +30,6 @@ function agregarLote() {
   // Agregar el lote al objeto remate
   remate.lotes.push(lote);
 
-  // Marcar que hay lotes guardados
   lotesGuardados++;
   contadorLotes.textContent = lotesGuardados;
 }
@@ -74,7 +73,6 @@ document.querySelector(".button-link--accent").addEventListener("click", functio
 });
 
 document.getElementById("publicar").addEventListener("click", function (e) {
-  // e.preventDefault();
   publicar();
 });
 

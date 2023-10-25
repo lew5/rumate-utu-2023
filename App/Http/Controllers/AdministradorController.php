@@ -100,21 +100,35 @@ class AdministradorController
 
   public function editarLote($idLote)
   {
-    $categorias = $this->categoriaRepository->find();
-    $proveedores = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
-    $lote = Container::resolve(LoteService::class)->getLoteById($idLote);
-    if ($lote) {
-      $view = Container::resolve(View::class);
-      $view->assign("title", "Rumate - Editar lote");
-      $view->assign("header_title", "Editar lote <span>#$idLote</span>");
-      $view->assign("lote", $lote);
-      $view->assign("categorias", $categorias);
-      $view->assign("proveedores", $proveedores);
-      $view->render(BASE_PATH . "/Resources/Views/Lote/editar-lote.php");
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $loteActualizado = $_POST['loteConFicha'];
+      $loteService = Container::resolve(LoteService::class);
+      if ($loteService->updateLote($idLote, $loteActualizado)) {
+        http_response_code(200);
+        $respuesta = ['mensaje' => 'Lote actualizado correctamente'];
+      } else {
+        http_response_code(400);
+        $respuesta = ['mensaje' => 'Error al actualizar el lote'];
+      }
+      header('Content-Type: application/json');
+      $respuesta = json_encode($respuesta);
+      echo $respuesta;
     } else {
-      abort(404);
+      $categorias = $this->categoriaRepository->find();
+      $proveedores = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
+      $lote = Container::resolve(LoteService::class)->getLoteById($idLote);
+      if ($lote) {
+        $view = Container::resolve(View::class);
+        $view->assign("title", "Rumate - Editar lote");
+        $view->assign("header_title", "Editar lote <span>#$idLote</span>");
+        $view->assign("lote", $lote);
+        $view->assign("categorias", $categorias);
+        $view->assign("proveedores", $proveedores);
+        $view->render(BASE_PATH . "/Resources/Views/Lote/editar-lote.php");
+      } else {
+        abort(404);
+      }
     }
-
   }
 
 }
