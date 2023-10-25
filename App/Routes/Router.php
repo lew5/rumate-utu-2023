@@ -62,6 +62,7 @@ class Router
    */
   public function post($uri, $controller)
   {
+    $uri = str_replace('{usuario}', '(.+)', $uri);
     $uri = str_replace('{idRemate}', '(\d+)', $uri);
     $uri = str_replace('{idLote}', '(\d+)', $uri);
     return $this->add("POST", $uri, $controller);
@@ -135,6 +136,7 @@ class Router
         }
       }
     }
+    var_dump("en router");
     abort();
   }
 

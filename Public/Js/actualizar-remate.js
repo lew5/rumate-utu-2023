@@ -23,7 +23,6 @@ document.getElementById("eliminar-remate").addEventListener("click", function (e
 function eliminarRemate() {
   var currentURL = window.location.href;
 
-  // Reemplaza "editar" por "eliminar"
   var url = currentURL.replace("editar", "eliminar");
   axios
     .get(url)
