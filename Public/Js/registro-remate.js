@@ -1,3 +1,5 @@
+const contadorLotes = document.querySelector("#lotes_guardados span");
+
 var remate = {
   titulo_remate: "",
   imagen_remate: "",
@@ -6,6 +8,8 @@ var remate = {
   lotes: [],
 };
 
+var lotesGuardados = 0; // Variable para controlar si hay lotes guardados
+contadorLotes.textContent = lotesGuardados;
 // Agregar un lote con su ficha al objeto remate
 function agregarLote() {
   var lote = {
@@ -25,7 +29,10 @@ function agregarLote() {
 
   // Agregar el lote al objeto remate
   remate.lotes.push(lote);
-  console.log(remate);
+
+  // Marcar que hay lotes guardados
+  lotesGuardados++;
+  contadorLotes.textContent = lotesGuardados;
 }
 
 function limpiarCampos() {
@@ -37,6 +44,39 @@ function limpiarCampos() {
     camposLote[i].value = "";
   }
 }
+
+function publicar() {
+  // Si hay lotes guardados, eliminar los atributos required de los campos de lote y ficha
+  if (lotesGuardados > 0) {
+    var camposLote = document.querySelectorAll(
+      ".registro-remate__lote .input-field__input,.registro-remate__ficha .input-field__input"
+    );
+    camposLote.forEach(function (input) {
+      input.removeAttribute("required");
+    });
+
+    remate.titulo_remate = document.getElementById("registro-remate__titulo-remate").value;
+    remate.imagen_remate = document.getElementById("registro-remate__imagen_remate").value;
+    remate.fecha_inicio_remate = document.getElementById(
+      "registro-remate__fecha_inicio_remate"
+    ).value;
+    remate.fecha_final_remate = document.getElementById(
+      "registro-remate__fecha_final_remate"
+    ).value;
+    document.getElementById("remate-data").value = JSON.stringify(remate);
+    var remateData = JSON.parse(document.getElementById("remate-data").value);
+  }
+}
+
+document.querySelector(".button-link--accent").addEventListener("click", function (e) {
+  e.preventDefault();
+  guardar();
+});
+
+document.getElementById("publicar").addEventListener("click", function (e) {
+  // e.preventDefault();
+  publicar();
+});
 
 function guardar() {
   var camposLote = document.querySelectorAll(
@@ -55,24 +95,3 @@ function guardar() {
   agregarLote();
   limpiarCampos();
 }
-
-function publicar() {
-  remate.titulo_remate = document.getElementById("registro-remate__titulo-remate").value;
-  remate.imagen_remate = document.getElementById("registro-remate__imagen_remate").value;
-  remate.fecha_inicio_remate = document.getElementById(
-    "registro-remate__fecha_inicio_remate"
-  ).value;
-  remate.fecha_final_remate = document.getElementById("registro-remate__fecha_final_remate").value;
-  document.getElementById("remate-data").value = JSON.stringify(remate);
-  var remateData = JSON.parse(document.getElementById("remate-data").value);
-  console.log(remateData);
-}
-
-document.querySelector(".button-link--accent").addEventListener("click", function (e) {
-  e.preventDefault();
-  guardar();
-});
-
-document.getElementById("publicar").addEventListener("click", function () {
-  publicar();
-});

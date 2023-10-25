@@ -52,6 +52,7 @@ class AdministradorController
     }
     $remate->setLotes($lotes);
     $this->remateService->createRemate($remate);
+    Route::redirect();
   }
 
   public function editarRemate($idRemate)

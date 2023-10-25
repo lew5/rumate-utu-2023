@@ -33,7 +33,7 @@
           name="descripcion_ficha" class="input-field__input" rows="4" cols="50"
           required></textarea>
       </label>
-      <span class="input-field__error-message hidden error">Error</span>
+      <span id="lotes_guardados">Lotes guardados: <span></span></span>
     </div>
     <div class="registro-remate__actions f-row">
       <div class="button">
