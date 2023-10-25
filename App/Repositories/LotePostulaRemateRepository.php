@@ -45,5 +45,11 @@ class LotePostulaRemateRepository extends Repository
   {
     $this->delete($id);
   }
+
+  public function deleteLoteDeRemateByLoteId($id)
+  {
+    $this->idColumn = "id_lote_lote_postula_remate";
+    $this->delete($id);
+  }
 }
 ?>

@@ -42,6 +42,10 @@
     </div>
     <div class="registro-remate__actions f-row">
       <div class="button">
+        <input id="eliminar-lote" class="button__input button--eliminar"
+          type="button" value="Eliminar lote" />
+      </div>
+      <div class="button">
         <input id="actualizar" class="button__input" type="submit"
           value="Actualizar cambios" />
       </div>

@@ -13,14 +13,14 @@ document.getElementById("actualizar").addEventListener("click", function (event)
   actualizarLote();
 });
 
-// document.getElementById("eliminar-lote").addEventListener("click", function (event) {
-//   event.preventDefault();
-//   if (window.confirm("¿Seguro que quieres eliminar este lote?")) {
-//     eliminarRemate();
-//   }
-// });
+document.getElementById("eliminar-lote").addEventListener("click", function (event) {
+  event.preventDefault();
+  if (window.confirm("¿Seguro que quieres eliminar este lote?")) {
+    eliminarLote();
+  }
+});
 
-function eliminarRemate() {
+function eliminarLote() {
   var currentURL = window.location.href;
   var url = currentURL.replace("editar", "eliminar");
   axios
@@ -51,10 +51,10 @@ function actualizarLote() {
   axios
     .post(currentURL, formData)
     .then((response) => {
-      window.alert(response.data.mensaje); // Muestra el mensaje en un alert
+      window.alert(response.data.mensaje);
     })
     .catch((error) => {
       console.error("Error:", error);
-      window.alert(error.response.data.mensaje); // Muestra el mensaje de error en un alert
+      window.alert(error.response.data.mensaje);
     });
 }

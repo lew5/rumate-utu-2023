@@ -6,6 +6,8 @@ class LoteService
   private $fichaService;
   private $categoriaRepository;
 
+  private $lotePostulaRemateRepository;
+
   private $usuarioService;
   public function __construct()
   {
@@ -13,6 +15,7 @@ class LoteService
     $this->categoriaRepository = Container::resolve(CategoriaRepository::class);
     $this->fichaService = Container::resolve(FichaService::class);
     $this->usuarioService = Container::resolve(UsuarioService::class);
+    $this->lotePostulaRemateRepository = Container::resolve(LotePostulaRemateRepository::class);
   }
 
   public function getLotes()
@@ -72,14 +75,19 @@ class LoteService
     $this->loteRepository->beginTransaction();
     try {
       $fichaId = $this->loteRepository->getFichaIdByLoteId($id)->getIdFicha();
+      $this->lotePostulaRemateRepository->deleteLoteDeRemateByLoteId($id);
       $this->loteRepository->deleteLote($id);
       $this->fichaService->deleteFicha($fichaId);
       $this->loteRepository->commit();
     } catch (PDOException $e) {
       $this->loteRepository->rollback();
+      var_dump($e->errorInfo);
+      die;
+      return false;
     } finally {
       $this->loteRepository->close();
     }
+    return true;
   }
 
   private function loteToAssocArray($loteModel)

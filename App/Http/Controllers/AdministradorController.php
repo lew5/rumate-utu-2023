@@ -131,6 +131,21 @@ class AdministradorController
     }
   }
 
+  public function eliminarLote($idLote)
+  {
+    $loteService = Container::resolve(LoteService::class);
+    if ($loteService->deleteLote($idLote)) {
+      http_response_code(200);
+      $respuesta = ['mensaje' => 'Lote eliminado correctamente'];
+    } else {
+      http_response_code(400);
+      $respuesta = ['mensaje' => 'Error al eliminar el lote'];
+    }
+    header('Content-Type: application/json');
+    $respuesta = json_encode($respuesta);
+    echo $respuesta;
+  }
+
 }
 
 ?>

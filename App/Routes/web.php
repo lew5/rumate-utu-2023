@@ -14,7 +14,7 @@
 //   echo "Las fechas son iguales.";
 // }
 
-// var_dump(Container::resolve(UsuarioService::class)->getPersonaByUsuarioId(1));
+// var_dump(Container::resolve(LoteService::class)->deleteLote(1));
 // die;
 
 
@@ -37,6 +37,7 @@ Route::get("/admin/remate/editar/{idRemate}", "AdministradorController@editarRem
 Route::post("/admin/remate/editar/{idRemate}", "AdministradorController@editarRemate");
 Route::get("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
 Route::post("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
+Route::get("/admin/lote/eliminar/{idLote}", "AdministradorController@eliminarLote");
 Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate");
 
 
