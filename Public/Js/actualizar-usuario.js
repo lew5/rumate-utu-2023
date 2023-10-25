@@ -9,34 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   actualizarButton.addEventListener("click", function (event) {
-    // event.preventDefault();
-    // actualizarUsuario();
+    event.preventDefault();
+    actualizarUsuario();
   });
-
-  // document.getElementById("eliminar-remate").addEventListener("click", function (event) {
-  //   event.preventDefault();
-  //   if (window.confirm("¿Seguro que quieres eliminar este remate?")) {
-  //     eliminarRemate();
-  //   }
-  // });
-
-  // function eliminarUsuario() {
-  //   var currentURL = window.location.href;
-
-  //   // Reemplaza "editar" por "eliminar"
-  //   var url = currentURL.replace("editar", "eliminar");
-  //   axios
-  //     .get(url)
-  //     .then((response) => {
-  //       console.log("Éxito:", response.data);
-  //       window.alert(response.data.mensaje);
-  //       window.location.href = "/rumate/";
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //       window.alert(error.response.data.mensaje);
-  //     });
-  // }
 
   function actualizarUsuario() {
     var camposLote = document.querySelectorAll(
@@ -60,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => {
         console.log("Éxito:", response.data);
         window.alert(response.data.mensaje);
+        location.reload();
+        window.scrollTo(0, 0);
       })
       .catch((error) => {
         console.error("Error:", error);

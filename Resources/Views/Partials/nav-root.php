@@ -1,5 +1,5 @@
 <?php
-$usuario = sessionUsuario();
+$navUsuario = sessionUsuario();
 ?>
 <nav class="navigation__menu f-row align-center">
   <span href="" class="menu-link">Root</span>

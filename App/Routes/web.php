@@ -45,7 +45,7 @@ Route::get("/registro", "RegistroController@index");
 Route::post("/registro", "RegistroController@index");
 Route::post("/usuario/login", "AuthController@login");
 Route::get("/usuario/logout", "AuthController@logout");
-Route::get("/perfil/{usuario}", "UsuarioController@verPerfil");
-Route::post("/perfil/{usuario}", "UsuarioController@actualizarPerfil");
+Route::get("/perfil/{idUsuario}", "UsuarioController@verPerfil");
+Route::post("/perfil/{idUsuario}", "UsuarioController@actualizarPerfil");
 Route::dispatch();
 ?>

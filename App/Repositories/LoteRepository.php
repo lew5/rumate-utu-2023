@@ -21,7 +21,7 @@ class LoteRepository extends Repository
     );
   }
 
-  public function getFichaId($id)
+  public function getFichaIdByLoteId($id)
   {
     return $this->read(
       [

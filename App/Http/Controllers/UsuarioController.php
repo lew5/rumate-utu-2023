@@ -2,62 +2,49 @@
 
 class UsuarioController
 {
+  private $usuarioService;
   public function __construct()
   {
+    $this->usuarioService = Container::resolve(UsuarioService::class);
   }
-  public function verPerfil($username)
+  public function verPerfil($id)
   {
-    $usuarioService = Container::resolve(UsuarioService::class);
-    if ($usuarioService->getUsuarioByUsername($username)) {
-      Middleware::verPerfil($username);
-      $usuario = $usuarioService->getUsuarioByUsername($username);
+    $usuario = $this->usuarioService->getUsuarioById($id);
+    if ($usuario) {
+      Middleware::verPerfil($id);
       $idUsuario = $usuario->getId();
-      $personaDeUsuario = $usuarioService->getPersonaByUsuarioId($idUsuario);
+      $persona = $this->usuarioService->getPersonaByUsuarioId($idUsuario);
       $username = $usuario->getUsername();
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Perfil");
       $view->assign("header_title", "Perfil de <span>$username</span>");
-      $view->assign("personaDeUsuario", $personaDeUsuario);
-      $view->assign("usuarioA", $usuario);
+      $view->assign("persona", $persona);
+      $view->assign("usuario", $usuario);
       $view->render(BASE_PATH . "/Resources/Views/Usuario/editar-usuario.php");
     } else {
       abort();
     }
   }
 
-  public function actualizarPerfil($username)
+  public function actualizarPerfil($id)
   {
-
-    $usuarioService = Container::resolve(UsuarioService::class);
-    $personaService = Container::resolve(PersonaService::class);
-
-    if ($usuarioService->getUsuarioByUsername($username)) {
-      $usuarioData = $_POST['usuario'];
-      $personaData = $_POST['persona'];
-      Middleware::verPerfil($username);
-      $idUsuario = sessionUsuario()->getId();
-      $personaDeUsuario = $usuarioService->getPersonaByUsuarioId($idUsuario);
-      $idPersona = $personaDeUsuario->getId();
-      $usuarioService->updateUsuario($idUsuario, $usuarioData);
-      $personaService->updatePersona($idPersona, $personaData);
-      $usuario = $usuarioService->getUsuarioById($idUsuario);
-      $username = $usuario->getUsername();
-      $usuario = serialize($usuario);
-      $_SESSION['usuario'] = $usuario;
-      Route::redirect("/perfil/$username");
-      die;
-
-      // $personaDeUsuario = $usuarioService->getPersonaByUsuarioId($idUsuario);
-      // $usuario = sessionUsuario();
-      // $view = Container::resolve(View::class);
-      // $view->assign("title", "Rumate - Perfil");
-      // $view->assign("header_title", "Perfil de <span>$username</span>");
-      // $view->assign("personaDeUsuario", $personaDeUsuario);
-      // $view->assign("usuario", $usuario);
-      // $view->render(BASE_PATH . "/Resources/Views/Usuario/editar-usuario.php");
+    Middleware::verPerfil($id);
+    $usuarioConPersona = $_POST['usuarioConPersona'];
+    $usuario = $this->usuarioService->updateUsuario($id, $usuarioConPersona);
+    if ($usuario == false) {
+      $respuesta = ['mensaje' => 'ese nombre de usuario no está disponible.'];
+    } else if ($usuario == null) {
+      $respuesta = ['mensaje' => 'No se pudo actualizar el usuario.'];
     } else {
-      abort();
+      if ($usuario->getId() == sessionUsuario()->getId()) {
+        $usuario = serialize($usuario);
+        $_SESSION['usuario'] = $usuario;
+      }
+      $respuesta = ['mensaje' => 'Usuario actualizado correctamente.'];
     }
+    $respuesta = json_encode($respuesta);
+    echo $respuesta;
+    die;
   }
 }
 

@@ -25,10 +25,10 @@ class Middleware
     return sessionCliente() ? abort(403) : false;
   }
 
-  public static function verPerfil($username)
+  public static function verPerfil($id)
   {
     if (sessionUsuario()) {
-      if (sessionAdmin() || sessionRoot() || sessionUsuario()->getUsername() == $username) {
+      if (sessionAdmin() || sessionRoot() || sessionUsuario()->getId() == $id) {
         return true;
       } else {
         abort(403);

@@ -4,7 +4,7 @@ class UsuarioDePersonaRepository extends Repository
 {
   public function __construct()
   {
-    parent::__construct("usuarios_de_personas","id_usuario_usuarios_de_personas","UsuarioDePersona");
+    parent::__construct("usuarios_de_personas", "id_usuario_usuarios_de_personas", "UsuarioDePersona");
   }
 
   public function find()
@@ -12,11 +12,20 @@ class UsuarioDePersonaRepository extends Repository
     return $this->read();
   }
 
-  public function findById($id)
+  public function findByUsuarioId($id)
   {
     return $this->read(
       [
         "$this->idColumn" => $id
+      ]
+    );
+  }
+
+  public function findByPersonaId($id)
+  {
+    return $this->read(
+      [
+        "id_persona_usuarios_de_personas" => $id
       ]
     );
   }

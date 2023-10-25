@@ -45,7 +45,7 @@ class Router
     $uri = str_replace('{id}', '(\d+)', $uri);
     $uri = str_replace('{idProveedor}', '(\w+)', $uri);
     $uri = str_replace('{nombre_remate}', '(.+)', $uri);
-    $uri = str_replace('{usuario}', '(.+)', $uri);
+    $uri = str_replace('{idUsuario}', '(\d+)', $uri);
     $uri = str_replace('{idRemate}', '(\d+)', $uri);
     $uri = str_replace('{idLote}', '(\d+)', $uri);
     return $this->add("GET", $uri, $controller);
@@ -62,7 +62,7 @@ class Router
    */
   public function post($uri, $controller)
   {
-    $uri = str_replace('{usuario}', '(.+)', $uri);
+    $uri = str_replace('{idUsuario}', '(\d+)', $uri);
     $uri = str_replace('{idRemate}', '(\d+)', $uri);
     $uri = str_replace('{idLote}', '(\d+)', $uri);
     return $this->add("POST", $uri, $controller);

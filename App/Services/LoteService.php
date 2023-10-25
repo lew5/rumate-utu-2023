@@ -57,7 +57,7 @@ class LoteService
   {
     $this->loteRepository->beginTransaction();
     try {
-      $fichaId = $this->loteRepository->getFichaId($id)->getIdFicha();
+      $fichaId = $this->loteRepository->getFichaIdByLoteId($id)->getIdFicha();
       $this->loteRepository->deleteLote($id);
       $this->fichaService->deleteFicha($fichaId);
       $this->loteRepository->commit();
