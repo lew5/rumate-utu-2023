@@ -123,8 +123,17 @@ class AdministradorController
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $loteActualizado = $_POST['loteConFicha'];
+      $imgNombre = false;
+      if ($_FILES['imagen_lote']['name'] != '') {
+        $imgFile = $_FILES['imagen_lote'];
+        $imgNombre = Imagen::generarNombre($imgFile);
+        $loteActualizado['lote']['imagen_lote'] = $imgNombre;
+      }
       $loteService = Container::resolve(LoteService::class);
       if ($loteService->updateLote($idLote, $loteActualizado)) {
+        if ($imgNombre) {
+          Imagen::guardarImagen($imgFile, $imgNombre, "Lote");
+        }
         http_response_code(200);
         $respuesta = ['mensaje' => 'Lote actualizado correctamente'];
       } else {

@@ -1,6 +1,6 @@
 <div class="card-remate">
-  <img class="card-remate__image"
-    src="<?= PUBLIC_PATH ?>/Public/imgs/no-image.webp" alt="Imagen de remate">
+  <img class="card-remate__image" src="<?= $lote->getImagen(); ?>"
+    alt="Imagen de remate">
   <div class="card-remate__info">
     <h2 class="card-remate__title">LOTE de
       <?= $lote->getCategoria()->getNombre(); ?>s</h2>
