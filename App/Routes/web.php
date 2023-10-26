@@ -38,6 +38,8 @@ Route::post("/admin/remate/editar/{idRemate}", "AdministradorController@editarRe
 Route::get("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
 Route::post("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
 Route::get("/admin/lote/eliminar/{idLote}", "AdministradorController@eliminarLote");
+Route::get("/admin/remate/{idRemate}/registrar-lote", "LoteController@crearLote");
+Route::post("/admin/remate/{idRemate}/registrar-lote", "LoteController@crearLote");
 Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate");
 
 Route::get("/admin/clientes", "ClienteController@listarClientes");

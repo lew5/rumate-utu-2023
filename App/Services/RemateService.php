@@ -138,7 +138,7 @@ class RemateService
       "estado_remate" => $remateModel->getEstado()
     ];
   }
-  private function insertLotesByRemate($lotes, $remateId)
+  public function insertLotesByRemate($lotes, $remateId)
   {
     foreach ($lotes as $loteModel) {
       $loteId = $this->loteService->createLote($loteModel);

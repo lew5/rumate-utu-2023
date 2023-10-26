@@ -10,6 +10,9 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
 <div class="header">
   <div class="container-1024 f-row">
     <h2>Lotes</h2>
+    <a href="<?= PUBLIC_PATH ?>/admin/remate/<?= $remate->getId() ?>/registrar-lote"
+      class="button-link">Nuevo
+      lote</a>
   </div>
 </div>
 <?php require BASE_PATH . "/Resources/Views/Lote/listar-lotes.php"; ?>
