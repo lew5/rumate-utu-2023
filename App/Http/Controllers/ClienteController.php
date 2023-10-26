@@ -5,8 +5,8 @@ class ClienteController
   public function listarClientes()
   {
     Middleware::admin();
-    $usuarioService = Container::resolve(UsuarioService::class);
-    $clientes = $usuarioService->getUsuariosByTipo("CLIENTE");
+    $clienteService = Container::resolve(ClienteService::class);
+    $clientes = $clienteService->getClientes();
     $view = Container::resolve(View::class);
     $view->assign("title", "Rumate - Clientes");
     $view->assign("header_title", "Clientes");

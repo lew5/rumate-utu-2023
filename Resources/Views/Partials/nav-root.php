@@ -8,7 +8,7 @@ $navUsuario = sessionUsuario();
   <a href="<?= PUBLIC_PATH ?>/admin/clientes" class="menu-link">Clientes</a>
   <a href="<?= PUBLIC_PATH ?>/admin/proveedores"
     class="menu-link">Proveedores</a>
-  <a href="<?= PUBLIC_PATH ?>/perfil/<?= $usuario->getUsername(); ?>"
+  <a href="<?= PUBLIC_PATH ?>/perfil/<?= $navUsuario->getUsername(); ?>"
     class="menu-link">Mi perfil</a>
   <a href="<?= PUBLIC_PATH ?>/usuario/logout" class="menu-link">Cerrar
     sesión</a>
