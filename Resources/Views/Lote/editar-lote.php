@@ -20,7 +20,7 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
       <h3>Editar ficha</h3>
     </div>
   </div>
-  <?php require BASE_PATH . "/Resources/Views/Lote/form-editar-ficha.php"; ?>
+  <?php require BASE_PATH . "/Resources/Views/Ficha/form-editar-ficha.php"; ?>
   <input type="hidden" name="loteConFicha[lote][id_lote]"
     value="<?= $lote->getId(); ?>">
   <input type="hidden" name="loteConFicha[ficha][id_ficha]"

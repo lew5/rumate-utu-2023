@@ -14,7 +14,7 @@
 //   echo "Las fechas son iguales.";
 // }
 
-// var_dump(Container::resolve(LoteService::class)->deleteLote(1));
+// var_dump(Container::resolve(UsuarioService::class)->getUsuariosByTipo("PROVEEDOR"));
 // die;
 
 
@@ -24,7 +24,7 @@ Container::resolve(Route::class, Container::resolve(Router::class));
 // RUTAS DE REMATE
 Route::get("/", "RemateController@listarRemates");
 Route::get("/buscar/remate/{nombre_remate}", "RemateController@listarRematesPorTitulo");
-Route::get("/remate/{id}", "RemateController@listarLotes");
+Route::get("/remate/{id}", "LoteController@listarLotes");
 Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
 
 
@@ -39,6 +39,8 @@ Route::get("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
 Route::post("/admin/lote/editar/{idLote}", "AdministradorController@editarLote");
 Route::get("/admin/lote/eliminar/{idLote}", "AdministradorController@eliminarLote");
 Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate");
+
+Route::get("/admin/clientes", "ClienteController@listarClientes");
 
 
 // RUTAS DE USUARIO

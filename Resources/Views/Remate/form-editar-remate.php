@@ -8,7 +8,7 @@
           <input id="registro-remate__titulo-remate" name="titulo_remate"
             class="input-field__input" type="text"
             placeholder="Ingresa el titulo del remate" autocomplete="off"
-            value="<?= $remate->getTitulo(); ?> " required />
+            value="<?= $remate->getTitulo(); ?>" required />
         </label>
         <span class="input-field__error-message hidden error">El nombre no
           es valido</span>

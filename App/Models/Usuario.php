@@ -3,6 +3,8 @@
 class Usuario
 {
   private $id_usuario;
+
+  private $imagen_usuario;
   private $username_usuario;
   private $password_usuario;
   private $email_usuario;
@@ -57,6 +59,16 @@ class Usuario
     $this->tipo_usuario = $tipo;
   }
 
+
+  public function getImagen()
+  {
+    return $this->imagen_usuario;
+  }
+
+  public function setImagen($imagen)
+  {
+    $this->imagen_usuario = $imagen;
+  }
 }
 
 ?>

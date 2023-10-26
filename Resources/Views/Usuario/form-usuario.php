@@ -7,7 +7,9 @@
           name="usuarioConPersona[usuario][username_usuario]"
           class="input-field__input" type="text" placeholder="Ejemplo: pepe123"
           autocomplete="off" class="input-field__input"
-          value="<?= $usuario->getUsername(); ?>" required />
+          value="<?= $usuario->getUsername(); ?>" required <?php if (disabled($usuario->getId())) {
+              print "disabled";
+            } ?> />
       </label>
       <span class="input-field__error-message hidden error">Error</span>
     </div>
@@ -19,7 +21,9 @@
           class="input-field__input" type="email"
           placeholder="pepe123@ejemplo.com" autocomplete="off"
           class="input-field__input" value="<?= $usuario->getEmail(); ?>"
-          required />
+          required <?php if (disabled($usuario->getId())) {
+            print "disabled";
+          } ?> />
       </label>
       <span class="input-field__error-message hidden error">Error</span>
     </div>

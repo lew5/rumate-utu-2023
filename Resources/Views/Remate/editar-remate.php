@@ -12,7 +12,7 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
     <h2>Lotes</h2>
   </div>
 </div>
-<?php require BASE_PATH . "/Resources/Views/Remate/listar-lotes.php"; ?>
+<?php require BASE_PATH . "/Resources/Views/Lote/listar-lotes.php"; ?>
 
 <?php
 require BASE_PATH . "/Resources/Views/Partials/container-1024-end.php";

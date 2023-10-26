@@ -17,13 +17,13 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
           <h3>Registrar lote</h3>
         </div>
       </div>
-      <?php require BASE_PATH . "/Resources/Views/Remate/form-lote.php"; ?>
+      <?php require BASE_PATH . "/Resources/Views/Lote/form-lote.php"; ?>
       <div class="header">
         <div class="container-1024 f-row">
           <h3>Registrar ficha</h3>
         </div>
       </div>
-      <?php require BASE_PATH . "/Resources/Views/Remate/form-ficha.php"; ?>
+      <?php require BASE_PATH . "/Resources/Views/Ficha/form-ficha.php"; ?>
       <input type="hidden" id="remate-data" name="remate-data">
     </form>
   </div>

@@ -7,7 +7,7 @@ require BASE_PATH . "/Resources/Views/Partials/main-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
 ?>
 
-<?php require BASE_PATH . "/Resources/Views/Lote/lote-ficha.php"; ?>
+<?php require BASE_PATH . "/Resources/Views/Ficha/ficha.view.php"; ?>
 
 <?php
 require BASE_PATH . "/Resources/Views/Partials/container-1024-end.php";

@@ -5,6 +5,14 @@ require BASE_PATH . "/Resources/Views/Partials/nav.php";
 require BASE_PATH . "/Resources/Views/Partials/headers/header.php";
 require BASE_PATH . "/Resources/Views/Partials/main-start.php";
 require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
+function disabled($idUsuario)
+{
+  if (sessionUsuario()->getId() != $idUsuario) {
+    return true;
+  } else {
+    return false;
+  }
+}
 ?>
 <div class="registro-remate__container f-row align-center">
   <div class="registro-remate-form-wrap">
