@@ -139,7 +139,7 @@ class AdministradorController
       $respuesta = ['mensaje' => 'Lote eliminado correctamente'];
     } else {
       http_response_code(400);
-      $respuesta = ['mensaje' => 'Error al eliminar el lote'];
+      $respuesta = ['mensaje' => 'Error al eliminar el lote. No puedes eliminar un lote que contenga pujas'];
     }
     header('Content-Type: application/json');
     $respuesta = json_encode($respuesta);

@@ -81,8 +81,6 @@ class LoteService
       $this->loteRepository->commit();
     } catch (PDOException $e) {
       $this->loteRepository->rollback();
-      var_dump($e->errorInfo);
-      die;
       return false;
     } finally {
       $this->loteRepository->close();
