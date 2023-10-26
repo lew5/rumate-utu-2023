@@ -2,6 +2,18 @@
 
 class ProveedorController
 {
+
+  public function listarProveedores()
+  {
+    Middleware::admin();
+    $proveedorService = Container::resolve(ProveedorService::class);
+    $proveedores = $proveedorService->getProveedores();
+    $view = Container::resolve(View::class);
+    $view->assign("title", "Rumate - Proveedores");
+    $view->assign("header_title", "Proveedores");
+    $view->assign("proveedores", $proveedores);
+    $view->render(BASE_PATH . "/Resources/Views/Proveedor/proveedor.view.php");
+  }
   public static function listarLotes($usernameProveedor)
   {
     Middleware::proveedor();

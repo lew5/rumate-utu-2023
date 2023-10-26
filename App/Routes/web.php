@@ -41,6 +41,7 @@ Route::get("/admin/lote/eliminar/{idLote}", "AdministradorController@eliminarLot
 Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate");
 
 Route::get("/admin/clientes", "ClienteController@listarClientes");
+Route::get("/admin/proveedores", "ProveedorController@listarProveedores");
 
 
 // RUTAS DE USUARIO
