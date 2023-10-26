@@ -14,10 +14,14 @@ final class ProveedorService
   {
     $usuarioProveedores = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
     $proveedores = [];
-    foreach ($usuarioProveedores as $usuarioProveedor) {
-      $proveedor = $this->usuarioService->getPersonaByUsuarioId($usuarioProveedor->getId());
-      $proveedor->setUsuario($usuarioProveedor);
-      $proveedores[] = $proveedor;
+    if ($usuarioProveedores) {
+      foreach ($usuarioProveedores as $usuarioProveedor) {
+        $proveedor = $this->usuarioService->getPersonaByUsuarioId($usuarioProveedor->getId());
+        $proveedor->setUsuario($usuarioProveedor);
+        $proveedores[] = $proveedor;
+      }
+    } else {
+      return false;
     }
     return $proveedores;
   }

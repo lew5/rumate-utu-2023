@@ -14,11 +14,16 @@ final class ClienteService
   {
     $usuarioClientes = $this->usuarioService->getUsuariosByTipo("CLIENTE");
     $clientes = [];
-    foreach ($usuarioClientes as $usuarioCliente) {
-      $cliente = $this->usuarioService->getPersonaByUsuarioId($usuarioCliente->getId());
-      $cliente->setUsuario($usuarioCliente);
-      $clientes[] = $cliente;
+    if ($usuarioClientes) {
+      foreach ($usuarioClientes as $usuarioCliente) {
+        $cliente = $this->usuarioService->getPersonaByUsuarioId($usuarioCliente->getId());
+        $cliente->setUsuario($usuarioCliente);
+        $clientes[] = $cliente;
+      }
+    } else {
+      return false;
     }
+
     return $clientes;
   }
 }

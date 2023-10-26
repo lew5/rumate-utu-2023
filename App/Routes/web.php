@@ -42,6 +42,7 @@ Route::post("/admin/registrar-remate", "AdministradorController@registrarRemate"
 
 Route::get("/admin/clientes", "ClienteController@listarClientes");
 Route::get("/admin/proveedores", "ProveedorController@listarProveedores");
+Route::get("/root/empleados", "RootController@listarAdministradores");
 
 
 // RUTAS DE USUARIO
