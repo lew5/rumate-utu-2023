@@ -30,10 +30,16 @@ class AdministradorController
   public function registrarRemate()
   {
     $remateData = json_decode($_POST['remate-data']);
-    var_dump($remateData);
     $remate = Container::resolve(Remate::class);
+    $imgNombre = false;
+    if ($_FILES['imagen_remate']['name'] != '') {
+      $imgFile = $_FILES['imagen_remate'];
+      $imgNombre = Imagen::generarNombre($imgFile);
+      $remate->setImagen($imgNombre);
+    } else {
+      $remate->setImagen("No imagen");
+    }
     $remate->setTitulo($remateData->titulo_remate);
-    $remate->setImagen($remateData->imagen_remate);
     $remate->setFechaInicio($remateData->fecha_inicio_remate);
     $remate->setFechaFinal($remateData->fecha_final_remate);
     $lotes = [];
@@ -51,7 +57,13 @@ class AdministradorController
       $lotes[] = $lote;
     }
     $remate->setLotes($lotes);
-    $this->remateService->createRemate($remate);
+    if ($this->remateService->createRemate($remate)) {
+      if ($imgNombre) {
+        Imagen::guardarImagen($imgFile, $imgNombre, "Remate");
+      }
+    } else {
+      abort(500);
+    }
     Route::redirect();
   }
 
@@ -59,7 +71,16 @@ class AdministradorController
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $remateActualizado = $_POST;
+      $imgNombre = false;
+      if ($_FILES['imagen_remate']['name'] != '') {
+        $imgFile = $_FILES['imagen_remate'];
+        $imgNombre = Imagen::generarNombre($imgFile);
+        $remateActualizado['imagen_remate'] = $imgNombre;
+      }
       if ($this->remateService->updateRemate($idRemate, $remateActualizado)) {
+        if ($imgNombre) {
+          Imagen::guardarImagen($imgFile, $imgNombre, "Remate");
+        }
         http_response_code(200);
         $respuesta = ['mensaje' => 'Remate actualizado correctamente'];
       } else {

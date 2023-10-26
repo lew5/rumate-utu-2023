@@ -1,28 +1,27 @@
 <?php
 
-class GuardarImagen
+class Imagen
 {
-  public static function guardarImagen($file)
+  public static function guardarImagen($file, $filename, $folder)
   {
     $uploaded_file = $file['tmp_name'];
     $upl_img_properties = getimagesize($uploaded_file);
-    $new_file_name = self::generarNombre();
-    $folder_path = BASE_PATH . "/public/imgs/remate/";
-    $img_ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $new_file_name = $filename;
+    $folder_path = BASE_PATH . "/public/imgs/$folder/";
     $image_type = $upl_img_properties[2];
     switch ($image_type) {
       //PNG Image
       case IMAGETYPE_PNG:
         $image_type_id = imagecreatefrompng($uploaded_file);
         $target_layer = self::image_resize($image_type_id, $upl_img_properties[0], $upl_img_properties[1]);
-        imagepng($target_layer, $folder_path . $new_file_name . "." . $img_ext);
-        return $new_file_name . "." . $img_ext;
+        imagepng($target_layer, $folder_path . $new_file_name);
+        return $new_file_name;
       //JPEG Image
       case IMAGETYPE_JPEG:
         $image_type_id = imagecreatefromjpeg($uploaded_file);
         $target_layer = self::image_resize($image_type_id, $upl_img_properties[0], $upl_img_properties[1]);
-        imagejpeg($target_layer, $folder_path . $new_file_name . "." . $img_ext);
-        return $new_file_name . "." . $img_ext;
+        imagejpeg($target_layer, $folder_path . $new_file_name);
+        return $new_file_name;
       default:
         return false;
     }
@@ -38,10 +37,10 @@ class GuardarImagen
     return $target_layer;
   }
 
-  private static function generarNombre()
+  public static function generarNombre($file)
   {
-    // Genera un nombre único basado en la fecha y hora actual
-    return date("YmdHis");
+    $img_ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+    return date("YmdHis") . "." . $img_ext;
   }
 }
 
