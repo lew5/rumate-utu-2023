@@ -24,9 +24,7 @@ class Repository
       $values = ":" . implode(", :", array_keys($data));
       $sql = "INSERT INTO $this->table ($columns) VALUES ($values)";
       $stmt = $this->db->prepare($sql);
-      var_dump($sql);
       $stmt->execute($data);
-      var_dump("ok");
     } catch (PDOException $e) {
       var_dump($e->errorInfo);
     }

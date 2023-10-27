@@ -3,10 +3,10 @@
 final class ProveedorService
 {
 
-  private $usuarioService;
+  private $personaService;
   public function __construct()
   {
-    $this->usuarioService = Container::resolve(UsuarioService::class);
+    $this->personaService = Container::resolve(PersonaService::class);
   }
 
 

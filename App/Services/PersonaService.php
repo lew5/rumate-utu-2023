@@ -45,6 +45,25 @@ class PersonaService
 
     return $personasConTipoProveedor;
   }
+  public function getPersonasConTipoCliente()
+  {
+    // Obtén todos los usuarios de tipo "proveedor" usando el servicio de usuarios
+    $usuariosCliente = $this->usuarioService->getUsuariosByTipo("CLIENTE");
+
+    $personasConTipoCliente = [];
+    foreach ($usuariosCliente as $usuario) {
+      // Para cada usuario Cliente, obtén la persona correspondiente
+      $persona = $this->usuarioService->getPersonaByUsuarioId($usuario->getId());
+
+      if ($persona) {
+        // Asocia el usuario a la persona utilizando el método setUsuario
+        $persona->setUsuario($usuario);
+        $personasConTipoCliente[] = $persona;
+      }
+    }
+
+    return $personasConTipoCliente;
+  }
 
   public function updatePersona($id, $data)
   {

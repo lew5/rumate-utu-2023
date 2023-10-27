@@ -80,4 +80,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return isValid;
   }
+  button.addEventListener("click", function (event) {
+    event.preventDefault;
+    crearEmpleado();
+  });
+
+  function crearEmpleado() {
+    var currentURL = window.location.href;
+    axios
+      .post(currentURL)
+      .then((response) => {
+        console.log("Éxito:", response.data);
+        window.alert(response.data.mensaje);
+        window.location.href = "/rumate/root/empleados";
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        window.alert(error.response.data.mensaje);
+      });
+  }
 });

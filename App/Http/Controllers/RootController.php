@@ -17,10 +17,47 @@ class RootController
   public function crearAdministrador()
   {
     Middleware::root();
-    $view = Container::resolve(View::class);
-    $view->assign("title", "Rumate - Empleados");
-    $view->assign("header_title", "Crear empleado");
-    $view->render(BASE_PATH . "/Resources/Views/Root/crear-admin.php");
+    $registroService = Container::resolve(RegistroService::class);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      if ($registroService->createUsuarioAndPersona($this->postToPersona())) {
+        http_response_code(200);
+        $respuesta = ['mensaje' => 'Empleado registrado correctamente'];
+      } else {
+        http_response_code(400);
+        $respuesta = ['mensaje' => 'Error al registrar empleado'];
+      }
+      header('Content-Type: application/json');
+      $respuesta = json_encode($respuesta);
+      echo $respuesta;
+      die;
+    } else {
+      $view = Container::resolve(View::class);
+      $view->assign("title", "Rumate - Empleados");
+      $view->assign("header_title", "Crear empleado");
+      $view->render(BASE_PATH . "/Resources/Views/Root/crear-admin.php");
+    }
+
+  }
+
+  private function postToPersona()
+  {
+    $personaData = $_POST['persona'];
+    $persona = Container::resolve(Persona::class);
+    $persona->setNombre($personaData['nombre_persona']);
+    $persona->setApellido($personaData['apellido_persona']);
+    $persona->setCi($personaData['ci_persona']);
+    $persona->setBarrio($personaData['barrio_persona']);
+    $persona->setCalle($personaData['calle_persona']);
+    $persona->setNumero($personaData['numero_persona']);
+    $persona->setTelefono($personaData['telefono_persona']);
+    $usuarioData = $_POST['usuario'];
+    $usuario = Container::resolve(Usuario::class);
+    $usuario->setUsername($usuarioData['username_usuario']);
+    $usuario->setPassword($usuarioData['password_usuario']);
+    $usuario->setEmail($usuarioData['email_usuario']);
+    $usuario->setTipo($usuarioData['tipo_usuario']);
+    $persona->setUsuario($usuario);
+    return $persona;
   }
 }
 
