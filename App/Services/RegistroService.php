@@ -27,7 +27,6 @@ class RegistroService
       $usuarioRegistrado = true;
     } catch (PDOException $e) {
       $this->usuarioDePersonaRepository->rollBack();
-      var_dump($e->errorInfo);
     } finally {
       $this->usuarioDePersonaRepository->close();
     }

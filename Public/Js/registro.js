@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
       case "register-step-2-numero":
         return validarStep(field, /^\d{1,6}$/);
       case "register-step-2-telefono":
-        return validarStep(field, /^\d{8}$/);
+        return validarStep(field, /^\d{8,9}$/);
       default:
         return true;
     }
@@ -130,8 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
         pass = field.value;
         return validarStep(field, /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/);
       case "register-step-3-confirmPassword":
-        pass === field.value && field.value.length > 0;
-        if (pass) {
+        if (pass === field.value && field.value.length > 0) {
           return validarStep(
             field,
             /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/
