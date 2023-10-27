@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+html {
+  background-color: #fff;
+}
+
 body {
   accent-color: var(--coral-600);
   min-height: 100vh;
