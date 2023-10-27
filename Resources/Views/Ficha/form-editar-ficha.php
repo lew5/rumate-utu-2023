@@ -36,7 +36,7 @@
         <textarea id="editar-lote__descripcion_ficha"
           name="loteConFicha[ficha][descripcion_ficha]"
           class="input-field__input" rows="4" cols="50"
-          required><?= $lote->getFicha()->getDescripcion(); ?> </textarea>
+          required><?= $lote->getFicha()->getDescripcion(); ?></textarea>
       </label>
       <span class="input-field__error-message hidden error">Error</span>
     </div>

@@ -29,17 +29,17 @@ class PersonaService
   public function getPersonasConTipoProveedor()
   {
     $usuariosProveedor = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
-
     $personasConTipoProveedor = [];
-    foreach ($usuariosProveedor as $usuario) {
-      $persona = $this->usuarioService->getPersonaByUsuarioId($usuario->getId());
+    if ($usuariosProveedor) {
+      foreach ($usuariosProveedor as $usuario) {
+        $persona = $this->usuarioService->getPersonaByUsuarioId($usuario->getId());
 
-      if ($persona) {
-        $persona->setUsuario($usuario);
-        $personasConTipoProveedor[] = $persona;
+        if ($persona) {
+          $persona->setUsuario($usuario);
+          $personasConTipoProveedor[] = $persona;
+        }
       }
     }
-
     return $personasConTipoProveedor;
   }
   public function getPersonasConTipoCliente()
@@ -47,15 +47,16 @@ class PersonaService
     $usuariosCliente = $this->usuarioService->getUsuariosByTipo("CLIENTE");
 
     $personasConTipoCliente = [];
-    foreach ($usuariosCliente as $usuario) {
-      $persona = $this->usuarioService->getPersonaByUsuarioId($usuario->getId());
+    if ($usuariosCliente) {
+      foreach ($usuariosCliente as $usuario) {
+        $persona = $this->usuarioService->getPersonaByUsuarioId($usuario->getId());
 
-      if ($persona) {
-        $persona->setUsuario($usuario);
-        $personasConTipoCliente[] = $persona;
+        if ($persona) {
+          $persona->setUsuario($usuario);
+          $personasConTipoCliente[] = $persona;
+        }
       }
     }
-
     return $personasConTipoCliente;
   }
 

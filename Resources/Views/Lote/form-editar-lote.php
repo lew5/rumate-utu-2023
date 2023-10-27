@@ -33,7 +33,7 @@
                     <?= $proveedor->getUsuario()->getUsername(); ?>
                   </option>
                 <?php else: ?>
-                  <option value="<?= $lote->getIdProveedor(); ?>">
+                  <option value="<?= $proveedor->getId(); ?>">
                     <?= $proveedor->getUsuario()->getUsername(); ?>
                   </option>
                 <?php endif ?>
