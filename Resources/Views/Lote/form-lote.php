@@ -19,7 +19,7 @@
               foreach ($proveedores as $proveedor) {
                 ?>
                 <option value="<?= $proveedor->getId(); ?>">
-                  <?= $proveedor->getUsername(); ?>
+                  <?= $proveedor->getUsuario()->getUsername(); ?>
                 </option>
               <?php } ?>
             </select>

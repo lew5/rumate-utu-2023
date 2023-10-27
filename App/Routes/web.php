@@ -14,7 +14,7 @@
 //   echo "Las fechas son iguales.";
 // }
 
-// var_dump(Container::resolve(ClienteService::class)->getClientes());
+// var_dump(Container::resolve(PersonaService::class)->getPersonasConTipoProveedor());
 // die;
 
 

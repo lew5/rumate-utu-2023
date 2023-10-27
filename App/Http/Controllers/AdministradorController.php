@@ -6,19 +6,21 @@ class AdministradorController
   private $categoriaRepository;
   private $remateService;
   private $usuarioService;
+
+  private $personaService;
   public function __construct()
   {
     Middleware::admin();
     $this->categoriaRepository = Container::resolve(CategoriaRepository::class);
     $this->usuarioService = Container::resolve(UsuarioService::class);
     $this->remateService = Container::resolve(RemateService::class);
+    $this->personaService = Container::resolve(PersonaService::class);
   }
 
   public function crearRemate()
   {
     $categorias = $this->categoriaRepository->find();
-    $proveedores = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
-    // var_dump($proveedores);
+    $proveedores = $this->personaService->getPersonasConTipoProveedor();
     $view = Container::resolve(View::class);
     $view->assign("title", "Rumate - Crear remate");
     $view->assign("header_title", "Crear nuevo remate");
@@ -145,7 +147,7 @@ class AdministradorController
       echo $respuesta;
     } else {
       $categorias = $this->categoriaRepository->find();
-      $proveedores = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
+      $proveedores = $this->personaService->getPersonasConTipoProveedor();
       $lote = Container::resolve(LoteService::class)->getLoteById($idLote);
       if ($lote) {
         $view = Container::resolve(View::class);

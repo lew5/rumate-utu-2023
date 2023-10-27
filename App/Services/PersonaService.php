@@ -3,10 +3,12 @@
 class PersonaService
 {
   private $personaRepository;
+  private $usuarioService;
 
   public function __construct()
   {
     $this->personaRepository = Container::resolve(PersonaRepository::class);
+    $this->usuarioService = Container::resolve(UsuarioService::class);
   }
 
   public function createPersona($personaModel)
@@ -23,6 +25,25 @@ class PersonaService
   public function getPersonaById($id)
   {
     return $this->personaRepository->findById($id);
+  }
+  public function getPersonasConTipoProveedor()
+  {
+    // Obtén todos los usuarios de tipo "proveedor" usando el servicio de usuarios
+    $usuariosProveedor = $this->usuarioService->getUsuariosByTipo("proveedor");
+
+    $personasConTipoProveedor = [];
+    foreach ($usuariosProveedor as $usuario) {
+      // Para cada usuario proveedor, obtén la persona correspondiente
+      $persona = $this->usuarioService->getPersonaByUsuarioId($usuario->getId());
+
+      if ($persona) {
+        // Asocia el usuario a la persona utilizando el método setUsuario
+        $persona->setUsuario($usuario);
+        $personasConTipoProveedor[] = $persona;
+      }
+    }
+
+    return $personasConTipoProveedor;
   }
 
   public function updatePersona($id, $data)

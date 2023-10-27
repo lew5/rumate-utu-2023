@@ -47,10 +47,10 @@ class LoteController
         }
       } else {
         $categoriaRepository = Container::resolve(CategoriaRepository::class);
-        $usuarioService = Container::resolve(UsuarioService::class);
+        $personaService = Container::resolve(PersonaService::class);
 
         $categorias = $categoriaRepository->find();
-        $proveedores = $usuarioService->getUsuariosByTipo("PROVEEDOR");
+        $proveedores = $personaService->getPersonasConTipoProveedor();
 
         $view = Container::resolve(View::class);
         $view->assign("title", "Rumate - Crear lote");

@@ -30,11 +30,11 @@
               foreach ($proveedores as $proveedor) { ?>
                 <?php if ($proveedor->getId() == $lote->getIdProveedor()): ?>
                   <option value="<?= $lote->getIdProveedor(); ?>" selected>
-                    <?= $proveedor->getUsername(); ?>
+                    <?= $proveedor->getUsuario()->getUsername(); ?>
                   </option>
                 <?php else: ?>
                   <option value="<?= $lote->getIdProveedor(); ?>">
-                    <?= $proveedor->getUsername(); ?>
+                    <?= $proveedor->getUsuario()->getUsername(); ?>
                   </option>
                 <?php endif ?>
               <?php } ?>
