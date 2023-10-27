@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function updateButtonState() {
+    //! prueba
+    // if (currentStep !== 3) {
+    //   currentStep = 3;
+    //   steps.forEach((step, index) => {
+    //     step.style.display = index === 2 ? "block" : "none";
+    //   });
+    // }
+
     let allFieldsFilled = true;
 
     allFields[currentStep - 1].forEach((field) => {
@@ -130,12 +138,20 @@ document.addEventListener("DOMContentLoaded", function () {
         pass = field.value;
         return validarStep(field, /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/);
       case "register-step-3-confirmPassword":
-        if (pass === field.value && field.value.length > 0) {
-          return validarStep(
-            field,
-            /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/
-          );
+        const isValid =
+          field.value === pass && field.value.length > 0 && field.value.length === pass.length;
+        var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/;
+
+        if (validarStep(field, regex) && isValid) {
+          field.classList.remove("input-field__input--error");
+          field.classList.add("input-field__input--ok");
+        } else {
+          if (field.value.length > 0) {
+            field.classList.remove("input-field__input--ok");
+            field.classList.add("input-field__input--error");
+          }
         }
+        return isValid;
       default:
         return true;
     }
