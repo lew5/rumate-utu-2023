@@ -47,6 +47,7 @@ class LoteService
     $fichaId = $this->fichaService->createFicha($loteModel->getFicha());
     $loteModel->setIdFicha($fichaId);
     $loteAssocArray = $this->loteToAssocArray($loteModel);
+    var_dump($loteAssocArray);
     $this->loteRepository->addLote($loteAssocArray);
     return $this->loteRepository->lastInsertId();
   }
