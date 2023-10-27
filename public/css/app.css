@@ -644,6 +644,17 @@ textarea {
   padding-bottom: 2rem;
 }
 
+.card-remate__title span {
+  color: var(--white-300);
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.card-remate__title span:hover {
+  text-decoration: underline;
+}
+
 @media only screen and (min-width: 360px) {
   .login-register__container {
     padding: 1rem;
