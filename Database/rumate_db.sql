@@ -14,7 +14,7 @@ CREATE TABLE PERSONAS (
     calle_persona VARCHAR(40),
     numero_persona VARCHAR(40),
     telefono_persona VARCHAR(20) NOT NULL,
-    estado_persona VARCHAR(40)
+    estado_persona ENUM('Activo', 'Inactivo') DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla USUARIOS
