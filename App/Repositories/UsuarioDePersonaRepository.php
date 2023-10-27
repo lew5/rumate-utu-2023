@@ -25,7 +25,7 @@ class UsuarioDePersonaRepository extends Repository
   {
     return $this->read(
       [
-        "id_persona_usuarios_de_personas" => $id
+        "id_persona_usuarios_de_persona" => $id
       ]
     );
   }

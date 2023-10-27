@@ -29,7 +29,7 @@ class PersonaService
   public function getPersonasConTipoProveedor()
   {
     // Obtén todos los usuarios de tipo "proveedor" usando el servicio de usuarios
-    $usuariosProveedor = $this->usuarioService->getUsuariosByTipo("proveedor");
+    $usuariosProveedor = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
 
     $personasConTipoProveedor = [];
     foreach ($usuariosProveedor as $usuario) {

@@ -4,8 +4,8 @@
   <div class="card-remate__info">
     <h2 class="card-remate__title">LOTE de
       <?= $lote->getCategoria()->getNombre(); ?>s</h2>
-    <p class="card-remate__data"><b>Categoría:
-      </b><?= $lote->getCategoria()->getNombre(); ?>
+    <p class="card-remate__data"><b>Proveedor:
+      </b><?= $lote->getProveedor()->getUsername(); ?>
     </p>
     <p class="card-remate__data"><b>Cantidad:
       </b><?= $lote->getFicha()->getCantidad(); ?></p>

@@ -49,6 +49,16 @@ class UsuarioService
     return $persona;
   }
 
+  public function getUsuarioByPersonaId($personaId)
+  {
+    $usuarioDePersona = $this->usuarioDePersonaRepository->findByPersonaId($personaId);
+    if ($usuarioDePersona) {
+      $usuarioId = $usuarioDePersona->getIdUsuario();
+      return $this->usuarioRepository->findById($usuarioId);
+    }
+    return null;
+  }
+
   public function updateUsuario($id, $data)
   {
     $usuarioData = $data['usuario'];
