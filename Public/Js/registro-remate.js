@@ -46,14 +46,13 @@ function limpiarCampos() {
 
 function publicar() {
   // Si hay lotes guardados, eliminar los atributos required de los campos de lote y ficha
-  if (lotesGuardados > 0) {
+  if (lotesGuardados > 0 && validarFechas()) {
     var camposLote = document.querySelectorAll(
       ".registro-remate__lote .input-field__input,.registro-remate__ficha .input-field__input"
     );
     camposLote.forEach(function (input) {
       input.removeAttribute("required");
     });
-
     remate.titulo_remate = document.getElementById("registro-remate__titulo-remate").value;
     remate.imagen_remate = document.getElementById("registro-remate__imagen_remate").value;
     remate.fecha_inicio_remate = document.getElementById(
@@ -92,4 +91,28 @@ function guardar() {
 
   agregarLote();
   limpiarCampos();
+}
+
+function validarFechas() {
+  // Obtiene los valores de fecha y hora de inicio y finalización
+  var fechaInicioValue = document.getElementById("registro-remate__fecha_inicio_remate").value;
+  var fechaFinalValue = document.getElementById("registro-remate__fecha_final_remate").value;
+
+  // Parsea las fechas en objetos Date
+  var fechaInicio = new Date(fechaInicioValue);
+  var fechaFinal = new Date(fechaFinalValue);
+
+  // Elimina los segundos y milisegundos de las fechas
+  fechaInicio.setSeconds(0);
+  fechaInicio.setMilliseconds(0);
+  fechaFinal.setSeconds(0);
+  fechaFinal.setMilliseconds(0);
+
+  // Compara las fechas
+  if (fechaInicio >= fechaFinal) {
+    alert("La fecha de inicio debe ser menor que la fecha de finalización.");
+    return false; // Impide que el formulario se envíe si la validación falla
+  }
+
+  return true; // Permite que el formulario se envíe si la validación pasa
 }
