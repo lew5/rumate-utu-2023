@@ -694,13 +694,29 @@ textarea {
 }
 
 .custom-input-step__btn--plus {
-  background-color: rgba(0, 128, 0, 0.5);
+  background-color: #d7ffdc;
   background-image: url('../imgs/add.svg');
 }
 
+.custom-input-step__btn--plus:hover {
+  background-color: #b2ffbc;
+}
+
+.custom-input-step__btn--plus:active {
+  background-color: #7cff8f;
+}
+
 .custom-input-step__btn--minus {
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: #ffe1e1;
   background-image: url('../imgs/remove.svg');
+}
+
+.custom-input-step__btn--minus:hover {
+  background-color: #ffc7c7;
+}
+
+.custom-input-step__btn--minus:active {
+  background-color: #ffa0a0;
 }
 
 .custom-input-step__input {

@@ -7,22 +7,23 @@
     <div class="lote-info f-column">
       <div class="highest-offer">
         <span class="highest-offer__title">Mejor oferta</span>
-        <h3>U$S <span class="highest-offer__value">200</span></h3>
+        <h3>U$S <span id="mejor_oferta" class="highest-offer__value">200</span>
+        </h3>
       </div>
       <div class="make-offer">
         <form action="" method="POST">
           <div class="custom-input-step">
-            <input type="button"
+            <input id="minusButton" type="button"
               class="button__input custom-input-step__btn--minus" />
             <div class="custom-input-step__value">
               <input id="offer_value" type="number"
                 class="custom-input-step__input" disabled autocomplete="off" />
             </div>
-            <input type="button"
+            <input id="plusButton" type="button"
               class="button__input custom-input-step__btn--plus" />
           </div>
           <div class="button">
-            <input class="button__input" type="button" name="login-btn"
+            <input id="ofertar-btn" class="button__input" type="button"
               value="OFERTAR" disabled />
           </div>
         </form>
