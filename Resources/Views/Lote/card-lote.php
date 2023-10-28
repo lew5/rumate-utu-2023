@@ -22,7 +22,7 @@
     </div>
   <?php } ?>
   <div class="card-remate__button">
-    <a href="<?= PUBLIC_PATH ?>/remate/<?= $lote->getId(); ?>/lote/<?= $lote->getId(); ?>"
+    <a href="<?= PUBLIC_PATH ?>/remate/<?= $idRemate; ?>/lote/<?= $lote->getId(); ?>"
       class="link">Participar</a>
   </div>
 </div>

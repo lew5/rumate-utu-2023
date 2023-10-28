@@ -8,7 +8,7 @@ class LoteController
     if ($lote != false) {
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Lote");
-      $view->assign("header_title", "Lote <span>#$idRemate</span>");
+      $view->assign("header_title", "Lote <span>#$idLote</span>");
       $view->assign("lote", $lote);
       $view->render(BASE_PATH . "/Resources/Views/Lote/lote.view.php");
     } else {

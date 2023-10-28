@@ -95,6 +95,10 @@ class AdministradorController
       die;
     } else {
       $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
+      foreach ($remate->getLotes() as $lote) {
+        $proveedor = Container::resolve(UsuarioService::class)->getUsuarioByPersonaId($lote->getIdProveedor());
+        $lote->setProveedor($proveedor);
+      }
       if ($remate->getLotes()) {
         $view = Container::resolve(View::class);
         $view->assign("title", "Rumate - Editar remate");
