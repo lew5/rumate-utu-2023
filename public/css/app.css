@@ -630,6 +630,101 @@ textarea {
   height: 300px;
 }
 
+.lote-details {
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Estilos para la imagen del lote */
+.lote-image {
+  border-radius: 16px;
+  overflow: hidden;
+  max-height: 480px;
+  max-width: 720px;
+}
+
+/* Estilos para la información del lote (oferta más alta y formulario) */
+.lote-info {
+  flex: 1;
+  border-radius: 16px;
+  justify-content: space-between;
+}
+
+/* Estilos para el formulario de oferta */
+.custom-input-step {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.highest-offer {
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  border-radius: 16px;
+}
+
+.highest-offer span {
+  color: var(--coral-400)
+}
+
+.highest-offer h3,
+.highest-offer h3 span {
+  font-size: 2rem;
+  color: var(--fruit-salad-500)
+}
+
+.custom-input-step__btn {
+  border-radius: 4px;
+  border: none;
+  width: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.custom-input-step__btn--plus,
+.custom-input-step__btn--minus {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 24px 24px;
+  width: 50px;
+}
+
+.custom-input-step__btn--plus {
+  background-color: rgba(0, 128, 0, 0.5);
+  background-image: url('../imgs/add.svg');
+}
+
+.custom-input-step__btn--minus {
+  background-color: rgba(255, 0, 0, 0.5);
+  background-image: url('../imgs/remove.svg');
+}
+
+.custom-input-step__input {
+  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  height: 50px;
+  width: 100px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.make-offer form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.lote-details .lote-image img {
+  background-color: #7cff8f;
+  object-fit: scale-down;
+}
+
 .registro-remate__remate div.inputs-wrap,
 .registro-remate__lote div.inputs-wrap,
 .registro-remate__ficha div.inputs-wrap,
