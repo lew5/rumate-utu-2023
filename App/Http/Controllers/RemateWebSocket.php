@@ -24,8 +24,8 @@ class RemateWebSocket implements MessageComponentInterface
 
   public function onOpen(ConnectionInterface $conn)
   {
-    $query = $conn->httpRequest->getUri()->getQuery(); // Obtén la cadena de consulta de la URL
-    parse_str($query, $queryParams); // Analiza la cadena de consulta
+    $query = $conn->httpRequest->getUri()->getQuery();
+    parse_str($query, $queryParams);
 
     if (isset($queryParams['id_lote'])) {
       $loteId = $queryParams['id_lote'];
@@ -39,33 +39,28 @@ class RemateWebSocket implements MessageComponentInterface
 
   public function onMessage(ConnectionInterface $from, $msg)
   {
-    // Manejar los mensajes recibidos desde el cliente WebSocket
     $data = json_decode($msg, true);
 
     if ($data && isset($data['type']) && $data['type'] === "puja") {
       $montoPuja = (float) $data['monto'];
-      $idCliente = (int) $data['id_usuario']; // Reemplaza con la forma adecuada de obtener el ID del cliente
-      $idRemate = (int) $data['id_remate']; // Reemplaza con el ID del remate
-      $idLote = (int) $data['id_lote']; // Reemplaza con el ID del lote
+      $idCliente = (int) $data['id_usuario'];
+      $idRemate = (int) $data['id_remate'];
+      $idLote = (int) $data['id_lote'];
 
       try {
-        // Obtener el precio final actual del lote
         $precioFinal = $this->obtenerPrecioFinalDelLote($idLote);
 
-        // Verificar si la puja es mayor que el precio final actual del lote
         if ($montoPuja > $precioFinal) {
-          // Insertar la nueva puja en la base de datos
           $this->insertarNuevaPuja($montoPuja, $idCliente, $idRemate, $idLote);
-
-          // Enviar el monto de la nueva puja a todos los clientes conectados
           $mejorOferta = $this->obtenerPrecioFinalDelLote($idLote);
+          $mejorOferta = number_format($mejorOferta, 2, '.', '');
+          echo $mejorOferta;
           $mejorOfertaData = [
             'usuario' => $idCliente,
             'monto' => $mejorOferta
           ];
 
           $mejorOfertaData = json_encode($mejorOfertaData);
-          // $this->enviarMensajeATodos($mejorOfertaData);
           if (isset($this->groups[$idLote])) {
             foreach ($this->groups[$idLote] as $client) {
               $client->send($mejorOfertaData);
@@ -93,11 +88,6 @@ class RemateWebSocket implements MessageComponentInterface
     echo "An error has occurred: {$e->getMessage()}\n";
     $conn->close();
   }
-
-  // Resto de las funciones de la clase como se definió previamente en tu código
-  // ...
-
-  // Función para insertar una nueva puja en la base de datos
   private function insertarNuevaPuja($montoPuja, $idCliente, $idRemate, $idLote)
   {
     $idUsuario = $idCliente;

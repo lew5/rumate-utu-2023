@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const idLote = id_lote.value;
   const socket = new WebSocket(`ws://localhost:8080?id_lote=${idLote}`);
 
-  let minValue = parseInt(highestOfferValue.textContent);
+  let minValue = parseFloat(highestOfferValue.textContent);
   inputValue.value = minValue;
   toggleOfferButtonState(inputValue.value, minValue);
 
@@ -43,15 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function ofertar() {
-    const oferta = parseFloat(inputValue.value); // Utilizamos parseFloat para trabajar con decimales
+    const oferta = parseFloat(inputValue.value);
     if (!isNaN(oferta)) {
-      // Creamos un objeto JSON para enviar al servidor
       const ofertaJSON = {
         type: "puja",
         monto: oferta,
-        id_usuario: id_usuario.value, // Reemplaza con el ID del cliente
-        id_remate: id_remate.value, // Reemplaza con el ID del remate
-        id_lote: id_lote.value, // Reemplaza con el ID del lote
+        id_usuario: id_usuario.value,
+        id_remate: id_remate.value,
+        id_lote: id_lote.value,
       };
 
       // Convertimos el objeto JSON a una cadena JSON
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   offerButton.addEventListener("click", function () {
-    const oferta = parseInt(inputValue.value, 10);
+    const oferta = parseFloat(inputValue.value);
     if (!isNaN(oferta) && oferta > minValue) {
       // Envia la oferta al servidor WebSocket si es mayor que la mejor oferta
       ofertar();
@@ -81,21 +80,21 @@ document.addEventListener("DOMContentLoaded", function () {
   socket.addEventListener("message", (event) => {
     const data = event.data;
     try {
-      // Intenta analizar el mensaje como JSON
       const message = JSON.parse(data);
       console.log(message);
       if (message) {
-        const nuevaOferta = parseFloat(message.monto);
+        const nuevaOferta = message.monto;
+        console.log(nuevaOferta);
 
         if (!isNaN(nuevaOferta)) {
           if (nuevaOferta > minValue) {
-            minValue = nuevaOferta;
+            minValue = parseInt(nuevaOferta);
           }
 
           highestOfferValue.textContent = nuevaOferta;
-
+          console.log(highestOfferValue.textContent);
           if (parseFloat(inputValue.value) <= minValue) {
-            inputValue.value = nuevaOferta;
+            inputValue.value = parseInt(nuevaOferta, 10);
             toggleOfferButtonState(inputValue.value, minValue);
           }
         }
