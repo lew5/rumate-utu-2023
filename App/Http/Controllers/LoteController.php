@@ -7,8 +7,6 @@ class LoteController
     $lote = Container::resolve(LoteService::class)->getLoteById($idLote);
     $proveedor = Container::resolve(UsuarioService::class)->getUsuarioByPersonaId($lote->getIdProveedor());
     $lote->setProveedor($proveedor);
-    var_dump($lote);
-    // var_dump($lote);
     if ($lote != false) {
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Lote");
