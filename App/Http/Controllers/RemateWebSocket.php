@@ -9,12 +9,14 @@ use PDOException;
 class RemateWebSocket implements MessageComponentInterface
 {
   protected $clients;
+
   private $pdo;
 
   public function __construct()
   {
     $this->clients = new \SplObjectStorage;
     echo "Servidor iniciado...\n";
+
 
     // Establecer la conexión a la base de datos en el constructor
     $this->pdo = new PDO('mysql:host=localhost;dbname=rumate_db', 'root', '');
@@ -47,7 +49,14 @@ class RemateWebSocket implements MessageComponentInterface
           $this->insertarNuevaPuja($montoPuja, $idCliente, $idRemate, $idLote);
 
           // Enviar el monto de la nueva puja a todos los clientes conectados
-          $this->enviarMensajeATodos($montoPuja);
+          $mejorOferta = $this->obtenerPrecioFinalDelLote($idLote);
+          $mejorOfertaData = [
+            'usuario' => $idCliente,
+            'monto' => $mejorOferta
+          ];
+
+          $mejorOfertaData = json_encode($mejorOfertaData);
+          $this->enviarMensajeATodos($mejorOfertaData);
         }
       } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

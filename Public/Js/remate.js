@@ -53,17 +53,15 @@ document.addEventListener("DOMContentLoaded", function () {
         id_lote: id_lote.value, // Reemplaza con el ID del lote
       };
 
-      console.log(ofertaJSON);
-
       // Convertimos el objeto JSON a una cadena JSON
       const ofertaString = JSON.stringify(ofertaJSON);
 
       // Envia la oferta al servidor WebSocket
       socket.send(ofertaString);
 
-      highestOfferValue.textContent = oferta;
-      minValue = oferta;
-      offerButton.disabled = true;
+      // highestOfferValue.textContent = oferta;
+      // minValue = oferta;
+      // offerButton.disabled = true;
     }
   }
 
@@ -77,6 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   socket.addEventListener("open", () => {
     console.log("Conexión WebSocket establecida");
+    const infoRemateLote = {
+      type: "infoRemateLote",
+      id_lote: id_lote,
+      id_remate: id_remate,
+    };
+
+    // Convierte el objeto en una cadena JSON y envíala al servidor
+    socket.send(JSON.stringify(infoRemateLote));
   });
 
   socket.addEventListener("message", (event) => {
@@ -84,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       // Intenta analizar el mensaje como JSON
       const message = JSON.parse(data);
-
-      if (message.type === "puja") {
+      console.log(message);
+      if (message) {
         const nuevaOferta = parseFloat(message.monto);
 
         if (!isNaN(nuevaOferta)) {
