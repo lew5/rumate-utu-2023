@@ -7,8 +7,13 @@
     <div class="lote-info f-column">
       <div class="highest-offer">
         <span class="highest-offer__title">Mejor oferta</span>
-        <h3>U$S <span id="mejor_oferta"
-            class="highest-offer__value"><?= $lote->getMejorOferta(); ?></span>
+        <h3>U$S <span id="mejor_oferta" class="highest-offer__value"><?php
+        if ($lote->getPrecioBase() > $lote->getMejorOferta()) {
+          print($lote->getPrecioBase());
+        } else {
+          $lote->getMejorOferta();
+        }
+        ?></span>
         </h3>
       </div>
       <div class="make-offer">
