@@ -42,7 +42,7 @@
       </div>
       <div class="button">
         <input id="publicar" class="button__input" type="submit"
-          value="Publicar remate" />
+          value="Publicar" />
       </div>
     </div>
   </div>
