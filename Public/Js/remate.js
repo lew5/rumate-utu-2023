@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const socket = new WebSocket("ws://localhost:8080");
   let inputValue = document.getElementById("offer_value");
   const plusButton = document.getElementById("plusButton");
   const minusButton = document.getElementById("minusButton");
@@ -8,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const id_lote = document.getElementById("id_lote");
   const id_remate = document.getElementById("id_remate");
   const id_usuario = document.getElementById("id_usuario");
+  const idLote = id_lote.value;
+  const socket = new WebSocket(`ws://localhost:8080?id_lote=${idLote}`);
 
   let minValue = parseInt(highestOfferValue.textContent);
   inputValue.value = minValue;
@@ -75,14 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   socket.addEventListener("open", () => {
     console.log("Conexión WebSocket establecida");
-    const infoRemateLote = {
-      type: "infoRemateLote",
-      id_lote: id_lote,
-      id_remate: id_remate,
-    };
-
-    // Convierte el objeto en una cadena JSON y envíala al servidor
-    socket.send(JSON.stringify(infoRemateLote));
   });
 
   socket.addEventListener("message", (event) => {

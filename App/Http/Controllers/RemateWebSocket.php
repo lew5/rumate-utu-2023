@@ -9,7 +9,7 @@ use PDOException;
 class RemateWebSocket implements MessageComponentInterface
 {
   protected $clients;
-
+  protected $groups = [];
   private $pdo;
 
   public function __construct()
@@ -24,8 +24,17 @@ class RemateWebSocket implements MessageComponentInterface
 
   public function onOpen(ConnectionInterface $conn)
   {
-    $this->clients->attach($conn);
-    echo "New connection! ({$conn->resourceId})\n";
+    $query = $conn->httpRequest->getUri()->getQuery(); // Obtén la cadena de consulta de la URL
+    parse_str($query, $queryParams); // Analiza la cadena de consulta
+
+    if (isset($queryParams['id_lote'])) {
+      $loteId = $queryParams['id_lote'];
+      if (!isset($this->groups[$loteId])) {
+        $this->groups[$loteId] = new \SplObjectStorage;
+      }
+      $this->groups[$loteId]->attach($conn);
+      echo "New connection! ({$conn->resourceId}) to lote $loteId\n";
+    }
   }
 
   public function onMessage(ConnectionInterface $from, $msg)
@@ -56,7 +65,12 @@ class RemateWebSocket implements MessageComponentInterface
           ];
 
           $mejorOfertaData = json_encode($mejorOfertaData);
-          $this->enviarMensajeATodos($mejorOfertaData);
+          // $this->enviarMensajeATodos($mejorOfertaData);
+          if (isset($this->groups[$idLote])) {
+            foreach ($this->groups[$idLote] as $client) {
+              $client->send($mejorOfertaData);
+            }
+          }
         }
       } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -66,7 +80,11 @@ class RemateWebSocket implements MessageComponentInterface
 
   public function onClose(ConnectionInterface $conn)
   {
-    $this->clients->detach($conn);
+    foreach ($this->groups as $group) {
+      if ($group->contains($conn)) {
+        $group->detach($conn);
+      }
+    }
     echo "Connection {$conn->resourceId} has disconnected\n";
   }
 
