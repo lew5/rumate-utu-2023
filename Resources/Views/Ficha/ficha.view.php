@@ -7,11 +7,16 @@
     <div class="lote-info f-column">
       <div class="highest-offer">
         <span class="highest-offer__title">Mejor oferta</span>
-        <h3>U$S <span id="mejor_oferta" class="highest-offer__value">200</span>
+        <h3>U$S <span id="mejor_oferta"
+            class="highest-offer__value"><?= $lote->getMejorOferta(); ?></span>
         </h3>
       </div>
       <div class="make-offer">
         <form action="" method="POST">
+          <input type="hidden" id="id_remate" value="<?= $idRemate ?>">
+          <input type="hidden" id="id_lote" value="<?= $lote->getId() ?>">
+          <input type="hidden" id="id_usuario"
+            value="<?= sessionUsuario()->getId() ?>">
           <div class="custom-input-step">
             <input id="minusButton" type="button"
               class="button__input custom-input-step__btn--minus" />

@@ -12,6 +12,7 @@ class LoteController
       $view->assign("title", "Rumate - Lote");
       $view->assign("header_title", "Lote <span>#$idLote</span>");
       $view->assign("lote", $lote);
+      $view->assign("idRemate", $idRemate);
       $view->render(BASE_PATH . "/Resources/Views/Lote/lote.view.php");
     } else {
       abort();
