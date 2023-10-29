@@ -770,6 +770,20 @@ textarea {
   text-decoration: underline;
 }
 
+.lote-no-auth {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lote-no-auth span {
+  text-align: center;
+  font-size: 13px;
+}
+
 @media only screen and (min-width: 360px) {
   .login-register__container {
     padding: 1rem;
