@@ -11,11 +11,18 @@
         if ($lote->getPrecioBase() > $lote->getMejorOferta()) {
           print($lote->getPrecioBase());
         } else {
-          $lote->getMejorOferta();
+          print($lote->getMejorOferta());
         }
         ?></span>
         </h3>
       </div>
+      <?php
+
+      // if (sessionUsuario()) {
+      //   # code...
+      // }
+      
+      ?>
       <div class="make-offer">
         <form action="" method="POST">
           <input type="hidden" id="id_remate" value="<?= $idRemate ?>">
