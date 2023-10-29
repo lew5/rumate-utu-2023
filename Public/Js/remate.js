@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const id_lote = document.getElementById("id_lote");
   const id_remate = document.getElementById("id_remate");
   const id_usuario = document.getElementById("id_usuario");
+  const highest_offer_by_username = document.getElementById("highest-offer-by__username");
   const idLote = id_lote.value;
   const socket = new WebSocket(`ws://localhost:8080?id_lote=${idLote}`);
 
@@ -90,9 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
           if (nuevaOferta > minValue) {
             minValue = parseInt(nuevaOferta);
           }
-
+          highest_offer_by_username.textContent = message.usuario;
           highestOfferValue.textContent = nuevaOferta;
-          console.log(highestOfferValue.textContent);
           if (parseFloat(inputValue.value) <= minValue) {
             inputValue.value = parseInt(nuevaOferta, 10);
             toggleOfferButtonState(inputValue.value, minValue);

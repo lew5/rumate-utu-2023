@@ -54,9 +54,10 @@ class RemateWebSocket implements MessageComponentInterface
           $this->insertarNuevaPuja($montoPuja, $idCliente, $idRemate, $idLote);
           $mejorOferta = $this->obtenerPrecioFinalDelLote($idLote);
           $mejorOferta = number_format($mejorOferta, 2, '.', '');
+          $username = $this->obtenerNombreUsuarioPorId($idCliente);
           echo $mejorOferta;
           $mejorOfertaData = [
-            'usuario' => $idCliente,
+            'usuario' => $username,
             'monto' => $mejorOferta
           ];
 
@@ -183,6 +184,28 @@ class RemateWebSocket implements MessageComponentInterface
     } catch (PDOException $e) {
       // Maneja cualquier error de conexión o consulta
       echo "Error: " . $e->getMessage();
+    }
+  }
+  private function obtenerNombreUsuarioPorId($idUsuario)
+  {
+    try {
+      // Consulta SQL para obtener el nombre de usuario por id_usuario
+      $sql = "SELECT username_usuario
+                FROM USUARIOS
+                WHERE id_usuario = :id_usuario";
+
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->bindParam(':id_usuario', $idUsuario, PDO::PARAM_INT);
+      $stmt->execute();
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $nombreUsuario = $row['username_usuario'];
+
+      return $nombreUsuario;
+    } catch (PDOException $e) {
+      // Maneja cualquier error de conexión o consulta
+      echo "Error: " . $e->getMessage();
+      return null; // En caso de error, devuelve null o un valor predeterminado
     }
   }
 }

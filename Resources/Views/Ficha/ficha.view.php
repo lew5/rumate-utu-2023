@@ -16,6 +16,9 @@
         ?></span>
         </h3>
       </div>
+      <div class="highest-offer-by">
+        <span id="highest-offer-by__username"></span>
+      </div>
       <?php if (sessionUsuario()) {
         if (sessionAdmin() || sessionRoot()) { ?>
           <div class="lote-no-auth">
