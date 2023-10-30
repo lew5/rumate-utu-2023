@@ -1,4 +1,3 @@
-<?php var_dump(sessionUsuario()); ?>
 <div class="remate-lote-container f-column">
   <div class="lote-details f-row">
     <div class="lote-image">
