@@ -1,3 +1,4 @@
+<?php var_dump(sessionUsuario()); ?>
 <div class="remate-lote-container f-column">
   <div class="lote-details f-row">
     <div class="lote-image">
@@ -15,9 +16,10 @@
         }
         ?></span>
         </h3>
-      </div>
-      <div class="highest-offer-by">
-        <span id="highest-offer-by__username"></span>
+        <div class="highest-offer-by">
+          <p>Mejor oferta realizada por:</p>
+          <a href="">#<span id="highest-offer-by__username"></span></a>
+        </div>
       </div>
       <?php if (sessionUsuario()) {
         if (sessionAdmin() || sessionRoot()) { ?>
@@ -30,7 +32,7 @@
               <input type="hidden" id="id_remate" value="<?= $idRemate ?>">
               <input type="hidden" id="id_lote" value="<?= $lote->getId() ?>">
               <input type="hidden" id="id_usuario"
-                value="<?= sessionUsuario()->getId() ?>">
+                value="<?= sessionUsuario()->getId(); ?>">
               <div class="custom-input-step">
                 <input id="minusButton" type="button"
                   class="button__input custom-input-step__btn--minus" />

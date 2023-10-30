@@ -27,8 +27,15 @@ class RemateWebSocket implements MessageComponentInterface
     $query = $conn->httpRequest->getUri()->getQuery();
     parse_str($query, $queryParams);
 
-    if (isset($queryParams['id_lote'])) {
+    if (isset($queryParams['id_lote']) && isset($queryParams['id_remate'])) {
       $loteId = $queryParams['id_lote'];
+      $remateId = $queryParams['id_remate'];
+      $username = $this->obtenerNombreUsuarioPorLote($loteId, $remateId);
+      var_dump($username);
+      $userData = [
+        'usuario' => $username
+      ];
+      $conn->send(json_encode($userData));
       if (!isset($this->groups[$loteId])) {
         $this->groups[$loteId] = new \SplObjectStorage;
       }
@@ -40,6 +47,7 @@ class RemateWebSocket implements MessageComponentInterface
   public function onMessage(ConnectionInterface $from, $msg)
   {
     $data = json_decode($msg, true);
+    var_dump($data);
 
     if ($data && isset($data['type']) && $data['type'] === "puja") {
       $montoPuja = (float) $data['monto'];
@@ -208,4 +216,40 @@ class RemateWebSocket implements MessageComponentInterface
       return null; // En caso de error, devuelve null o un valor predeterminado
     }
   }
+
+  private function obtenerNombreUsuarioPorLote($loteId, $idRemate)
+  {
+    try {
+      // Prepara la consulta SQL para obtener el nombre de usuario relacionado con un lote y un remate
+      $stmt = $this->pdo->prepare(
+        "SELECT USUARIOS.id_usuario, USUARIOS.username_usuario
+          FROM USUARIOS
+          JOIN USUARIOS_DE_PERSONAS ON USUARIOS.id_usuario = USUARIOS_DE_PERSONAS.id_usuario_usuarios_de_personas
+          JOIN PUJAS_DE_PERSONAS ON USUARIOS_DE_PERSONAS.id_persona_usuarios_de_persona = PUJAS_DE_PERSONAS.id_persona_puja_de_persona
+          JOIN PUJAS_DE_REMATES ON PUJAS_DE_PERSONAS.id_puja_puja_de_persona = PUJAS_DE_REMATES.id_puja_puja_de_remate
+          JOIN PUJAS ON PUJAS_DE_REMATES.id_puja_puja_de_remate = PUJAS.id_puja
+          WHERE PUJAS_DE_REMATES.id_lote_puja_de_remate = :id_lote
+          AND PUJAS_DE_REMATES.id_remate_puja_de_remate = :id_remate
+          ORDER BY PUJAS.monto_puja DESC
+          LIMIT 1;
+          "
+      );
+      $stmt->bindParam(':id_lote', $loteId, PDO::PARAM_INT);
+      $stmt->bindParam(':id_remate', $idRemate, PDO::PARAM_INT);
+      $stmt->execute();
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($row) {
+        return $row['username_usuario'];
+      } else {
+        return "Usuario Desconocido";
+      }
+    } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+      return "Error";
+    }
+  }
+
+
 }
