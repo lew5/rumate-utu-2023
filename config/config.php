@@ -4,7 +4,7 @@ define('__CONFIG__', [
     'dsn' => [
       'host' => 'localhost',
       'port' => 3306,
-      'dbname' => 'rumate_db',
+      'dbname' => 'rumate_db_2',
       'charset' => 'utf8mb4',
     ],
     'user' => 'root',
