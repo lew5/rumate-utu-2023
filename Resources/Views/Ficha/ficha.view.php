@@ -17,8 +17,10 @@
         </h3>
         <div class="highest-offer-by">
           <p>Mejor oferta realizada por:</p>
-          <a href="">#<span
-              id="highest-offer-by__username"><?= $ofertaDe ?></span></a>
+          <a <?php if (sessionAdmin() || sessionRoot()): ?>
+              href="<?= PUBLIC_PATH ?>/perfil/<?= $ofertaDe['id_usuario']; ?>"
+            <?php endif; ?>>#<span
+              id="highest-offer-by__username"><?= $ofertaDe['username_usuario']; ?></span></a>
         </div>
       </div>
       <?php if ($remateFinalizado): ?>

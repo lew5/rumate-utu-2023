@@ -70,7 +70,7 @@ class LoteRepository extends Repository
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
       if ($row) {
-        return $row['username_usuario'];
+        return $row;
       } else {
         return "Usuario Desconocido";
       }
