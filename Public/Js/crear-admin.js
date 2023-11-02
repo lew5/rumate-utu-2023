@@ -86,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function crearEmpleado() {
-    // event.preventDefault();
     var currentURL = window.location.href;
     const form = document.querySelector("#form-actualizar-usuario");
     const formData = new FormData(form);
@@ -95,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => {
         console.log(response);
         window.alert(response.data.mensaje);
-        // window.location.href = "/rumate/root/empleados";
+        window.location.href = "/rumate/root/empleados";
       })
       .catch((error) => {
         console.log(error);

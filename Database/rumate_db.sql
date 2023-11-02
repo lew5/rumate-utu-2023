@@ -14,7 +14,7 @@ CREATE TABLE PERSONAS (
     calle_persona VARCHAR(40),
     numero_persona VARCHAR(40),
     telefono_persona VARCHAR(20) NOT NULL,
-    estado_persona ENUM('Activo', 'Inactivo') DEFAULT 'Activo' NOT NULL
+    estado_persona ENUM('Activo', 'Inactivo') DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla USUARIOS
@@ -23,7 +23,7 @@ CREATE TABLE USUARIOS (
     username_usuario VARCHAR(40) UNIQUE NOT NULL,
     password_usuario VARCHAR(255) NOT NULL,
     email_usuario VARCHAR(40) UNIQUE NOT NULL,
-    tipo_usuario ENUM('ROOT', 'ADMINISTRADOR', 'CLIENTE','PROVEEDOR','REMATADOR') DEFAULT 'CLIENTE' NOT NULL
+    tipo_usuario ENUM('ROOT', 'ADMINISTRADOR', 'CLIENTE','PROVEEDOR','REMATADOR') DEFAULT 'CLIENTE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla USUARIOS_DE_PERSONAS
@@ -57,7 +57,7 @@ CREATE TABLE REMATES (
     imagen_remate VARCHAR(255),
     fecha_inicio_remate DATETIME NOT NULL,
     fecha_final_remate DATETIME NOT NULL,
-    estado_remate ENUM('Pendiente','Rematando','Finalizado') DEFAULT 'Pendiente' NOT NULL
+    estado_remate ENUM('Pendiente','Rematando','Finalizado') DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla LOTES

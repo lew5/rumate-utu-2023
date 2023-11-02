@@ -21,8 +21,6 @@ class RootController
     $view->assign("title", "Rumate - Empleados");
     $view->assign("header_title", "Crear empleado");
     $view->render(BASE_PATH . "/Resources/Views/Root/crear-admin.php");
-
-
   }
 
   public function crearAdministradorPost()
