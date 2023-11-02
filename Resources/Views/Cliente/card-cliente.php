@@ -15,6 +15,11 @@
     </p>
   </div>
   <div class="card-remate__button">
+    <a id="eliminarUsuario"
+      href="<?= PUBLIC_PATH ?>/perfil/eliminar/<?= $cliente->getUsuario()->getId(); ?>"
+      class="link">Eliminar</a>
+  </div>
+  <div class="card-remate__button">
     <a href="<?= PUBLIC_PATH ?>/perfil/<?= $cliente->getUsuario()->getId(); ?>"
       class="link">Ver detalles</a>
   </div>

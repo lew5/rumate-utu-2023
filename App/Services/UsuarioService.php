@@ -91,7 +91,19 @@ class UsuarioService
 
   public function deleteUsuario($id)
   {
-    $this->usuarioRepository->deleteUsuario($id);
+    $this->usuarioRepository->beginTransaction();
+    try {
+      $this->usuarioDePersonaRepository->deleteUsuarioDePersona($id);
+      $this->usuarioRepository->deleteUsuario($id);
+      $this->usuarioRepository->commit();
+      return true;
+    } catch (PDOException $e) {
+      // var_dump($e->errorInfo);
+      $this->usuarioRepository->rollback();
+      return false;
+    } finally {
+      $this->usuarioRepository->close();
+    }
   }
 
   private function usuarioToAssocArray($usuarioModel)

@@ -81,21 +81,25 @@ document.addEventListener("DOMContentLoaded", function () {
     return isValid;
   }
   button.addEventListener("click", function (event) {
-    event.preventDefault;
+    event.preventDefault();
     crearEmpleado();
   });
 
   function crearEmpleado() {
+    // event.preventDefault();
     var currentURL = window.location.href;
+    const form = document.querySelector("#form-actualizar-usuario");
+    const formData = new FormData(form);
     axios
-      .post(currentURL)
+      .post(currentURL, formData)
       .then((response) => {
-        console.log("Éxito:", response.data);
+        console.log(response);
         window.alert(response.data.mensaje);
-        window.location.href = "/rumate/root/empleados";
+        // window.location.href = "/rumate/root/empleados";
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.log(error);
+        window.alert("Error al registrar empleado.");
         window.alert(error.response.data.mensaje);
       });
   }

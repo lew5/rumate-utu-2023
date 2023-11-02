@@ -14,7 +14,6 @@ class RegistroService
 
   public function createUsuarioAndPersona($personaModel)
   {
-    $usuarioRegistrado = false;
     $this->usuarioDePersonaRepository->beginTransaction();
     try {
       // Crear el usuario
@@ -24,13 +23,13 @@ class RegistroService
       // Crear la relación UsuarioDePersona
       $this->createUsurarioDePersona($usuarioId, $personaId);
       $this->usuarioDePersonaRepository->commit();
-      $usuarioRegistrado = true;
+      return true;
     } catch (PDOException $e) {
       $this->usuarioDePersonaRepository->rollBack();
+      return false;
     } finally {
       $this->usuarioDePersonaRepository->close();
     }
-    return $usuarioRegistrado;
   }
 
   private function createUsurarioDePersona($usuarioId, $personaId)

@@ -796,6 +796,10 @@ textarea {
   text-decoration: underline;
 }
 
+#eliminarUsuario {
+  color: red;
+}
+
 @media only screen and (min-width: 360px) {
   .login-register__container {
     padding: 1rem;

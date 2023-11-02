@@ -9,7 +9,7 @@ require BASE_PATH . "/Resources/Views/Partials/container-1024-start.php";
 <div class="registro-remate__container f-row align-center">
   <div class="registro-remate-form-wrap">
     <form id="form-actualizar-usuario" class="actualizar-usuario__form f-column"
-      action="" method="POST" autocomplete="off">
+      autocomplete="off">
       <div class="header">
         <div class="container-1024 f-row">
           <h3>Usuario</h3>

@@ -46,7 +46,7 @@ Route::get("/admin/clientes", "ClienteController@listarClientes");
 Route::get("/admin/proveedores", "ProveedorController@listarProveedores");
 Route::get("/root/empleados", "RootController@listarAdministradores");
 Route::get("/root/registrar-empleado", "RootController@crearAdministrador");
-Route::post("/root/registrar-empleado", "RootController@crearAdministrador");
+Route::post("/root/registrar-empleado", "RootController@crearAdministradorPost");
 
 
 // RUTAS DE USUARIO
@@ -57,5 +57,8 @@ Route::post("/usuario/login", "AuthController@login");
 Route::get("/usuario/logout", "AuthController@logout");
 Route::get("/perfil/{idUsuario}", "UsuarioController@verPerfil");
 Route::post("/perfil/{idUsuario}", "UsuarioController@actualizarPerfil");
+Route::get("/perfil/eliminar/{idUsuario}", "UsuarioController@eliminarUsuario");
+
+
 Route::dispatch();
 ?>

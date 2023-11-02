@@ -46,6 +46,19 @@ class UsuarioController
     echo $respuesta;
     die;
   }
+
+  public function eliminarUsuario($id)
+  {
+    Middleware::admin();
+    if ($this->usuarioService->deleteUsuario($id)) {
+      $respuesta = ['mensaje' => 'Usuario eliminado correctamente.'];
+    } else {
+      $respuesta = ['mensaje' => 'No se pudo eliminar el usuario.'];
+    }
+    $respuesta = json_encode($respuesta);
+    echo $respuesta;
+    die;
+  }
 }
 
 ?>

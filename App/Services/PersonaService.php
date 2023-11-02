@@ -79,8 +79,7 @@ class PersonaService
       "barrio_persona" => $personaModel->getBarrio(),
       "calle_persona" => $personaModel->getCalle(),
       "numero_persona" => $personaModel->getNumero(),
-      "telefono_persona" => $personaModel->getTelefono(),
-      "estado_persona" => $personaModel->getEstado()
+      "telefono_persona" => $personaModel->getTelefono()
     ];
   }
 }

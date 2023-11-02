@@ -18,17 +18,12 @@ class Repository
   // Crear un nuevo registro
   public function create($data)
   {
-    try {
-      $this->db = DataBase::get();
-      $columns = implode(", ", array_keys($data));
-      $values = ":" . implode(", :", array_keys($data));
-      $sql = "INSERT INTO $this->table ($columns) VALUES ($values)";
-      $stmt = $this->db->prepare($sql);
-      $stmt->execute($data);
-    } catch (PDOException $e) {
-      var_dump($e->errorInfo);
-    }
-
+    $this->db = DataBase::get();
+    $columns = implode(", ", array_keys($data));
+    $values = ":" . implode(", :", array_keys($data));
+    $sql = "INSERT INTO $this->table ($columns) VALUES ($values)";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute($data);
   }
 
   // Leer uno o varios registros

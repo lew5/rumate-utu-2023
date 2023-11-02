@@ -17,26 +17,26 @@ class RootController
   public function crearAdministrador()
   {
     Middleware::root();
-    $registroService = Container::resolve(RegistroService::class);
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      if ($registroService->createUsuarioAndPersona($this->postToPersona())) {
-        http_response_code(200);
-        $respuesta = ['mensaje' => 'Empleado registrado correctamente'];
-      } else {
-        http_response_code(400);
-        $respuesta = ['mensaje' => 'Error al registrar empleado'];
-      }
-      header('Content-Type: application/json');
-      $respuesta = json_encode($respuesta);
-      echo $respuesta;
-      die;
-    } else {
-      $view = Container::resolve(View::class);
-      $view->assign("title", "Rumate - Empleados");
-      $view->assign("header_title", "Crear empleado");
-      $view->render(BASE_PATH . "/Resources/Views/Root/crear-admin.php");
-    }
+    $view = Container::resolve(View::class);
+    $view->assign("title", "Rumate - Empleados");
+    $view->assign("header_title", "Crear empleado");
+    $view->render(BASE_PATH . "/Resources/Views/Root/crear-admin.php");
 
+
+  }
+
+  public function crearAdministradorPost()
+  {
+    Middleware::root();
+    $registroService = Container::resolve(RegistroService::class);
+    if ($registroService->createUsuarioAndPersona($this->postToPersona())) {
+      $respuesta = ['mensaje' => 'Empleado registrado correctamente.'];
+    } else {
+      $respuesta = ['mensaje' => 'Error al registrar empleado.'];
+    }
+    $respuesta = json_encode($respuesta);
+    echo $respuesta;
+    die;
   }
 
   private function postToPersona()
