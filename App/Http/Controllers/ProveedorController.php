@@ -14,6 +14,18 @@ class ProveedorController
     $view->assign("proveedores", $proveedores);
     $view->render(BASE_PATH . "/Resources/Views/Proveedor/proveedor.view.php");
   }
+
+  public function listarLotes($idProveedor)
+  {
+    Middleware::proveedor();
+    $loteService = Container::resolve(LoteService::class);
+    $lotes = $loteService->getLotesDeProveedor($idProveedor);
+    $view = Container::resolve(View::class);
+    $view->assign("title", "Rumate - Lotes");
+    $view->assign("header_title", "Mis lotes");
+    $view->assign("lotes", $lotes);
+    $view->render(BASE_PATH . "/Resources/Views/Proveedor/listar-lotes.php");
+  }
 }
 
 ?>

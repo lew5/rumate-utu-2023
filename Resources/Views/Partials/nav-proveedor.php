@@ -4,7 +4,7 @@ $navUsuario = sessionUsuario();
 <nav class="navigation__menu f-row align-center">
   <a href="<?= PUBLIC_PATH ?>" class="menu-link">Proveedor</a>
   <a href="<?= PUBLIC_PATH ?>" class="menu-link">Remates</a>
-  <a href="<?= PUBLIC_PATH ?>/<?= $navUsuario->getUsername(); ?>/lotes"
+  <a href="<?= PUBLIC_PATH ?>/<?= $navUsuario->getId(); ?>/lotes"
     class="menu-link">Mis
     lotes</a>
   <a href="<?= PUBLIC_PATH ?>/perfil/<?= $navUsuario->getId(); ?>"

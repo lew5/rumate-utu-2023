@@ -13,6 +13,8 @@ class Lote
   private $categoria;
   private $proveedor;
 
+  private $id_remate;
+
   public function getId()
   {
     return $this->id_lote;
@@ -111,6 +113,15 @@ class Lote
   public function setProveedor($proveedor)
   {
     $this->proveedor = $proveedor;
+  }
+
+  public function getIdRemate()
+  {
+    return $this->id_remate;
+  }
+  public function setIdRemate($id_remate)
+  {
+    $this->id_remate = $id_remate;
   }
 }
 

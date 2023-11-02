@@ -21,6 +21,15 @@ class LoteRepository extends Repository
     );
   }
 
+  public function findByProveedorId($id)
+  {
+    return $this->read(
+      [
+        "id_proveedor_lote" => $id
+      ]
+    );
+  }
+
   public function getFichaIdByLoteId($id)
   {
     return $this->read(

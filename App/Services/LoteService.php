@@ -42,6 +42,26 @@ class LoteService
 
   }
 
+  public function getLotesDeProveedor($idProveedor)
+  {
+    $lotes = $this->loteRepository->findByProveedorId($idProveedor);
+    if ($lotes) {
+      foreach ($lotes as $lote) {
+        $idFicha = $lote->getIdFicha();
+        $ficha = $this->fichaService->getFichaById($idFicha);
+        $idCategoria = $lote->getIdCategoria();
+        $categoria = $this->categoriaRepository->findById($idCategoria);
+        $idProveedor = $lote->getIdProveedor();
+        $proveedor = $this->usuarioService->getUsuarioById($idProveedor);
+        $lote->setFicha($ficha);
+        $lote->setCategoria($categoria);
+        $lote->setProveedor($proveedor);
+      }
+      return $lotes;
+    }
+    return false;
+  }
+
   public function createLote($loteModel)
   {
     $fichaId = $this->fichaService->createFicha($loteModel->getFicha());
