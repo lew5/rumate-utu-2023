@@ -6,9 +6,10 @@ class QueryBuilder
   private $pdo;
   private $query;
 
-  public function __construct(PDO $pdo)
+  private $transactionStarted;
+  public function __construct()
   {
-    $this->pdo = $pdo;
+    $this->pdo = DataBase::get();
     $this->query = new stdClass();
     $this->query->select = '';
     $this->query->from = '';
@@ -62,6 +63,7 @@ class QueryBuilder
   public function where($condition)
   {
     $this->query->where = $condition;
+    var_dump($this->query);
     return $this;
   }
 
@@ -118,7 +120,7 @@ class QueryBuilder
    *
    * @param string $table La tabla en la que actualizar datos.
    * @param array $data Los datos a actualizar.
-   * @return int El número de filas afectadas.
+   * @return $this.
    */
   public function update($table, $data)
   {
@@ -129,20 +131,16 @@ class QueryBuilder
     $set = rtrim($set, ', ');
 
     $sql = "UPDATE $table SET $set";
-    if (!empty($this->query->where)) {
-      $sql .= " WHERE {$this->query->where}";
-    }
-
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->execute($data);
-    return $stmt->rowCount();
+    $this->query->update = $sql;
+    var_dump($this->query);
+    return $this;
   }
 
   /**
    * Realiza una eliminación de datos en la tabla especificada y devuelve el número de filas afectadas.
    *
    * @param string $table La tabla en la que eliminar datos.
-   * @return int El número de filas afectadas.
+   * @return $a El número de filas afectadas.
    */
   public function delete($table)
   {
@@ -235,12 +233,25 @@ class QueryBuilder
     }
   }
 
+  public function open()
+  {
+    if (!$this->pdo) {
+      // Abre una nueva conexión si aún no está abierta
+      $this->pdo = DataBase::get();
+    }
+  }
+
+  public function close()
+  {
+    $this->pdo = null;
+  }
+
   /**
    * Ejecuta la consulta construida y devuelve los resultados.
    *
    * @return array Los resultados de la consulta.
    */
-  public function execute()
+  public function executeSelect($params = [])
   {
     // Construye la consulta completa y ejecuta
     $sql = "SELECT {$this->query->select} FROM {$this->query->from}";
@@ -264,7 +275,37 @@ class QueryBuilder
     }
 
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute();
+    var_dump($stmt);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function executeUpdate($params = [])
+  {
+    // Construye la consulta completa y ejecuta
+    $sql = "{$this->query->update}";
+    if (!empty($this->query->join)) {
+      $sql .= $this->query->join;
+    }
+    if (!empty($this->query->where)) {
+      $sql .= " WHERE {$this->query->where}";
+    }
+    if (!empty($this->query->groupby)) {
+      $sql .= " GROUP BY {$this->query->groupby}";
+      if (!empty($this->query->having)) {
+        $sql .= " HAVING {$this->query->having}";
+      }
+    }
+    if (!empty($this->query->orderby)) {
+      $sql .= " ORDER BY {$this->query->orderby}";
+    }
+    if (!empty($this->query->limit)) {
+      $sql .= " LIMIT {$this->query->limit}";
+    }
+
+    $stmt = $this->pdo->prepare($sql);
+    var_dump($stmt);
+    $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }

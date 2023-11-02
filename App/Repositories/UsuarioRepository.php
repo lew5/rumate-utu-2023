@@ -1,56 +1,51 @@
 <?php
 
-class UsuarioRepository extends Repository
+class UsuarioRepository extends QueryBuilder
 {
-  public function __construct()
-  {
-    parent::__construct("usuarios", "id_usuario", "Usuario");
-  }
 
   public function find()
   {
-    return $this->read();
+    return $this->select()
+      ->from("usuarios")
+      ->executeSelect();
   }
 
   public function findById($id)
   {
-    return $this->read(
-      [
-        "$this->idColumn" => $id
-      ]
-    );
+    return $this->select()
+      ->from("usuarios")
+      ->where("id_usuario = :id")
+      ->executeSelect(['id' => $id]);
   }
 
   public function findByUsername($username)
   {
-    return $this->read(
-      [
-        'username_usuario' => $username
-      ]
-    );
+    return $this->select()
+      ->from("usuarios")
+      ->where("username_usuario = :username")
+      ->executeSelect(['username' => $username]);
   }
 
   public function findByTipo($tipo)
   {
-    return $this->read(
-      [
-        'tipo_usuario' => $tipo
-      ]
-    );
+    return $this->select()
+      ->from("usuarios")
+      ->where("tipo_usuario = :tipo")
+      ->executeSelect(['tipo' => $tipo]);
   }
   public function addUsuario($data)
   {
-    $this->create($data);
+    return $this->insert("usuarios", $data);
   }
 
-  public function updateUsuario($id, $data)
+  public function updateUsuario($data)
   {
-    $this->update($id, $data);
+    return $this->update("usuarios", $data)->where("id_usuario = :id")->executeUpdate(["id" => 1]);
   }
 
-  public function deleteUsuario($id)
-  {
-    $this->delete($id);
-  }
+  // public function deleteUsuario($id)
+  // {
+  //   $this->delete($id);
+  // }
 }
 ?>

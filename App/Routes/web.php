@@ -14,8 +14,15 @@
 //   echo "Las fechas son iguales.";
 // }
 
-// var_dump(Container::resolve(UsuarioService::class)->getUsuarioByPersonaId(1));
-// die;
+// var_dump(Container::resolve(UsuarioRepository::class)->find());
+// var_dump(Container::resolve(UsuarioRepository::class)->findById(1));
+// var_dump(Container::resolve(UsuarioRepository::class)->findByUsername("root"));
+// var_dump(Container::resolve(UsuarioRepository::class)->findByTipo("administrador"));
+var_dump(Container::resolve(UsuarioRepository::class)->updateUsuario([
+  'username_usuario' => "lew",
+  'tipo_usuario' => "root"
+]));
+die;
 
 
 
