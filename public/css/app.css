@@ -318,18 +318,21 @@ a {
 }
 
 .navigation__menu {
-  gap: 1rem;
+  gap: .5rem;
 }
 
 .menu-link {
-  color: var(--fruit-salad-950);
-  font-weight: 500;
+  padding: 4px;
+  color: var(--black-300);
+  font-weight: 400;
+  border: 2px solid transparent;
+  border-radius: 1px;
 }
 
 .menu-link:hover {
-  border-bottom: 3px solid var(--coral-400);
-  border-radius: 2px;
-  color: var(--coral-400);
+  border: 2px dashed var(--coral-300);
+  border-radius: 5px;
+  color: var(--coral-300);
 }
 
 /*login-register styles*/
@@ -798,6 +801,13 @@ textarea {
 
 #eliminarUsuario {
   color: red;
+}
+
+.navigation__menu .menu-link {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 4px;
 }
 
 @media only screen and (min-width: 360px) {
