@@ -32,11 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return validarStep(field, /^[a-zA-Z0-9._%+-]+@[a-zAZ0-9.-]+\.[a-zA-Z]{2,}$/);
       case "usuario__password":
         pass = field.value;
-        return validarStep(field, /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/);
+        return validarStep(field, /^.{8,}$/);
       case "usuario__confirmPassword":
         const isValid =
           field.value === pass && field.value.length > 0 && field.value.length === pass.length;
-        var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/;
+        var regex = /^.{8,}$/;
 
         if (validarStep(field, regex) && isValid) {
           field.classList.remove("input-field__input--error");
