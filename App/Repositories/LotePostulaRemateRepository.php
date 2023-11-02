@@ -31,6 +31,15 @@ class LotePostulaRemateRepository extends Repository
     );
   }
 
+  public function findRemateByLoteId($id)
+  {
+    return $this->read(
+      [
+        "id_lote_lote_postula_remate" => $id
+      ]
+    );
+  }
+
   public function addLoteDeRemate($data)
   {
     $this->create($data);

@@ -47,6 +47,11 @@ class LoteService
     $lotes = $this->loteRepository->findByProveedorId($idProveedor);
     if ($lotes) {
       foreach ($lotes as $lote) {
+        $remate = $this->lotePostulaRemateRepository->findRemateByLoteId($lote->getId());
+        if ($remate) {
+          $idRemate = $remate->getIdRemate();
+          $lote->setIdRemate($idRemate);
+        }
         $idFicha = $lote->getIdFicha();
         $ficha = $this->fichaService->getFichaById($idFicha);
         $idCategoria = $lote->getIdCategoria();
@@ -61,6 +66,8 @@ class LoteService
     }
     return false;
   }
+
+
 
   public function createLote($loteModel)
   {

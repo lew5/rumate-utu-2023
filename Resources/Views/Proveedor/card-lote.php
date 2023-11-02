@@ -16,7 +16,11 @@
       kg</p>
   </div>
   <div class="card-remate__button">
-    <a href="<?= PUBLIC_PATH ?>/remate/$idRemate/lote/<?= $lote->getId(); ?>"
-      class="link">ver lote</a>
+    <?php if ($lote->getIdRemate()): ?>
+      <a href="<?= PUBLIC_PATH ?>/remate/<?= $lote->getIdRemate(); ?>/lote/<?= $lote->getId(); ?>"
+        class="link">ver lote</a>
+    <?php else: ?>
+      <span>Sin asignar</span>
+    <?php endif; ?>
   </div>
 </div>

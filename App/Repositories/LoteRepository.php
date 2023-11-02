@@ -58,7 +58,6 @@ class LoteRepository extends Repository
   public function obtenerUsuarioConMejorOferta($loteId, $idRemate)
   {
     try {
-      // Prepara la consulta SQL para obtener el nombre de usuario relacionado con un lote y un remate
       $stmt = $this->db->prepare(
         "SELECT USUARIOS.id_usuario, USUARIOS.username_usuario
           FROM USUARIOS
