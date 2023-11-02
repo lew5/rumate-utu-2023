@@ -32,7 +32,6 @@ class RemateController
       $partialView = ob_get_clean();
       echo $partialView;
     }
-
   }
 }
 

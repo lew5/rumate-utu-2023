@@ -59,6 +59,6 @@ Route::get("/perfil/{idUsuario}", "UsuarioController@verPerfil");
 Route::post("/perfil/{idUsuario}", "UsuarioController@actualizarPerfil");
 Route::get("/perfil/eliminar/{idUsuario}", "UsuarioController@eliminarUsuario");
 
-
+Route::get("/remate/{idRemate}/buscar/lote/{categoria_lote}", "LoteController@listarLotesPorCategoria");
 Route::dispatch();
 ?>

@@ -2,6 +2,7 @@
 
 class LoteController
 {
+
   public static function index($idRemate, $idLote)
   {
     $loteService = Container::resolve(LoteService::class);
@@ -77,7 +78,7 @@ class LoteController
 
   }
 
-  public static function listarLotes($idRemate)
+  public function listarLotes($idRemate)
   {
     $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
     foreach ($remate->getLotes() as $lote) {
@@ -95,6 +96,50 @@ class LoteController
     }
   }
 
+  public function listarLotesPorCategoria($idRemate, $categoria)
+  {
+    if ($categoria == "*") {
+      $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
+      foreach ($remate->getLotes() as $lote) {
+        $proveedor = Container::resolve(UsuarioService::class)->getUsuarioByPersonaId($lote->getIdProveedor());
+        $lote->setProveedor($proveedor);
+      }
+      $view = Container::resolve(View::class);
+      ob_start();
+      $view->assign("remate", $remate);
+      $view->render(BASE_PATH . "/Resources/Views/Lote/listar-lotes.php");
+      $partialView = ob_get_clean();
+      echo $partialView;
+    } else if ($categoria) {
+      $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
+      foreach ($remate->getLotes() as $lote) {
+        $proveedor = Container::resolve(UsuarioService::class)->getUsuarioByPersonaId($lote->getIdProveedor());
+        $lote->setProveedor($proveedor);
+      }
+
+      $resultados = $this->buscarPorCategoria($remate->getLotes(), $categoria);
+      $remate->setLotes($resultados);
+
+      $view = Container::resolve(View::class);
+      ob_start();
+      $view->assign("remate", $remate);
+      $view->render(BASE_PATH . "/Resources/Views/Lote/listar-lotes.php");
+      $partialView = ob_get_clean();
+      echo $partialView;
+    }
+  }
+  private function buscarPorCategoria($array, $categoria)
+  {
+    $resultados = [];
+
+    foreach ($array as $elemento) {
+      if (stripos($elemento->getCategoria()->getNombre(), $categoria) !== false) {
+        $resultados[] = $elemento;
+      }
+    }
+
+    return $resultados;
+  }
 }
 
 ?>
