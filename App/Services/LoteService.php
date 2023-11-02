@@ -89,6 +89,11 @@ class LoteService
     return true;
   }
 
+  public function getUsernameOfertante($idRemate, $idLote)
+  {
+    return $this->loteRepository->obtenerUsuarioConMejorOferta($idLote, $idRemate);
+  }
+
   private function loteToAssocArray($loteModel)
   {
     return [

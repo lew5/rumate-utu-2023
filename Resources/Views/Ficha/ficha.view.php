@@ -17,44 +17,52 @@
         </h3>
         <div class="highest-offer-by">
           <p>Mejor oferta realizada por:</p>
-          <a href="">#<span id="highest-offer-by__username"></span></a>
+          <a href="">#<span
+              id="highest-offer-by__username"><?= $ofertaDe ?></span></a>
         </div>
       </div>
-      <?php if (sessionUsuario()) {
-        if (sessionAdmin() || sessionRoot()) { ?>
-          <div class="lote-no-auth">
-            <span>Los administradores no pueden participar</span>
-          </div>
-        <?php } else { ?>
-          <div class="make-offer">
-            <form action="" method="POST">
-              <input type="hidden" id="id_remate" value="<?= $idRemate ?>">
-              <input type="hidden" id="id_lote" value="<?= $lote->getId() ?>">
-              <input type="hidden" id="id_usuario"
-                value="<?= sessionUsuario()->getId(); ?>">
-              <div class="custom-input-step">
-                <input id="minusButton" type="button"
-                  class="button__input custom-input-step__btn--minus" />
-                <div class="custom-input-step__value">
-                  <input id="offer_value" type="number"
-                    class="custom-input-step__input" disabled autocomplete="off" />
+      <?php if ($remateFinalizado): ?>
+        <div class="lote-no-auth">
+          <span>El remate por este lote ha finalizado el <?= $fechaFinal ?>
+            hs.</span>
+        </div>
+      <?php else: ?>
+        <?php if (sessionUsuario()) {
+          if (sessionAdmin() || sessionRoot()) { ?>
+            <div class="lote-no-auth">
+              <span>Los administradores no pueden participar</span>
+            </div>
+          <?php } else { ?>
+            <div class="make-offer">
+              <form action="" method="POST">
+                <input type="hidden" id="id_remate" value="<?= $idRemate ?>">
+                <input type="hidden" id="id_lote" value="<?= $lote->getId() ?>">
+                <input type="hidden" id="id_usuario"
+                  value="<?= sessionUsuario()->getId(); ?>">
+                <div class="custom-input-step">
+                  <input id="minusButton" type="button"
+                    class="button__input custom-input-step__btn--minus" />
+                  <div class="custom-input-step__value">
+                    <input id="offer_value" type="number"
+                      class="custom-input-step__input" disabled autocomplete="off" />
+                  </div>
+                  <input id="plusButton" type="button"
+                    class="button__input custom-input-step__btn--plus" />
                 </div>
-                <input id="plusButton" type="button"
-                  class="button__input custom-input-step__btn--plus" />
-              </div>
-              <div class="button">
-                <input id="ofertar-btn" class="button__input" type="button"
-                  value="OFERTAR" disabled />
-              </div>
-            </form>
+                <div class="button">
+                  <input id="ofertar-btn" class="button__input" type="button"
+                    value="OFERTAR" disabled />
+                </div>
+              </form>
+            </div>
+          <?php } ?>
+        <?php } else { ?>
+          <div class="lote-no-auth">
+            <span>Debes iniciar sesión para poder participar</span>
+            <a href="<?= PUBLIC_PATH ?>/login" class="button-link">Ingresar</a>
           </div>
         <?php } ?>
-      <?php } else { ?>
-        <div class="lote-no-auth">
-          <span>Debes iniciar sesión para poder participar</span>
-          <a href="<?= PUBLIC_PATH ?>/login" class="button-link">Ingresar</a>
-        </div>
-      <?php } ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>

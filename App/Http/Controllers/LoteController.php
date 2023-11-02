@@ -4,7 +4,12 @@ class LoteController
 {
   public static function index($idRemate, $idLote)
   {
-    $lote = Container::resolve(LoteService::class)->getLoteById($idLote);
+    $loteService = Container::resolve(LoteService::class);
+    $lote = $loteService->getLoteById($idLote);
+    $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
+    $remateFinalizado = date("Y-m-d H:i:s") > $remate->getFechaFinal();
+    $fechaFinal = formatFecha($remate->getFechaFinal());
+    $ofertaDe = $loteService->getUsernameOfertante($idRemate, $idLote);
     $proveedor = Container::resolve(UsuarioService::class)->getUsuarioByPersonaId($lote->getIdProveedor());
     $lote->setProveedor($proveedor);
     if ($lote != false) {
@@ -13,6 +18,9 @@ class LoteController
       $view->assign("header_title", "Lote <span>#$idLote</span>");
       $view->assign("lote", $lote);
       $view->assign("idRemate", $idRemate);
+      $view->assign("remateFinalizado", $remateFinalizado);
+      $view->assign("fechaFinal", $fechaFinal);
+      $view->assign("ofertaDe", $ofertaDe);
       $view->render(BASE_PATH . "/Resources/Views/Lote/lote.view.php");
     } else {
       abort();
