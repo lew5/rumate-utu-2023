@@ -1,14 +1,18 @@
-console.log("enlazado");
-const aEliminarUsuario = document.getElementById("eliminarUsuario");
-aEliminarUsuario.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (confirm("¿seguro que quieres eliminar a este usuario?")) {
-    eliminarUsuario();
-  }
+document.addEventListener("DOMContentLoaded", function () {
+  const elementosEliminar = document.querySelectorAll(".eliminarUsuario");
+
+  elementosEliminar.forEach(function (elemento) {
+    elemento.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (confirm("¿Seguro que quieres eliminar a este usuario?")) {
+        eliminarUsuario(elemento);
+      }
+    });
+  });
 });
 
-function eliminarUsuario() {
-  const href = aEliminarUsuario.getAttribute("href");
+function eliminarUsuario(elemento) {
+  const href = elemento.getAttribute("href");
   axios
     .get(href)
     .then((response) => {

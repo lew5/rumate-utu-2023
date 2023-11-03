@@ -799,7 +799,7 @@ textarea {
   text-decoration: underline;
 }
 
-#eliminarUsuario {
+a.eliminarUsuario {
   color: red;
 }
 
