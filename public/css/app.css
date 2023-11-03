@@ -810,6 +810,34 @@ textarea {
   gap: 4px;
 }
 
+.profile-image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 50%;
+}
+
+.profile-image-container .image-container .image {
+  width: 80px;
+  height: 80px;
+  border-radius: 10%;
+  margin: 5px;
+  transition: border-radius 0.1s;
+}
+
+.profile-image-container .image-container .image.selected {
+  border-radius: 50%;
+}
+
+.profile-image-container .image-container .image:hover {
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.profile-image-container .image-container .image.selected {
+  border-radius: 50%;
+}
+
 @media only screen and (min-width: 360px) {
   .login-register__container {
     padding: 1rem;

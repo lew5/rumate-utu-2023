@@ -27,6 +27,75 @@ function disabled($idUsuario)
       <?php require BASE_PATH . "/Resources/Views/Usuario/form-usuario.php"; ?>
       <div class="header">
         <div class="container-1024 f-row">
+          <h4>Imagen de perfil</h4>
+        </div>
+      </div>
+      <div class="f-column align-center">
+        <div class="profile-image-container">
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/admin-no-image.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/cliente-no-image.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/proveedor-no-image.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image selected"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/1.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/2.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/3.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/4.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/5.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/6.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/7.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/8.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/9.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/10.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/11.webp" />
+          </div>
+          <div class="image-container">
+            <img class="image"
+              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/12.webp" />
+          </div>
+        </div>
+      </div>
+      <div class="header">
+        <div class="container-1024 f-row">
           <h3>Datos personales</h3>
         </div>
       </div>

@@ -1,24 +1,19 @@
 console.log("enlazado");
-const aEliminarUsuario = document.getElementById("eliminarUsuario");
-aEliminarUsuario.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (confirm("¿seguro que quieres eliminar a este usuario?")) {
-    eliminarUsuario();
-  }
+const images = document.querySelectorAll(".image");
+
+// Agrega un evento de clic a cada imagen
+images.forEach((image) => {
+  image.addEventListener("click", function () {
+    // Elimina la clase "selected" de todas las imágenes
+    images.forEach((img) => {
+      img.classList.remove("selected");
+    });
+
+    // Agrega la clase "selected" a la imagen clicada
+    this.classList.add("selected");
+  });
 });
 
-function eliminarUsuario() {
-  const href = aEliminarUsuario.getAttribute("href");
-  axios
-    .get(href)
-    .then((response) => {
-      window.alert(response.data.mensaje);
-      location.reload();
-    })
-    .catch((error) => {
-      window.alert(error.response.data.mensaje);
-    });
-}
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("form-actualizar-usuario");
   const actualizarButton = document.getElementById("btn-actualizar-usuario");
