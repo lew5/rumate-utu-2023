@@ -4,7 +4,7 @@
     <div class="inputs-wrap">
       <div class="input-field">
         <label class="input-field__label f-column">
-          <span class="label__text">Titilo del remate</span>
+          <span class="label__text">Titulo del remate</span>
           <input id="registro-remate__titulo-remate" name="titulo_remate"
             class="input-field__input" type="text"
             placeholder="Ingresa el titulo del remate" autocomplete="off"
