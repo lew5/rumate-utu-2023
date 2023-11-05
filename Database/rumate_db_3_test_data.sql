@@ -26,25 +26,25 @@ VALUES
 INSERT INTO USUARIOS (username_usuario, password_usuario, email_usuario, imagen_usuario, tipo_usuario)
 VALUES
     ('root', '$2y$10$C0bPJ9Itstkm4eDlsd52QuVDkR4oH3gPVgdp0usmS81qho8YSxOTi', 'juan@example.com', FLOOR(1 + RAND() * 12), 'ROOT'),
-    ('maria123', '123', 'maria@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
-    ('pedro123', '123', 'pedro@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
-    ('ana123', '123', 'ana@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
-    ('luis123', '123', 'luis@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
-    ('elena123', '123', 'elena@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
-    ('carlos123', '123', 'carlos@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
-    ('laura123', '123', 'laura@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
-    ('jose123', '123', 'jose@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
-    ('sofia123', '123', 'sofia@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
-    ('diego123', '123', 'diego@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
-    ('valentina123', '123', 'valentina@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
-    ('andres123', '123', 'andres@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
-    ('isabella123', '123', 'isabella@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
-    ('gabriel123', '123', 'gabriel@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
-    ('camila123', '123', 'camila@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
-    ('david123', '123', 'david@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
-    ('mariana123', '123', 'mariana@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
-    ('simon123', '123', 'simon@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
-    ('luisa123', '123', 'luisa@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE');
+    ('maria123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'maria@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
+    ('pedro123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'pedro@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
+    ('ana123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'ana@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
+    ('luis123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'luis@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
+    ('elena123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'elena@example.com', FLOOR(1 + RAND() * 12), 'ADMINISTRADOR'),
+    ('carlos123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'carlos@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
+    ('laura123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'laura@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
+    ('jose123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'jose@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
+    ('sofia123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'sofia@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
+    ('diego123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'diego@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
+    ('valentina123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'valentina@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
+    ('andres123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'andres@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
+    ('isabella123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'isabella@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
+    ('gabriel123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'gabriel@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
+    ('camila123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'camila@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
+    ('david123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'david@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
+    ('mariana123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'mariana@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE'),
+    ('simon123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'simon@example.com', FLOOR(1 + RAND() * 12), 'PROVEEDOR'),
+    ('luisa123', '$2y$10$FCUwepcEewj6WTI6agC.ZesmC2CGoEQurXvigQv6l3xB4apN9KiCu', 'luisa@example.com', FLOOR(1 + RAND() * 12), 'CLIENTE');
 
 
 -- Asignar personas a usuarios
@@ -71,68 +71,139 @@ VALUES
     (19, 19),
     (20, 20);
 
--- Insertar 10 remates
+-- Insertar 6 remates
 INSERT INTO REMATES (titulo_remate, imagen_remate, fecha_inicio_remate, fecha_final_remate, estado_remate)
 VALUES
-('Gran Subasta de Ganado', 'imagen_remate1.jpg', '2023-11-10 09:00:00', '2023-11-11 17:00:00', 'Pendiente'),
 ('Subasta de Caballos y Yeguas', 'imagen_remate2.jpg', '2023-11-12 10:00:00', '2023-11-13 18:00:00', 'Pendiente'),
-('Remate de Ovejas Merino', 'imagen_remate3.jpg', '2023-11-15 08:00:00', '2023-11-16 16:00:00', 'Pendiente'),
-('Gran Remate de Ganado Angus', 'imagen_remate4.jpg', '2023-11-20 09:30:00', '2023-11-21 17:30:00', 'Pendiente'),
+('Remate de Ovejas', 'imagen_remate3.jpg', '2023-11-15 08:00:00', '2023-11-16 16:00:00', 'Pendiente'),
 ('Subasta de Potros Pura Sangre', 'imagen_remate5.jpg', '2023-11-22 10:15:00', '2023-11-23 18:15:00', 'Pendiente'),
-('Venta de Ovejas Dorper', 'imagen_remate6.jpg', '2023-11-25 07:45:00', '2023-11-26 15:45:00', 'Pendiente'),
 ('Gran Remate de Vacas Holstein', 'imagen_remate7.jpg', '2023-11-28 08:30:00', '2023-11-29 16:30:00', 'Pendiente'),
-('Subasta de Caballos Frisones', 'imagen_remate8.jpg', '2023-12-02 10:45:00', '2023-12-03 18:45:00', 'Pendiente'),
-('Venta de Ovejas Suffolk', 'imagen_remate9.jpg', '2023-12-05 07:30:00', '2023-12-06 15:30:00', 'Pendiente'),
-('Gran Remate de Ganado Charolais', 'imagen_remate10.jpg', '2023-12-10 09:15:00', '2023-12-11 17:15:00', 'Pendiente');
+('Subasta de Ovejas', 'imagen_remate8.jpg', '2023-12-02 10:45:00', '2023-12-03 18:45:00', 'Pendiente'),
+('Venta de Ovejas Suffolk', 'imagen_remate9.jpg', '2023-12-05 07:30:00', '2023-12-06 15:30:00', 'Pendiente');
 
--- Insertar 50 lotes
+INSERT INTO CATEGORIAS (nombre_categoria)
+VALUES
+    ('Caballo'),
+    ('Potro'),
+    ('Oveja'),
+    ('Ternero'),
+    ('Vaquillona'),
+    ('Vaca'),
+    ('Novillito'),
+    ('Novillo'),
+    ('Toro');
+
+
+
+-- Fichas
+INSERT INTO FICHAS (peso_ficha, cantidad_ficha, raza_ficha, descripcion_ficha)
+VALUES
+    (350.5, 10, 'Ganado Hereford', 'Excelente calidad de Ganado Hereford para la gran subasta de ganado.'),
+    (450.2, 8, 'Ganado Charolais', 'Ganado Charolais listo para la subasta.'),
+    (280.7, 15, 'Ganado Angus', 'Ganado Angus en condiciones óptimas para la subasta.'),
+    (320.8, 12, 'Ganado Simmental', 'Ganado Simmental disponible para la subasta.'),
+    (400.3, 9, 'Ganado Limousin', 'Ganado Limousin de gran calidad listo para la subasta.'),
+    (550.6, 5, 'Caballos Criollos', 'Caballos Criollos disponibles para la subasta de caballos y yeguas.'),
+    (480.4, 7, 'Yeguas Appaloosa', 'Yeguas Appaloosa de diferentes edades listas para la subasta.'),
+    (600.2, 6, 'Caballos Cuarto de Milla', 'Caballos Cuarto de Milla en condiciones óptimas para la subasta.'),
+    (420.1, 5, 'Yeguas Pura Sangre', 'Yeguas Pura Sangre listas para la subasta.'),
+    (510.8, 8, 'Caballos Árabes', 'Caballos Árabes de gran calidad para la subasta.'),
+    (75.3, 20, 'Ovejas Merino', 'Ovejas Merino en excelente estado para el remate de ovejas.'),
+    (90.5, 15, 'Ovejas Corriedale', 'Ovejas Corriedale de alta calidad listas para la subasta.'),
+    (80.1, 18, 'Ovejas Suffolk', 'Ovejas Suffolk de calidad para la subasta.'),
+    (70.2, 10, 'Ovejas Romney', 'Ovejas Romney en condiciones óptimas para el remate.'),
+    (85.6, 12, 'Ovejas Border Leicester', 'Ovejas Border Leicester disponibles para el remate.'),
+    (360.5, 11, 'Ganado Angus', 'Ganado Angus de alto rendimiento para el gran remate.'),
+    (310.2, 13, 'Ganado Hereford', 'Ganado Hereford en excelente estado.'),
+    (400.6, 8, 'Ganado Charolais', 'Ganado Charolais listo para el remate.'),
+    (375.4, 10, 'Ganado Limousin', 'Ganado Limousin en condiciones óptimas para la subasta.'),
+    (410.7, 12, 'Ganado Simmental', 'Ganado Simmental disponible para el remate.'),
+    (395.3, 9, 'Potros Pura Sangre Cuarto de Milla', 'Potros Cuarto de Milla de gran potencial para la subasta.'),
+    (430.6, 7, 'Potros Pura Sangre Árabe', 'Potros Árabe de alto rendimiento.'),
+    (410.8, 5, 'Potros Pura Sangre Appaloosa', 'Potros Appaloosa en excelente estado para la subasta.'),
+    (380.1, 6, 'Potros Pura Sangre Paint', 'Potros Paint disponibles para la subasta.'),
+    (450.9, 8, 'Potros Pura Sangre Morgan', 'Potros Morgan en condiciones óptimas para la subasta.'),
+    (85.7, 16, 'Ovejas Dorper', 'Ovejas Dorper en excelente estado para la venta.'),
+    (95.2, 14, 'Ovejas Merino', 'Ovejas Merino de gran calidad listas para la subasta.'),
+    (90.3, 18, 'Ovejas Corriedale', 'Ovejas Corriedale disponibles para la subasta.'),
+    (88.6, 12, 'Ovejas Suffolk', 'Ovejas Suffolk en condiciones óptimas para la subasta.'),
+    (100.1, 15, 'Ovejas Romney', 'Ovejas Romney de calidad listas para la venta.');
+
+
+-- Insertar 30 lotes
 INSERT INTO LOTES (imagen_lote, precio_base_lote, mejor_oferta_lote, id_proveedor_lote, id_ficha_lote, id_categoria_lote)
 VALUES
-(1, 'imagen_lote1.jpg', '550.00', '0.00', 12, 1, 1),
-(2, 'imagen_lote2.jpg', '800.00', '0.00', 12, 2, 2),
-(3, 'imagen_lote3.jpg', '620.00', '0.00', 12, 3, 3),
-(4, 'imagen_lote4.jpg', '460.00', '0.00', 12, 4, 1),
-(5, 'imagen_lote5.jpg', '700.00', '0.00', 12, 5, 2),
-(6, 'imagen_lote6.jpg', '580.00', '0.00', 12, 6, 3),
-(7, 'imagen_lote7.jpg', '420.00', '0.00', 12, 7, 1),
-(8, 'imagen_lote8.jpg', '750.00', '0.00', 12, 8, 2),
-(9, 'imagen_lote9.jpg', '670.00', '0.00', 12, 9, 3),
-(10, 'imagen_lote10.jpg', '480.00', '0.00', 13, 10, 1),
-(11, 'imagen_lote11.jpg', '620.00', '0.00', 13, 11, 2),
-(12, 'imagen_lote12.jpg', '540.00', '0.00', 13, 12, 3),
-(13, 'imagen_lote13.jpg', '410.00', '0.00', 13, 13, 1),
-(14, 'imagen_lote14.jpg', '680.00', '0.00', 13, 14, 2),
-(15, 'imagen_lote15.jpg', '590.00', '0.00', 13, 15, 3),
-(16, 'imagen_lote16.jpg', '450.00', '0.00', 14, 16, 1),
-(17, 'imagen_lote17.jpg', '720.00', '0.00', 14, 17, 2),
-(18, 'imagen_lote18.jpg', '630.00', '0.00', 14, 18, 3),
-(19, 'imagen_lote19.jpg', '430.00', '0.00', 14, 19, 1),
-(20, 'imagen_lote20.jpg', '770.00', '0.00', 14, 20, 2),
-(21, 'imagen_lote21.jpg', '690.00', '0.00', 14, 21, 3),
-(22, 'imagen_lote22.jpg', '490.00', '0.00', 14, 22, 1),
-(23, 'imagen_lote23.jpg', '610.00', '0.00', 14, 23, 2),
-(24, 'imagen_lote24.jpg', '550.00', '0.00', 14, 24, 3),
-(25, 'imagen_lote25.jpg', '420.00', '0.00', 14, 25, 1),
-(26, 'imagen_lote26.jpg', '720.00', '0.00', 14, 26, 2),
-(27, 'imagen_lote27.jpg', '620.00', '0.00', 14, 27, 3),
-(28, 'imagen_lote28.jpg', '440.00', '0.00', 14, 28, 1),
-(29, 'imagen_lote29.jpg', '780.00', '0.00', 14, 29, 2),
-(30, 'imagen_lote30.jpg', '670.00', '0.00', 14, 30, 3),
-(31, 'imagen_lote31.jpg', '470.00', '0.00', 14, 31, 1),
-(32, 'imagen_lote32.jpg', '730.00', '0.00', 15, 32, 2),
-(33, 'imagen_lote33.jpg', '610.00', '0.00', 15, 33, 3),
-(34, 'imagen_lote34.jpg', '460.00', '0.00', 15, 34, 1),
-(35, 'imagen_lote35.jpg', '700.00', '0.00', 15, 35, 2),
-(36, 'imagen_lote36.jpg', '590.00', '0.00', 15, 36, 3),
-(37, 'imagen_lote37.jpg', '430.00', '0.00', 15, 37, 1),
-(38, 'imagen_lote38.jpg', '760.00', '0.00', 15, 38, 2),
-(39, 'imagen_lote39.jpg', '680.00', '0.00', 15, 39, 3),
-(40, 'imagen_lote40.jpg', '480.00', '0.00', 19, 40, 1),
-(41, 'imagen_lote41.jpg', '620.00', '0.00', 19, 41, 2),
-(42, 'imagen_lote42.jpg', '540.00', '0.00', 19, 42, 3),
-(43, 'imagen_lote43.jpg', '410.00', '0.00', 19, 43, 1),
-(44, 'imagen_lote44.jpg', '700.00', '0.00', 19, 44, 2),
-(45, 'imagen_lote45.jpg', '610.00', '0.00', 19, 45, 3),
-(46, 'imagen_lote46.jpg', '440.00', '0.00', 19, 46, 1),
-(47, 'imagen_lote47.jpg', '760.00', '0.00', 19, 47, 2),
-(48, 'imagen_lote48.jpg', '670.00', '0.00', 19, 48, 3);
+('imagen_lote1.jpg', '550.00', '0.00', 12, 6, 1),
+('imagen_lote2.jpg', '800.00', '0.00', 12, 7, 1),
+('imagen_lote3.jpg', '620.00', '0.00', 12, 8, 1),
+('imagen_lote4.jpg', '460.00', '0.00', 12, 9, 1),
+('imagen_lote5.jpg', '700.00', '0.00', 12, 10, 1),
+
+('imagen_lote6.jpg', '580.00', '0.00', 12, 1, 3),
+('imagen_lote7.jpg', '420.00', '0.00', 12, 2, 3),
+('imagen_lote8.jpg', '750.00', '0.00', 12, 3, 3),
+('imagen_lote9.jpg', '670.00', '0.00', 12, 4, 3),
+('imagen_lote10.jpg', '480.00', '0.00', 13, 5, 3),
+
+('imagen_lote11.jpg', '620.00', '0.00', 13, 21, 2),
+('imagen_lote12.jpg', '540.00', '0.00', 13, 22, 2),
+('imagen_lote13.jpg', '410.00', '0.00', 13, 23, 2),
+('imagen_lote14.jpg', '680.00', '0.00', 13, 24, 2),
+('imagen_lote15.jpg', '590.00', '0.00', 13, 25, 2),
+
+('imagen_lote16.jpg', '450.00', '0.00', 14, 16, 6),
+('imagen_lote17.jpg', '720.00', '0.00', 14, 17, 6),
+('imagen_lote18.jpg', '630.00', '0.00', 14, 18, 6),
+('imagen_lote19.jpg', '430.00', '0.00', 14, 19, 6),
+('imagen_lote20.jpg', '770.00', '0.00', 14, 20, 6),
+
+('imagen_lote21.jpg', '690.00', '0.00', 14, 11, 3),
+('imagen_lote22.jpg', '490.00', '0.00', 14, 12, 3),
+('imagen_lote23.jpg', '610.00', '0.00', 14, 13, 3),
+('imagen_lote24.jpg', '550.00', '0.00', 14, 14, 3),
+('imagen_lote25.jpg', '420.00', '0.00', 14, 15, 3),
+
+('imagen_lote26.jpg', '720.00', '0.00', 14, 26, 3),
+('imagen_lote27.jpg', '620.00', '0.00', 14, 27, 3),
+('imagen_lote28.jpg', '440.00', '0.00', 14, 28, 3),
+('imagen_lote29.jpg', '780.00', '0.00', 14, 29, 3),
+('imagen_lote30.jpg', '670.00', '0.00', 14, 30, 3);
+
+-- Lotes postulados
+INSERT INTO LOTES_POSTULAN_REMATES (id_remate_lote_postula_remate, id_lote_lote_postula_remate)
+VALUES
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+
+    (2, 6),
+    (2, 7),
+    (2, 8),
+    (2, 9),
+    (2, 10),
+
+    (3, 11),    
+    (3, 12),    
+    (3, 13),    
+    (3, 14),    
+    (3, 15),   
+
+    (4, 16),
+    (4, 17),
+    (4, 18),
+    (4, 19),
+    (4, 20),
+
+    (5, 21),
+    (5, 22),    
+    (5, 23),    
+    (5, 24),    
+    (5, 25),
+
+    (6, 26),
+    (6, 27),    
+    (6, 28),    
+    (6, 29),    
+    (6, 30);

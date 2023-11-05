@@ -31,7 +31,6 @@ class RemateWebSocket implements MessageComponentInterface
       $loteId = $queryParams['id_lote'];
       $remateId = $queryParams['id_remate'];
       $username = $this->obtenerNombreUsuarioPorLote($loteId, $remateId);
-      // var_dump($username);
       $userData = [
         'usuario' => $username
       ];
