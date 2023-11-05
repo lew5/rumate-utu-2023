@@ -1,8 +1,8 @@
 -- Crear la base de datos rumate_db con cotejamiento utf8mb4_unicode_ci y motor InnoDB
-CREATE DATABASE rumate_db_3 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE rumate_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Usar la base de datos rumate_db
-USE rumate_db_3;
+USE rumate_db;
 
 -- Crear la tabla PERSONAS
 CREATE TABLE PERSONAS (
@@ -24,7 +24,7 @@ CREATE TABLE USUARIOS (
     password_usuario VARCHAR(255) NOT NULL,
     email_usuario VARCHAR(40) UNIQUE NOT NULL,
     imagen_usuario VARCHAR(2),
-    tipo_usuario ENUM('ROOT', 'ADMINISTRADOR', 'CLIENTE','PROVEEDOR','REMATADOR') DEFAULT 'CLIENTE'
+    tipo_usuario ENUM('ROOT', 'ADMINISTRADOR', 'CLIENTE','PROVEEDOR') DEFAULT 'CLIENTE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Crear la tabla USUARIOS_DE_PERSONAS
@@ -136,7 +136,7 @@ VALUES
     ('Simón', 'Gómez', '99001122', 'Barrio S', 'Calle 19', '9900', '9900112233', 'Activo'),
     ('Luisa', 'Martínez', '00112233', 'Barrio T', 'Calle 20', '0011', '0011223344', 'Activo');
 
--- Insertar datos de prueba en la tabla USUARIOS
+-- Insertar datos en la tabla USUARIOS
 INSERT INTO USUARIOS (username_usuario, password_usuario, email_usuario, imagen_usuario, tipo_usuario)
 VALUES
     ('root', '$2y$10$C0bPJ9Itstkm4eDlsd52QuVDkR4oH3gPVgdp0usmS81qho8YSxOTi', 'juan@example.com', FLOOR(1 + RAND() * 12), 'ROOT'),
