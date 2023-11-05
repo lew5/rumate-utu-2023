@@ -17,10 +17,14 @@
         </h3>
         <div class="highest-offer-by">
           <p>Mejor oferta realizada por:</p>
-          <a <?php if (sessionAdmin() || sessionRoot()): ?>
+          <a <?php if ((sessionAdmin() || sessionRoot()) && is_array($ofertaDe)): ?>
               href="<?= PUBLIC_PATH ?>/perfil/<?= $ofertaDe['id_usuario']; ?>"
-            <?php endif; ?>>#<span
-              id="highest-offer-by__username"><?= $ofertaDe['username_usuario']; ?></span></a>
+            <?php endif; ?>><span id="highest-offer-by__username"><?php
+              if (is_array($ofertaDe)) {
+                print($ofertaDe['username_usuario']);
+              } else {
+                print($ofertaDe);
+              } ?></span></a>
         </div>
       </div>
       <?php if ($remateFinalizado): ?>

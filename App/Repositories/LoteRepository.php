@@ -80,7 +80,7 @@ class LoteRepository extends Repository
       if ($row) {
         return $row;
       } else {
-        return "Usuario Desconocido";
+        return "Sin ofertas";
       }
     } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();

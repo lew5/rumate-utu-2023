@@ -243,7 +243,7 @@ class RemateWebSocket implements MessageComponentInterface
       if ($row) {
         return $row['username_usuario'];
       } else {
-        return "Usuario Desconocido";
+        return "Sin ofertas";
       }
     } catch (PDOException $e) {
       echo "Error: " . $e->getMessage();
