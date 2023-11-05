@@ -54,7 +54,7 @@ class LoteController
           $remateService->insertLotesByRemate($lotes, $idRemate);
           Route::redirect("/admin/remate/editar/$idRemate");
         } catch (PDOException $e) {
-          var_dump($e->errorInfo);
+          // var_dump($e->errorInfo);
           abort(500);
         }
       } else {

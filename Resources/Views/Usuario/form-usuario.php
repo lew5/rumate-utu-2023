@@ -41,5 +41,7 @@
     </div>
     <input type="text" name="usuarioConPersona[usuario][id_usuario]" hidden
       value="<?= $usuario->getId(); ?>">
+    <input type="hidden" name="usuarioConPersona[usuario][imagen_usuario]"
+      value="<?= sessionUsuario()->getImagen(); ?>">
   </div>
 </div>

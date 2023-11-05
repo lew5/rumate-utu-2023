@@ -71,7 +71,7 @@ class RemateService
       $this->remateRepository->commit();
       return $remateId;
     } catch (PDOException $e) {
-      var_dump($e->errorInfo);
+      // var_dump($e->errorInfo);
       $this->remateRepository->rollback();
       return false;
     } finally {

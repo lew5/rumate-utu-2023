@@ -32,66 +32,14 @@ function disabled($idUsuario)
       </div>
       <div class="f-column align-center">
         <div class="profile-image-container">
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/admin-no-image.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/cliente-no-image.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/proveedor-no-image.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image selected"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/1.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/2.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/3.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/4.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/5.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/6.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/7.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/8.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/9.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/10.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/11.webp" />
-          </div>
-          <div class="image-container">
-            <img class="image"
-              src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/12.webp" />
-          </div>
+          <?php for ($i = 1; $i <= 15; $i++): ?>
+            <div class="image-container">
+              <img class="image <?php if ($i == sessionUsuario()->getImagen()) {
+                print("selected");
+              } ?>" src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/<?= $i ?>.webp"
+                data-value="<?= $i ?>" />
+            </div>
+          <?php endfor; ?>
         </div>
       </div>
       <div class="header">

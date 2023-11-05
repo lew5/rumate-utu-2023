@@ -74,7 +74,7 @@ class LoteService
     $fichaId = $this->fichaService->createFicha($loteModel->getFicha());
     $loteModel->setIdFicha($fichaId);
     $loteAssocArray = $this->loteToAssocArray($loteModel);
-    var_dump($loteAssocArray);
+    // var_dump($loteAssocArray);
     $this->loteRepository->addLote($loteAssocArray);
     return $this->loteRepository->lastInsertId();
   }
@@ -89,7 +89,7 @@ class LoteService
       $this->fichaService->updateFicha($fichaData['id_ficha'], $fichaData);
       $this->loteRepository->commit();
     } catch (PDOException $e) {
-      var_dump($e->errorInfo);
+      // var_dump($e->errorInfo);
       $this->loteRepository->rollback();
       return false;
     } finally {

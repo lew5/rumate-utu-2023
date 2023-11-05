@@ -15,7 +15,7 @@ class PujaService implements IServiceInterface
     try {
       $result = $this->_PujaRepository->find($id);
     } catch (PDOException $e) {
-      var_dump($e);
+      // var_dump($e);
     }
     return $result;
   }
@@ -30,7 +30,7 @@ class PujaService implements IServiceInterface
     try {
       $this->_PujaRepository->create($model);
     } catch (PDOException $e) {
-      var_dump($e);
+      // var_dump($e);
     }
   }
 
@@ -39,7 +39,7 @@ class PujaService implements IServiceInterface
     try {
       $this->_PujaRepository->update($model);
     } catch (PDOException $e) {
-      var_dump($e);
+      // var_dump($e);
     }
   }
   public function delete($id)
@@ -47,7 +47,7 @@ class PujaService implements IServiceInterface
     try {
       $this->_PujaRepository->delete($id);
     } catch (PDOException $e) {
-      var_dump($e);
+      // var_dump($e);
     }
   }
 }

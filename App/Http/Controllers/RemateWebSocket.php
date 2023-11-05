@@ -31,7 +31,7 @@ class RemateWebSocket implements MessageComponentInterface
       $loteId = $queryParams['id_lote'];
       $remateId = $queryParams['id_remate'];
       $username = $this->obtenerNombreUsuarioPorLote($loteId, $remateId);
-      var_dump($username);
+      // var_dump($username);
       $userData = [
         'usuario' => $username
       ];
@@ -47,7 +47,7 @@ class RemateWebSocket implements MessageComponentInterface
   public function onMessage(ConnectionInterface $from, $msg)
   {
     $data = json_decode($msg, true);
-    var_dump($data);
+    // var_dump($data);
 
     if ($data && isset($data['type']) && $data['type'] === "puja") {
       $montoPuja = (float) $data['monto'];

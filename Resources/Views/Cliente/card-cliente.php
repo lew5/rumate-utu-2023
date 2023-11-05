@@ -1,5 +1,3 @@
-<?php
-?>
 <div class="card-remate">
   <img class="card-remate__image"
     src="<?= $cliente->getUsuario()->getImagen(); ?>" alt="Imagen de remate">

@@ -11,6 +11,12 @@ images.forEach((image) => {
 
     // Agrega la clase "selected" a la imagen clicada
     this.classList.add("selected");
+    const selectedImage = document.querySelector(".image.selected");
+    const inputImg = document.querySelector(
+      'input[name="usuarioConPersona[usuario][imagen_usuario]"]'
+    );
+    inputImg.value = selectedImage.getAttribute("data-value");
+    console.log(inputImg);
   });
 });
 
@@ -41,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     const form = document.getElementById("form-actualizar-usuario");
     const formData = new FormData(form);
-    console.log(formData);
     const currentURL = window.location.href;
     axios
       .post(currentURL, formData)
