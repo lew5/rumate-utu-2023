@@ -1,5 +1,6 @@
 const contadorLotes = document.querySelector("#lotes_guardados span");
-
+const btnPublicar = document.getElementById("publicar");
+btnPublicar.disabled = true;
 var remate = {
   titulo_remate: "",
   imagen_remate: "",
@@ -69,9 +70,12 @@ function publicar() {
 document.querySelector(".button-link--accent").addEventListener("click", function (e) {
   e.preventDefault();
   guardar();
+  if (lotesGuardados >= 1) {
+    btnPublicar.disabled = false;
+  }
 });
 
-document.getElementById("publicar").addEventListener("click", function (e) {
+btnPublicar.addEventListener("click", function (e) {
   publicar();
 });
 
