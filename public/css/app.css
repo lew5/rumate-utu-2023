@@ -321,7 +321,8 @@ a {
   gap: .5rem;
 }
 
-.menu-link {
+.menu-link,
+.menu-link-profile {
   padding: 4px;
   color: var(--black-300);
   font-weight: 400;
@@ -803,7 +804,8 @@ a.eliminarUsuario {
   color: red;
 }
 
-.navigation__menu .menu-link {
+.navigation__menu .menu-link,
+.navigation__menu .menu-link-profile {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -836,6 +838,16 @@ a.eliminarUsuario {
 
 .profile-image-container .image-container .image.selected {
   border-radius: 50%;
+}
+
+img.nav-profile {
+  border: 2px dashed var(--black-300);
+  width: 48px;
+  border-radius: 50%;
+}
+
+img.nav-profile:hover {
+  border: 2px dashed var(--coral-300);
 }
 
 @media only screen and (min-width: 360px) {

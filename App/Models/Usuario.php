@@ -3,7 +3,6 @@
 class Usuario
 {
   private $id_usuario;
-
   private $imagen_usuario;
   private $username_usuario;
   private $password_usuario;

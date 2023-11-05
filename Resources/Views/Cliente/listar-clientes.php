@@ -3,10 +3,10 @@
   if ($clientes != false) {
     foreach ($clientes as $cliente) {
       $imagen_nombre = $cliente->getUsuario()->getImagen();
-      if (!empty($imagen_nombre) && file_exists(BASE_PATH . "/Public/imgs/Usuario/" . $imagen_nombre)) {
-        $imagen_path = PUBLIC_PATH . "/Public/imgs/Usuario/" . $imagen_nombre;
+      if ($imagen_nombre && file_exists(BASE_PATH . "/Public/imgs/Usuario/" . $imagen_nombre . ".webp")) {
+        $imagen_path = PUBLIC_PATH . "/Public/imgs/Usuario/" . $imagen_nombre . ".webp";
       } else {
-        $imagen_path = PUBLIC_PATH . "/Public/imgs/Usuario/cliente-no-image.webp";
+        $imagen_path = PUBLIC_PATH . "/Public/imgs/Usuario/14.webp";
       }
       $cliente->getUsuario()->setImagen($imagen_path);
       $view = Container::resolve(View::class);
