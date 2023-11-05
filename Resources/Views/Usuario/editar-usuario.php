@@ -34,7 +34,7 @@ function disabled($idUsuario)
         <div class="profile-image-container">
           <?php for ($i = 1; $i <= 15; $i++): ?>
             <div class="image-container">
-              <img class="image <?php if ($i == sessionUsuario()->getImagen()) {
+              <img class="image <?php if ($i == $usuario->getImagen()) {
                 print("selected");
               } ?>" src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/<?= $i ?>.webp"
                 data-value="<?= $i ?>" />
