@@ -1,6 +1,10 @@
 <?php
 
-
+/**
+ * Verifica si el usuario en la sesión tiene el rol de ROOT.
+ *
+ * @return bool Devuelve true si el usuario tiene el rol ROOT, de lo contrario, devuelve false.
+ */
 function sessionRoot()
 {
   if (sessionUsuario()) {
@@ -9,6 +13,12 @@ function sessionRoot()
     return false;
   }
 }
+
+/**
+ * Verifica si el usuario en la sesión tiene el rol de ADMINISTRADOR.
+ *
+ * @return bool Devuelve true si el usuario tiene el rol ADMINISTRADOR, de lo contrario, devuelve false.
+ */
 function sessionAdmin()
 {
   if (sessionUsuario()) {
@@ -18,6 +28,11 @@ function sessionAdmin()
   }
 }
 
+/**
+ * Verifica si el usuario en la sesión tiene el rol de CLIENTE.
+ *
+ * @return bool Devuelve true si el usuario tiene el rol CLIENTE, de lo contrario, devuelve false.
+ */
 function sessionCliente()
 {
   if (sessionUsuario()) {
@@ -27,6 +42,11 @@ function sessionCliente()
   }
 }
 
+/**
+ * Verifica si el usuario en la sesión tiene el rol de PROVEEDOR.
+ *
+ * @return bool Devuelve true si el usuario tiene el rol PROVEEDOR, de lo contrario, devuelve false.
+ */
 function sessionProveedor()
 {
   if (sessionUsuario()) {
@@ -36,6 +56,11 @@ function sessionProveedor()
   }
 }
 
+/**
+ * Verifica si el usuario en la sesión tiene el rol de REMATADOR.
+ *
+ * @return bool Devuelve true si el usuario tiene el rol REMATADOR, de lo contrario, devuelve false.
+ */
 function sessionRematador()
 {
   if (sessionUsuario()) {
@@ -45,6 +70,11 @@ function sessionRematador()
   }
 }
 
+/**
+ * Obtiene el objeto de usuario serializado almacenado en la sesión.
+ *
+ * @return mixed Devuelve el objeto de usuario si está almacenado en la sesión, de lo contrario, devuelve false.
+ */
 function sessionUsuario()
 {
   if (isset($_SESSION['usuario'])) {
@@ -52,5 +82,4 @@ function sessionUsuario()
   }
   return false;
 }
-
 ?>
