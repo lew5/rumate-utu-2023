@@ -1,5 +1,4 @@
 <?php
-
 class PersonaService
 {
   private $personaRepository;
@@ -11,6 +10,12 @@ class PersonaService
     $this->usuarioService = Container::resolve(UsuarioService::class);
   }
 
+  /**
+   * Crea una nueva persona en la base de datos.
+   *
+   * @param $PersonaModel $personaModel Modelo de datos de persona a crear.
+   * @return int ID de la persona creada.
+   */
   public function createPersona($personaModel)
   {
     $personaToAssocArray = $this->personaToAssocArray($personaModel);
@@ -18,14 +23,32 @@ class PersonaService
     return $this->personaRepository->lastInsertId();
   }
 
+  /**
+   * Obtiene todas las personas de la base de datos.
+   *
+   * @return array Arreglo de objetos de personas.
+   */
   public function getPersona()
   {
     return $this->personaRepository->find();
   }
+
+  /**
+   * Obtiene una persona por su ID.
+   *
+   * @param int $id ID de la persona.
+   * @return Persona Objeto de persona encontrado o null si no se encuentra.
+   */
   public function getPersonaById($id)
   {
     return $this->personaRepository->findById($id);
   }
+
+  /**
+   * Obtiene personas con el tipo "PROVEEDOR" junto con sus usuarios asociados.
+   *
+   * @return array Arreglo de objetos de personas con tipo "PROVEEDOR" y sus usuarios asociados.
+   */
   public function getPersonasConTipoProveedor()
   {
     $usuariosProveedor = $this->usuarioService->getUsuariosByTipo("PROVEEDOR");
@@ -42,6 +65,12 @@ class PersonaService
     }
     return $personasConTipoProveedor;
   }
+
+  /**
+   * Obtiene personas con el tipo "CLIENTE" junto con sus usuarios asociados.
+   *
+   * @return array Arreglo de objetos de personas con tipo "CLIENTE" y sus usuarios asociados.
+   */
   public function getPersonasConTipoCliente()
   {
     $usuariosCliente = $this->usuarioService->getUsuariosByTipo("CLIENTE");
@@ -60,16 +89,33 @@ class PersonaService
     return $personasConTipoCliente;
   }
 
+  /**
+   * Actualiza los datos de una persona en la base de datos.
+   *
+   * @param int $id ID de la persona a actualizar.
+   * @param array $data Arreglo asociativo de datos de persona a actualizar.
+   */
   public function updatePersona($id, $data)
   {
     $this->personaRepository->updatePersona($id, $data);
   }
 
+  /**
+   * Elimina una persona de la base de datos.
+   *
+   * @param int $id ID de la persona a eliminar.
+   */
   public function deletePersona($id)
   {
     $this->personaRepository->deletePersona($id);
   }
 
+  /**
+   * Convierte un objeto de tipo PersonaModel a un arreglo asociativo de datos.
+   *
+   * @param $PersonaModel $personaModel Modelo de datos de persona.
+   * @return array Arreglo asociativo de datos de persona.
+   */
   private function personaToAssocArray($personaModel)
   {
     return [
@@ -83,4 +129,5 @@ class PersonaService
     ];
   }
 }
+
 ?>
