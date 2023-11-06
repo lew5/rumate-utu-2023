@@ -1,12 +1,39 @@
 <?php
-
+/**
+ * Clase Usuario
+ *
+ * La clase `Usuario` representa una entidad en la aplicación que almacena información sobre usuarios. Se utiliza para gestionar detalles como el identificador, imagen de perfil, nombre de usuario, contraseña, dirección de correo electrónico y tipo de usuario.
+ */
 class Usuario
 {
+  /**
+   * @var int El atributo `$id_usuario` almacena el identificador único del usuario.
+   */
   private $id_usuario;
+
+  /**
+   * @var string El atributo `$imagen_usuario` guarda la imagen de perfil del usuario.
+   */
   private $imagen_usuario;
+
+  /**
+   * @var string El atributo `$username_usuario` almacena el nombre de usuario del usuario.
+   */
   private $username_usuario;
+
+  /**
+   * @var string El atributo `$password_usuario` guarda la contraseña del usuario.
+   */
   private $password_usuario;
+
+  /**
+   * @var string El atributo `$email_usuario` almacena la dirección de correo electrónico del usuario.
+   */
   private $email_usuario;
+
+  /**
+   * @var string El atributo `$tipo_usuario` representa el tipo de usuario, inicializado en "CLIENTE".
+   */
   private $tipo_usuario = "CLIENTE";
 
   public function getId()

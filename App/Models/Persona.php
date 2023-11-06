@@ -1,16 +1,59 @@
 <?php
-
+/**
+ * Clase Persona
+ *
+ * La clase `Persona` representa una entidad en la aplicación que almacena información sobre una persona. Se utiliza para gestionar detalles como el identificador, nombre, apellido, cédula de identidad, barrio, calle, número, teléfono, estado y usuario relacionados con una persona.
+ */
 class Persona
 {
+  /**
+   * @var int El atributo `$id_persona` almacena el identificador único de la persona.
+   */
   private $id_persona;
+
+  /**
+   * @var string El atributo `$nombre_persona` guarda el nombre de la persona.
+   */
   private $nombre_persona;
+
+  /**
+   * @var string El atributo `$apellido_persona` almacena el apellido de la persona.
+   */
   private $apellido_persona;
+
+  /**
+   * @var string El atributo `$ci_persona` guarda la cédula de identidad de la persona.
+   */
   private $ci_persona;
+
+  /**
+   * @var string El atributo `$barrio_persona` almacena el barrio de la persona.
+   */
   private $barrio_persona;
+
+  /**
+   * @var string El atributo `$calle_persona` guarda la calle de la persona.
+   */
   private $calle_persona;
+
+  /**
+   * @var string El atributo `$numero_persona` almacena el número de la persona.
+   */
   private $numero_persona;
+
+  /**
+   * @var string El atributo `$telefono_persona` guarda el número de teléfono de la persona.
+   */
   private $telefono_persona;
+
+  /**
+   * @var string El atributo `$estado_persona` representa el estado de la persona.
+   */
   private $estado_persona;
+
+  /**
+   * @var mixed El atributo `$usuario` almacena información relacionada con el usuario asociado a la persona.
+   */
   private $usuario;
 
   public function getId()
@@ -103,13 +146,15 @@ class Persona
     $this->estado_persona = $estado;
   }
 
-	public function getUsuario() {
-		return $this->usuario;
-	}
+  public function getUsuario()
+  {
+    return $this->usuario;
+  }
 
-	public function setUsuario($usuario) {
-		$this->usuario = $usuario;
-	}
+  public function setUsuario($usuario)
+  {
+    $this->usuario = $usuario;
+  }
 }
 
 

@@ -1,9 +1,22 @@
 <?php
 require_once BASE_PATH . "/Config/config.php";
+/**
+ * Clase DataBase
+ *
+ * La clase `DataBase` proporciona una instancia de una conexión a la base de datos utilizando la extensión PDO (PHP Data Objects). Esta clase se utiliza para establecer y gestionar la conexión a la base de datos.
+ */
 class DataBase
 {
-  private static $_db;
+  /**
+   * @var PDO|null El atributo estático `$_db` almacena una instancia de la clase PDO para interactuar con la base de datos. Es una instancia compartida para evitar múltiples conexiones a la base de datos.
+   */
+  private static $_db = null;
 
+  /**
+   * Obtiene una instancia de la base de datos.
+   *
+   * @return PDO La instancia de la clase PDO que representa la conexión a la base de datos.
+   */
   public static function get()
   {
     try {
@@ -21,57 +34,10 @@ class DataBase
 
       return self::$_db;
     } catch (PDOException $e) {
+      // En caso de una excepción en la conexión a la base de datos, se maneja con una función "abort(500)".
+      // La función "abort(500)" podría estar definida en otro lugar para manejar errores internos del servidor.
       abort(500);
     }
   }
-
-  // public function __construct()
-  // {
-  // }
-  // public function query($query, $params = [])
-  // {
-  //   try {
-  //     $this->statement = $this->connection->prepare($query);
-  //     $this->statement->execute($params);
-  //     return $this->statement;
-  //   } catch (PDOException $e) {
-  //     $view = Container::resolve(View::class);
-  //     $view->assign("title", "Rumate - Error");
-  //     $view->assign("error", "NO SE PUDO EJECUTAR LA CONSULTA.<br>");
-  //     $view->assign("errorMessage", "" . $e->getMessage());
-  //     $view->render(BASE_PATH . "/Resources/Views/Errores/db-error.php");
-  //     die;
-  //   }
-  // }
-
-  // public function cerrarConexion()
-  // {
-  //   $this->statement = null;
-  //   $this->connection = null;
-  // }
-
-  // public function getConnection()
-  // {
-  //   return $this->connection;
-  // }
-
-  // public function conectar()
-  // {
-  //   // Construye una cadena DSN (Data Source Name) basada en la configuración
-  //   $dsn = "mysql:" . http_build_query($this->config['database'], "", ";");
-  //   try {
-  //     $this->connection = new PDO($dsn, $this->username, $this->password, [
-  //       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-  //     ]);
-  //     $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //   } catch (PDOException $e) {
-  //     $view = Container::resolve(View::class);
-  //     $view->assign("title", "Rumate - Error");
-  //     $view->assign("error", "NO SE PUDO ESTABLECER LA CONEXIÓN CON LA BASE DE DATOS.<br>");
-  //     $view->assign("errorMessage", "Error code: " . "<b>" . $e->getCode() . "</b>");
-  //     $view->render(BASE_PATH . "/Resources/Views/Errores/db-error.php");
-  //     die;
-  //   }
-  // }
 }
 ?>
