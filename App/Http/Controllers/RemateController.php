@@ -1,7 +1,14 @@
 <?php
-
+/**
+ * Controlador para las acciones relacionadas con los remates.
+ */
 class RemateController
 {
+  /**
+   * Muestra la lista de remates disponibles.
+   * 
+   * @return void
+   */
   public static function listarRemates()
   {
     $remates = Container::resolve(RemateService::class)->getRemates();
@@ -12,7 +19,13 @@ class RemateController
     $view->render(BASE_PATH . "/Resources/Views/Home/home.view.php");
   }
 
-
+  /**
+   * Filtra y muestra la lista de remates por título.
+   * 
+   * @param string $tituloRemate Título del remate o "*" para mostrar todos los remates.
+   * 
+   * @return void
+   */
   public static function listarRematesPorTitulo($tituloRemate)
   {
     if ($tituloRemate == "*") {

@@ -6,12 +6,18 @@ use Ratchet\ConnectionInterface;
 use PDO;
 use PDOException;
 
+/**
+ * Controlador para WebSocket de subastas en tiempo real.
+ */
 class RemateWebSocket implements MessageComponentInterface
 {
   protected $clients;
   protected $groups = [];
   private $pdo;
 
+  /**
+   * Constructor para inicializar el controlador y la conexión a la base de datos.
+   */
   public function __construct()
   {
     $this->clients = new \SplObjectStorage;
@@ -22,6 +28,11 @@ class RemateWebSocket implements MessageComponentInterface
     $this->pdo = new PDO('mysql:host=localhost;dbname=rumate_db', 'root', '');
   }
 
+  /**
+   * Maneja la apertura de una conexión WebSocket.
+   *
+   * @param ConnectionInterface $conn La conexión WebSocket.
+   */
   public function onOpen(ConnectionInterface $conn)
   {
     $query = $conn->httpRequest->getUri()->getQuery();
@@ -42,7 +53,12 @@ class RemateWebSocket implements MessageComponentInterface
       echo "New connection! ({$conn->resourceId}) to lote $loteId\n";
     }
   }
-
+  /**
+   * Maneja los mensajes recibidos a través de WebSocket.
+   *
+   * @param ConnectionInterface $from El cliente que envió el mensaje.
+   * @param string $msg El mensaje recibido.
+   */
   public function onMessage(ConnectionInterface $from, $msg)
   {
     $data = json_decode($msg, true);
@@ -80,7 +96,11 @@ class RemateWebSocket implements MessageComponentInterface
       }
     }
   }
-
+  /**
+   * Maneja el cierre de una conexión WebSocket.
+   *
+   * @param ConnectionInterface $conn La conexión que se cerró.
+   */
   public function onClose(ConnectionInterface $conn)
   {
     foreach ($this->groups as $group) {
@@ -90,7 +110,12 @@ class RemateWebSocket implements MessageComponentInterface
     }
     echo "Connection {$conn->resourceId} has disconnected\n";
   }
-
+  /**
+   * Maneja errores en la conexión WebSocket.
+   *
+   * @param ConnectionInterface $conn La conexión que experimentó un error.
+   * @param \Exception $e El error.
+   */
   public function onError(ConnectionInterface $conn, \Exception $e)
   {
     echo "An error has occurred: {$e->getMessage()}\n";

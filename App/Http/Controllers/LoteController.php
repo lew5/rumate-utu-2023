@@ -1,8 +1,17 @@
 <?php
-
+/**
+ * Controlador para las acciones relacionadas con los lotes de remates.
+ */
 class LoteController
 {
-
+  /**
+   * Muestra la página de un lote en un remate.
+   * 
+   * @param int $idRemate El ID del remate al que pertenece el lote.
+   * @param int $idLote   El ID del lote que se mostrará.
+   * 
+   * @return void
+   */
   public static function index($idRemate, $idLote)
   {
     $loteService = Container::resolve(LoteService::class);
@@ -27,7 +36,13 @@ class LoteController
       abort();
     }
   }
-
+  /**
+   * Crea un nuevo lote en un remate.
+   * 
+   * @param int $idRemate El ID del remate al que se agregará el lote.
+   * 
+   * @return void
+   */
   public function crearLote($idRemate)
   {
     Middleware::admin();
@@ -77,7 +92,13 @@ class LoteController
     }
 
   }
-
+  /**
+   * Lista todos los lotes de un remate.
+   * 
+   * @param int $idRemate El ID del remate del cual se listarán los lotes.
+   * 
+   * @return void
+   */
   public function listarLotes($idRemate)
   {
     $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
@@ -95,7 +116,14 @@ class LoteController
       // abort();
     }
   }
-
+  /**
+   * Lista los lotes de un remate por categoría.
+   * 
+   * @param int    $idRemate  El ID del remate del cual se listarán los lotes.
+   * @param string $categoria La categoría por la cual filtrar los lotes.
+   * 
+   * @return void
+   */
   public function listarLotesPorCategoria($idRemate, $categoria)
   {
     if ($categoria == "*") {
@@ -128,6 +156,14 @@ class LoteController
       echo $partialView;
     }
   }
+  /**
+   * Filtra lotes por categoría en un array.
+   * 
+   * @param array  $array     El array de lotes a filtrar.
+   * @param string $categoria La categoría por la cual filtrar.
+   * 
+   * @return array Un array con los lotes que coinciden con la categoría.
+   */
   private function buscarPorCategoria($array, $categoria)
   {
     $resultados = [];
