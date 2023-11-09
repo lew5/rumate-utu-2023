@@ -10,6 +10,7 @@ require_once BASE_PATH . "/App/Container/Container.php";
 require_once BASE_PATH . "/App/Helpers/sessions.php";
 require_once BASE_PATH . "/App/Helpers/http-codes.php";
 require_once BASE_PATH . "/App/Helpers/fechas.php";
+require_once BASE_PATH . "/App/Helpers/estado-remate.php";
 // require BASE_PATH . "/vendor/autoload.php";
 
 class Autoloader

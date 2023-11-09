@@ -27,7 +27,7 @@
               } ?></span></a>
         </div>
       </div>
-      <?php if ($remateFinalizado): ?>
+      <?php if ($finalizado): ?>
         <div class="lote-no-auth">
           <?php if (sessionUsuario()): ?>
             <?php if (sessionAdmin() || sessionRoot()): ?>
@@ -61,6 +61,11 @@
             <?php endif; ?>
           <?php endif; ?>
           <span>El remate por este lote ha finalizado el <?= $fechaFinal ?>
+            hs.</span>
+        </div>
+      <?php elseif ($pendiente): ?>
+        <div class="lote-no-auth">
+          <span>El remate por este lote inicia el <?= $fechaInicio ?>
             hs.</span>
         </div>
       <?php else: ?>

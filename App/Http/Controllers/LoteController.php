@@ -1,25 +1,42 @@
 <?php
-
 class LoteController
 {
 
-  public static function index($idRemate, $idLote)
+  public function index($idRemate, $idLote)
   {
+
     $loteService = Container::resolve(LoteService::class);
     $lote = $loteService->getLoteById($idLote);
+
+
     $remate = Container::resolve(RemateService::class)->getRemateById($idRemate);
-    $remateFinalizado = date("Y-m-d H:i:s") > $remate->getFechaFinal();
+
+    $fechaInicio = $remate->getFechaInicio();
+    $fechaFinal = $remate->getFechaFinal();
+
+    $pendiente = pendiente($fechaInicio);
+    $rematando = rematando($fechaInicio, $fechaFinal);
+    $finalizado = finalizado($fechaFinal);
+
     $fechaFinal = formatFecha($remate->getFechaFinal());
+    $fechaInicio = formatFecha($remate->getFechaInicio());
+
     $ofertaDe = $loteService->getUsernameOfertante($idRemate, $idLote);
+
     $proveedor = Container::resolve(UsuarioService::class)->getUsuarioByPersonaId($lote->getIdProveedor());
+
     $lote->setProveedor($proveedor);
+
     if ($lote != false) {
       $view = Container::resolve(View::class);
       $view->assign("title", "Rumate - Lote");
       $view->assign("header_title", "Lote <span>#$idLote</span>");
       $view->assign("lote", $lote);
       $view->assign("idRemate", $idRemate);
-      $view->assign("remateFinalizado", $remateFinalizado);
+      $view->assign("pendiente", $pendiente);
+      $view->assign("rematando", $rematando);
+      $view->assign("finalizado", $finalizado);
+      $view->assign("fechaInicio", $fechaInicio);
       $view->assign("fechaFinal", $fechaFinal);
       $view->assign("ofertaDe", $ofertaDe);
       $view->render(BASE_PATH . "/Resources/Views/Lote/lote.view.php");
