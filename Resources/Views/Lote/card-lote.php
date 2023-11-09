@@ -6,7 +6,7 @@
       <?= $lote->getCategoria()->getNombre(); ?>s
       <a href=""><span>#<?= $lote->getProveedor()->getUsername(); ?></span></a>
     </h2>
-    <p class="card-remate__data"><b>Proveedor:
+    <p class="card-remate__data"><b>Categoría:
       </b><?= $lote->getCategoria()->getNombre(); ?>
     </p>
     <p class="card-remate__data"><b>Cantidad:
@@ -18,7 +18,7 @@
   <?php if (sessionAdmin() || sessionRoot()) { ?>
     <div class="card-remate__button">
       <a href="<?= PUBLIC_PATH ?>/admin/lote/editar/<?= $lote->getId(); ?>"
-        class="link">Editar</a>
+        class="link link--editar">Editar</a>
     </div>
   <?php } ?>
   <div class="card-remate__button">

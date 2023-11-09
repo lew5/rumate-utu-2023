@@ -804,6 +804,14 @@ a.eliminarUsuario {
   color: red;
 }
 
+a.eliminarUsuario:hover {
+  text-decoration: underline;
+}
+
+a.link.link--editar {
+  color: var(--coral-400)
+}
+
 .navigation__menu .menu-link,
 .navigation__menu .menu-link-profile {
   display: flex;
