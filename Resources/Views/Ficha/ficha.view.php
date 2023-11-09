@@ -40,7 +40,7 @@
               <?php else: ?>
                 <div class="perdedor-lote">
                   <span>
-                    Lote perdido.
+                    Lote no vendido.
                   </span>
                 </div>
               <?php endif; ?>
