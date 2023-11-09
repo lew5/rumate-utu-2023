@@ -29,6 +29,37 @@
       </div>
       <?php if ($remateFinalizado): ?>
         <div class="lote-no-auth">
+          <?php if (sessionUsuario()): ?>
+            <?php if (sessionAdmin() || sessionRoot()): ?>
+              <?php if (is_array($ofertaDe)): ?>
+                <div class="ganador-lote">
+                  <span>
+                    Lote vendido.
+                  </span>
+                </div>
+              <?php else: ?>
+                <div class="perdedor-lote">
+                  <span>
+                    Lote perdido.
+                  </span>
+                </div>
+              <?php endif; ?>
+            <?php else: ?>
+              <?php if (is_array($ofertaDe) && sessionUsuario()->getId() == $ofertaDe['id_usuario']): ?>
+                <div class="ganador-lote">
+                  <span>
+                    Este lote te pertenece.
+                  </span>
+                </div>
+              <?php else: ?>
+                <div class="perdedor-lote">
+                  <span>
+                    Lote perdido.
+                  </span>
+                </div>
+              <?php endif; ?>
+            <?php endif; ?>
+          <?php endif; ?>
           <span>El remate por este lote ha finalizado el <?= $fechaFinal ?>
             hs.</span>
         </div>
