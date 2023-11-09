@@ -25,23 +25,25 @@ function disabled($idUsuario)
         </div>
       </div>
       <?php require BASE_PATH . "/Resources/Views/Usuario/form-usuario.php"; ?>
-      <div class="header">
-        <div class="container-1024 f-row">
-          <h4>Imagen de perfil</h4>
+      <?php if (sessionUsuario()->getId() == $usuario->getId()): ?>
+        <div class="header">
+          <div class="container-1024 f-row">
+            <h4>Imagen de perfil</h4>
+          </div>
         </div>
-      </div>
-      <div class="f-column align-center">
-        <div class="profile-image-container">
-          <?php for ($i = 1; $i <= 15; $i++): ?>
-            <div class="image-container">
-              <img class="image <?php if ($i == $usuario->getImagen()) {
-                print("selected");
-              } ?>" src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/<?= $i ?>.webp"
-                data-value="<?= $i ?>" />
-            </div>
-          <?php endfor; ?>
+        <div class="f-column align-center">
+          <div class="profile-image-container">
+            <?php for ($i = 1; $i <= 15; $i++): ?>
+              <div class="image-container">
+                <img class="image <?php if ($i == $usuario->getImagen()) {
+                  print("selected");
+                } ?>" src="<?= PUBLIC_PATH ?>/public/imgs/Usuario/<?= $i ?>.webp"
+                  data-value="<?= $i ?>" />
+              </div>
+            <?php endfor; ?>
+          </div>
         </div>
-      </div>
+      <?php endif; ?>
       <div class="header">
         <div class="container-1024 f-row">
           <h3>Datos personales</h3>

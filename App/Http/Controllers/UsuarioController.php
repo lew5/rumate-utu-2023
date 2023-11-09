@@ -30,6 +30,10 @@ class UsuarioController
   {
     Middleware::verPerfil($id);
     $usuarioConPersona = $_POST['usuarioConPersona'];
+
+    if (isset($usuarioConPersona['usuario']['password_usuario'])) {
+      $usuarioConPersona['usuario']['password_usuario'] = PasswordHash::hashPassword($usuarioConPersona['usuario']['password_usuario']);
+    }
     $usuario = $this->usuarioService->updateUsuario($id, $usuarioConPersona);
     if ($usuario == false) {
       $respuesta = ['mensaje' => 'ese nombre de usuario no está disponible.'];
