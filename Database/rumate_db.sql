@@ -27,7 +27,7 @@ CREATE TABLE USUARIOS (
     username_usuario VARCHAR(40) UNIQUE NOT NULL,
     password_usuario VARCHAR(255) NOT NULL,
     email_usuario VARCHAR(40) UNIQUE NOT NULL,
-    imagen_usuario VARCHAR(2),
+    imagen_usuario VARCHAR(2) DEFAULT '1' NOT NULL,
     tipo_usuario ENUM('ROOT', 'ADMINISTRADOR', 'CLIENTE','PROVEEDOR') DEFAULT 'CLIENTE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

@@ -49,15 +49,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return isValid;
       case "datos-personales__nombre":
-        return validarStep(field, /^[A-Za-z]+$/);
+        return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/);
       case "datos-personales__apellido":
-        return validarStep(field, /^[A-Za-z\s]+$/);
+        return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/);
       case "datos-personales__cedula":
         return validarStep(field, /^\d{7}\d$/);
       case "datos-personales__barrio":
-        return validarStep(field, /^[A-Za-z\s0-9]+$/);
+        return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s0-9]+$/);
       case "datos-personales__calle":
-        return validarStep(field, /^[A-Za-z\s0-9]+$/);
+        return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s0-9]+$/);
       case "datos-personales__numero":
         return validarStep(field, /^\d{1,6}$/);
       case "datos-personales__telefono":

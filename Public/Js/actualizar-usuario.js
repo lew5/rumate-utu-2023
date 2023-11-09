@@ -83,7 +83,7 @@ function validarField(field) {
     case "datos-personales__cedula":
       return validarStep(field, /^\d{7}\d$/);
     case "datos-personales__barrio":
-      return validarStep(field, /^[A-Za-z\s0-9]+$/);
+      return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s0-9]+$/);
     case "datos-personales__calle":
       return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s0-9]+$/);
     case "datos-personales__numero":
