@@ -1,24 +1,4 @@
 <?php
-// var_dump(PasswordHash::hashPassword("cliente"));
-// $fechaServidor = new DateTime();
-
-// // Definir la fecha que deseas comparar como un objeto DateTime
-// $fechaComparar = new DateTime('2023-10-20 12:16:00');
-
-// // Comparar las fechas
-// if ($fechaComparar > $fechaServidor) {
-//   echo "La fecha a comparar es posterior a la fecha del servidor.";
-// } elseif ($fechaComparar < $fechaServidor) {
-//   echo "La fecha a comparar es anterior a la fecha del servidor.";
-// } else {
-//   echo "Las fechas son iguales.";
-// }
-
-// var_dump(Container::resolve(UsuarioService::class)->getUsuarioByPersonaId(1));
-// die;
-
-
-
 
 Container::resolve(Route::class, Container::resolve(Router::class));
 // RUTAS DE REMATE

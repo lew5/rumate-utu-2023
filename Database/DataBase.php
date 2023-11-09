@@ -24,54 +24,5 @@ class DataBase
       abort(500);
     }
   }
-
-  // public function __construct()
-  // {
-  // }
-  // public function query($query, $params = [])
-  // {
-  //   try {
-  //     $this->statement = $this->connection->prepare($query);
-  //     $this->statement->execute($params);
-  //     return $this->statement;
-  //   } catch (PDOException $e) {
-  //     $view = Container::resolve(View::class);
-  //     $view->assign("title", "Rumate - Error");
-  //     $view->assign("error", "NO SE PUDO EJECUTAR LA CONSULTA.<br>");
-  //     $view->assign("errorMessage", "" . $e->getMessage());
-  //     $view->render(BASE_PATH . "/Resources/Views/Errores/db-error.php");
-  //     die;
-  //   }
-  // }
-
-  // public function cerrarConexion()
-  // {
-  //   $this->statement = null;
-  //   $this->connection = null;
-  // }
-
-  // public function getConnection()
-  // {
-  //   return $this->connection;
-  // }
-
-  // public function conectar()
-  // {
-  //   // Construye una cadena DSN (Data Source Name) basada en la configuración
-  //   $dsn = "mysql:" . http_build_query($this->config['database'], "", ";");
-  //   try {
-  //     $this->connection = new PDO($dsn, $this->username, $this->password, [
-  //       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-  //     ]);
-  //     $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //   } catch (PDOException $e) {
-  //     $view = Container::resolve(View::class);
-  //     $view->assign("title", "Rumate - Error");
-  //     $view->assign("error", "NO SE PUDO ESTABLECER LA CONEXIÓN CON LA BASE DE DATOS.<br>");
-  //     $view->assign("errorMessage", "Error code: " . "<b>" . $e->getCode() . "</b>");
-  //     $view->render(BASE_PATH . "/Resources/Views/Errores/db-error.php");
-  //     die;
-  //   }
-  // }
 }
 ?>
