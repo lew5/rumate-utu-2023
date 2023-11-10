@@ -119,26 +119,26 @@ USE rumate_db;
 -- Insertar datos de prueba en la tabla PERSONAS
 INSERT INTO PERSONAS (nombre_persona, apellido_persona, ci_persona, barrio_persona, calle_persona, numero_persona, telefono_persona, estado_persona)
 VALUES
-    ('Juan', 'Pérez', '12345678', 'Barrio A', 'Calle 1', '123', '1234567890', 'Activo'),
-    ('María', 'López', '23456789', 'Barrio B', 'Calle 2', '456', '2345678901', 'Activo'),
-    ('Pedro', 'Gómez', '34567890', 'Barrio C', 'Calle 3', '789', '3456789012', 'Activo'),
-    ('Ana', 'Rodríguez', '45678901', 'Barrio D', 'Calle 4', '101', '4567890123', 'Activo'),
-    ('Luis', 'Martínez', '56789012', 'Barrio E', 'Calle 5', '234', '5678901234', 'Activo'),
+    ('Juan', 'Pérez', '12345678', 'Barrio A', 'Calle 1', '123', '123456789', 'Activo'),
+    ('María', 'López', '23456789', 'Barrio B', 'Calle 2', '456', '234567890', 'Activo'),
+    ('Pedro', 'Gómez', '34567890', 'Barrio C', 'Calle 3', '789', '345678901', 'Activo'),
+    ('Ana', 'Rodríguez', '45678901', 'Barrio D', 'Calle 4', '101', '456789012', 'Activo'),
+    ('Luis', 'Martínez', '56789012', 'Barrio E', 'Calle 5', '234', '567890123', 'Activo'),
     ('Elena', 'Fernández', '67890123', 'Barrio F', 'Calle 6', '567', '6789012345', 'Activo'),
-    ('Carlos', 'Sánchez', '78901234', 'Barrio G', 'Calle 7', '890', '7890123456', 'Activo'),
-    ('Laura', 'Ramírez', '89012345', 'Barrio H', 'Calle 8', '1234', '8901234567', 'Activo'),
-    ('José', 'González', '90123456', 'Barrio I', 'Calle 9', '5678', '9012345678', 'Activo'),
+    ('Carlos', 'Sánchez', '78901234', 'Barrio G', 'Calle 7', '890', '789012345', 'Activo'),
+    ('Laura', 'Ramírez', '89012345', 'Barrio H', 'Calle 8', '1234', '890123456', 'Activo'),
+    ('José', 'González', '90123456', 'Barrio I', 'Calle 9', '5678', '901234567', 'Activo'),
     ('Sofía', 'Hernández', '01234567', 'Barrio J', 'Calle 10', '9012', '0123456789', 'Activo'),
-    ('Diego', 'Luna', '11223344', 'Barrio K', 'Calle 11', '1122', '1122334455', 'Activo'),
-    ('Valentina', 'Cruz', '22334455', 'Barrio L', 'Calle 12', '2233', '2233445566', 'Activo'),
-    ('Andrés', 'Paredes', '33445566', 'Barrio M', 'Calle 13', '3344', '3344556677', 'Activo'),
-    ('Isabella', 'Ortega', '44556677', 'Barrio N', 'Calle 14', '4455', '4455667788', 'Activo'),
-    ('Gabriel', 'Torres', '55667788', 'Barrio O', 'Calle 15', '5566', '5566778899', 'Activo'),
+    ('Diego', 'Luna', '11223344', 'Barrio K', 'Calle 11', '1122', '112233445', 'Activo'),
+    ('Valentina', 'Cruz', '22334455', 'Barrio L', 'Calle 12', '2233', '223344566', 'Activo'),
+    ('Andrés', 'Paredes', '33445566', 'Barrio M', 'Calle 13', '3344', '334455677', 'Activo'),
+    ('Isabella', 'Ortega', '44556677', 'Barrio N', 'Calle 14', '4455', '445566788', 'Activo'),
+    ('Gabriel', 'Torres', '55667788', 'Barrio O', 'Calle 15', '5566', '556677899', 'Activo'),
     ('Camila', 'López', '66778899', 'Barrio P', 'Calle 16', '6677', '6677889900', 'Activo'),
-    ('David', 'Silva', '77889900', 'Barrio Q', 'Calle 17', '7788', '7788990011', 'Activo'),
-    ('Mariana', 'Mendoza', '88990011', 'Barrio R', 'Calle 18', '8899', '8899001122', 'Activo'),
-    ('Simón', 'Gómez', '99001122', 'Barrio S', 'Calle 19', '9900', '9900112233', 'Activo'),
-    ('Luisa', 'Martínez', '00112233', 'Barrio T', 'Calle 20', '0011', '0011223344', 'Activo');
+    ('David', 'Silva', '77889900', 'Barrio Q', 'Calle 17', '7788', '778899011', 'Activo'),
+    ('Mariana', 'Mendoza', '88990011', 'Barrio R', 'Calle 18', '8899', '889900112', 'Activo'),
+    ('Simón', 'Gómez', '99001122', 'Barrio S', 'Calle 19', '9900', '990112233', 'Activo'),
+    ('Luisa', 'Martínez', '00112233', 'Barrio T', 'Calle 20', '0011', '001223344', 'Activo');
 
 -- Insertar datos en la tabla USUARIOS
 INSERT INTO USUARIOS (username_usuario, password_usuario, email_usuario, imagen_usuario, tipo_usuario)

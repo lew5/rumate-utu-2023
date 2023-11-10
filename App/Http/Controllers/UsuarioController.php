@@ -30,9 +30,10 @@ class UsuarioController
   {
     Middleware::verPerfil($id);
     $usuarioConPersona = $_POST['usuarioConPersona'];
-
-    if (isset($usuarioConPersona['usuario']['password_usuario'])) {
+    if (isset($usuarioConPersona['usuario']['password_usuario']) && !empty($usuarioConPersona['usuario']['password_usuario'])) {
       $usuarioConPersona['usuario']['password_usuario'] = PasswordHash::hashPassword($usuarioConPersona['usuario']['password_usuario']);
+    } else {
+      unset($usuarioConPersona['usuario']['password_usuario']);
     }
     $usuario = $this->usuarioService->updateUsuario($id, $usuarioConPersona);
     if ($usuario == false) {

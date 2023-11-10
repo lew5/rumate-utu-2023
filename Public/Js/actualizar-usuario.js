@@ -55,7 +55,7 @@ allFields.forEach((field) => {
 function validarField(field) {
   switch (field.id) {
     case "usuario__username":
-      return validarStep(field, /^(?=.{4,8}$)[a-zA-Z]+[0-9]*$/);
+      return validarStep(field, /^(?=.{4,20}$)[a-zA-Z]+[0-9]*$/);
     case "usuario__email":
       return validarStep(field, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
     case "usuario__password":
