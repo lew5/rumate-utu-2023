@@ -192,10 +192,10 @@ VALUES
 -- Insertar 6 remates
 INSERT INTO REMATES (titulo_remate, imagen_remate, fecha_inicio_remate, fecha_final_remate, estado_remate)
 VALUES
-('Subasta de Caballos y Yeguas', 'imagen_remate2.jpg', '2023-11-12 10:00:00', '2023-11-13 18:00:00', 'Pendiente'),
-('Remate de Ovejas', 'imagen_remate3.jpg', '2023-11-15 08:00:00', '2023-11-16 16:00:00', 'Pendiente'),
-('Subasta de Potros Pura Sangre', 'imagen_remate5.jpg', '2023-11-22 10:15:00', '2023-11-23 18:15:00', 'Pendiente'),
-('Gran Remate de Vacas Holstein', 'imagen_remate7.jpg', '2023-11-28 08:30:00', '2023-11-29 16:30:00', 'Pendiente'),
+('Subasta de Caballos y Yeguas', 'imagen_remate2.jpg', '2023-11-20 10:00:00', '2023-11-25 18:00:00', 'Pendiente'),
+('Remate de Ovejas', 'imagen_remate3.jpg', '2023-11-15 08:00:00', '2023-11-20 16:00:00', 'Pendiente'),
+('Subasta de Potros Pura Sangre', 'imagen_remate5.jpg', '2023-11-02 10:15:00', '2023-11-10 18:15:00', 'Pendiente'),
+('Gran Remate de Vacas Holstein', 'imagen_remate7.jpg', '2023-11-11 08:30:00', '2023-11-15 16:30:00', 'Pendiente'),
 ('Subasta de Ovejas', 'imagen_remate8.jpg', '2023-12-02 10:45:00', '2023-12-03 18:45:00', 'Pendiente'),
 ('Venta de Ovejas Suffolk', 'imagen_remate9.jpg', '2023-12-05 07:30:00', '2023-12-06 15:30:00', 'Pendiente');
 
