@@ -20,31 +20,102 @@ images.forEach((image) => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("form-actualizar-usuario");
-  const actualizarButton = document.getElementById("btn-actualizar-usuario");
-  form.querySelectorAll("input, select").forEach((input) => {
-    input.addEventListener("change", function () {});
+const button = document.querySelector("#btn-actualizar-usuario");
+const allFields = document.querySelectorAll(".input-field__input");
+let pass = "";
+
+function updateButtonState() {
+  let allFieldsFilled = true;
+
+  allFields.forEach((field) => {
+    if (field.id === "usuario__password" || field.id === "usuario__confirmPassword") {
+      if (field.value.trim() !== "") {
+        const currentStepValid = validarField(field);
+        if (!currentStepValid) {
+          allFieldsFilled = false;
+        }
+      }
+    } else {
+      const currentStepValid = validarField(field);
+      if (!currentStepValid) {
+        allFieldsFilled = false;
+      }
+    }
   });
 
-  actualizarButton.addEventListener("click", function (event) {
+  button.disabled = !allFieldsFilled;
+}
+
+updateButtonState();
+
+allFields.forEach((field) => {
+  field.addEventListener("input", updateButtonState);
+});
+
+function validarField(field) {
+  switch (field.id) {
+    case "usuario__username":
+      return validarStep(field, /^(?=.{4,20}$)[a-zA-Z]+[0-9]*$/);
+    case "usuario__email":
+      return validarStep(field, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+    case "usuario__password":
+      pass = field.value;
+      return validarStep(field, /^.{8,}$/);
+    case "usuario__confirmPassword":
+      const isValid =
+        field.value === pass && field.value.length > 0 && field.value.length === pass.length;
+      var regex = /^.{8,}$/;
+
+      if (validarStep(field, regex) && isValid) {
+        field.classList.remove("input-field__input--error");
+        field.classList.add("input-field__input--ok");
+      } else {
+        if (field.value.length > 0) {
+          field.classList.remove("input-field__input--ok");
+          field.classList.add("input-field__input--error");
+        }
+      }
+      return isValid;
+    case "datos-personales__nombre":
+      return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/);
+    case "datos-personales__apellido":
+      return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/);
+    case "datos-personales__cedula":
+      return validarStep(field, /^\d{7}\d$/);
+    case "datos-personales__barrio":
+      return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s0-9]+$/);
+    case "datos-personales__calle":
+      return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s0-9]+$/);
+    case "datos-personales__numero":
+      return validarStep(field, /^\d{1,6}$/);
+    case "datos-personales__telefono":
+      return validarStep(field, /^\d{8,9}$/);
+    default:
+      return true;
+  }
+}
+
+function validarStep(field, regex) {
+  const value = field.value;
+  const isValid = regex.test(value);
+
+  if (value.length > 0) {
+    field.classList.toggle("input-field__input--error", !isValid);
+    field.classList.toggle("input-field__input--ok", isValid);
+  } else {
+    field.classList.remove("input-field__input--error", "input-field__input--ok");
+  }
+
+  return isValid;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  button.addEventListener("click", function (event) {
     event.preventDefault();
     actualizarUsuario();
   });
 
   function actualizarUsuario() {
-    var camposLote = document.querySelectorAll(
-      ".perfil__usuario .input-field__input,.perfil__datos-personales .input-field__input"
-    );
-
-    var camposVacios = Array.from(camposLote).some(function (input) {
-      return !input.value.trim() && input.hasAttribute("required");
-    });
-
-    if (camposVacios) {
-      alert("No pueden haber campos de lote o ficha vacíos.");
-      return;
-    }
     const form = document.getElementById("form-actualizar-usuario");
     const formData = new FormData(form);
     const currentURL = window.location.href;

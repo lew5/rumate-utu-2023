@@ -19,7 +19,7 @@
   <?php if (sessionAdmin() || sessionRoot()) { ?>
     <div class="card-remate__button">
       <a href="<?= PUBLIC_PATH ?>/admin/remate/editar/<?= $remate->getId(); ?>"
-        class="link">Editar</a>
+        class="link link--editar">Editar</a>
     </div>
   <?php } ?>
   <div class="card-remate__button">

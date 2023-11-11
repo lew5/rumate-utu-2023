@@ -103,9 +103,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function validarStep_1(field) {
     switch (field.id) {
       case "register-step-1-nombre":
-        return validarStep(field, /^[A-Za-z]+$/);
+        return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/);
       case "register-step-1-apellido":
-        return validarStep(field, /^[A-Za-z\s]+$/);
+        return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/);
       case "register-step-1-cedula":
         return validarStep(field, /^\d{7}\d$/);
       default:
@@ -116,9 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function validarStep_2(field) {
     switch (field.id) {
       case "register-step-2-barrio":
-        return validarStep(field, /^[A-Za-z\s0-9]+$/);
+        return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s0-9]+$/);
       case "register-step-2-calle":
-        return validarStep(field, /^[A-Za-z\s0-9]+$/);
+        return validarStep(field, /^[A-Za-záéíóúÁÉÍÓÚ\s0-9]+$/);
       case "register-step-2-numero":
         return validarStep(field, /^\d{1,6}$/);
       case "register-step-2-telefono":
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function validarStep_3(field) {
     switch (field.id) {
       case "register-step-3-username":
-        return validarStep(field, /^(?=.{4,8}$)[a-zA-Z]+[0-9]*$/);
+        return validarStep(field, /^(?=.{4,20}$)[a-zA-Z]+[0-9]*$/);
       case "register-step-3-email":
         return validarStep(field, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
       case "register-step-3-password":

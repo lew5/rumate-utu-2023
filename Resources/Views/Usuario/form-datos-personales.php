@@ -105,7 +105,7 @@
         <div class="registro-remate__actions f-row">
       <div class="button">
         <input id="btn-actualizar-usuario" class="button__input" type="submit"
-          value="Actualizar cambios" />
+          value="Actualizar cambios" disabled/>
       </div>
     </div>
     <?php } ?>

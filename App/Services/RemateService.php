@@ -42,6 +42,7 @@ class RemateService
     $remates = $this->remateRepository->find();
     $rematesConLotes = [];
     foreach ($remates as $remate) {
+      $remate = $this->cambiarEstadoRemate($remate);
       $remate->setFechaInicio(formatFecha($remate->getFechaInicio()));
       $remate->setFechaFinal(formatFecha($remate->getFechaFinal()));
       $idRemate = $remate->getId();
@@ -65,6 +66,7 @@ class RemateService
     $remates = $this->remateRepository->findByTitle($tituloRemate);
     $rematesConLotes = [];
     foreach ($remates as $remate) {
+      $remate = $this->cambiarEstadoRemate($remate);
       $remate->setFechaInicio(formatFecha($remate->getFechaInicio()));
       $remate->setFechaFinal(formatFecha($remate->getFechaFinal()));
       $idRemate = $remate->getId();
@@ -87,6 +89,7 @@ class RemateService
   {
     $lotes = $this->getLotes($id);
     $remate = $this->remateRepository->findById($id);
+    $remate = $this->cambiarEstadoRemate($remate);
     if ($lotes) {
       $remate->setLotes($lotes);
     } else {
@@ -229,6 +232,27 @@ class RemateService
         'id_lote_lote_postula_remate' => $loteId,
       ]);
     }
+  }
+
+  private function cambiarEstadoRemate($remate)
+  {
+    if ($remate) {
+      $hoy = date("Y-m-d H:i:s");
+      $inicio = $remate->getFechaInicio();
+      $final = $remate->getFechaFinal();
+
+      if ($hoy < $inicio) {
+        $this->updateRemate($remate->getId(), ['estado_remate' => "Pendiente"]);
+        $remate->setEstado("Pendiente");
+      } elseif ($hoy > $inicio && $hoy < $final) {
+        $this->updateRemate($remate->getId(), ['estado_remate' => "Rematando"]);
+        $remate->setEstado("Rematando");
+      } else {
+        $this->updateRemate($remate->getId(), ['estado_remate' => "Finalizado"]);
+        $remate->setEstado("Finalizado");
+      }
+    }
+    return $remate;
   }
 }
 ?>

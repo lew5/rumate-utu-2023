@@ -804,6 +804,14 @@ a.eliminarUsuario {
   color: red;
 }
 
+a.eliminarUsuario:hover {
+  text-decoration: underline;
+}
+
+a.link.link--editar {
+  color: var(--coral-400)
+}
+
 .navigation__menu .menu-link,
 .navigation__menu .menu-link-profile {
   display: flex;
@@ -848,6 +856,32 @@ img.nav-profile {
 
 img.nav-profile:hover {
   border: 2px dashed var(--coral-300);
+}
+
+.ganador-lote {
+  padding: 1rem;
+  background: #CCE6CD;
+  display: flex;
+  border-radius: 12px;
+}
+
+.ganador-lote span {
+  color: #336237;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.perdedor-lote {
+  padding: 1rem;
+  background: #ffdddd;
+  display: flex;
+  border-radius: 12px;
+}
+
+.perdedor-lote span {
+  color: #d70000;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 360px) {
