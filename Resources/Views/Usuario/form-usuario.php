@@ -5,7 +5,7 @@
         <span class="label__text">Nombre de usuario</span>
         <input id="usuario__username"
           name="usuarioConPersona[usuario][username_usuario]"
-          class="input-field__input" type="text" placeholder="Ejemplo: pepe123"
+          class="input-field__input" type="text" placeholder="mínimo 4 dígitos"
           autocomplete="off" class="input-field__input"
           value="<?= $usuario->getUsername(); ?>" required <?php if (disabled($usuario->getId())) {
               print "disabled";
@@ -46,7 +46,7 @@
           <input id="usuario__password"
             name="usuarioConPersona[usuario][password_usuario]"
             class="input-field__input" type="password" autocomplete="off"
-            class="input-field__input" placeholder="pEpe12345#" />
+            class="input-field__input" placeholder="mínimo 8 dígitos" />
         </label>
         <span class="input-field__error-message hidden error">Error</span>
       </div>

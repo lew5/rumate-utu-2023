@@ -4,7 +4,7 @@
       <label class="input-field__label f-column">
         <span class="label__text">Nombre de usuario</span>
         <input id="register-step-3-username" name="username"
-          class="input-field__input" type="text" placeholder="Ejemplo: pepe123"
+          class="input-field__input" type="text" placeholder="mínimo 4 dígitos"
           autocomplete="off" class="input-field__input" />
       </label>
       <span class="input-field__error-message hidden error">Error</span>
@@ -24,7 +24,8 @@
         <span class="label__text">Contraseña</span>
         <input id="register-step-3-password" name="password"
           class="input-field__input" type="password" autocomplete="off"
-          class="input-field__input" />
+          class="input-field__input" 
+          placeholder="mínimo 8 dígitos"/>
       </label>
       <span class="input-field__error-message hidden error">Error</span>
     </div>
