@@ -11,7 +11,7 @@ Puedes ver el proyecto en [GitHub](https://github.com/lew5/rumate)
 ## Paso 1: Copiar y Pegar el Proyecto
 
 - Copia la carpeta del proyecto `rumate`.
-- Pega la carpeta del proyecto en el directorio www de WampServer.
+- Pega la carpeta del proyecto en el directorio `www` de WampServer.
 
 ## Paso 2: Crear un Alias para "Rumate"
 
