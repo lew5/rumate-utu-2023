@@ -1,22 +1,21 @@
 <?php
-
+/**
+ * Clase Router
+ *
+ * Esta clase se utiliza para definir rutas y gestionar las solicitudes de enrutamiento en una aplicación web.
+ */
 class Router
 {
-
-  /**
-   * @var array La lista de rutas disponibles.
-   */
   private $routes = [];
 
   /**
-   * Método add
-   * 
-   * Agrega una nueva ruta a la lista de rutas disponibles.
-   * 
-   * @param string $method El método HTTP para la ruta (GET, POST, DELETE, PUT, PATCH).
-   * @param string $uri La ruta a la que se vincula el controlador.
-   * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
+   * Agrega una nueva ruta al enrutador.
+   *
+   * @param string $method     El método HTTP (GET, POST, PUT, DELETE, etc.).
+   * @param string $uri        La URI de la ruta, que puede contener parámetros.
+   * @param string $controller El controlador que se ejecutará cuando se acceda a la ruta.
+   *
+   * @return Router            Devuelve una instancia del enrutador para permitir encadenar llamadas.
    */
   private function add($method, $uri, $controller)
   {
@@ -31,13 +30,12 @@ class Router
   }
 
   /**
-   * Método get
-   * 
-   * Agrega una nueva ruta para el método HTTP GET.
-   * 
-   * @param string $uri La ruta a la que se vincula el controlador.
-   * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
+   * Agrega una ruta GET al enrutador.
+   *
+   * @param string $uri        La URI de la ruta, que puede contener parámetros.
+   * @param string $controller El controlador que se ejecutará cuando se acceda a la ruta.
+   *
+   * @return Router            Devuelve una instancia del enrutador para permitir encadenar llamadas.
    */
   public function get($uri, $controller)
   {
@@ -53,13 +51,12 @@ class Router
   }
 
   /**
-   * Método post
-   * 
-   * Agrega una nueva ruta para el método HTTP POST.
-   * 
-   * @param string $uri La ruta a la que se vincula el controlador.
-   * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
+   * Agrega una ruta POST al enrutador.
+   *
+   * @param string $uri        La URI de la ruta, que puede contener parámetros.
+   * @param string $controller El controlador que se ejecutará cuando se acceda a la ruta.
+   *
+   * @return Router            Devuelve una instancia del enrutador para permitir encadenar llamadas.
    */
   public function post($uri, $controller)
   {
@@ -70,13 +67,12 @@ class Router
   }
 
   /**
-   * Método delete
-   * 
-   * Agrega una nueva ruta para el método HTTP DELETE.
-   * 
-   * @param string $uri La ruta a la que se vincula el controlador.
-   * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
+   * Agrega una ruta DELETE al enrutador.
+   *
+   * @param string $uri        La URI de la ruta, que puede contener parámetros.
+   * @param string $controller El controlador que se ejecutará cuando se acceda a la ruta.
+   *
+   * @return Router            Devuelve una instancia del enrutador para permitir encadenar llamadas.
    */
   public function delete($uri, $controller)
   {
@@ -84,40 +80,12 @@ class Router
   }
 
   /**
-   * Método put
-   * 
-   * Agrega una nueva ruta para el método HTTP PUT.
-   * 
-   * @param string $uri La ruta a la que se vincula el controlador.
-   * @param string $controller El archivo que contiene el controlador para la ruta.
-   * @return $this Devuelve la instancia actual de la clase Router para permitir el encadenamiento de métodos.
-   */
-  public function put($uri, $controller)
-  {
-    return $this->add("PUT", $uri, $controller);
-  }
-
-  /**
-   * Método only
-   * 
-   * Asigna un middleware a la última ruta agregada.
-   * 
-   * @param string $key La clave del middleware a asignar a la última ruta.
-   * @return void No hay retorno, simplemente asigna el middleware a la última ruta agregada.
-   */
-  public function only($key)
-  {
-    $this->routes[array_key_last($this->routes)]['middleware'] = $key;
-  }
-
-  /**
-   * Método route
-   * 
-   * Realiza el enrutamiento de la solicitud a un controlador específico según la ruta y el método HTTP solicitados.
-   * 
-   * @param string $uri La ruta solicitada.
-   * @param string $method El método HTTP de la solicitud (GET, POST, DELETE, PUT, PATCH).
-   * @return mixed El resultado de la ejecución del controlador o llama a la función abort si la ruta no existe.
+   * Enrutamiento de la solicitud HTTP.
+   *
+   * @param string $uri    La URI de la solicitud.
+   * @param string $method El método HTTP de la solicitud (GET, POST, PUT, DELETE, etc.).
+   *
+   * @return mixed         Devuelve el resultado de la acción del controlador correspondiente.
    */
   public function route($uri, $method)
   {
@@ -141,27 +109,28 @@ class Router
     abort();
   }
 
+  /**
+   * Construye un patrón de ruta a partir de una URI con parámetros.
+   *
+   * @param string $uri La URI de la ruta con parámetros.
+   *
+   * @return string     Devuelve el patrón de ruta regex construido.
+   */
   private function buildRoutePattern($uri)
   {
     return "~^{$uri}$~";
   }
 
-
+  /**
+   * Despacha la solicitud actual y enruta a la acción correspondiente.
+   */
   public function dispatch()
   {
-
-    // $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-    // $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
-    // $this->route($uri, $method);
-
-
     $folderPath = dirname($_SERVER['SCRIPT_NAME']);
     $urlPath = $_SERVER['REQUEST_URI'];
     $url = substr($urlPath, strlen($folderPath));
-    // $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
     $method = $_SERVER['REQUEST_METHOD'];
     $this->route($url, $method);
-
   }
 }
 ?>

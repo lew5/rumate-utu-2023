@@ -1,13 +1,26 @@
 <?php
+/**
+ * Controlador para las acciones relacionadas con el registro de usuarios.
+ */
 class RegistroController
 {
+  /**
+   * @var RegistroService Servicio de registro.
+   */
   private $registroService;
-
+  /**
+   * Constructor de la clase.
+   */
   public function __construct()
   {
     Middleware::usuario("/");
     $this->registroService = Container::resolve(RegistroService::class);
   }
+  /**
+   * Muestra el formulario de registro o procesa los datos de registro.
+   * 
+   * @return void
+   */
   public function index()
   {
 
@@ -30,17 +43,32 @@ class RegistroController
       $view->render(BASE_PATH . "/Resources/Views/Registro/registro.view.php");
     }
   }
-
+  /**
+   * Inicia la sesión y redirige al usuario a la página de inicio de sesión.
+   * 
+   * @return void
+   */
   private function iniciarSession()
   {
     route::redirect("/login");
   }
-
+  /**
+   * Muestra un error de registro y aborta la aplicación.
+   * 
+   * @return void
+   */
   private function errorRegistro()
   {
     abort(500);
   }
 
+  /**
+   * Convierte los datos POST en un objeto de tipo Persona.
+   * 
+   * @param array $postData Los datos POST recibidos.
+   * 
+   * @return Persona El objeto Persona creado a partir de los datos POST.
+   */
   private function postToPersona($postData)
   {
     $persona = Container::resolve(Persona::class);
@@ -58,7 +86,13 @@ class RegistroController
     $persona->setUsuario($usuario);
     return $persona;
   }
-
+  /**
+   * Registra una persona y un usuario.
+   * 
+   * @param Persona $persona El objeto Persona a registrar.
+   * 
+   * @return bool true si el registro se realizó con éxito, de lo contrario, false.
+   */
   private function registrarPersona($persona)
   {
     return $this->registroService->createUsuarioAndPersona($persona);

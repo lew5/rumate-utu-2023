@@ -1,10 +1,34 @@
 <?php
+/**
+ * Clase Ficha
+ *
+ * La clase `Ficha` representa una entidad en la aplicación que almacena información sobre fichas. Se utiliza para gestionar detalles como el identificador, peso, cantidad, raza y descripción de las fichas.
+ */
 class Ficha
 {
+  /**
+   * @var int El atributo `$id_ficha` almacena el identificador único de la ficha.
+   */
   private $id_ficha;
+
+  /**
+   * @var float El atributo `$peso_ficha` guarda el peso de la ficha.
+   */
   private $peso_ficha;
+
+  /**
+   * @var int El atributo `$cantidad_ficha` almacena la cantidad de fichas.
+   */
   private $cantidad_ficha;
+
+  /**
+   * @var string El atributo `$raza_ficha` guarda la raza de las fichas.
+   */
   private $raza_ficha;
+
+  /**
+   * @var string El atributo `$descripcion_ficha` almacena una descripción de las fichas.
+   */
   private $descripcion_ficha;
 
   public function getId()

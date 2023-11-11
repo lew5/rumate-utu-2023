@@ -1,18 +1,65 @@
 <?php
 
+/**
+ * Clase Lote
+ *
+ * La clase `Lote` representa una entidad en la aplicación que almacena información sobre lotes. Se utiliza para gestionar detalles como el identificador, imagen, precio base, mejor oferta, proveedor, ficha, categoría y remate relacionados con un lote.
+ */
 class Lote
 {
+  /**
+   * @var int El atributo `$id_lote` almacena el identificador único del lote.
+   */
   private $id_lote;
+
+  /**
+   * @var string El atributo `$imagen_lote` guarda la imagen asociada al lote.
+   */
   private $imagen_lote;
+
+  /**
+   * @var float El atributo `$precio_base_lote` almacena el precio base del lote.
+   */
   private $precio_base_lote;
+
+  /**
+   * @var float El atributo `$mejor_oferta_lote` guarda la mejor oferta del lote, inicializado en 0.
+   */
   private $mejor_oferta_lote = 0;
+
+  /**
+   * @var int El atributo `$id_proveedor_lote` almacena el identificador del proveedor del lote.
+   */
   private $id_proveedor_lote;
+
+  /**
+   * @var int El atributo `$id_ficha_lote` almacena el identificador de la ficha relacionada con el lote.
+   */
   private $id_ficha_lote;
+
+  /**
+   * @var int El atributo `$id_categoria_lote` almacena el identificador de la categoría a la que pertenece el lote.
+   */
   private $id_categoria_lote;
+
+  /**
+   * @var mixed El atributo `$ficha` almacena información sobre la ficha relacionada con el lote.
+   */
   private $ficha;
+
+  /**
+   * @var mixed El atributo `$categoria` almacena información sobre la categoría a la que pertenece el lote.
+   */
   private $categoria;
+
+  /**
+   * @var mixed El atributo `$proveedor` almacena información sobre el proveedor del lote.
+   */
   private $proveedor;
 
+  /**
+   * @var int El atributo `$id_remate` almacena el identificador del remate al que pertenece el lote.
+   */
   private $id_remate;
 
   public function getId()

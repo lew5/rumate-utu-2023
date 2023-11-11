@@ -25,6 +25,11 @@ class Route
     self::$router->delete($uri, $controller);
   }
 
+  /**
+   * Redirige a una ubicación específica en la aplicación.
+   *
+   * @param string $location La ubicación a la que se va a redirigir, relativa a la ruta pública de la aplicación.
+   */
   public static function redirect($location = "")
   {
     header("Location: " . PUBLIC_PATH . $location);

@@ -9,7 +9,7 @@ Route::get("/remate/{idRemate}/lote/{idLote}", "LoteController@index");
 
 
 
-Route::get("/{idProveedor}/lotes", "ProveedorController@listarLotes"); //! EN DESARROLLO 
+Route::get("/{idProveedor}/lotes", "ProveedorController@listarLotes");
 
 Route::get("/admin/registrar-remate", "AdministradorController@crearRemate");
 Route::get("/admin/remate/eliminar/{idRemate}", "AdministradorController@eliminarRemate");

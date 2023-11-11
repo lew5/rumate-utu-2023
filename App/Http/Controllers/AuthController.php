@@ -1,15 +1,36 @@
 <?php
 
+/**
+ * Controlador para la autenticación de usuarios.
+ */
 class AuthController
 {
+  /**
+   * @var AuthService Instancia de la clase AuthService utilizada para autenticar usuarios.
+   */
   private $authService;
+
+  /**
+   * @var UsuarioService Instancia de la clase UsuarioService utilizada para gestionar usuarios.
+   */
   private $usuarioService;
 
+  /**
+   * Constructor de la clase AuthController.
+   * Inicializa las instancias de AuthService y UsuarioService.
+   */
   public function __construct()
   {
     $this->authService = Container::resolve(AuthService::class);
     $this->usuarioService = Container::resolve(UsuarioService::class);
   }
+
+  /**
+   * Maneja el proceso de inicio de sesión.
+   * Comprueba las credenciales del usuario y gestiona la sesión.
+   *
+   * @return void
+   */
   public function login()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,15 +45,27 @@ class AuthController
     }
   }
 
+  /**
+   * Cierra la sesión actual del usuario y redirige.
+   *
+   * @return void
+   */
   public static function logout()
   {
     session_destroy();
     route::redirect();
   }
 
+  /**
+   * Inicia una sesión para el usuario autenticado.
+   * Almacena información en la variable de sesión $_SESSION['usuario'] y redirige al usuario.
+   *
+   * @param string $username El nombre de usuario del usuario autenticado.
+   * @return void
+   */
   private function iniciarSession($username)
   {
-    $usuario = Container::resolve(UsuarioService::class)->getUsuarioByUsername($username);
+    $usuario = $this->usuarioService->getUsuarioByUsername($username);
     if ($usuario->getTipo() == "ADMINISTRADOR" || $usuario->getTipo() == "ROOT") {
       $usuario = serialize($usuario);
       $_SESSION['usuario'] = $usuario;
@@ -44,6 +77,13 @@ class AuthController
     }
   }
 
+  /**
+   * Maneja sesiones de error.
+   * Almacena un mensaje de error y el nombre de usuario proporcionado en la variable $_SESSION['loginError'].
+   *
+   * @param string $username El nombre de usuario que no pudo autenticarse.
+   * @return void
+   */
   private function errorSession($username)
   {
     $_SESSION['loginError'] = [

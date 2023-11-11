@@ -1,7 +1,14 @@
 <?php
-
+/**
+ * Controlador para las acciones relacionadas con la administración de empleados.
+ */
 class RootController
 {
+  /**
+   * Muestra la lista de administradores.
+   * 
+   * @return void
+   */
   public function listarAdministradores()
   {
     Middleware::root();
@@ -14,6 +21,11 @@ class RootController
     $view->render(BASE_PATH . "/Resources/Views/Administrador/admin.view.php");
   }
 
+  /**
+   * Muestra el formulario para crear un nuevo administrador.
+   * 
+   * @return void
+   */
   public function crearAdministrador()
   {
     Middleware::root();
@@ -23,6 +35,11 @@ class RootController
     $view->render(BASE_PATH . "/Resources/Views/Root/crear-admin.php");
   }
 
+  /**
+   * Procesa el formulario para crear un nuevo administrador.
+   * 
+   * @return void
+   */
   public function crearAdministradorPost()
   {
     Middleware::root();
@@ -37,6 +54,11 @@ class RootController
     die;
   }
 
+  /**
+   * Convierte datos POST en una instancia de Persona.
+   * 
+   * @return Persona
+   */
   private function postToPersona()
   {
     $personaData = $_POST['persona'];

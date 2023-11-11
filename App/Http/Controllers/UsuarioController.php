@@ -1,12 +1,26 @@
 <?php
-
+/**
+ * Controlador para las acciones relacionadas con los usuarios y perfiles.
+ */
 class UsuarioController
 {
+  /** @var UsuarioService Servicio de usuario para gestionar la lógica de usuario. */
   private $usuarioService;
+
+  /**
+   * Constructor de la clase UsuarioController.
+   */
   public function __construct()
   {
     $this->usuarioService = Container::resolve(UsuarioService::class);
   }
+
+  /**
+   * Muestra el perfil de un usuario.
+   * 
+   * @param int $id Identificador del usuario.
+   * @return void
+   */
   public function verPerfil($id)
   {
     $usuario = $this->usuarioService->getUsuarioById($id);
@@ -26,6 +40,12 @@ class UsuarioController
     }
   }
 
+  /**
+   * Actualiza el perfil de un usuario.
+   * 
+   * @param int $id Identificador del usuario.
+   * @return void
+   */
   public function actualizarPerfil($id)
   {
     Middleware::verPerfil($id);
@@ -37,7 +57,7 @@ class UsuarioController
     }
     $usuario = $this->usuarioService->updateUsuario($id, $usuarioConPersona);
     if ($usuario == false) {
-      $respuesta = ['mensaje' => 'ese nombre de usuario no está disponible.'];
+      $respuesta = ['mensaje' => 'Ese nombre de usuario no está disponible.'];
     } else if ($usuario == null) {
       $respuesta = ['mensaje' => 'No se pudo actualizar el usuario.'];
     } else {
@@ -52,6 +72,12 @@ class UsuarioController
     die;
   }
 
+  /**
+   * Elimina un usuario.
+   * 
+   * @param int $id Identificador del usuario a eliminar.
+   * @return void
+   */
   public function eliminarUsuario($id)
   {
     Middleware::admin();

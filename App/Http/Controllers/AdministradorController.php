@@ -1,13 +1,35 @@
 <?php
-
+/**
+ * Controlador para las acciones de administrador.
+ */
 class AdministradorController
 {
 
+  /**
+   * @var CategoriaRepository Instancia de la clase CategoriaRepository utilizada para gestionar categorías.
+   */
   private $categoriaRepository;
+
+  /**
+   * @var RemateService Instancia de la clase RemateService utilizada para gestionar remates.
+   */
   private $remateService;
+
+  /**
+   * @var UsuarioService Instancia de la clase UsuarioService utilizada para gestionar usuarios.
+   */
   private $usuarioService;
 
+  /**
+   * @var PersonaService Instancia de la clase PersonaService utilizada para gestionar personas.
+   */
   private $personaService;
+
+  /**
+   * Constructor de la clase AdministradorController.
+   * Inicializa las instancias de CategoriaRepository, UsuarioService, RemateService y PersonaService.
+   * Aplica el middleware de administrador para garantizar el acceso.
+   */
   public function __construct()
   {
     Middleware::admin();
@@ -16,7 +38,12 @@ class AdministradorController
     $this->remateService = Container::resolve(RemateService::class);
     $this->personaService = Container::resolve(PersonaService::class);
   }
-
+  /**
+   * Muestra la vista para crear un nuevo remate.
+   * Carga las categorías y proveedores disponibles para el nuevo remate.
+   *
+   * @return void
+   */
   public function crearRemate()
   {
     $categorias = $this->categoriaRepository->find();
@@ -28,7 +55,12 @@ class AdministradorController
     $view->assign("proveedores", $proveedores);
     $view->render(BASE_PATH . "/Resources/Views/Remate/crear-remate.php");
   }
-
+  /**
+   * Registra un nuevo remate en la base de datos.
+   * Procesa los datos del remate, crea lotes y almacena la información.
+   *
+   * @return void
+   */
   public function registrarRemate()
   {
     $remateData = json_decode($_POST['remate-data']);
@@ -68,7 +100,13 @@ class AdministradorController
     }
     Route::redirect();
   }
-
+  /**
+   * Muestra la vista para editar un remate existente.
+   * Permite la edición de información del remate y sus lotes.
+   *
+   * @param int $idRemate ID del remate a editar.
+   * @return void
+   */
   public function editarRemate($idRemate)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -110,7 +148,12 @@ class AdministradorController
       }
     }
   }
-
+  /**
+   * Elimina un remate existente de la base de datos.
+   *
+   * @param int $idRemate ID del remate a eliminar.
+   * @return void
+   */
   public function eliminarRemate($idRemate)
   {
     if ($this->remateService->deleteRemate($idRemate)) {
@@ -124,7 +167,13 @@ class AdministradorController
     $respuesta = json_encode($respuesta);
     echo $respuesta;
   }
-
+  /**
+   * Muestra la vista para editar un lote existente.
+   * Permite la edición de información del lote.
+   *
+   * @param int $idLote ID del lote a editar.
+   * @return void
+   */
   public function editarLote($idLote)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -166,7 +215,12 @@ class AdministradorController
       }
     }
   }
-
+  /**
+   * Elimina un lote existente de la base de datos.
+   *
+   * @param int $idLote ID del lote a eliminar.
+   * @return void
+   */
   public function eliminarLote($idLote)
   {
     $loteService = Container::resolve(LoteService::class);
