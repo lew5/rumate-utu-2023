@@ -74,6 +74,26 @@
             <div class="lote-no-auth">
               <span>Los administradores no pueden participar</span>
             </div>
+            <form action="" method="POST" hidden>
+              <input type="hidden" id="id_remate" value="<?= $idRemate ?>">
+              <input type="hidden" id="id_lote" value="<?= $lote->getId() ?>">
+              <input type="hidden" id="id_usuario"
+                value="<?= sessionUsuario()->getId(); ?>">
+              <div class="custom-input-step">
+                <input id="minusButton" type="button"
+                  class="button__input custom-input-step__btn--minus" />
+                <div class="custom-input-step__value">
+                  <input id="offer_value" type="number"
+                    class="custom-input-step__input" disabled autocomplete="off" />
+                </div>
+                <input id="plusButton" type="button"
+                  class="button__input custom-input-step__btn--plus" />
+              </div>
+              <div class="button">
+                <input id="ofertar-btn" class="button__input" type="button"
+                  value="OFERTAR" disabled />
+              </div>
+            </form>
           <?php } else { ?>
             <div class="make-offer">
               <form action="" method="POST">
