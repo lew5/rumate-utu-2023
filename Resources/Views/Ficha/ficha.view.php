@@ -1,8 +1,22 @@
 <div class="remate-lote-container f-column">
   <div class="lote-details f-row">
     <div class="lote-image">
-      <img src="<?= PUBLIC_PATH ?>/Public/imgs/Lote/lote-no-image.webp"
-        alt="Imagen del lote" height="480px" width="720px" />
+      <?php if ($idRemate == 1): ?>
+        <iframe width="720" height="480"
+          src="https://www.youtube.com/embed/o0a_ctFHyv0?si=y7K3457laHYNK5OD"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      <?php elseif ($idRemate == 2): ?>
+        <iframe width="720" height="480"
+          src="https://www.youtube.com/embed/sVzRjxupRts?si=ZYof6OUL3BLNyvgH&amp;start=1406"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      <?php else: ?>
+        <img src="<?= PUBLIC_PATH ?>/Public/imgs/Lote/lote-no-image.webp"
+          alt="Imagen del lote" height="480px" width="720px" />
+      <?php endif; ?>
     </div>
     <div class="lote-info f-column">
       <div class="highest-offer">
