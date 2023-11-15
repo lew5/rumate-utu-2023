@@ -13,6 +13,12 @@
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
+      <?php elseif ($idRemate == 4): ?>
+        <iframe width="720" height="480"
+          src="https://www.youtube.com/embed/GOx_Qnlb-b8?si=zoNUWRuEsifwyPLl&amp;start=2400"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
       <?php else: ?>
         <img src="<?= PUBLIC_PATH ?>/Public/imgs/Lote/lote-no-image.webp"
           alt="Imagen del lote" height="480px" width="720px" />
