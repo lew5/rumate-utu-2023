@@ -1,5 +1,6 @@
 const contadorLotes = document.querySelector("#lotes_guardados span");
-
+const btnPublicar = document.getElementById("publicar");
+btnPublicar.disabled = true;
 var lotes = [];
 
 var lotesGuardados = 0;
@@ -53,8 +54,11 @@ function publicar() {
 }
 
 document.querySelector(".button-link--accent").addEventListener("click", function (e) {
-  // e.preventDefault();
+  e.preventDefault();
   guardar();
+  if (lotesGuardados >= 1) {
+    btnPublicar.disabled = false;
+  }
 });
 
 document.getElementById("publicar").addEventListener("click", function (e) {
