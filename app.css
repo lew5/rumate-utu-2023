@@ -382,8 +382,8 @@ a {
   background-size: cover;
   background-position: center;
   width: 70%;
-  -webkit-mask: url("../imgs/blob.svg");
-  mask: url("../imgs/blob.svg");
+  -webkit-mask: url("imgs/blob.svg");
+  mask: url("imgs/blob.svg");
   -webkit-mask-position: left;
   mask-position: left;
   -webkit-mask-size: 160%;
