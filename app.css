@@ -377,7 +377,7 @@ a {
 }
 
 .login-register__background {
-  background-image: url("../imgs/hero-img.webp");
+  background-image: url("imgs/hero-img.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
